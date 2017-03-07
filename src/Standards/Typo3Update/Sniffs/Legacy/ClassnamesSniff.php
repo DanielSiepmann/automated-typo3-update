@@ -72,32 +72,35 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
         $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
-        $classname = $tokens[$classnamePosition]['content'];
-
         if ($classnamePosition === false) {
             return;
         }
+        $classname = $tokens[$classnamePosition]['content'];
 
-        if ($this->isLegacyClassname($classname)) {
-            $fix = $phpcsFile->addFixableError(
-                'Legacy classes are not allowed; found %s',
-                $classnamePosition,
-                'legacyClassname',
-                [$classname]
-            );
+        if ($this->isLegacyClassname($classname) === false) {
+            return;
+        }
 
-            if ($fix === true) {
-                switch ($tokens[$stackPtr]['code']) {
-                    case T_EXTENDS:
-                    case T_IMPLEMENTS:
-                        $phpcsFile->fixer->replaceToken($classnamePosition, '\\' . $this->getNewClassname($classname));
-                        break;
+        $fix = $phpcsFile->addFixableError(
+            'Legacy classes are not allowed; found %s',
+            $classnamePosition,
+            'legacyClassname',
+            [$classname]
+        );
 
-                    default:
+        if ($fix === false) {
+            return;
+        }
 
-                        break;
-                }
-            }
+        switch ($tokens[$stackPtr]['code']) {
+            case T_EXTENDS:
+            case T_IMPLEMENTS:
+                $phpcsFile->fixer->replaceToken($classnamePosition, '\\' . $this->getNewClassname($classname));
+                break;
+
+            default:
+
+                break;
         }
     }
 
