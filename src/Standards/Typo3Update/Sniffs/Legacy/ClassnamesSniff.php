@@ -45,7 +45,7 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
      *
      * @see http://php.net/manual/en/tokens.php
      *
-     * @return array(int)
+     * @return array<int>
      */
     public function register()
     {
@@ -73,6 +73,10 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
         $classname = $tokens[$classnamePosition]['content'];
+
+        if ($classnamePosition === false) {
+            return;
+        }
 
         if ($this->isLegacyClassname($classname)) {
             $fix = $phpcsFile->addFixableError(
