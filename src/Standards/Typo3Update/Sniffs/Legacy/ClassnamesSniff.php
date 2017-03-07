@@ -99,7 +99,7 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
                 break;
 
             default:
-
+                throw new \RuntimeException('Could not fix type "' . $tokens[$stackPtr]['type'] . '"', 1488891438);
                 break;
         }
     }
