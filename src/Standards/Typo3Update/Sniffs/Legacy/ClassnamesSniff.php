@@ -85,7 +85,7 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
             if ($fix === true) {
                 switch ($tokens[$stackPtr]['code']) {
                     case T_IMPLEMENTS:
-                        $phpcsFile->fixer->replaceToken($classnamePosition, $this->getNewClassname($classname));
+                        $phpcsFile->fixer->replaceToken($classnamePosition, '\\' . $this->getNewClassname($classname));
                         break;
 
                     default:
