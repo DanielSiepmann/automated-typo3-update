@@ -26,13 +26,13 @@
  */
 class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSniffer_Sniff
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameChecker;
+    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
 
     /**
      * The configured tags will be processed.
      * @var array<string>
      */
-    protected $allowedTags = ['@param', '@return'];
+    protected $allowedTags = ['@param', '@return', '@var'];
 
     /**
      * Original token for reuse accross methods.

@@ -25,7 +25,7 @@ use PHP_CodeSniffer_File as PhpcsFile;
 /**
  * Provide common uses for all sniffs.
  */
-trait ClassnameChecker
+trait ClassnameCheckerTrait
 {
     /**
      * Contains mapping from old -> new class names.
