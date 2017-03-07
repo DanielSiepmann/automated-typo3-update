@@ -4,7 +4,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Typo3Update\\": "src/Classes/"
+            "Typo3Update\\": "src/Standards/Typo3Update/"
         }
     },
     "require-dev": {
