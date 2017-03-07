@@ -50,12 +50,12 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
     public function register()
     {
         return [
-            // T_USE,
-            // T_NEW,
-            // T_INSTANCEOF,
+            T_EXTENDS,
             T_IMPLEMENTS,
-            // T_EXTENDS,
+            // T_INSTANCEOF,
+            // T_NEW,
             // T_STRING,
+            // T_USE,
         ];
     }
 
@@ -84,6 +84,7 @@ class Typo3Update_Sniffs_Legacy_ClassnamesSniff implements PHP_CodeSniffer_Sniff
 
             if ($fix === true) {
                 switch ($tokens[$stackPtr]['code']) {
+                    case T_EXTENDS:
                     case T_IMPLEMENTS:
                         $phpcsFile->fixer->replaceToken($classnamePosition, '\\' . $this->getNewClassname($classname));
                         break;
