@@ -35,10 +35,10 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSni
     protected $allowedTags = ['@param', '@return', '@var'];
 
     /**
-     * Original token for reuse accross methods.
-     * @var array
+     * Original token content for reuse accross methods.
+     * @var string
      */
-    protected $originalToken = [];
+    protected $originalTokenContent = '';
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -73,20 +73,19 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSni
         }
         $classname = explode(' ', $tokens[$classnamePosition]['content'])[0];
 
-        $this->originalToken = $tokens[$classnamePosition]['content'];
+        $this->originalTokenContent = $tokens[$classnamePosition]['content'];
         $this->addFixableError($phpcsFile, $classnamePosition, $classname);
     }
 
     /**
      * As token contains more then just class name, we have to build new content ourself.
      *
-     *
      * @param string $classname
      * @return string
      */
     public function getTokenForReplacement($classname)
     {
-        $token = explode(' ', $this->originalToken);
+        $token = explode(' ', $this->originalTokenContent);
         $token[0] = $classname;
 
         return implode(' ', $token);
