@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ruleset name="TYPO3 Update">
+    <description>Provides sniffs and fixes for TYPO3 Updates.</description>
+</ruleset>

@@ -1,0 +1,23 @@
+{
+    "name": "siepmann/typo3_update",
+    "description": "Auto migrate PHP Source of extensions to be compatible.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Typo3Update\\": "src/Classes/"
+        }
+    },
+    "require-dev": {
+        "psy/psysh": "~0.8"
+    },
+    "require": {
+        "squizlabs/php_codesniffer_tests": "^2.0"
+    },
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de"
+        }
+    ]
+}
