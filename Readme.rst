@@ -51,6 +51,7 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Typehints in methods and function like injects.
 
+- ``Instanceof`` comparisons.
 
 What does it look like?
 =======================
@@ -65,17 +66,26 @@ What does it look like?
    ----------------------------------------------------------------------
    FOUND 5 ERRORS AFFECTING 5 LINES
    ----------------------------------------------------------------------
-    8 | ERROR | [x] Legacy classes are not allowed; found
-      |       |   backend_toolbarItem
-      |       |   (Typo3Update.LegacyClassnames.Inheritance.legacyClassname)
-   14 | ERROR | [x] Legacy classes are not allowed; found TYPO3backend
-      |       |   (Typo3Update.LegacyClassnames.DocComment.legacyClassname)
-   16 | ERROR | [x] Legacy classes are not allowed; found TYPO3backend
-      |       |   (Typo3Update.LegacyClassnames.TypeHint.legacyClassname)
-   48 | ERROR | [x] Legacy classes are not allowed; found t3lib_extMgm
-      |       |   (Typo3Update.LegacyClassnames.StaticCall.legacyClassname)
-   61 | ERROR | [x] Legacy classes are not allowed; found t3lib_div
-      |       |   (Typo3Update.LegacyClassnames.StaticCall.legacyClassname)
+     8 | ERROR | [x] Legacy classes are not allowed; found
+       |       |     "backend_toolbarItem", use
+       |       |     "TYPO3\CMS\Backend\Toolbar\ToolbarItemHookInterface"
+       |       |     instead
+       |       |     (Typo3Update.LegacyClassnames.Inheritance.legacyClassname)
+    14 | ERROR | [x] Legacy classes are not allowed; found "TYPO3backend",
+       |       |     use "TYPO3\CMS\Backend\Controller\BackendController"
+       |       |     instead
+       |       |     (Typo3Update.LegacyClassnames.DocComment.legacyClassname)
+    16 | ERROR | [x] Legacy classes are not allowed; found "TYPO3backend",
+       |       |     use "TYPO3\CMS\Backend\Controller\BackendController"
+       |       |     instead
+       |       |     (Typo3Update.LegacyClassnames.TypeHint.legacyClassname)
+    48 | ERROR | [x] Legacy classes are not allowed; found "t3lib_extMgm",
+       |       |     use "TYPO3\CMS\Core\Utility\ExtensionManagementUtility"
+       |       |     instead
+       |       |     (Typo3Update.LegacyClassnames.StaticCall.legacyClassname)
+    61 | ERROR | [x] Legacy classes are not allowed; found "t3lib_div", use
+       |       |     "TYPO3\CMS\Core\Utility\GeneralUtility" instead
+       |       |     (Typo3Update.LegacyClassnames.StaticCall.legacyClassname)
    ----------------------------------------------------------------------
    PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
    ----------------------------------------------------------------------
