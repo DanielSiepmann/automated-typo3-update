@@ -83,10 +83,10 @@ trait ClassnameCheckerTrait
         }
 
         $fix = $phpcsFile->addFixableError(
-            'Legacy classes are not allowed; found %s',
+            'Legacy classes are not allowed; found "%s", use "%s" instead',
             $classnamePosition,
             'legacyClassname',
-            [$classname]
+            [$classname, $this->getNewClassname($classname)]
         );
 
         if ($fix === true) {
