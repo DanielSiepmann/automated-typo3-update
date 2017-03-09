@@ -50,3 +50,34 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 - Static calls like ``t3lib_div::`` to ``\TYPO3\Core\Utility\GeneralUtility``.
 
 - Typehints in methods and function like injects.
+
+
+What does it look like?
+=======================
+
+.. code::
+
+   $ ./vendor/bin/phpcs -p --colors -s <path>
+   E
+
+
+   FILE: <path>
+   ----------------------------------------------------------------------
+   FOUND 5 ERRORS AFFECTING 5 LINES
+   ----------------------------------------------------------------------
+    8 | ERROR | [x] Legacy classes are not allowed; found
+      |       |   backend_toolbarItem
+      |       |   (Typo3Update.LegacyClassnames.Inheritance.legacyClassname)
+   14 | ERROR | [x] Legacy classes are not allowed; found TYPO3backend
+      |       |   (Typo3Update.LegacyClassnames.DocComment.legacyClassname)
+   16 | ERROR | [x] Legacy classes are not allowed; found TYPO3backend
+      |       |   (Typo3Update.LegacyClassnames.TypeHint.legacyClassname)
+   48 | ERROR | [x] Legacy classes are not allowed; found t3lib_extMgm
+      |       |   (Typo3Update.LegacyClassnames.StaticCall.legacyClassname)
+   61 | ERROR | [x] Legacy classes are not allowed; found t3lib_div
+      |       |   (Typo3Update.LegacyClassnames.StaticCall.legacyClassname)
+   ----------------------------------------------------------------------
+   PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+   ----------------------------------------------------------------------
+
+   Time: 35ms; Memory: 5Mb
