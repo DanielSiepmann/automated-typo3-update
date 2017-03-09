@@ -31,12 +31,12 @@ trait ClassnameCheckerTrait
      * Contains mapping from old -> new class names.
      * @var array
      */
-    protected $legacyClassnames = [];
+    private $legacyClassnames = [];
 
     /**
      * @param string $mappingFile File containing php array for mapping.
      */
-    public function initialize($mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php')
+    private function initialize($mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php')
     {
         if ($this->legacyClassnames !== []) {
             return;
@@ -47,10 +47,13 @@ trait ClassnameCheckerTrait
     }
 
     /**
+     * Checks whether a mapping exists for the given $classname,
+     * indicating it's legacy.
+     *
      * @param string $classname
      * @return bool
      */
-    public function isLegacyClassname($classname)
+    private function isLegacyClassname($classname)
     {
         $this->initialize();
         return isset($this->legacyClassnames[strtolower($classname)]);
@@ -60,7 +63,7 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return string
      */
-    public function getNewClassname($classname)
+    private function getNewClassname($classname)
     {
         $this->initialize();
         return $this->legacyClassnames[strtolower($classname)];
@@ -101,7 +104,7 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return string
      */
-    public function getTokenForReplacement($classname)
+    private function getTokenForReplacement($classname)
     {
         return $classname;
     }
