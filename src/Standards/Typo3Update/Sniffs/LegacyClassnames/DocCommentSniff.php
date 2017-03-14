@@ -83,7 +83,7 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSni
      * @param string $classname
      * @return string
      */
-    public function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($classname)
     {
         $token = explode(' ', $this->originalTokenContent);
         $token[0] = $classname;
