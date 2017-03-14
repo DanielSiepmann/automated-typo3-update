@@ -51,6 +51,7 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Typehints in methods and function like injects.
 
+- Instantiation through ``new``.
 
 What does it look like?
 =======================
