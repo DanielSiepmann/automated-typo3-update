@@ -51,6 +51,8 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Typehints in methods and function like injects.
 
+- Inline comments for IDEs, e.g. ``/* @var $configurationManager
+  Tx_Extbase_Configuration_ConfigurationManager */``
 
 What does it look like?
 =======================
