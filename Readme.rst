@@ -53,6 +53,8 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Instantiation through ``new``.
 
+- Instantiation through ``makeInstance``.
+
 What does it look like?
 =======================
 
