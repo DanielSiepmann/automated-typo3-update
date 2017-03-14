@@ -7,9 +7,6 @@
             "Typo3Update\\": "src/Standards/Typo3Update/"
         }
     },
-    "require-dev": {
-        "psy/psysh": "~0.8"
-    },
     "require": {
         "squizlabs/php_codesniffer_tests": "^2.0"
     },
