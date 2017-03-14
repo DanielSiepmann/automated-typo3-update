@@ -24,7 +24,7 @@ use PHP_CodeSniffer_File as PhpcsFile;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Provide common uses for all sniffs.
+ * Provide common uses for all sniffs, regarding class name checks.
  */
 trait ClassnameCheckerTrait
 {
@@ -108,44 +108,5 @@ trait ClassnameCheckerTrait
     protected function getTokenForReplacement($classname)
     {
         return $classname;
-    }
-
-    /**
-     * Check whether current stackPtr is a function call.
-     *
-     * Code taken from PEAR_Sniffs_Functions_FunctionCallSignatureSniff for reuse.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     *
-     * @return bool
-     */
-    protected function isFunctionCall(PhpCsFile $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-
-        if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-            // Not a function call.
-            return false;
-        }
-
-        if (isset($tokens[$openBracket]['parenthesis_closer']) === false) {
-            // Not a function call.
-            return false;
-        }
-
-        // Find the previous non-empty token.
-        $search   = Tokens::$emptyTokens;
-        $search[] = T_BITWISE_AND;
-        $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
-        if ($tokens[$previous]['code'] === T_FUNCTION) {
-            // It's a function definition, not a function call.
-            return false;
-        }
-
-        return true;
     }
 }

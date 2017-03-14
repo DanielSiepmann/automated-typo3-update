@@ -27,6 +27,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
 class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff implements PHP_CodeSniffer_Sniff
 {
     use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
+    use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 
     /**
      * Original token content for reuse accross methods.
