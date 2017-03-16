@@ -162,7 +162,7 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return string
      */
-    private function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($classname)
     {
         return $classname;
     }
