@@ -35,6 +35,16 @@ trait ClassnameCheckerTrait
     private $legacyClassnames = [];
 
     /**
+     * A list of extension names that might contain legacy class names.
+     * Used to check clas names for warnings.
+     *
+     * Configure through ruleset.xml.
+     *
+     * @var array<string>
+     */
+    public $legacyExtensions = ['Extbase', 'Fluid'];
+
+    /**
      * @param string $mappingFile File containing php array for mapping.
      */
     private function initialize($mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php')
@@ -61,6 +71,31 @@ trait ClassnameCheckerTrait
     }
 
     /**
+     * Guesses whether the given classname is legacy.  Will not check
+     * isLegacyClassname
+     *
+     * @param string $classname
+     * @return bool
+     */
+    private function isMaybeLegacyClassname($classname)
+    {
+        if (strpos($classname, 'Tx_') === false) {
+            return false;
+        }
+
+        $extensionName = call_user_func(function ($classname) {
+            $nameParts = explode('_', $classname);
+            return $nameParts[1];
+        }, $classname);
+
+        if (!in_array($extensionName, $this->legacyExtensions)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * @param string $classname
      * @return string
      */
@@ -79,6 +114,8 @@ trait ClassnameCheckerTrait
      */
     public function addFixableError(PhpcsFile $phpcsFile, $classnamePosition, $classname)
     {
+        $this->addMaybeWarning($phpcsFile, $classnamePosition, $classname);
+
         if ($this->isLegacyClassname($classname) === false) {
             return;
         }
@@ -96,6 +133,27 @@ trait ClassnameCheckerTrait
                 $this->getTokenForReplacement('\\' . $this->getNewClassname($classname))
             );
         }
+    }
+
+    /**
+     * Add an warning if given $classname is maybe legacy.
+     *
+     * @param PhpcsFile $phpcsFile
+     * @param int $classnamePosition
+     * @param string $classname
+     */
+    private function addMaybeWarning(PhpcsFile $phpcsFile, $classnamePosition, $classname)
+    {
+        if ($this->isLegacyClassname($classname) || $this->isMaybeLegacyClassname($classname) === false) {
+            return;
+        }
+
+        $phpcsFile->addWarning(
+            'Legacy classes are not allowed; found %s that might be a legacy class that does not exist anymore',
+            $classnamePosition,
+            'mightBeLegacyClassname',
+            [$classname]
+        );
     }
 
     /**
