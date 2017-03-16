@@ -22,7 +22,7 @@
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Migrate Typehints in function / method definitions.
+ * Migrate old legacy class names in use statements.
  */
 class Typo3Update_Sniffs_LegacyClassnames_UseSniff implements PHP_CodeSniffer_Sniff
 {
