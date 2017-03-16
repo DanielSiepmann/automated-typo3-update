@@ -114,6 +114,7 @@ trait ClassnameCheckerTrait
      */
     public function addFixableError(PhpcsFile $phpcsFile, $classnamePosition, $classname)
     {
+        $classname = trim($classname, '\\');
         $this->addMaybeWarning($phpcsFile, $classnamePosition, $classname);
 
         if ($this->isLegacyClassname($classname) === false) {
@@ -128,10 +129,7 @@ trait ClassnameCheckerTrait
         );
 
         if ($fix === true) {
-            $phpcsFile->fixer->replaceToken(
-                $classnamePosition,
-                $this->getTokenForReplacement('\\' . $this->getNewClassname($classname))
-            );
+            $this->replaceLegacyClassname($phpcsFile, $classnamePosition, $classname);
         }
     }
 
@@ -153,6 +151,26 @@ trait ClassnameCheckerTrait
             $classnamePosition,
             'mightBeLegacyClassname',
             [$classname]
+        );
+    }
+
+    /**
+     * Replaces the classname at $classnamePosition with $classname in $phpcsFile.
+     *
+     * @param PhpcsFile $phpcsFile
+     * @param int $classnamePosition
+     * @param string $classname
+     */
+    private function replaceLegacyClassname(PhpcsFile $phpcsFile, $classnamePosition, $classname)
+    {
+        $prefix = '\\';
+        if ($phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
+            $prefix = '';
+        }
+
+        $phpcsFile->fixer->replaceToken(
+            $classnamePosition,
+            $this->getTokenForReplacement($prefix . $this->getNewClassname($classname))
         );
     }
 
