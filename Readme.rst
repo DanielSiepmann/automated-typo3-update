@@ -60,6 +60,15 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Instantiation through ``makeInstance``.
 
+- Instantiation through ``ObjectManager``, check afterwards as this is static and all function calls
+  using ``get`` and ``create`` will be adjusted. Might be useful to exclude this sniff and run it
+  separately.
+
+Also we check for the following deprecated calls:
+
+- Check for ``create`` on ``ObjectManager``, which is "stupid" just all ``create`` calls are marked
+  with a warning.
+
 What does it look like?
 =======================
 
