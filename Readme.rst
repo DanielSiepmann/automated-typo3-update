@@ -58,11 +58,12 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Instantiation through ``new``.
 
-- Instantiation through ``makeInstance``.
+- Instantiation through ``makeInstance``. Only Classnames in Strings are supported, no ``::class``.
 
 - Instantiation through ``ObjectManager``, check afterwards as this is static and all function calls
   using ``get`` and ``create`` will be adjusted. Might be useful to exclude this sniff and run it
   separately.
+  Only Classnames in Strings are supported, no ``::class``.
 
 Also we check for the following deprecated calls:
 
