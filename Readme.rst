@@ -121,3 +121,16 @@ the provided one.
           <property name="legacyExtensions" type="array" value="Extbase,Fluid,Frontend,Core"/>
       </properties>
   </rule>
+
+Typo3Update.LegacyClassnames.DocComment: ``allowedTags``
+    Configures which tags are checked for legacy class names.
+
+    Example:
+
+.. code:: xml
+
+   <rule ref="Typo3Update.LegacyClassnames.DocComment">
+       <properties>
+           <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
+       </properties>
+   </rule>

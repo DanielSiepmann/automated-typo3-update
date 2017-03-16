@@ -20,7 +20,7 @@
  */
 
 /**
- * Detect and migrate extend and implement of old legacy classnames.
+ * Detect and migrate instanceof checks of old legacy classnames.
  */
 class Typo3Update_Sniffs_LegacyClassnames_InstanceofSniff implements PHP_CodeSniffer_Sniff
 {
