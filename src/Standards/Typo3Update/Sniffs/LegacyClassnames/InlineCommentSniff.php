@@ -56,17 +56,30 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        if (preg_match('/\/\*\s+@var\s+\$/', $tokens[$stackPtr]['content']) !== 1) {
-            return;
-        }
-
-        $commentParts = preg_split('/\s+/', $tokens[$stackPtr]['content']);
-        if (count($commentParts) !== 5) {
-            return;
-        }
-
         $this->originalTokenContent = $tokens[$stackPtr]['content'];
-        $this->addFixableError($phpcsFile, $stackPtr, $commentParts[3]);
+        $commentParts = preg_split('/\s+/', $this->originalTokenContent);
+
+        if (count($commentParts) !== 5 || $commentParts[1] !== '@var' || ($commentParts[2][0] !== '$' && $commentParts[3][0] !== '$')) {
+            return;
+        }
+
+        $this->addFixableError($phpcsFile, $stackPtr, $commentParts[$this->getClassnamePosition($commentParts)]);
+    }
+
+    /**
+     * As Classname can be found as first or second argument of @var, we have
+     * to check where it is.
+     *
+     * @param array $commentParts
+     * @return int
+     */
+    protected function getClassnamePosition(array $commentParts)
+    {
+        if ($commentParts[3][0] === '$') {
+            return 2;
+        }
+
+        return 3;
     }
 
     /**
@@ -78,7 +91,7 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
     protected function getTokenForReplacement($classname)
     {
         $token = preg_split('/\s+/', $this->originalTokenContent);
-        $token[3] = $classname;
+        $token[$this->getClassnamePosition($token)] = $classname;
 
         return implode(' ', $token);
     }
