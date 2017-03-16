@@ -75,7 +75,7 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
      * @param string $classname
      * @return string
      */
-    public function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($classname)
     {
         $token = explode(' ', $this->originalTokenContent);
         $token[3] = $classname;
