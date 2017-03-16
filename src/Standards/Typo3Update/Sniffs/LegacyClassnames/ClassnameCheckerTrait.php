@@ -37,11 +37,11 @@ trait ClassnameCheckerTrait
      * A list of extension names that might contain legacy class names.
      * Used to check clas names for warnings.
      *
+     * Configure through ruleset.xml.
+     *
      * @var array<string>
      */
-    private $legacyExtensions = [
-        'Extbase',
-    ];
+    public $legacyExtensions = ['Extbase', 'Fluid'];
 
     /**
      * @param string $mappingFile File containing php array for mapping.
