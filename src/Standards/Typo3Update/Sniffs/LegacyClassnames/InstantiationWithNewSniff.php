@@ -20,7 +20,7 @@
  */
 
 /**
- * Detect and migrate static calls to old legacy classnames.
+ * Detect and migrate old legacy classnames instantiations using phps "new".
  */
 class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithNewSniff implements PHP_CodeSniffer_Sniff
 {

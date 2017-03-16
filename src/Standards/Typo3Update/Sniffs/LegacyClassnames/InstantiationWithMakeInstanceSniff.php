@@ -22,7 +22,7 @@
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Detect and migrate static calls to old legacy classnames.
+ * Detect and migrate instantiations of old legacy classnames using "makeInstance".
  */
 class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff implements PHP_CodeSniffer_Sniff
 {
