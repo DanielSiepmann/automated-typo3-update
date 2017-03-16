@@ -56,11 +56,11 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        if (substr($tokens[$stackPtr]['content'], 0, 9) !== '/* @var $') {
+        if (preg_match('/\/\*\s+@var\s+\$/', $tokens[$stackPtr]['content']) !== 1) {
             return;
         }
 
-        $commentParts = explode(' ', $tokens [$stackPtr ]['content']);
+        $commentParts = preg_split('/\s+/', $tokens[$stackPtr]['content']);
         if (count($commentParts) !== 5) {
             return;
         }
@@ -77,7 +77,7 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
      */
     protected function getTokenForReplacement($classname)
     {
-        $token = explode(' ', $this->originalTokenContent);
+        $token = preg_split('/\s+/', $this->originalTokenContent);
         $token[3] = $classname;
 
         return implode(' ', $token);
