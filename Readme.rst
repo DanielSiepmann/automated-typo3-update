@@ -82,3 +82,23 @@ What does it look like?
    ----------------------------------------------------------------------
 
    Time: 35ms; Memory: 5Mb
+
+Configuration
+=============
+
+Configuration is done through PHPCS Standards, e.g. provide a custom ``ruleset.xml`` or customize
+the provided one.
+
+``legacyExtensions``
+    Configures which extension names are legacy. Used to provide further checks and warnings about
+    possible legacy code. E.g. inside of non auto migrated situations.
+
+    Example:
+
+.. code:: xml
+
+  <rule ref="Typo3Update.LegacyClassnames.Instanceof">
+      <properties>
+          <property name="legacyExtensions" type="array" value="Extbase,Fluid,Frontend,Core"/>
+      </properties>
+  </rule>
