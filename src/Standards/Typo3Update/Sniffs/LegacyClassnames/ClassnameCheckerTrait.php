@@ -21,9 +21,10 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  */
 
 use PHP_CodeSniffer_File as PhpcsFile;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Provide common uses for all sniffs.
+ * Provide common uses for all sniffs, regarding class name checks.
  */
 trait ClassnameCheckerTrait
 {
