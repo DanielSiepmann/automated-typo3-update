@@ -7,4 +7,9 @@
             <property name="legacyExtensions" type="array" value="Extbase,Fluid,Frontend,Core"/>
         </properties>
     </rule>
+    <rule ref="Typo3Update.LegacyClassnames.DocComment">
+        <properties>
+            <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
+        </properties>
+    </rule>
 </ruleset>
