@@ -34,7 +34,11 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
      */
     public function register()
     {
-        return [T_CLASS];
+        return [
+            T_CLASS,
+            T_INTERFACE,
+            T_TRAIT,
+        ];
     }
 
     /**
@@ -97,8 +101,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
         $lineEndings = PhpCsFile::detectLineEndings($phpcsFile->getFilename());
         $suffix = $lineEndings;
 
-        // TODO, does not work.
-        if ($tokens[1] === "\n") {
+        if ($tokens[1]['code'] !== T_WHITESPACE) {
             $suffix .= $lineEndings;
         }
 
