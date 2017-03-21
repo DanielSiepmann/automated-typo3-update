@@ -21,7 +21,6 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  */
 
 use PHP_CodeSniffer_File as PhpcsFile;
-use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
@@ -55,6 +54,32 @@ trait ClassnameCheckerTrait
 
         $legacyClassnames = require $mappingFile;
         $this->legacyClassnames = $legacyClassnames['aliasToClassNameMapping'];
+    }
+
+    /**
+     * Processes the tokens that this sniff is interested in.
+     *
+     * This is the default implementation, as most of the time next T_STRING is
+     * the class name. This way only the register method has to be registered
+     * in default cases.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param int                  $stackPtr  The position in the stack where
+     *                                        the token was found.
+     *
+     * @return void
+     */
+    public function process(PhpcsFile $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
+        if ($classnamePosition === false) {
+            return;
+        }
+
+        $classname = $tokens[$classnamePosition]['content'];
+        $this->addFixableError($phpcsFile, $classnamePosition, $classname);
     }
 
     /**
