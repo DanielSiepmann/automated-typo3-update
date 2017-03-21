@@ -85,7 +85,7 @@ trait ClassnameCheckerTrait
         $tokens = $phpcsFile->getTokens();
 
         $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
-        if ($this->findPrev()) {
+        if ($this->shouldLookBefore()) {
             $classnamePosition = $phpcsFile->findPrevious(T_STRING, $stackPtr);
         }
         if ($classnamePosition === false) {
