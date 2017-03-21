@@ -67,6 +67,8 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - ``use`` statements.
 
+- ``catch`` of legacy class names.
+
 Also we check for the following deprecated calls:
 
 - Check for ``create`` on ``ObjectManager``, which is "stupid" just all ``create`` calls are marked
