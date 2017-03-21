@@ -27,6 +27,17 @@ class Typo3Update_Sniffs_LegacyClassnames_StaticCallSniff implements PHP_CodeSni
     use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
 
     /**
+     * Define whether the T_STRING default behaviour should be checked before
+     * or after the $stackPtr.
+     *
+     * @return bool
+     */
+    protected function findPrev()
+    {
+        return true;
+    }
+
+    /**
      * Returns the token types that this sniff is interested in.
      *
      * @return array<int>

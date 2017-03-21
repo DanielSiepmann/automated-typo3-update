@@ -57,6 +57,17 @@ trait ClassnameCheckerTrait
     }
 
     /**
+     * Define whether the T_STRING default behaviour should be checked before
+     * or after the $stackPtr.
+     *
+     * @return bool
+     */
+    protected function findPrev()
+    {
+        return false;
+    }
+
+    /**
      * Processes the tokens that this sniff is interested in.
      *
      * This is the default implementation, as most of the time next T_STRING is
@@ -74,6 +85,9 @@ trait ClassnameCheckerTrait
         $tokens = $phpcsFile->getTokens();
 
         $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
+        if ($this->findPrev()) {
+            $classnamePosition = $phpcsFile->findPrevious(T_STRING, $stackPtr);
+        }
         if ($classnamePosition === false) {
             return;
         }
