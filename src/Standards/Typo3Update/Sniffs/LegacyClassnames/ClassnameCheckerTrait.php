@@ -62,7 +62,7 @@ trait ClassnameCheckerTrait
      *
      * @return bool
      */
-    protected function findPrev()
+    protected function shouldLookBefore()
     {
         return false;
     }

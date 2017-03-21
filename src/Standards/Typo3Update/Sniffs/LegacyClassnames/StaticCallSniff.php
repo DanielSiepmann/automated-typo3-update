@@ -32,7 +32,7 @@ class Typo3Update_Sniffs_LegacyClassnames_StaticCallSniff implements PHP_CodeSni
      *
      * @return bool
      */
-    protected function findPrev()
+    protected function shouldLookBefore()
     {
         return true;
     }
