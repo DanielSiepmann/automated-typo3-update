@@ -38,25 +38,4 @@ class Typo3Update_Sniffs_LegacyClassnames_InheritanceSniff implements PHP_CodeSn
             T_IMPLEMENTS,
         ];
     }
-
-    /**
-     * Processes the tokens that this sniff is interested in.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
-     * @param int                  $stackPtr  The position in the stack where
-     *                                        the token was found.
-     *
-     * @return void
-     */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-        $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
-        if ($classnamePosition === false) {
-            return;
-        }
-        $classname = $tokens[$classnamePosition]['content'];
-
-        $this->addFixableError($phpcsFile, $classnamePosition, $classname);
-    }
 }
