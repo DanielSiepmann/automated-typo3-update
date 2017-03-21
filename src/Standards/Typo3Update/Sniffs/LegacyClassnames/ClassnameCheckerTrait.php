@@ -20,7 +20,7 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpcsFile;
+use PHP_CodeSniffer_File as PhpCsFile;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
@@ -74,13 +74,13 @@ trait ClassnameCheckerTrait
      * the class name. This way only the register method has to be registered
      * in default cases.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param PhpCsFile $phpcsFile The file where the token was found.
      * @param int                  $stackPtr  The position in the stack where
      *                                        the token was found.
      *
      * @return void
      */
-    public function process(PhpcsFile $phpcsFile, $stackPtr)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -147,11 +147,11 @@ trait ClassnameCheckerTrait
     /**
      * Add an fixable error if given $classname is legacy.
      *
-     * @param PhpcsFile $phpcsFile
+     * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
      */
-    public function addFixableError(PhpcsFile $phpcsFile, $classnamePosition, $classname)
+    public function addFixableError(PhpCsFile $phpcsFile, $classnamePosition, $classname)
     {
         $classname = trim($classname, '\\\'"'); // Remove trailing slash, and quotes.
         $this->addMaybeWarning($phpcsFile, $classnamePosition, $classname);
@@ -175,11 +175,11 @@ trait ClassnameCheckerTrait
     /**
      * Add an warning if given $classname is maybe legacy.
      *
-     * @param PhpcsFile $phpcsFile
+     * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
      */
-    private function addMaybeWarning(PhpcsFile $phpcsFile, $classnamePosition, $classname)
+    private function addMaybeWarning(PhpCsFile $phpcsFile, $classnamePosition, $classname)
     {
         if ($this->isLegacyClassname($classname) || $this->isMaybeLegacyClassname($classname) === false) {
             return;
@@ -196,11 +196,11 @@ trait ClassnameCheckerTrait
     /**
      * Replaces the classname at $classnamePosition with $classname in $phpcsFile.
      *
-     * @param PhpcsFile $phpcsFile
+     * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
      */
-    private function replaceLegacyClassname(PhpcsFile $phpcsFile, $classnamePosition, $classname)
+    private function replaceLegacyClassname(PhpCsFile $phpcsFile, $classnamePosition, $classname)
     {
         $prefix = '\\';
         if ($phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
