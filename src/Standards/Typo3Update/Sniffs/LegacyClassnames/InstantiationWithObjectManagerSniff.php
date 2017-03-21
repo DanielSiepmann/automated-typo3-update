@@ -74,7 +74,7 @@ class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithObjectManagerSniff im
             );
         }
 
-        $classname = trim($tokens[$classnamePosition]['content'], '\'"');
+        $classname = $tokens[$classnamePosition]['content'];
         $this->originalTokenContent = $tokens[$classnamePosition]['content'];
         $this->addFixableError($phpcsFile, $classnamePosition, $classname);
     }
@@ -87,16 +87,6 @@ class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithObjectManagerSniff im
      */
     protected function getTokenForReplacement($classname)
     {
-        $stringSign = $this->originalTokenContent[0];
-        $token = explode($stringSign, $this->originalTokenContent);
-        $token[1] = $classname;
-
-        // Migrate double quote to single quote.
-        // This way no escaping of backslashes in class names is necessary.
-        if ($stringSign === '"') {
-            $stringSign = "'";
-        }
-
-        return implode($stringSign, $token);
+        return $this->getTokenReplacementForString($classname);
     }
 }
