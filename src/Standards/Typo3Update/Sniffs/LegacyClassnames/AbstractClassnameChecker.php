@@ -20,12 +20,14 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpcsFile;
+use PHP_CodeSniffer_Sniff as PhpCsSniff;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
  */
-trait ClassnameCheckerTrait
+abstract class AbstractClassnameChecker implements PhpCsSniff
 {
     /**
      * Contains mapping from old -> new class names.
@@ -42,6 +44,20 @@ trait ClassnameCheckerTrait
      * @var array<string>
      */
     public $legacyExtensions = ['Extbase', 'Fluid'];
+
+    /**
+     * Returns the configured vendor, e.g. to generate new namespaces.
+     *
+     * @return string
+     */
+    protected function getVendor()
+    {
+        $vendor = PhpCs::getConfigData('vendor');
+        if (!$vendor) {
+            $vendor = 'YourCompany';
+        }
+        return trim($vendor, '\\/');
+    }
 
     /**
      * @param string $mappingFile File containing php array for mapping.
@@ -103,7 +119,7 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return bool
      */
-    private function isLegacyClassname($classname)
+    protected function isLegacyClassname($classname)
     {
         $this->initialize();
         return isset($this->legacyClassnames[strtolower($classname)]);
@@ -138,7 +154,7 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return string
      */
-    private function getNewClassname($classname)
+    protected function getNewClassname($classname)
     {
         $this->initialize();
         return $this->legacyClassnames[strtolower($classname)];
@@ -200,10 +216,10 @@ trait ClassnameCheckerTrait
      * @param int $classnamePosition
      * @param string $classname
      */
-    private function replaceLegacyClassname(PhpcsFile $phpcsFile, $classnamePosition, $classname)
+    protected function replaceLegacyClassname(PhpcsFile $phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix = false)
     {
         $prefix = '\\';
-        if ($phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
+        if ($forceEmptyPrefix || $phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
             $prefix = '';
         }
 

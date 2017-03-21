@@ -69,6 +69,8 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - ``catch`` of legacy class names.
 
+- Convert old legacy class definitions in extensions to namespace ones.
+
 Also we check for the following deprecated calls:
 
 - Check for ``create`` on ``ObjectManager``, which is "stupid" just all ``create`` calls are marked
@@ -136,3 +138,19 @@ Typo3Update.LegacyClassnames.DocComment: ``allowedTags``
            <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
        </properties>
    </rule>
+
+``vendor``
+    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
+    ``YourCompany``.
+
+    Example:
+
+.. code:: xml
+
+    <config name="vendor" value="YourVendor"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set vendor YourVendor
