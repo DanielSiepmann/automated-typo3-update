@@ -139,7 +139,7 @@ trait ClassnameCheckerTrait
      */
     public function addFixableError(PhpcsFile $phpcsFile, $classnamePosition, $classname)
     {
-        $classname = trim($classname, '\\');
+        $classname = trim($classname, '\\\'"'); // Remove trailing slash, and quotes.
         $this->addMaybeWarning($phpcsFile, $classnamePosition, $classname);
 
         if ($this->isLegacyClassname($classname) === false) {
@@ -209,5 +209,27 @@ trait ClassnameCheckerTrait
     protected function getTokenForReplacement($classname)
     {
         return $classname;
+    }
+
+    /**
+     * Use this inside your getTokenForReplacement if $classname is inside a string.
+     * Strings will be converted to single quotes.
+     *
+     * @param string $classname
+     * @return string
+     */
+    protected function getTokenReplacementForString($classname)
+    {
+        $stringSign = $this->originalTokenContent[0];
+        $token = explode($stringSign, $this->originalTokenContent);
+        $token[1] = $classname;
+
+        // Migrate double quote to single quote.
+        // This way no escaping of backslashes in class names is necessary.
+        if ($stringSign === '"') {
+            $stringSign = "'";
+        }
+
+        return implode($stringSign, $token);
     }
 }
