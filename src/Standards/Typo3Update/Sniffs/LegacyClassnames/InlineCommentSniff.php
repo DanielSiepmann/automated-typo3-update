@@ -28,12 +28,6 @@ use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
 class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff extends AbstractClassnameChecker
 {
     /**
-     * Original token content for reuse accross methods.
-     * @var string
-     */
-    protected $originalTokenContent = '';
-
-    /**
      * Returns the token types that this sniff is interested in.
      *
      * @return array<int>

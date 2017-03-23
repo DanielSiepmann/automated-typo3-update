@@ -48,6 +48,15 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     protected $legacyMapping;
 
+    /**
+     * Used by some sniffs to keep original token for replacement.
+     *
+     * E.g. when Token itself is a whole inline comment, and we just want to replace the classname within.
+     *
+     * @var string
+     */
+    protected $originalTokenContent = '';
+
     public function __construct()
     {
         $this->legacyMapping = Mapping::getInstance();
