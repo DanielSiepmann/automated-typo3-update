@@ -19,6 +19,7 @@
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
 
 /**
@@ -37,5 +38,57 @@ class Typo3Update_Sniffs_LegacyClassnames_InheritanceSniff extends AbstractClass
             T_EXTENDS,
             T_IMPLEMENTS,
         ];
+    }
+
+    /**
+     * Processes the tokens that this sniff is interested in.
+     *
+     * This is the default implementation, as most of the time next T_STRING is
+     * the class name. This way only the register method has to be registered
+     * in default cases.
+     *
+     * @param PhpCsFile $phpcsFile The file where the token was found.
+     * @param int                  $stackPtr  The position in the stack where
+     *                                        the token was found.
+     *
+     * @return void
+     */
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        if ($phpcsFile->getTokens()[$stackPtr]['code'] === T_IMPLEMENTS) {
+            $this->processInterfaces($phpcsFile, $stackPtr);
+            return;
+        }
+
+        parent::process($phpcsFile, $stackPtr);
+    }
+
+    /**
+     * Process all interfaces for current class.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     *
+     * @return void
+     */
+    protected function processInterfaces(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $interfaces = $phpcsFile->findImplementedInterfaceNames($phpcsFile->findPrevious(T_CLASS, $stackPtr));
+        if ($interfaces === false) {
+            return;
+        }
+
+        foreach ($interfaces as $interface) {
+            if (! $this->isLegacyClassname($interface)) {
+                continue;
+            }
+
+            $position = $phpcsFile->findNext(T_STRING, $stackPtr, null, false, $interface);
+            if ($position === false) {
+                continue;
+            }
+
+            $this->addFixableError($phpcsFile, $position, $interface);
+        }
     }
 }
