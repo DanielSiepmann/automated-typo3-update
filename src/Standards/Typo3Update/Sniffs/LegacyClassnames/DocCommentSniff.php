@@ -19,15 +19,16 @@
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
+
 /**
  * Migrate PHP Doc comments.
  *
  * E.g. annotations like @param or @return, see $allowedTags.
  */
-class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
     /**
      * The configured tags will be processed.
      * @var array<string>
@@ -55,13 +56,13 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSni
     /**
      * Processes the tokens that this sniff is interested in.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param PhpCsFile $phpcsFile The file where the token was found.
      * @param int                  $stackPtr  The position in the stack where
      *                                        the token was found.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         if (!in_array($tokens[$stackPtr]['content'], $this->allowedTags)) {

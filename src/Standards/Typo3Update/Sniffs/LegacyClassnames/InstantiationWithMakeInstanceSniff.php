@@ -19,14 +19,15 @@
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Tokens as Tokens;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
 
 /**
  * Detect and migrate instantiations of old legacy classnames using "makeInstance".
  */
-class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 
     /**
@@ -48,13 +49,13 @@ class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff imp
     /**
      * Processes the tokens that this sniff is interested in.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param PhpCsFile $phpcsFile The file where the token was found.
      * @param int                  $stackPtr  The position in the stack where
      *                                        the token was found.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
             return;
