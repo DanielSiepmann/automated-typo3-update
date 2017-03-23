@@ -60,7 +60,8 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff extends AbstractCla
         $this->originalTokenContent = $tokens[$stackPtr]['content'];
         $commentParts = preg_split('/\s+/', $this->originalTokenContent);
 
-        if (count($commentParts) !== 5 || $commentParts[1] !== '@var' || ($commentParts[2][0] !== '$' && $commentParts[3][0] !== '$')) {
+        if (count($commentParts) !== 5 || $commentParts[1] !== '@var'
+            || ($commentParts[2][0] !== '$' && $commentParts[3][0] !== '$')) {
             return;
         }
 

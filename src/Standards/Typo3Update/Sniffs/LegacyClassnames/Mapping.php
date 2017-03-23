@@ -28,12 +28,17 @@ use Typo3Update\Sniffs\OptionsAccessTrait;
  * Will check the configured file for whether a class is legacy and provides further methods.
  * Also can update to add new migrated class names.
  */
-class Mapping
+final class Mapping
 {
     use OptionsAccessTrait;
 
     // Singleton implementation - Start
     static protected $instance = null;
+    /**
+     * Get the singleton instance.
+     *
+     * @return Mapping
+     */
     public static function getInstance()
     {
         if (static::$instance === null) {

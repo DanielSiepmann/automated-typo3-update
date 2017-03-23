@@ -59,11 +59,12 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
             return;
         }
         $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
+
         if ($classnamePosition === false) {
             return;
         }
-        $classname = $tokens[$classnamePosition]['content'];
 
+        $classname = $tokens[$classnamePosition]['content'];
         $this->addFixableError($phpcsFile, $classnamePosition, $classname);
     }
 
@@ -94,8 +95,12 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
      * @param string $classname
      * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
      */
-    protected function replaceLegacyClassname(PhpCsFile $phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix = true)
-    {
+    protected function replaceLegacyClassname(
+        PhpCsFile $phpcsFile,
+        $classnamePosition,
+        $classname,
+        $forceEmptyPrefix = true
+    ) {
         parent::replaceLegacyClassname($phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix);
 
         $tokens = $phpcsFile->getTokens();
@@ -118,7 +123,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
 
     /**
      * @param PhpCsFile $phpcsFile
-     * @return int
+     * @return int|false
      */
     protected function getNamespacePosition(PhpCsFile $phpcsFile)
     {

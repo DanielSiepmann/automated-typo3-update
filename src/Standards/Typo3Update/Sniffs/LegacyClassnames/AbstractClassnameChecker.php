@@ -212,8 +212,12 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      * @param string $classname
      * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
      */
-    protected function replaceLegacyClassname(PhpCsFile $phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix = false)
-    {
+    protected function replaceLegacyClassname(
+        PhpCsFile $phpcsFile,
+        $classnamePosition,
+        $classname,
+        $forceEmptyPrefix = false
+    ) {
         $prefix = '\\';
         if ($forceEmptyPrefix || $phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
             $prefix = '';
