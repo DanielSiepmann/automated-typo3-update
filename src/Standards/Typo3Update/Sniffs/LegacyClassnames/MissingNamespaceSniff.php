@@ -92,6 +92,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
      * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
+     * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
      */
     protected function replaceLegacyClassname(PhpCsFile $phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix = true)
     {
@@ -138,9 +139,9 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
     }
 
     /**
-     * Returns namespace, without vendor, based on legacy class name.
+     * Returns namespace, based on legacy class name.
      *
-     * E.g. Tx_ExtName_FolderName_FileName -> ExtName\FolderName
+     * E.g. Tx_ExtName_FolderName_FileName -> VENDOR\ExtName\FolderName
      *
      * @param string $classname
      * @return string

@@ -43,6 +43,11 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     public $legacyExtensions = ['Extbase', 'Fluid'];
 
+    /**
+     * @var Mapping
+     */
+    protected $legacyMapping;
+
     public function __construct()
     {
         $this->legacyMapping = Mapping::getInstance();
@@ -205,6 +210,7 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
+     * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
      */
     protected function replaceLegacyClassname(PhpCsFile $phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix = false)
     {

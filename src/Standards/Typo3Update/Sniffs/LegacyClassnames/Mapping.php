@@ -50,9 +50,7 @@ class Mapping
     }
     private function __construct()
     {
-        $mappingFile = $this->getMappingFile();
-
-        $this->mappings = require $mappingFile;
+        $this->mappings = require $this->getMappingFile();
     }
     // Singleton implementation - End
 
@@ -112,10 +110,8 @@ class Mapping
             return;
         }
 
-        $mappingFile = $this->getMappingFile();
-
         file_put_contents(
-            $mappingFile,
+            $this->getMappingFile(),
             '<?php' . PHP_EOL . 'return ' . var_export($this->mappings, true) . ';'
         );
     }

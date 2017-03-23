@@ -84,7 +84,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingVendorForPluginsAndModulesSniff
         if ($fix === true) {
             $phpcsFile->fixer->replaceToken(
                 $firstArgument,
-                "'{$this->getVendor()}.' . " . $tokens[$firstArgument]['content']
+                "'{$this->getVendor()}.' . {$tokens[$firstArgument]['content']}"
             );
         }
     }
