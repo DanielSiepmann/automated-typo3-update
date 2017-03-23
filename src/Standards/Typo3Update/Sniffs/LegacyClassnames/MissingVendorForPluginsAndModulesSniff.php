@@ -58,7 +58,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingVendorForPluginsAndModulesSniff
      */
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $functionsToHandle = ['registerPlugin', 'configurePlugin', 'registerModule', 'configureModule'];
+        $functionsToHandle = ['registerPlugin', 'configurePlugin', 'registerModule'];
         if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
             return;
         }
@@ -75,9 +75,10 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingVendorForPluginsAndModulesSniff
 
         $fix = $phpcsFile->addFixableError(
             'No vendor is given, that will break TYPO3 handling for namespaced classes.'
-                . ' Add vendor before Extensionkey like: "Vendor." . $_EXTKEY',
+                . ' Add vendor before Extensionkey like: "%s." . $_EXTKEY',
             $firstArgument,
-            'missingVendor'
+            'missingVendor',
+            [$this->getVendor()]
         );
 
         if ($fix === true) {
