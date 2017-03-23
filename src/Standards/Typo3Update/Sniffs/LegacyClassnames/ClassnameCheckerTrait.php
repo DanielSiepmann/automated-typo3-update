@@ -45,7 +45,7 @@ trait ClassnameCheckerTrait
     public $legacyExtensions = ['Extbase', 'Fluid'];
 
     /**
-     * @param string $mappingFile File containing php array for mapping.
+     * Initialize, used internally, to not initialize if not needed inside __construct.
      */
     private function initialize()
     {
