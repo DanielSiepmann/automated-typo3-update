@@ -71,6 +71,13 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Convert old legacy class definitions in extensions to namespace ones.
 
+- Convert usage of previously converted class definitions. On first run the definition will be
+  converted, on second the usage. This is due to the fact, that PHPCS might find the definition
+  after the usage, so please run twice.
+
+  *NOTE* The configured file will be updated after each run, for each converted class, trait and
+  interface definition.
+
 - Add missing vendor to plugin and module registrations and configurations.
   You might want to set this to non fixable and warning if you already provide the vendor inside a
   single Variable, together with your extension key, as this is not recognized. So the following

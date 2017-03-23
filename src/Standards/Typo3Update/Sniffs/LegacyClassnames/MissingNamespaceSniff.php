@@ -109,6 +109,10 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
             $this->getNamespacePosition($phpcsFile),
             '<?php' . $lineEndings . $this->getNamespaceDefinition($classname) . $suffix
         );
+        $this->addLegacyClassname(
+            $classname,
+            $this->getNamespace($classname) . '\\' . $this->getNewClassname($classname)
+        );
     }
 
     /**
@@ -130,14 +134,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
      */
     protected function getNamespaceDefinition($classname)
     {
-        $vendor = trim($this->getVendor(), '\\/');
-
-        return 'namespace '
-            . $vendor
-            . '\\'
-            . $this->getNamespace($classname)
-            . ';'
-            ;
+        return 'namespace ' . $this->getNamespace($classname) . ';';
     }
 
     /**
@@ -150,11 +147,12 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
      */
     protected function getNamespace($classname)
     {
+        $vendor = trim($this->getVendor(), '\\/');
         $classnameParts = explode('_', $classname);
 
         unset($classnameParts[0]); // Remove Tx_
         unset($classnameParts[count($classnameParts)]); // Remove class name itself.
 
-        return implode('\\', $classnameParts);
+        return $vendor . '\\' . implode('\\', $classnameParts);
     }
 }

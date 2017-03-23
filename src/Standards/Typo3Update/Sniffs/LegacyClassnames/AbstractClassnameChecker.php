@@ -22,6 +22,7 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
 
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update\Sniffs\LegacyClassnames\Mapping;
 use Typo3Update\Sniffs\OptionsAccessTrait;
 
 /**
@@ -30,12 +31,6 @@ use Typo3Update\Sniffs\OptionsAccessTrait;
 abstract class AbstractClassnameChecker implements PhpCsSniff
 {
     use OptionsAccessTrait;
-
-    /**
-     * Contains mapping from old -> new class names.
-     * @var array
-     */
-    private $legacyClassnames = [];
 
     /**
      * A list of extension names that might contain legacy class names.
@@ -47,17 +42,9 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     public $legacyExtensions = ['Extbase', 'Fluid'];
 
-    /**
-     * @param string $mappingFile File containing php array for mapping.
-     */
-    private function initialize($mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php')
+    public function __construct()
     {
-        if ($this->legacyClassnames !== []) {
-            return;
-        }
-
-        $legacyClassnames = require $mappingFile;
-        $this->legacyClassnames = $legacyClassnames['aliasToClassNameMapping'];
+        $this->legacyMapping = Mapping::getInstance();
     }
 
     /**
@@ -111,8 +98,7 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     protected function isLegacyClassname($classname)
     {
-        $this->initialize();
-        return isset($this->legacyClassnames[strtolower($classname)]);
+        return $this->legacyMapping->isLegacyClassname($classname);
     }
 
     /**
@@ -146,8 +132,21 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     protected function getNewClassname($classname)
     {
-        $this->initialize();
-        return $this->legacyClassnames[strtolower($classname)];
+        return $this->legacyMapping->getNewClassname($classname);
+    }
+
+    /**
+     * Use to add new mappings found during parsing.
+     * E.g. in MissingNamespaceSniff old class definitions are fixed and a new mapping exists afterwards.
+     *
+     * @param string $legacyClassname
+     * @param string $newClassname
+     *
+     * @return void
+     */
+    protected function addLegacyClassname($legacyClassname, $newClassname)
+    {
+        $this->legacyMapping->addLegacyClassname($legacyClassname, $newClassname);
     }
 
     /**
