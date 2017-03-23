@@ -20,15 +20,17 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update\Sniffs\OptionsAccessTrait;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
  */
 abstract class AbstractClassnameChecker implements PhpCsSniff
 {
+    use OptionsAccessTrait;
+
     /**
      * Contains mapping from old -> new class names.
      * @var array
@@ -44,20 +46,6 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      * @var array<string>
      */
     public $legacyExtensions = ['Extbase', 'Fluid'];
-
-    /**
-     * Returns the configured vendor, e.g. to generate new namespaces.
-     *
-     * @return string
-     */
-    protected function getVendor()
-    {
-        $vendor = PhpCs::getConfigData('vendor');
-        if (!$vendor) {
-            $vendor = 'YourCompany';
-        }
-        return trim($vendor, '\\/');
-    }
 
     /**
      * @param string $mappingFile File containing php array for mapping.
