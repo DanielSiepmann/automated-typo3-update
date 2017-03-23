@@ -71,6 +71,21 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Convert old legacy class definitions in extensions to namespace ones.
 
+- Add missing vendor to plugin and module registrations and configurations.
+  You might want to set this to non fixable and warning if you already provide the vendor inside a
+  single Variable, together with your extension key, as this is not recognized. So the following
+  will be recognized:
+
+    - $_EXTKEY,
+
+    - $VENDOR . $_EXTKEY,
+
+    - 'VENDOR.' . $_EXTKEY,
+
+  While the following will not:
+
+    - $key = 'Vendor.' . $_EXTKEY;
+
 Also we check for the following deprecated calls:
 
 - Check for ``create`` on ``ObjectManager``, which is "stupid" just all ``create`` calls are marked

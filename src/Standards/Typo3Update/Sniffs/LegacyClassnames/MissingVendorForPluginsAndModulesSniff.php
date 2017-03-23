@@ -68,22 +68,52 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingVendorForPluginsAndModulesSniff
             return;
         }
 
-        $firstParameter = $phpcsFile->findNext([T_WHITESPACE, T_OPEN_PARENTHESIS], $stackPtr + 1, null, true);
-        if ($firstParameter === false || $tokens[$firstParameter]['code'] === T_CONSTANT_ENCAPSED_STRING) {
+        $firstArgument = $phpcsFile->findNext([T_WHITESPACE, T_OPEN_PARENTHESIS], $stackPtr + 1, null, true);
+        if (! $this->isVendorMissing($phpcsFile, $firstArgument)) {
             return;
         }
 
         $fix = $phpcsFile->addFixableError(
-            'No vendor is given, that will break TYPO3 handling for namespaced classes. Add vendor before Extensionkey like: "Vendor." . $_EXTKEY',
-            $firstParameter,
+            'No vendor is given, that will break TYPO3 handling for namespaced classes.'
+                . ' Add vendor before Extensionkey like: "Vendor." . $_EXTKEY',
+            $firstArgument,
             'missingVendor'
         );
 
         if ($fix === true) {
             $phpcsFile->fixer->replaceToken(
-                $firstParameter,
-                "'{$this->getVendor()}.' . " . $tokens[$firstParameter]['content']
+                $firstArgument,
+                "'{$this->getVendor()}.' . " . $tokens[$firstArgument]['content']
             );
         }
+    }
+
+    /**
+     * Checks whether vendor is missing in given argument.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int|bool $argumentStart
+     *
+     * @return bool
+     */
+    protected function isVendorMissing(PhpCsFile $phpcsFile, $argumentStart)
+    {
+        if ($argumentStart === false) {
+            return false;
+        }
+
+        $argumentEnd = $phpcsFile->findNext(T_COMMA, $argumentStart);
+        if ($argumentEnd === false) {
+            return false;
+        }
+
+        $stringConcats = array_filter(
+            array_slice($phpcsFile->getTokens(), $argumentStart, $argumentEnd - $argumentStart),
+            function (array $token) {
+                return $token['code'] === 'PHPCS_T_STRING_CONCAT';
+            }
+        );
+
+        return count($stringConcats) === 0;
     }
 }
