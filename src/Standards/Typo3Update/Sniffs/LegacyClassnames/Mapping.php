@@ -50,8 +50,7 @@ class Mapping
     }
     private function __construct()
     {
-        // $mappingFile = $this->getMappingFile();
-        $mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php';
+        $mappingFile = $this->getMappingFile();
 
         $this->mappings = require $mappingFile;
     }
@@ -113,8 +112,7 @@ class Mapping
             return;
         }
 
-        // $mappingFile = $this->getMappingFile();
-        $mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php';
+        $mappingFile = $this->getMappingFile();
 
         file_put_contents(
             $mappingFile,

@@ -40,4 +40,18 @@ trait OptionsAccessTrait
         }
         return trim($vendor, '\\/');
     }
+
+    /**
+     * Returns the configured file path containing the mappings for classes, interfaced and traits.
+     *
+     * @return string
+     */
+    public function getMappingFile()
+    {
+        $mappingFile = PhpCs::getConfigData('mappingFile');
+        if (!$mappingFile) {
+            $mappingFile = __DIR__ . '/../../../../LegacyClassnames.php';
+        }
+        return $mappingFile;
+    }
 }
