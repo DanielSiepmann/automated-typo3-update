@@ -100,10 +100,12 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
         if ($this->shouldLookBefore()) {
             $classnamePosition = $phpcsFile->findPrevious(T_STRING, $stackPtr);
+        } else {
+            $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
         }
+
         if ($classnamePosition === false) {
             return;
         }
