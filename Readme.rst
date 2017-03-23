@@ -136,3 +136,19 @@ Typo3Update.LegacyClassnames.DocComment: ``allowedTags``
            <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
        </properties>
    </rule>
+
+``mappingFile``
+    Configure where the `LegacyClassnames.php` is located, through ``ruleset.xml`` or using
+    ``--runtime-set``. Default is `LegacyClassnames.php` in the project root.
+
+    Example:
+
+.. code:: xml
+
+    <config name="mappingFile" value="/projects/typo3_installation/vendor/composer/autoload_classaliasmap.php"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set mappingFile /projects/typo3_installation/vendor/composer/autoload_classaliasmap.php

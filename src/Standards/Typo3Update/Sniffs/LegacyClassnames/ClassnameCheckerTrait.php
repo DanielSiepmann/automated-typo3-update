@@ -20,6 +20,7 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
 
 /**
@@ -46,8 +47,12 @@ trait ClassnameCheckerTrait
     /**
      * @param string $mappingFile File containing php array for mapping.
      */
-    private function initialize($mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php')
+    private function initialize()
     {
+        $mappingFile = PhpCs::getConfigData('mappingFile');
+        if (!$mappingFile) {
+            $mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php';
+        }
         if ($this->legacyClassnames !== []) {
             return;
         }
