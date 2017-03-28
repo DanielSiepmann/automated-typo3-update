@@ -49,6 +49,8 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Static calls like ``t3lib_div::`` to ``\TYPO3\Core\Utility\GeneralUtility``.
 
+- Static call also checks for ``::class``, as technically we just look before the ``::``.
+
 - Typehints in methods and function like injects.
 
 - ``instanceof`` checks.
