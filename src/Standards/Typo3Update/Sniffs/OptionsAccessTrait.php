@@ -54,4 +54,21 @@ trait OptionsAccessTrait
         }
         return $mappingFile;
     }
+
+    /**
+     * Returns an array of absolute file names containing deprecation function configurations.
+     *
+     * @return \Generator
+     */
+    public function getDeprecatedFunctionConfigFiles()
+    {
+        $configFiles = PhpCs::getConfigData('deprecatedfunctionConfigFiles');
+        if (!$configFiles) {
+            $configFiles = __DIR__ . '/../Configuration/Deprecated/Functions/*.yaml';
+        }
+
+        foreach ((new \GlobIterator($configFiles)) as $file) {
+            yield (string) $file;
+        }
+    }
 }

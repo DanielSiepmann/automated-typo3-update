@@ -22,6 +22,7 @@
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use PHP_CodeSniffer_Tokens as Tokens;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Sniff that handles all calls to deprecated functions.
@@ -31,21 +32,31 @@ use PHP_CodeSniffer_Tokens as Tokens;
 class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSniff
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
+    use \Typo3Update\Sniffs\OptionsAccessTrait;
 
     /**
      * Configuration to define deprecated functions.
      *
      * Keys have to match the function name.
      *
+     * TODO: Multiple files allowed, using glob ... to allow splitting per ext (extbase, fluid, ...) and TYPO3 Version 7.1, 7.0, ...
+     * TODO: Build necessary structure from that files, to make it more independent ... ?!
+     *
      * @var array
      */
-    protected $deprecatedFunctions = [
-        'loadTCA' => [
-            'oldFunctionCall' => '\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA()',
-            'newFunctionCall' => null,
-            'docsUrl' => 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html',
-        ],
-    ];
+    protected static $deprecatedFunctions = [];
+
+    public function __construct()
+    {
+        if (static::$deprecatedFunctions === []) {
+            foreach ($this->getDeprecatedFunctionConfigFiles() as $file) {
+                static::$deprecatedFunctions = array_merge(
+                    static::$deprecatedFunctions,
+                    Yaml::parse(file_get_contents((string) $file))
+                );
+            }
+        }
+    }
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -82,6 +93,13 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
         if (in_array($token['content'], $this->getFunctionNames()) === false) {
             return;
         }
+
+        // TODO: Check if function is static and whether last class name part matches.
+        // TODO: Add new property to array "last class name part" and use for check if exists.
+        // TODO: How to handle methods? They are not static, are behind a variable or something else ...
+
+        // E.g.: getUniqueFields
+        // E.g.: mail
 
         $this->addWarning($phpcsFile, $stackPtr);
     }
@@ -120,7 +138,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getFunctionNames()
     {
-        return array_keys($this->deprecatedFunctions);
+        return array_keys(static::$deprecatedFunctions);
     }
 
     /**
@@ -134,7 +152,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getOldFunctionCall($functionName)
     {
-        return $this->deprecatedFunctions[$functionName]['oldFunctionCall'];
+        return static::$deprecatedFunctions[$functionName]['oldFunctionCall'];
     }
 
     /**
@@ -146,7 +164,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getNewFunctionCall($functionName)
     {
-        $newCall = $this->deprecatedFunctions[$functionName]['newFunctionCall'];
+        $newCall = static::$deprecatedFunctions[$functionName]['newFunctionCall'];
         if ($newCall !== null) {
             return $newCall;
         }
@@ -160,6 +178,6 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getDocsUrl($functionName)
     {
-        return $this->deprecatedFunctions[$functionName]['docsUrl'];
+        return static::$deprecatedFunctions[$functionName]['docsUrl'];
     }
 }
