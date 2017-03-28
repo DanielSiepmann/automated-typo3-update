@@ -69,29 +69,29 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - ``catch`` of legacy class names.
 
-- Convert old legacy class definitions in extensions to namespace ones.
+- Convert old legacy class *definitions* in extensions to namespaces.
 
 - Convert usage of previously converted class definitions. On first run the definition will be
-  converted, on second the usage. This is due to the fact, that PHPCS might find the definition
+  converted, on second run the usage. This is due to the fact, that PHPCS might find the definition
   after the usage, so please run twice.
 
   *NOTE* The configured file will be updated after each run, for each converted class, trait and
-  interface definition.
+  interface definition. See options.
 
 - Add missing vendor to plugin and module registrations and configurations.
   You might want to set this to non fixable and warning if you already provide the vendor inside a
   single Variable, together with your extension key, as this is not recognized. So the following
   will be recognized:
 
-    - $_EXTKEY,
+  - ``$_EXTKEY,``
 
-    - $VENDOR . $_EXTKEY,
+  - ``$VENDOR . $_EXTKEY,``
 
-    - 'VENDOR.' . $_EXTKEY,
+  - ``'VENDOR.' . $_EXTKEY,``
 
   While the following will not:
 
-    - $key = 'Vendor.' . $_EXTKEY;
+  - ``$key = 'Vendor.' . $_EXTKEY;``
 
 Also we check for the following deprecated calls:
 
@@ -161,22 +161,6 @@ Typo3Update.LegacyClassnames.DocComment: ``allowedTags``
        </properties>
    </rule>
 
-``vendor``
-    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
-    ``YourCompany``.
-
-    Example:
-
-.. code:: xml
-
-    <config name="vendor" value="YourVendor"/>
-
-Example:
-
-.. code:: bash
-
-    --runtime-set vendor YourVendor
-
 ``mappingFile``
     Configure where the `LegacyClassnames.php` is located, through ``ruleset.xml`` or using
     ``--runtime-set``. Default is `LegacyClassnames.php` in the project root.
@@ -192,3 +176,19 @@ Example:
 .. code:: bash
 
     --runtime-set mappingFile /projects/typo3_installation/vendor/composer/autoload_classaliasmap.php
+
+``vendor``
+    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
+    ``YourCompany``.
+
+    Example:
+
+.. code:: xml
+
+    <config name="vendor" value="YourVendor"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set vendor YourVendor
