@@ -81,9 +81,9 @@ class Typo3Update_Sniffs_Deprecated_AjaxRegistrationSniff implements PhpCsSniff
         }
 
         $phpcsFile->addWarning(
-            "Defining AJAX using %s is no longer supported with a single String like %s.\n"
-            . "Since TYPO3 7.6, use PSR-7-based Routing for Backend AJAX Requests.\n"
-            . 'See: %s',
+            'Defining AJAX using %s is no longer supported with a single String like %s.'
+            . ' Since TYPO3 7.6, use PSR-7-based Routing for Backend AJAX Requests.'
+            . ' See: %s',
             $tokenToCheck,
             '',
             [

@@ -101,9 +101,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
         $functionCall = $token['content'];
 
         $phpcsFile->addWarning(
-            "Legacy function calls are not allowed; found %s.\n"
-                . "%s.\n"
-                . "See: %s",
+            'Legacy function calls are not allowed; found %s. %s. See: %s',
             $tokenPosition,
             $functionCall,
             [
