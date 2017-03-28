@@ -181,7 +181,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
                     && (
                         $className === $config['class']
                         || $className === false
-                    ) // TODO: If no class, it's also fine, vor variable, non static methods.
+                    )
                     ;
             }
         );
