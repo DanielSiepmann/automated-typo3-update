@@ -1,114 +1,85 @@
 # Deprecated in 7.0: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Index.html#breaking-changes
-loadTCA:
-  oldFunctionCall: '\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA()'
+\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA:
   newFunctionCall: null
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html'
-getCompressedTCarray:
-  oldFunctionCall: '\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::getCompressedTCarray()'
+\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController->getCompressedTCarray:
   newFunctionCall: 'Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \TYPO3\CMS\Frontend\Utility\EidUtility::initTCA() instead'
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html'
-includeTCA:
-  oldFunctionCall: '\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::includeTCA()'
+\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController->includeTCA:
   newFunctionCall: 'Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \TYPO3\CMS\Frontend\Utility\EidUtility::initTCA() instead'
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html'
-mail:
-  oldFunctionCall: 'MailUtility::mail()'
+\TYPO3\CMS\Core\Utility\MailUtility::mail:
   newFunctionCall: 'Use the \TYPO3\CMS\Core\Mail\Mailer API for sending email'
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61783-RemoveDeprecatedMailFunctionality.html'
-plainMailEncoded:
-  oldFunctionCall: 'GeneralUtility::plainMailEncoded()'
+\TYPO3\CMS\Core\Utility\GeneralUtility::plainMailEncoded:
   newFunctionCall: 'Use the \TYPO3\CMS\Core\Mail\Mailer API for sending email'
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61783-RemoveDeprecatedMailFunctionality.html'
-connectDB:
-  oldFunctionCall: '\TYPO3\CMS\Frontend\Utility\EidUtility::connectDB()'
+\TYPO3\CMS\Frontend\Utility\EidUtility::connectDB:
   newFunctionCall: null
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61863-ConnectDbFunctionRemoved.html'
-int_from_ver:
-  oldFunctionCall: '\TYPO3\CMS\Core\Utility\GeneralUtility::int_from_ver'
-  newFunctionCall: 'Replace the usage of the removed function with \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger()'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61860-RemoveIntFromVerFunction.html'
-getUniqueFields:
-  oldFunctionCall: '\TYPO3\CMS\Core\DataHandling\DataHandler::getUniqueFields()'
-  newFunctionCall: 'Replace all calls to \TYPO3\CMS\Core\DataHandling\DataHandler::getUniqueFields() with calls to \TYPO3\CMS\Version\Hook\DataHandlerHook::getUniqueFields()'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61822-GetUniqueFieldsFunctionRemoved.html'
-isSafeModeEnabled:
-  oldFunctionCall: '\TYPO3\CMS\Core\Utility\PhpOptionsUtility::isSafeModeEnabled()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
-isMagicQuotesGpcEnabled:
-  oldFunctionCall: '\TYPO3\CMS\Core\Utility\PhpOptionsUtility::isMagicQuotesGpcEnabled()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
-isLocalconfWritable:
-  oldFunctionCall: '\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLocalconfWritable'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61802-IsLocalconfWritableFunctionRemoved.html'
-create:
-  oldFunctionCall: 'ObjectManager::create()'
-  newFunctionCall: 'Use ObjectManager::get() instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-# TODO: Find a way to make same method name in different classes work.
-# create:
-#   oldFunctionCall: 'ObjectManagerInterface::create()'
+# int_from_ver:
+#   newFunctionCall: 'Replace the usage of the removed function with \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger()'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61860-RemoveIntFromVerFunction.html'
+# getUniqueFields:
+#   newFunctionCall: 'Replace all calls to \TYPO3\CMS\Core\DataHandling\DataHandler::getUniqueFields() with calls to \TYPO3\CMS\Version\Hook\DataHandlerHook::getUniqueFields()'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61822-GetUniqueFieldsFunctionRemoved.html'
+# isSafeModeEnabled:
 #   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
+# isMagicQuotesGpcEnabled:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
+# isLocalconfWritable:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61802-IsLocalconfWritableFunctionRemoved.html'
+# create:
+#   newFunctionCall: 'Use ObjectManager::get() instead'
 #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-replaceObject:
-  oldFunctionCall: 'PersistenceGenericBackend::replaceObject()'
-  newFunctionCall: 'Removed without replacement'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-setReturnRawQueryResult:
-  oldFunctionCall: 'QuerySettingsInterface::setReturnRawQueryResult()'
-  newFunctionCall: 'Removed without replacement'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-getReturnRawQueryResult:
-  oldFunctionCall: 'QuerySettingsInterface::getReturnRawQueryResult()'
-  newFunctionCall: 'Use the parameter on $query->execute() directly'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-setSysLanguageUid:
-  oldFunctionCall: 'Typo3QuerySettings::setSysLanguageUid()'
-  newFunctionCall: 'Use setLanguageUid() instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-getSysLanguageUid:
-  oldFunctionCall: 'Typo3QuerySettings::getSysLanguageUid()'
-  newFunctionCall: 'Use getLanguageUid() instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
-JScharCode:
-  oldFunctionCall: 'LanguageService::JScharCode()'
-  newFunctionCall: 'Use GeneralUtility::quoteJSvalue instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-joinTSarrays:
-  oldFunctionCall: 'ContentObjectRenderer::joinTSarrays()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-tidyHTML:
-  oldFunctionCall: 'TypoScriptFrontendController::tidyHTML()'
-  newFunctionCall: 'You may use the tidy extension from TER'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-isWebFolder:
-  oldFunctionCall: 'ElementBrowser::isWebFolder()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-checkFolder:
-  oldFunctionCall: 'ElementBrowser::checkFolder()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-getTreeObject:
-  oldFunctionCall: 'AbstractDatabaseRecordList::getTreeObject()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-dirData:
-  oldFunctionCall: 'FileList::dirData()'
-  newFunctionCall: null
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-stdWrapValue:
-  oldFunctionCall: 'FilesContentObject::stdWrapValue()'
-  newFunctionCall: 'Use ContentObjectRenderer::stdWrapValue instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-userTempFolder:
-  oldFunctionCall: 'ImportExportController::userTempFolder()'
-  newFunctionCall: 'Use getDefaultImportExportFolder instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
-userSaveFolder:
-  oldFunctionCall: 'ImportExportController::userSaveFolder()'
-  newFunctionCall: 'Use getDefaultImportExportFolder instead'
-  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# # create:
+# #   newFunctionCall: null
+# #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+# replaceObject:
+#   newFunctionCall: 'Removed without replacement'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+# setReturnRawQueryResult:
+#   newFunctionCall: 'Removed without replacement'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+# getReturnRawQueryResult:
+#   newFunctionCall: 'Use the parameter on $query->execute() directly'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+# setSysLanguageUid:
+#   newFunctionCall: 'Use setLanguageUid() instead'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+# getSysLanguageUid:
+#   newFunctionCall: 'Use getLanguageUid() instead'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+# JScharCode:
+#   newFunctionCall: 'Use GeneralUtility::quoteJSvalue instead'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# joinTSarrays:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# tidyHTML:
+#   newFunctionCall: 'You may use the tidy extension from TER'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# isWebFolder:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# checkFolder:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# getTreeObject:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# dirData:
+#   newFunctionCall: null
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# stdWrapValue:
+#   newFunctionCall: 'Use ContentObjectRenderer::stdWrapValue instead'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# userTempFolder:
+#   newFunctionCall: 'Use getDefaultImportExportFolder instead'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+# userSaveFolder:
+#   newFunctionCall: 'Use getDefaultImportExportFolder instead'
+#   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
