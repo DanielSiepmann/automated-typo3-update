@@ -68,26 +68,35 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      * @param array $deprecatedFunctions
      * @return array
      */
-    protected function prepareStructure(array $deprecatedFunctions)
+    protected function prepareStructure(array $oldStructure)
     {
-        array_walk($deprecatedFunctions, function (&$config, $function) {
-            // Split static methods and methods.
-            $split = preg_split('/::|->/', $function);
+        $typo3Versions = array_keys($oldStructure);
+        $newStructure = [];
 
-            $config['static'] = strpos($function, '::') !== false;
-            $config['fqcn'] = null;
-            $config['class'] = null;
-            $config['function'] = $split[0];
+        foreach ($typo3Versions as $typo3Version) {
+            foreach ($oldStructure[$typo3Version] as $function => $config) {
+                // Split static methods and methods.
+                $split = preg_split('/::|->/', $function);
 
-            // If split contains two parts, it's a class with method
-            if (isset($split[1])) {
-                $config['fqcn'] = $split[0];
-                $config['class'] = array_slice(explode('\\', $config['fqcn']), -1)[0];
-                $config['function'] = $split[1];
-            }
-        });
+                $newStructure[$function] = $config;
 
-        return $deprecatedFunctions;
+                $newStructure[$function]['static'] = strpos($function, '::') !== false;
+                $newStructure[$function]['fqcn'] = null;
+                $newStructure[$function]['class'] = null;
+                $newStructure[$function]['function'] = $split[0];
+                // TODO: Add a way to check for removed or deprecated.
+                $newStructure[$function]['version_removed'] = $typo3Version;
+
+                // If split contains two parts, it's a class with method
+                if (isset($split[1])) {
+                    $newStructure[$function]['fqcn'] = $split[0];
+                    $newStructure[$function]['class'] = array_slice(explode('\\', $newStructure[$function]['fqcn']), -1)[0];
+                    $newStructure[$function]['function'] = $split[1];
+                }
+            };
+        }
+
+        return $newStructure;
     }
 
     /**
@@ -214,11 +223,14 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
     protected function addWarning(PhpCsFile $phpcsFile, $tokenPosition)
     {
         $phpcsFile->addWarning(
-            'Legacy function calls are not allowed; found %s. %s. See: %s',
+            // TODO: Add a way to check for removed or deprecated.
+            'Legacy function calls are not allowed; found %s. Removed in %s. %s. See: %s',
             $tokenPosition,
             $this->getFunctionIdentifier(),
             [
                 $this->getOldfunctionCall(),
+                // TODO: Add a way to check for removed or deprecated.
+                $this->getRemovedVersion(),
                 $this->getNewFunctionCall(),
                 $this->getDocsUrl(),
             ]
@@ -253,6 +265,18 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
             $concat = '::';
         }
         return $config['fqcn'] . $concat . $config['function'];
+    }
+
+    /**
+     * Returns TYPO3 version when the current function was removed.
+     *
+     * To let user decide whether this is important for him.
+     *
+     * @return string
+     */
+    protected function getRemovedVersion()
+    {
+        return $this->getCurrentDeprecatedFunction()['version_removed'];
     }
 
     /**
