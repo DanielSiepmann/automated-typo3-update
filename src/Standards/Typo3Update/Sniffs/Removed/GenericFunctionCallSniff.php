@@ -163,26 +163,26 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
             }
         }
 
-        return $this->getRemovedFunction($functionName, $class, $isStatic) !== [];
+        $this->detectRemovedFunctions($functionName, $class, $isStatic)
+
+        return $this->removedFunction !== [];
     }
 
     /**
-     * Returns all matching removed functions for given arguments.
-     *
-     * Also prepares functions for later usages in $this->removedFunction.
+     * Detect removed functions for given arguments.
      *
      * @param string $functionName
      * @param string $className The last part of the class name, splitted by namespaces.
      * @param bool $isStatic
      *
-     * @return array
+     * @return void
      */
-    protected function getRemovedFunction($functionName, $className, $isStatic)
+    protected function detectRemovedFunctions($functionName, $className, $isStatic)
     {
         // We will not match any static method, without the class name, at least for now.
         // Otherwise we could handle them the same way as instance methods.
         if ($isStatic === true && $className === false) {
-            return [];
+            return;
         }
 
         $this->removedFunction = array_filter(
@@ -197,8 +197,6 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
                     ;
             }
         );
-
-        return $this->removedFunction;
     }
 
     /**
