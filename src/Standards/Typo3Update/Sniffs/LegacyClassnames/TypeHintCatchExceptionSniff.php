@@ -19,15 +19,13 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_Tokens as Tokens;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
 
 /**
  * Migrate Typehints in catch statements.
  */
-class Typo3Update_Sniffs_LegacyClassnames_TypehintCatchExceptionSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_TypehintCatchExceptionSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
     /**
      * Returns the token types that this sniff is interested in.
      *
