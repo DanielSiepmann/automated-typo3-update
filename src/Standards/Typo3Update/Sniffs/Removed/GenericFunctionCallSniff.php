@@ -25,37 +25,37 @@ use PHP_CodeSniffer_Tokens as Tokens;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Sniff that handles all calls to deprecated functions.
+ * Sniff that handles all calls to removed functions.
  *
- * A single array defines the deprecations, see $deprecatedFunctions.
+ * A single array defines the deprecations, see $removedFunctions.
  */
-class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSniff
+class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
     use \Typo3Update\Sniffs\OptionsAccessTrait;
 
     /**
-     * Configuration to define deprecated functions.
+     * Configuration to define removed functions.
      *
      * @var array
      */
-    protected static $deprecatedFunctions = [];
+    protected static $removedFunctions = [];
 
     /**
      * Function for the current sniff instance.
      * @var array
      */
-    private $deprecatedFunction = [];
+    private $removedFunction = [];
 
     /**
      * TODO: Multiple files allowed, using glob ... to allow splitting per ext (extbase, fluid, ...) and TYPO3 Version 7.1, 7.0, ...
      */
     public function __construct()
     {
-        if (static::$deprecatedFunctions === []) {
-            foreach ($this->getDeprecatedFunctionConfigFiles() as $file) {
-                static::$deprecatedFunctions = array_merge(
-                    static::$deprecatedFunctions,
+        if (static::$removedFunctions === []) {
+            foreach ($this->getRemovedFunctionConfigFiles() as $file) {
+                static::$removedFunctions = array_merge(
+                    static::$removedFunctions,
                     $this->prepareStructure(Yaml::parse(file_get_contents((string) $file)))
                 );
             }
@@ -65,7 +65,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
     /**
      * Prepares structure from config for later usage.
      *
-     * @param array $deprecatedFunctions
+     * @param array $removedFunctions
      * @return array
      */
     protected function prepareStructure(array $oldStructure)
@@ -84,7 +84,6 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
                 $newStructure[$function]['fqcn'] = null;
                 $newStructure[$function]['class'] = null;
                 $newStructure[$function]['function'] = $split[0];
-                // TODO: Add a way to check for removed or deprecated.
                 $newStructure[$function]['version_removed'] = $typo3Version;
 
                 // If split contains two parts, it's a class with method
@@ -124,7 +123,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
-        if (!$this->isFunctionCallDeprecated($phpcsFile, $stackPtr)) {
+        if (!$this->isFunctionCallRemoved($phpcsFile, $stackPtr)) {
             return;
         }
 
@@ -132,11 +131,11 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
     }
 
     /**
-     * Check whether function at given point is deprecated.
+     * Check whether function at given point is removed.
      *
      * @return bool
      */
-    protected function isFunctionCallDeprecated(PhpCsFile $phpcsFile, $stackPtr)
+    protected function isFunctionCallRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
         if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
             return false;
@@ -160,13 +159,13 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
             }
         }
 
-        return $this->getDeprecatedFunction($functionName, $class, $isStatic) !== [];
+        return $this->getRemovedFunction($functionName, $class, $isStatic) !== [];
     }
 
     /**
-     * Returns all matching deprecated functions for given arguments.
+     * Returns all matching removed functions for given arguments.
      *
-     * Also prepares functions for later usages in $this->deprecatedFunction.
+     * Also prepares functions for later usages in $this->removedFunction.
      *
      * @param string $functionName
      * @param string $className The last part of the class name, splitted by namespaces.
@@ -174,7 +173,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      *
      * @return array
      */
-    protected function getDeprecatedFunction($functionName, $className, $isStatic)
+    protected function getRemovedFunction($functionName, $className, $isStatic)
     {
         // We will not match any static method, without the class name, at least for now.
         // Otherwise we could handle them the same way as instance methods.
@@ -182,8 +181,8 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
             return [];
         }
 
-        $this->deprecatedFunction = array_filter(
-            static::$deprecatedFunctions,
+        $this->removedFunction = array_filter(
+            static::$removedFunctions,
             function ($config) use ($functionName, $isStatic, $className) {
                 return $functionName === $config['function']
                     && $isStatic === $config['static']
@@ -195,7 +194,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
             }
         );
 
-        return $this->deprecatedFunction;
+        return $this->removedFunction;
     }
 
     /**
@@ -203,9 +202,9 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      *
      * @return array
      */
-    protected function getCurrentDeprecatedFunction()
+    protected function getCurrentRemovedFunction()
     {
-        $config = current($this->deprecatedFunction);
+        $config = current($this->removedFunction);
 
         // TODO: Add exception if something went wrong?
 
@@ -223,13 +222,11 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
     protected function addWarning(PhpCsFile $phpcsFile, $tokenPosition)
     {
         $phpcsFile->addWarning(
-            // TODO: Add a way to check for removed or deprecated.
             'Legacy function calls are not allowed; found %s. Removed in %s. %s. See: %s',
             $tokenPosition,
             $this->getFunctionIdentifier(),
             [
                 $this->getOldfunctionCall(),
-                // TODO: Add a way to check for removed or deprecated.
                 $this->getRemovedVersion(),
                 $this->getNewFunctionCall(),
                 $this->getDocsUrl(),
@@ -244,7 +241,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getFunctionIdentifier()
     {
-        $config = $this->getCurrentDeprecatedFunction();
+        $config = $this->getCurrentRemovedFunction();
         return $config['class'] . '.' . $config['function'];
     }
 
@@ -259,7 +256,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getOldFunctionCall()
     {
-        $config = $this->getCurrentDeprecatedFunction();
+        $config = $this->getCurrentRemovedFunction();
         $concat = '->';
         if ($config['static']) {
             $concat = '::';
@@ -276,7 +273,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getRemovedVersion()
     {
-        return $this->getCurrentDeprecatedFunction()['version_removed'];
+        return $this->getCurrentRemovedFunction()['version_removed'];
     }
 
     /**
@@ -288,7 +285,7 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getNewFunctionCall()
     {
-        $newCall = $this->getCurrentDeprecatedFunction()['newFunctionCall'];
+        $newCall = $this->getCurrentRemovedFunction()['newFunctionCall'];
         if ($newCall !== null) {
             return $newCall;
         }
@@ -302,6 +299,6 @@ class Typo3Update_Sniffs_Deprecated_GenericFunctionCallSniff implements PhpCsSni
      */
     protected function getDocsUrl()
     {
-        return $this->getCurrentDeprecatedFunction()['docsUrl'];
+        return $this->getCurrentRemovedFunction()['docsUrl'];
     }
 }

@@ -56,15 +56,15 @@ trait OptionsAccessTrait
     }
 
     /**
-     * Returns an array of absolute file names containing deprecation function configurations.
+     * Returns an array of absolute file names containing removed function configurations.
      *
      * @return \Generator
      */
-    public function getDeprecatedFunctionConfigFiles()
+    public function getRemovedFunctionConfigFiles()
     {
-        $configFiles = PhpCs::getConfigData('deprecatedfunctionConfigFiles');
+        $configFiles = PhpCs::getConfigData('removedfunctionConfigFiles');
         if (!$configFiles) {
-            $configFiles = __DIR__ . '/../Configuration/Deprecated/Functions/*.yaml';
+            $configFiles = __DIR__ . '/../Configuration/Removed/Functions/*.yaml';
         }
 
         foreach ((new \GlobIterator($configFiles)) as $file) {
