@@ -108,6 +108,7 @@
   newFunctionCall: 'Use native PHP htmlspecialchars_decode() function'
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
 # TODO: This is useless, adding a warning to all "get" methods is crazy.
+# Also this is already handeled by: Typo3Update_Sniffs_LegacyClassnames_InstantiationWithObjectManagerSniff
 # \TYPO3\CMS\Core\Category\CategoryRegistry->get:
 #   newFunctionCall: 'Use isRegistered() instead'
 #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
@@ -167,4 +168,46 @@
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
 \TYPO3\CMS\Core\Utility\File\BasicFileUtility->cleanDirectoryName:
   newFunctionCall: 'Use PathUtility::getCanonicalPath() instead'
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\File\ExtendedFileUtility->init_actionPerms:
+  newFunctionCall: 'Use setActionPermissions() instead'
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\File\ExtendedFileUtility->printLogErrorMessages:
+  newFunctionCall: 'Use pushErrorMessagesToFlashMessageQueue() instead'
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\File\ExtendedFileUtility->findRecycler:
+  newFunctionCall: 'Use \TYPO3\CMS\Core\Resource\ResourceStorage instead'
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Html\RteHtmlParser->findRecycler:
+  newFunctionCall: "Use $fileFactory->getFolderObjectFromCombinedIdentifier($GLOBALS['TYPO3_CONF_VARS']['BE']['RTE_imageStorageDir']); instead"
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Rtehtmlarea\SelectImage->getRTEImageStorageDir:
+  newFunctionCall: "Use $fileFactory->getFolderObjectFromCombinedIdentifier($GLOBALS['TYPO3_CONF_VARS']['BE']['RTE_imageStorageDir']); instead"
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Localization\Locales->getTerLocales:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Localization\Locales->getTerLocaleDependencies:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Localization\Locales->convertToTerLocales:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getInsertionNeedles:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::insertModuleFunction:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getRequiredExtensionListArray:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::writeNewExtensionList:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Utility\PhpOptionsUtility::isSqlSafeModeEnabled:
+  newFunctionCall: null
+  docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+\TYPO3\CMS\Core\Core\ClassLoader::getAliasForClassName:
+  newFunctionCall: 'Use getAliasesForClassName() instead'
   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
