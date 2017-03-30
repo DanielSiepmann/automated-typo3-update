@@ -24,6 +24,9 @@ use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use PHP_CodeSniffer_Tokens as PhpCsTokens;
 
 /**
+ * Analyses feature 6991.
+ *
+ * @see https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Feature-69916-PSR-7-basedRoutingForBackendAJAXRequests.html
  */
 class Typo3Update_Sniffs_Deprecated_AjaxRegistrationSniff implements PhpCsSniff
 {

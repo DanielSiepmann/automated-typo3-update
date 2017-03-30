@@ -48,7 +48,8 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
     private $removedFunction = [];
 
     /**
-     * TODO: Multiple files allowed, using glob ... to allow splitting per ext (extbase, fluid, ...) and TYPO3 Version 7.1, 7.0, ...
+     * TODO: Multiple files allowed, using glob ...
+     * to allow splitting per ext (extbase, fluid, ...) and TYPO3 Version 7.1, 7.0, ...
      */
     public function __construct()
     {
@@ -65,7 +66,7 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
     /**
      * Prepares structure from config for later usage.
      *
-     * @param array $removedFunctions
+     * @param array $oldStructure
      * @return array
      */
     protected function prepareStructure(array $oldStructure)
@@ -89,7 +90,10 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
                 // If split contains two parts, it's a class with method
                 if (isset($split[1])) {
                     $newStructure[$function]['fqcn'] = $split[0];
-                    $newStructure[$function]['class'] = array_slice(explode('\\', $newStructure[$function]['fqcn']), -1)[0];
+                    $newStructure[$function]['class'] = array_slice(
+                        explode('\\', $newStructure[$function]['fqcn']),
+                        -1
+                    )[0];
                     $newStructure[$function]['function'] = $split[1];
                 }
             };
