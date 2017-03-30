@@ -71,4 +71,21 @@ trait OptionsAccessTrait
             yield (string) $file;
         }
     }
+
+    /**
+     * Returns an array of absolute file names containing removed constant configurations.
+     *
+     * @return \Generator
+     */
+    public function getRemovedConstantConfigFiles()
+    {
+        $configFiles = PhpCs::getConfigData('removedConstantConfigFiles');
+        if (!$configFiles) {
+            $configFiles = __DIR__ . '/../Configuration/Removed/Constants/*.yaml';
+        }
+
+        foreach ((new \GlobIterator($configFiles)) as $file) {
+            yield (string) $file;
+        }
+    }
 }
