@@ -129,7 +129,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
             return;
         }
 
-        $this->addWarning($phpcsFile, $stackPtr);
+        $this->addMessage($phpcsFile, $stackPtr);
     }
 
     /**
@@ -195,14 +195,17 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     }
 
     /**
-     * Add warning for the given token position.
+     * Add message for the given token position.
+     *
+     * Default is a warning, non fixable. Just overwrite in concrete sniff, if
+     * something different suites better.
      *
      * @param PhpCsFile $phpcsFile
      * @param int $tokenPosition
      *
      * @return void
      */
-    protected function addWarning(PhpCsFile $phpcsFile, $tokenPosition)
+    protected function addMessage(PhpCsFile $phpcsFile, $tokenPosition)
     {
         foreach ($this->removed as $constant) {
             $phpcsFile->addWarning(

@@ -24,9 +24,6 @@ use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
 /**
  * Sniff that handles all calls to removed constants.
- *
- * Removed constants are configured using YAML-Files, for examples see src/Standards/Typo3Update/Configuration/Removed/Constants/7.0.yaml
- * Also check out the configuration options in Readme.rst.
  */
 class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGenericUsage
 {
@@ -39,34 +36,6 @@ class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGener
     {
         return $this->getRemovedConstantConfigFiles();
     }
-
-    /**
-     * Prepares structure from config for later usage.
-     *
-     * @param array $typo3Versions
-     * @return array
-     */
-    // protected function prepareStructure(array $typo3Versions)
-    // {
-    //     $newStructure = [];
-
-    //     foreach ($typo3Versions as $typo3Version => $constants) {
-    //         foreach ($constants as $constant => $config) {
-    //             $split = explode('::', $constant);
-
-    //             $newStructure[$constant] = $config;
-
-    //             $newStructure[$constant]['static'] = strpos($constant, '::') !== false;
-    //             $newStructure[$constant]['fqcn'] = null;
-    //             $newStructure[$constant]['class'] = null;
-    //             $newStructure[$constant]['constant'] = $constant;
-    //             $newStructure[$constant]['version_removed'] = $typo3Version;
-    //             // TODO: Handle constants of classes
-    //         };
-    //     }
-
-    //     return $newStructure;
-    // }
 
     /**
      * Returns the token types that this sniff is interested in.

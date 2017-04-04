@@ -2,12 +2,12 @@
 '7.3':
   # NOTE: If this is making you crazy, just disable via ruleset.xml or phpcs.xml
   parent::initializeObject:
-    newFunctionCall: 'Remove call, if this is inside a child of \TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject, there is no initializeObject in the parent anymore.'
+    replacement: 'Remove call, if this is inside a child of \TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject, there is no initializeObject in the parent anymore.'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Breaking-67402-ExtbaseAbstractDomainObjectInitializeObject.html
   \TYPO3\CMS\Extbase\Persistence\Repository::replace:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Breaking-63835-RemoveDeprecatedExtbasePersistenceParts.html
   \TYPO3\CMS\Extbase\Persistence\Generic\Backend::setDeletedObjects:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Breaking-63835-RemoveDeprecatedExtbasePersistenceParts.html
 

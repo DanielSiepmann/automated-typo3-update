@@ -25,9 +25,6 @@ use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
 /**
  * Sniff that handles all calls to removed functions.
- *
- * Removed functions are configured using YAML-Files, for examples see src/Standards/Typo3Update/Configuration/Removed/Functions/7.0.yaml
- * Also check out the configuration options in Readme.rst.
  */
 class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGenericUsage
 {
@@ -62,7 +59,7 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGeneri
             return false;
         }
 
-        parent::isRemoved($phpcsFile, $stackPtr);
+        return parent::isRemoved($phpcsFile, $stackPtr);
     }
 
     /**
