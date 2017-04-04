@@ -67,7 +67,7 @@ class Typo3Update_Sniffs_Deprecated_AjaxRegistrationSniff implements PhpCsSniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        if ($tokens[$stackPtr]['content'] !== "'AJAX'") {
+        if (preg_match('/"AJAX"|\'AJAX\'/', $tokens[$stackPtr]['content']) !== 1) {
             return;
         }
         $equalSign = $phpcsFile->findNext(T_EQUAL, $stackPtr, null, false, null, true);
