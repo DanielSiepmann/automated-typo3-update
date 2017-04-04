@@ -27,7 +27,8 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Sniff that handles all calls to removed functions.
  *
- * A single array defines the deprecations, see $removedFunctions.
+ * Removed functions are configured using YAML-Files, for examples see src/Standards/Typo3Update/Configuration/Removed/Functions/7.0.yaml
+ * Also check out the configuration options in Readme.rst.
  */
 class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
 {
