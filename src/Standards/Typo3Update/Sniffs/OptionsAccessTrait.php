@@ -54,4 +54,21 @@ trait OptionsAccessTrait
         }
         return $mappingFile;
     }
+
+    /**
+     * Returns an array of absolute file names containing removed function configurations.
+     *
+     * @return \Generator
+     */
+    public function getRemovedFunctionConfigFiles()
+    {
+        $configFiles = PhpCs::getConfigData('removedFunctionConfigFiles');
+        if (!$configFiles) {
+            $configFiles = __DIR__ . '/../Configuration/Removed/Functions/*.yaml';
+        }
+
+        foreach ((new \GlobIterator($configFiles)) as $file) {
+            yield (string) $file;
+        }
+    }
 }

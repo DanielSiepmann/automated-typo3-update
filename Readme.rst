@@ -100,6 +100,14 @@ Also we check for the following deprecated calls:
 - Check for ``create`` on ``ObjectManager``, which is "stupid" just all ``create`` calls are marked
   with a warning.
 
+Beside the features above which are covered by ``phpcs`` and phpcbf``, the following linting is also
+available to generate a report of possible issues and during coding through ``phpcs``:
+
+- Check for usage of removed functions.
+  The functions are configured via yaml files. The location of them is configurable, default is
+  inside the standard itself, and we try to deliver all information.
+  For configuration options see ``removedFunctionConfigFiles``.
+
 What does it look like?
 =======================
 
@@ -194,3 +202,21 @@ Example:
 .. code:: bash
 
     --runtime-set vendor YourVendor
+
+``removedFunctionConfigFiles``
+    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
+    ``Configuration/Removed/Functions/*.yaml`` inside the standard itself.
+    Globing is used, so placeholders like ``*`` are possible, see
+    https://secure.php.net/manual/en/function.glob.php
+
+    Example:
+
+.. code:: xml
+
+    <config name="removedFunctionConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set removedFunctionConfigFiles "/Some/Absolute/Path/*.yaml"
