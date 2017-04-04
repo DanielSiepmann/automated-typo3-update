@@ -27,7 +27,8 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Sniff that handles all calls to removed functions.
  *
- * A single array defines the deprecations, see $removedFunctions.
+ * Removed functions are configured using YAML-Files, for examples see src/Standards/Typo3Update/Configuration/Removed/Functions/7.0.yaml
+ * Also check out the configuration options in Readme.rst.
  */
 class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
 {
@@ -39,13 +40,13 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
      *
      * @var array
      */
-    protected static $removedFunctions = [];
+    protected static $configuredFunctions = [];
 
     /**
      * Function for the current sniff instance.
      * @var array
      */
-    private $removedFunction = [];
+    private $removedFunctions = [];
 
     /**
      * TODO: Multiple files allowed, using glob ...
@@ -53,10 +54,10 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
      */
     public function __construct()
     {
-        if (static::$removedFunctions === []) {
+        if (static::$configuredFunctions === []) {
             foreach ($this->getRemovedFunctionConfigFiles() as $file) {
-                static::$removedFunctions = array_merge(
-                    static::$removedFunctions,
+                static::$configuredFunctions = array_merge(
+                    static::$configuredFunctions,
                     $this->prepareStructure(Yaml::parse(file_get_contents((string) $file)))
                 );
             }
@@ -66,16 +67,15 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
     /**
      * Prepares structure from config for later usage.
      *
-     * @param array $oldStructure
+     * @param array $typo3Versions
      * @return array
      */
-    protected function prepareStructure(array $oldStructure)
+    protected function prepareStructure(array $typo3Versions)
     {
-        $typo3Versions = array_keys($oldStructure);
         $newStructure = [];
 
-        foreach ($typo3Versions as $typo3Version) {
-            foreach ($oldStructure[$typo3Version] as $function => $config) {
+        foreach ($typo3Versions as $typo3Version => $functions) {
+            foreach ($functions as $function => $config) {
                 // Split static methods and methods.
                 $split = preg_split('/::|->/', $function);
 
@@ -163,30 +163,29 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
             }
         }
 
-        return $this->getRemovedFunction($functionName, $class, $isStatic) !== [];
+        $this->removedFunctions = $this->getMatchingRemovedFunctions($functionName, $class, $isStatic);
+        return $this->removedFunctions !== [];
     }
 
     /**
      * Returns all matching removed functions for given arguments.
      *
-     * Also prepares functions for later usages in $this->removedFunction.
-     *
      * @param string $functionName
      * @param string $className The last part of the class name, splitted by namespaces.
      * @param bool $isStatic
      *
-     * @return array
+     * @return void
      */
-    protected function getRemovedFunction($functionName, $className, $isStatic)
+    protected function getMatchingRemovedFunctions($functionName, $className, $isStatic)
     {
         // We will not match any static method, without the class name, at least for now.
         // Otherwise we could handle them the same way as instance methods.
         if ($isStatic === true && $className === false) {
-            return [];
+            return;
         }
 
-        $this->removedFunction = array_filter(
-            static::$removedFunctions,
+        return array_filter(
+            static::$configuredFunctions,
             function ($config) use ($functionName, $isStatic, $className) {
                 return $functionName === $config['function']
                     && $isStatic === $config['static']
@@ -194,25 +193,9 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
                         $className === $config['class']
                         || $className === false
                     )
-                    ;
+                ;
             }
         );
-
-        return $this->removedFunction;
-    }
-
-    /**
-     * Returns configuration for currently checked function.
-     *
-     * @return array
-     */
-    protected function getCurrentRemovedFunction()
-    {
-        $config = current($this->removedFunction);
-
-        // TODO: Add exception if something went wrong?
-
-        return $config;
     }
 
     /**
@@ -225,27 +208,30 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
      */
     protected function addWarning(PhpCsFile $phpcsFile, $tokenPosition)
     {
-        $phpcsFile->addWarning(
-            'Legacy function calls are not allowed; found %s. Removed in %s. %s. See: %s',
-            $tokenPosition,
-            $this->getFunctionIdentifier(),
-            [
-                $this->getOldfunctionCall(),
-                $this->getRemovedVersion(),
-                $this->getNewFunctionCall(),
-                $this->getDocsUrl(),
-            ]
-        );
+        foreach ($this->removedFunctions as $function) {
+            $phpcsFile->addWarning(
+                'Legacy function calls are not allowed; found %s. Removed in %s. %s. See: %s',
+                $tokenPosition,
+                $this->getFunctionIdentifier($function),
+                [
+                    $this->getOldfunctionCall($function),
+                    $this->getRemovedVersion($function),
+                    $this->getNewFunctionCall($function),
+                    $this->getDocsUrl($function),
+                ]
+            );
+        }
     }
 
     /**
      * Identifier for configuring this specific error / warning through PHPCS.
      *
+     * @param array $config The converted structure for a single function.
+     *
      * @return string
      */
-    protected function getFunctionIdentifier()
+    protected function getFunctionIdentifier(array $config)
     {
-        $config = $this->getCurrentRemovedFunction();
         return $config['class'] . '.' . $config['function'];
     }
 
@@ -256,11 +242,12 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
      * you should provide an example, so users can check that this is the
      * legacy one.
      *
+     * @param array $config The converted structure for a single function.
+     *
      * @return string
      */
-    protected function getOldFunctionCall()
+    protected function getOldFunctionCall(array $config)
     {
-        $config = $this->getCurrentRemovedFunction();
         $concat = '->';
         if ($config['static']) {
             $concat = '::';
@@ -273,11 +260,13 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
      *
      * To let user decide whether this is important for him.
      *
+     * @param array $config The converted structure for a single function.
+     *
      * @return string
      */
-    protected function getRemovedVersion()
+    protected function getRemovedVersion(array $config)
     {
-        return $this->getCurrentRemovedFunction()['version_removed'];
+        return $config['version_removed'];
     }
 
     /**
@@ -285,11 +274,13 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
      *
      * To provide feedback for user to ease migration.
      *
+     * @param array $config The converted structure for a single function.
+     *
      * @return string
      */
-    protected function getNewFunctionCall()
+    protected function getNewFunctionCall(array $config)
     {
-        $newCall = $this->getCurrentRemovedFunction()['newFunctionCall'];
+        $newCall = $config['newFunctionCall'];
         if ($newCall !== null) {
             return $newCall;
         }
@@ -299,10 +290,12 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff implements PhpCsSniff
     /**
      * Allow user to lookup the official docs related to this deprecation / breaking change.
      *
+     * @param array $config The converted structure for a single function.
+     *
      * @return string
      */
-    protected function getDocsUrl()
+    protected function getDocsUrl(array $config)
     {
-        return $this->getCurrentRemovedFunction()['docsUrl'];
+        return $config['docsUrl'];
     }
 }

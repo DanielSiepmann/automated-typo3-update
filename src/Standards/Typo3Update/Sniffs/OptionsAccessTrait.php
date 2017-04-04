@@ -62,7 +62,7 @@ trait OptionsAccessTrait
      */
     public function getRemovedFunctionConfigFiles()
     {
-        $configFiles = PhpCs::getConfigData('removedfunctionConfigFiles');
+        $configFiles = PhpCs::getConfigData('removedFunctionConfigFiles');
         if (!$configFiles) {
             $configFiles = __DIR__ . '/../Configuration/Removed/Functions/*.yaml';
         }
