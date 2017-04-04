@@ -66,22 +66,32 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff extends AbstractClassn
         if ($classnamePosition === false) {
             return;
         }
-        $classname = explode(' ', $tokens[$classnamePosition]['content'])[0];
+        $classnames = explode('|', explode(' ', $tokens[$classnamePosition]['content'])[0]);
 
         $this->originalTokenContent = $tokens[$classnamePosition]['content'];
-        $this->addFixableError($phpcsFile, $classnamePosition, $classname);
+        foreach ($classnames as $classname) {
+            $this->addFixableError($phpcsFile, $classnamePosition, $classname);
+        }
     }
 
     /**
      * As token contains more then just class name, we have to build new content ourself.
      *
-     * @param string $classname
+     * @param string $newClassname
+     * @param string $originalClassname
      * @return string
      */
-    protected function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($newClassname, $originalClassname)
     {
         $token = explode(' ', $this->originalTokenContent);
-        $token[0] = $classname;
+
+        $classNames = explode('|', $token[0]);
+        foreach ($classNames as $position => $classname) {
+            if ($classname === $originalClassname) {
+                $classNames[$position] = $newClassname;
+            }
+        }
+        $token[0] = implode('|', $classNames);
 
         return implode(' ', $token);
     }
