@@ -19,7 +19,6 @@
  * 02110-1301, USA.
  */
 
-use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use Helmich\TypoScriptParser\Tokenizer\Tokenizer;
 
 /**
