@@ -50,11 +50,7 @@ class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGener
     /**
      * The original constant call, to allow user to check matches.
      *
-     * As we match the constant name, that can be provided by multiple classes,
-     * you should provide an example, so users can check that this is the
-     * legacy one.
-     *
-     * @param array $config The converted structure for a single constant.
+     * @param array $config
      *
      * @return string
      */

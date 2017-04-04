@@ -95,7 +95,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
                 $newStructure[$removed]['name'] = $split[0];
                 $newStructure[$removed]['version_removed'] = $typo3Version;
 
-                // If split contains two parts, it's a class with method
+                // If split contains two parts, it's a class
                 if (isset($split[1])) {
                     $newStructure[$removed]['fqcn'] = $split[0];
                     $newStructure[$removed]['class'] = array_slice(
@@ -174,8 +174,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
      */
     protected function getMatchingRemoved($name, $className, $isStatic)
     {
-        // We will not match any static method, without the class name, at least for now.
-        // Otherwise we could handle them the same way as instance methods.
+        // We will not match any static calls, without the class name, at least for now.
         if ($isStatic === true && $className === false) {
             return [];
         }
@@ -225,7 +224,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     /**
      * Identifier for configuring this specific error / warning through PHPCS.
      *
-     * @param array $config The converted structure for a single function.
+     * @param array $config
      *
      * @return string
      */
@@ -240,24 +239,24 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     }
 
     /**
-     * The original constant call, to allow user to check matches.
+     * The original call, to allow user to check matches.
      *
-     * As we match the constant name, that can be provided by multiple classes,
-     * you should provide an example, so users can check that this is the
-     * legacy one.
+     * As we match the name, that can be provided by multiple classes, you
+     * should provide an example, so users can check that this is the legacy
+     * one.
      *
-     * @param array $config The converted structure for a single constant.
+     * @param array $config
      *
      * @return string
      */
     abstract protected function getOldUsage(array $config);
 
     /**
-     * Returns TYPO3 version when the current constant was removed.
+     * Returns TYPO3 version when the breaking change happened.
      *
      * To let user decide whether this is important for him.
      *
-     * @param array $config The converted structure for a single constant.
+     * @param array $config
      *
      * @return string
      */
@@ -267,11 +266,11 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     }
 
     /**
-     * The new constant call, or information how to migrate.
+     * The new call, or information how to migrate.
      *
      * To provide feedback for user to ease migration.
      *
-     * @param array $config The converted structure for a single constant.
+     * @param array $config
      *
      * @return string
      */
