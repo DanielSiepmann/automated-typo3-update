@@ -73,11 +73,12 @@ class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff ext
     /**
      * As token contains more then just class name, we have to build new content ourself.
      *
-     * @param string $classname
+     * @param string $newClassname
+     * @param string $originalClassname
      * @return string
      */
-    protected function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($newClassname, $originalClassname)
     {
-        return $this->getTokenReplacementForString($classname);
+        return $this->getTokenReplacementForString($newClassname);
     }
 }
