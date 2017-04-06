@@ -135,10 +135,12 @@ class SniffsTest extends TestCase
      */
     protected function getExpectedJsonOutput(SplFileInfo $folder)
     {
-        return json_decode(
-            file_get_contents($folder->getRealPath() . DIRECTORY_SEPARATOR . 'Expected.json'),
-            true
-        );
+        $file = $folder->getPathname() . DIRECTORY_SEPARATOR . 'Expected.json';
+        if (!is_file($file)) {
+            throw new \Exception('Could not load file: ' . $file, 1491486050);
+        }
+
+        return json_decode(file_get_contents($file), true);
     }
 
     /**

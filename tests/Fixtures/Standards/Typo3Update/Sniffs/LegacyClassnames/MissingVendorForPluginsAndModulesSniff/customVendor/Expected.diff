@@ -1,11 +1,11 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/MissingVendorForPluginsAndModulesSniff/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/MissingVendorForPluginsAndModulesSniff/customVendor/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -20,7 +20,7 @@
   */
 
  TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 -    $_EXTKEY,
-+    'YourCompany.' . $_EXTKEY,
++    'MyCustomVendor.' . $_EXTKEY,
      'name',
      [
          'Controller' => 'action',
@@ -14,7 +14,7 @@
 
  Tx_Extbase_Utility_Extension::configurePlugin(
 -    $_EXTKEY,
-+    'YourCompany.' . $_EXTKEY,
++    'MyCustomVendor.' . $_EXTKEY,
      'name',
      [
          'Controller' => 'action',
@@ -23,21 +23,21 @@
 
  Tx_Extbase_Utility_Extension::registerPlugin(
 -    $_EXTKEY,
-+    'YourCompany.' . $_EXTKEY,
++    'MyCustomVendor.' . $_EXTKEY,
      'name',
      'title'
  );
 
  TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 -    $_EXTKEY,
-+    'YourCompany.' . $_EXTKEY,
++    'MyCustomVendor.' . $_EXTKEY,
      'name',
      'title'
  );
 
  Tx_Extbase_Utility_Extension::registerModule(
 -    $_EXTKEY,
-+    'YourCompany.' . $_EXTKEY,
++    'MyCustomVendor.' . $_EXTKEY,
      'subpart',
      'key'
      '',
@@ -46,7 +46,7 @@
 
  \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 -    $_EXTKEY,
-+    'YourCompany.' . $_EXTKEY,
++    'MyCustomVendor.' . $_EXTKEY,
      'subpart',
      'key'
      '',
