@@ -1,0 +1,16 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/MissingNamespaceSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -1,4 +1,5 @@
+ <?php
++namespace YourCompany\ExtName\Controller;
+
+ /*
+  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
+@@ -21,6 +22,6 @@
+
+ use Tx_Extbase_Mvc_Controller_ActionController;
+
+-class Tx_ExtName_Controller_Frontendcontroller extends Tx_Extbase_Mvc_Controller_ActionController
++class Frontendcontroller extends Tx_Extbase_Mvc_Controller_ActionController
+ {
+ }
