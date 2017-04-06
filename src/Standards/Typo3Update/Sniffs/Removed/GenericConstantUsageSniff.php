@@ -21,6 +21,7 @@
 
 use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
+use Typo3Update\Sniffs\Options;
 
 /**
  * Sniff that handles all calls to removed constants.
@@ -34,7 +35,7 @@ class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGener
      */
     protected function getRemovedConfigFiles()
     {
-        return $this->getRemovedConstantConfigFiles();
+        return Options::getRemovedConstantConfigFiles();
     }
 
     /**

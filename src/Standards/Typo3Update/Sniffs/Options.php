@@ -25,16 +25,16 @@ use PHP_CodeSniffer as PhpCs;
 /**
  * Wrapper to retrieve options from PhpCs with defaults.
  */
-trait OptionsAccessTrait
+class Options
 {
     /**
      * Returns the configured vendor, e.g. to generate new namespaces.
      *
      * @return string
      */
-    public function getVendor()
+    public static function getVendor()
     {
-        $vendor = $this->getOptionWithDefault(
+        $vendor = static::getOptionWithDefault(
             'vendor',
             'YourCompany'
         );
@@ -47,9 +47,9 @@ trait OptionsAccessTrait
      *
      * @return string
      */
-    public function getMappingFile()
+    public static function getMappingFile()
     {
-        return (string) $this->getOptionWithDefault(
+        return (string) static::getOptionWithDefault(
             'mappingFile',
             __DIR__ . '/../../../../LegacyClassnames.php'
         );
@@ -58,11 +58,11 @@ trait OptionsAccessTrait
     /**
      * Returns an array of absolute file names containing removed function configurations.
      *
-     * @return \Generator
+     * @return array<string>
      */
-    public function getRemovedFunctionConfigFiles()
+    public static function getRemovedFunctionConfigFiles()
     {
-        $this->getOptionFileNames(
+        return static::getOptionFileNames(
             'removedFunctionConfigFiles',
             __DIR__ . '/../Configuration/Removed/Functions/*.yaml'
         );
@@ -71,11 +71,11 @@ trait OptionsAccessTrait
     /**
      * Returns an array of absolute file names containing removed constant configurations.
      *
-     * @return \Generator
+     * @return array<string>
      */
-    public function getRemovedConstantConfigFiles()
+    public static function getRemovedConstantConfigFiles()
     {
-        $this->getOptionFileNames(
+        return static::getOptionFileNames(
             'removedConstantConfigFiles',
             __DIR__ . '/../Configuration/Removed/Constants/*.yaml'
         );
@@ -89,7 +89,7 @@ trait OptionsAccessTrait
      *
      * @return mixed
      */
-    private function getOptionWithDefault($optionName, $default)
+    private static function getOptionWithDefault($optionName, $default)
     {
         $option = PhpCs::getConfigData($optionName);
         if (!$option) {
@@ -102,17 +102,23 @@ trait OptionsAccessTrait
     /**
      * Get file names defined by option using optionName, if not defined, use default.
      *
+     * TODO: Multiple files allowed, using glob ...
+     * to allow splitting per ext (extbase, fluid, ...) and TYPO3 Version 7.1, 7.0, ...
+     *
      * @param string $optionName
      * @param mixed $default
      *
-     * @return \Generator
+     * @return array<string>
      */
-    private function getOptionFileNames($optionName, $default)
+    protected static function getOptionFileNames($optionName, $default)
     {
-        $files = $this->getOptionWithDefault($optionName, $default);
+        $files = static::getOptionWithDefault($optionName, $default);
+        $fileNames = [];
 
         foreach ((new \GlobIterator($files)) as $file) {
-            yield (string) $file;
+            $fileNames[] = (string) $file;
         }
+
+        return $fileNames;
     }
 }

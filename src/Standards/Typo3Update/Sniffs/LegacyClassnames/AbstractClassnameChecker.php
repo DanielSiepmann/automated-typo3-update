@@ -24,15 +24,12 @@ use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use Typo3Update\Sniffs\LegacyClassnames\Mapping;
-use Typo3Update\Sniffs\OptionsAccessTrait;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
  */
 abstract class AbstractClassnameChecker implements PhpCsSniff
 {
-    use OptionsAccessTrait;
-
     /**
      * A list of extension names that might contain legacy class names.
      * Used to check clas names for warnings.
