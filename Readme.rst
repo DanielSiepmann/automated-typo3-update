@@ -49,6 +49,8 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - Static calls like ``t3lib_div::`` to ``\TYPO3\Core\Utility\GeneralUtility``.
 
+- Static call also checks for ``::class``, as technically we just look before the ``::``.
+
 - Typehints in methods and function like injects.
 
 - ``instanceof`` checks.
@@ -69,10 +71,42 @@ new ones like ``\TYPO3\Extbase\...``. This is done for:
 
 - ``catch`` of legacy class names.
 
+- Convert old legacy class *definitions* in extensions to namespaces.
+
+- Convert usage of previously converted class definitions. On first run the definition will be
+  converted, on second run the usage. This is due to the fact, that PHPCS might find the definition
+  after the usage, so please run twice.
+
+  *NOTE* The configured file will be updated after each run, for each converted class, trait and
+  interface definition. See options.
+
+- Add missing vendor to plugin and module registrations and configurations.
+  You might want to set this to non fixable and warning if you already provide the vendor inside a
+  single Variable, together with your extension key, as this is not recognized. So the following
+  will be recognized:
+
+  - ``$_EXTKEY,``
+
+  - ``$VENDOR . $_EXTKEY,``
+
+  - ``'VENDOR.' . $_EXTKEY,``
+
+  While the following will not:
+
+  - ``$key = 'Vendor.' . $_EXTKEY;``
+
 Also we check for the following deprecated calls:
 
 - Check for ``create`` on ``ObjectManager``, which is "stupid" just all ``create`` calls are marked
   with a warning.
+
+Beside the features above which are covered by ``phpcs`` and phpcbf``, the following linting is also
+available to generate a report of possible issues and during coding through ``phpcs``:
+
+- Check for usage of removed functions.
+  The functions are configured via yaml files. The location of them is configurable, default is
+  inside the standard itself, and we try to deliver all information.
+  For configuration options see ``removedFunctionConfigFiles``.
 
 What does it look like?
 =======================
@@ -152,3 +186,37 @@ Example:
 .. code:: bash
 
     --runtime-set mappingFile /projects/typo3_installation/vendor/composer/autoload_classaliasmap.php
+
+``vendor``
+    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
+    ``YourCompany``.
+
+    Example:
+
+.. code:: xml
+
+    <config name="vendor" value="YourVendor"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set vendor YourVendor
+
+``removedFunctionConfigFiles``
+    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
+    ``Configuration/Removed/Functions/*.yaml`` inside the standard itself.
+    Globing is used, so placeholders like ``*`` are possible, see
+    https://secure.php.net/manual/en/function.glob.php
+
+    Example:
+
+.. code:: xml
+
+    <config name="removedFunctionConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set removedFunctionConfigFiles "/Some/Absolute/Path/*.yaml"

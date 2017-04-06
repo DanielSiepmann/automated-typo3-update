@@ -19,13 +19,13 @@
  * 02110-1301, USA.
  */
 
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
+
 /**
  * Detect and migrate static calls to old legacy classnames.
  */
-class Typo3Update_Sniffs_LegacyClassnames_StaticCallSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_StaticCallSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
     /**
      * Define whether the T_STRING default behaviour should be checked before
      * or after the $stackPtr.

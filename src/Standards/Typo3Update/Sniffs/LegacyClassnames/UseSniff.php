@@ -19,15 +19,16 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
 
 /**
- * Migrate old legacy class names in use statements.
+ * Detect and migrate use statements with legacy classnames..
+ *
+ * According to PSR-2, only one class per use statement is expected.
  */
-class Typo3Update_Sniffs_LegacyClassnames_UseSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_UseSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -36,5 +37,22 @@ class Typo3Update_Sniffs_LegacyClassnames_UseSniff implements PHP_CodeSniffer_Sn
     public function register()
     {
         return [T_USE];
+    }
+
+    /**
+     * Overwrite to remove prefix.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $classnamePosition
+     * @param string $classname
+     * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
+     */
+    protected function replaceLegacyClassname(
+        PhpCsFile $phpcsFile,
+        $classnamePosition,
+        $classname,
+        $forceEmptyPrefix = true
+    ) {
+        return parent::replaceLegacyClassname($phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix);
     }
 }

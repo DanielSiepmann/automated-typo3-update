@@ -19,19 +19,14 @@
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
+
 /**
  * Migrate PHP inline comments, e.g. for IDEs.
  */
-class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
-    /**
-     * Original token content for reuse accross methods.
-     * @var string
-     */
-    protected $originalTokenContent = '';
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -47,19 +42,20 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
     /**
      * Processes the tokens that this sniff is interested in.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param PhpCsFile $phpcsFile The file where the token was found.
      * @param int                  $stackPtr  The position in the stack where
      *                                        the token was found.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $this->originalTokenContent = $tokens[$stackPtr]['content'];
         $commentParts = preg_split('/\s+/', $this->originalTokenContent);
 
-        if (count($commentParts) !== 5 || $commentParts[1] !== '@var' || ($commentParts[2][0] !== '$' && $commentParts[3][0] !== '$')) {
+        if (count($commentParts) !== 5 || $commentParts[1] !== '@var'
+            || ($commentParts[2][0] !== '$' && $commentParts[3][0] !== '$')) {
             return;
         }
 
@@ -85,13 +81,14 @@ class Typo3Update_Sniffs_LegacyClassnames_InlineCommentSniff implements PHP_Code
     /**
      * As token contains more then just class name, we have to build new content ourself.
      *
-     * @param string $classname
+     * @param string $newClassname
+     * @param string $originalClassname
      * @return string
      */
-    protected function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($newClassname, $originalClassname)
     {
         $token = preg_split('/\s+/', $this->originalTokenContent);
-        $token[$this->getClassnamePosition($token)] = $classname;
+        $token[$this->getClassnamePosition($token)] = $newClassname;
 
         return implode(' ', $token);
     }

@@ -19,21 +19,15 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer_File as PhpcsFile;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
 
 /**
  * Detect and migrate instantiations of old legacy classnames using "makeInstance".
  */
-class Typo3Update_Sniffs_LegacyClassnames_IsACallSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_IsACallSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
-
-    /**
-     * Original token content for reuse accross methods.
-     * @var string
-     */
-    protected $originalTokenContent = '';
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -48,13 +42,13 @@ class Typo3Update_Sniffs_LegacyClassnames_IsACallSniff implements PHP_CodeSniffe
     /**
      * Processes the tokens that this sniff is interested in.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param PhpCsFile $phpcsFile The file where the token was found.
      * @param int                  $stackPtr  The position in the stack where
      *                                        the token was found.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
             return;
@@ -78,11 +72,12 @@ class Typo3Update_Sniffs_LegacyClassnames_IsACallSniff implements PHP_CodeSniffe
     /**
      * As token contains more then just class name, we have to build new content ourself.
      *
-     * @param string $classname
+     * @param string $newClassname
+     * @param string $originalClassname
      * @return string
      */
-    protected function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($newClassname, $originalClassname)
     {
-        return $this->getTokenReplacementForString($classname);
+        return $this->getTokenReplacementForString($newClassname);
     }
 }

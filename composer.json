@@ -17,8 +17,9 @@
         }
     ],
     "require": {
+        "helmich/typo3-typoscript-parser": "dev-feature/allow-eol-handling",
         "squizlabs/php_codesniffer": "2.8.*",
-        "helmich/typo3-typoscript-parser": "dev-feature/allow-eol-handling"
+        "symfony/yaml": "3.2.*"
     },
     "license": "GPL-2.0+",
     "authors": [

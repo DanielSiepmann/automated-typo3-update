@@ -22,17 +22,16 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
 
 use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update\Sniffs\LegacyClassnames\Mapping;
+use Typo3Update\Sniffs\OptionsAccessTrait;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
  */
-trait ClassnameCheckerTrait
+abstract class AbstractClassnameChecker implements PhpCsSniff
 {
-    /**
-     * Contains mapping from old -> new class names.
-     * @var array
-     */
-    private $legacyClassnames = [];
+    use OptionsAccessTrait;
 
     /**
      * A list of extension names that might contain legacy class names.
@@ -45,20 +44,22 @@ trait ClassnameCheckerTrait
     public $legacyExtensions = ['Extbase', 'Fluid'];
 
     /**
-     * Initialize, used internally, to not initialize if not needed inside __construct.
+     * @var Mapping
      */
-    private function initialize()
-    {
-        $mappingFile = PhpCs::getConfigData('mappingFile');
-        if (!$mappingFile) {
-            $mappingFile = __DIR__ . '/../../../../../LegacyClassnames.php';
-        }
-        if ($this->legacyClassnames !== []) {
-            return;
-        }
+    protected $legacyMapping;
 
-        $legacyClassnames = require $mappingFile;
-        $this->legacyClassnames = $legacyClassnames['aliasToClassNameMapping'];
+    /**
+     * Used by some sniffs to keep original token for replacement.
+     *
+     * E.g. when Token itself is a whole inline comment, and we just want to replace the classname within.
+     *
+     * @var string
+     */
+    protected $originalTokenContent = '';
+
+    public function __construct()
+    {
+        $this->legacyMapping = Mapping::getInstance();
     }
 
     /**
@@ -110,10 +111,9 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return bool
      */
-    private function isLegacyClassname($classname)
+    protected function isLegacyClassname($classname)
     {
-        $this->initialize();
-        return isset($this->legacyClassnames[strtolower($classname)]);
+        return $this->legacyMapping->isLegacyClassname($classname);
     }
 
     /**
@@ -145,10 +145,23 @@ trait ClassnameCheckerTrait
      * @param string $classname
      * @return string
      */
-    private function getNewClassname($classname)
+    protected function getNewClassname($classname)
     {
-        $this->initialize();
-        return $this->legacyClassnames[strtolower($classname)];
+        return $this->legacyMapping->getNewClassname($classname);
+    }
+
+    /**
+     * Use to add new mappings found during parsing.
+     * E.g. in MissingNamespaceSniff old class definitions are fixed and a new mapping exists afterwards.
+     *
+     * @param string $legacyClassname
+     * @param string $newClassname
+     *
+     * @return void
+     */
+    protected function addLegacyClassname($legacyClassname, $newClassname)
+    {
+        $this->legacyMapping->addLegacyClassname($legacyClassname, $newClassname);
     }
 
     /**
@@ -206,17 +219,22 @@ trait ClassnameCheckerTrait
      * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
+     * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
      */
-    private function replaceLegacyClassname(PhpCsFile $phpcsFile, $classnamePosition, $classname)
-    {
+    protected function replaceLegacyClassname(
+        PhpCsFile $phpcsFile,
+        $classnamePosition,
+        $classname,
+        $forceEmptyPrefix = false
+    ) {
         $prefix = '\\';
-        if ($phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
+        if ($forceEmptyPrefix || $phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
             $prefix = '';
         }
 
         $phpcsFile->fixer->replaceToken(
             $classnamePosition,
-            $this->getTokenForReplacement($prefix . $this->getNewClassname($classname))
+            $this->getTokenForReplacement($prefix . $this->getNewClassname($classname), $classname)
         );
     }
 
@@ -224,12 +242,13 @@ trait ClassnameCheckerTrait
      * String to use for replacing / fixing the token.
      * Default is class name itself, can be overwritten in sniff for special behaviour.
      *
-     * @param string $classname
+     * @param string $newClassname
+     * @param string $originalClassname
      * @return string
      */
-    protected function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($newClassname, $originalClassname)
     {
-        return $classname;
+        return $newClassname;
     }
 
     /**

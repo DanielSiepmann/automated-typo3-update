@@ -19,26 +19,21 @@
  * 02110-1301, USA.
  */
 
+use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
+
 /**
  * Migrate PHP Doc comments.
  *
  * E.g. annotations like @param or @return, see $allowedTags.
  */
-class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
     /**
      * The configured tags will be processed.
      * @var array<string>
      */
     public $allowedTags = ['@param', '@return', '@var'];
-
-    /**
-     * Original token content for reuse accross methods.
-     * @var string
-     */
-    protected $originalTokenContent = '';
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -55,13 +50,13 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSni
     /**
      * Processes the tokens that this sniff is interested in.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param PhpCsFile $phpcsFile The file where the token was found.
      * @param int                  $stackPtr  The position in the stack where
      *                                        the token was found.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         if (!in_array($tokens[$stackPtr]['content'], $this->allowedTags)) {
@@ -71,22 +66,32 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff implements PHP_CodeSni
         if ($classnamePosition === false) {
             return;
         }
-        $classname = explode(' ', $tokens[$classnamePosition]['content'])[0];
+        $classnames = explode('|', explode(' ', $tokens[$classnamePosition]['content'])[0]);
 
         $this->originalTokenContent = $tokens[$classnamePosition]['content'];
-        $this->addFixableError($phpcsFile, $classnamePosition, $classname);
+        foreach ($classnames as $classname) {
+            $this->addFixableError($phpcsFile, $classnamePosition, $classname);
+        }
     }
 
     /**
      * As token contains more then just class name, we have to build new content ourself.
      *
-     * @param string $classname
+     * @param string $newClassname
+     * @param string $originalClassname
      * @return string
      */
-    protected function getTokenForReplacement($classname)
+    protected function getTokenForReplacement($newClassname, $originalClassname)
     {
         $token = explode(' ', $this->originalTokenContent);
-        $token[0] = $classname;
+
+        $classNames = explode('|', $token[0]);
+        foreach ($classNames as $position => $classname) {
+            if ($classname === $originalClassname) {
+                $classNames[$position] = $newClassname;
+            }
+        }
+        $token[0] = implode('|', $classNames);
 
         return implode(' ', $token);
     }

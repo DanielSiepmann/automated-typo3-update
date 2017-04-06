@@ -19,13 +19,13 @@
  * 02110-1301, USA.
  */
 
+use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
+
 /**
  * Detect and migrate instanceof checks of old legacy classnames.
  */
-class Typo3Update_Sniffs_LegacyClassnames_InstanceofSniff implements PHP_CodeSniffer_Sniff
+class Typo3Update_Sniffs_LegacyClassnames_InstanceofSniff extends AbstractClassnameChecker
 {
-    use \Typo3Update\Sniffs\LegacyClassnames\ClassnameCheckerTrait;
-
     /**
      * Returns the token types that this sniff is interested in.
      *
