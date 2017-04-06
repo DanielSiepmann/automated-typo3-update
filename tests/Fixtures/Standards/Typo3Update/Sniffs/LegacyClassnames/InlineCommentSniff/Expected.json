@@ -1,0 +1,51 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 4,
+            "messages": [
+                {
+                    "column": 9,
+                    "fixable": true,
+                    "line": 26,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.InlineComment.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 9,
+                    "fixable": true,
+                    "line": 29,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.InlineComment.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 9,
+                    "fixable": true,
+                    "line": 32,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.InlineComment.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 9,
+                    "fixable": true,
+                    "line": 35,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.InlineComment.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 4,
+        "fixable": 4,
+        "warnings": 0
+    }
+}

@@ -21,20 +21,18 @@
 
 class InputFileForIssues
 {
-    /**
-     * @var Tx_Extbase_Domain_Repository_CategoryRepository
-     * @inject
-     */
-    protected $someVar;
-
-    /**
-     * @param t3lib_div
-     *
-     * @return Tx_Extbase_Configuration_Configurationmanager
-     */
-    public function doSomething($something)
+    public function something()
     {
-        /** @var t3lib_div $variable */ // This is supported as this is a phpdoc.
-        /** @var $variable t3lib_div */ // This is not supported! Use inline comments instead.
+        /* @var $variable Tx_Extbase_Command_HelpCommandController */
+        $variable;
+
+        // @var $variable Tx_Extbase_Command_HelpCommandController
+        $variable;
+
+        /* @var Tx_Extbase_Command_HelpCommandController $variable */
+        $variable;
+
+        // @var Tx_Extbase_Command_HelpCommandController $variable
+        $variable;
     }
 }
