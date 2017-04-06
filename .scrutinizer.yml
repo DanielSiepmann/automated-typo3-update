@@ -1,4 +1,7 @@
 build:
+  tests:
+    before:
+      - make install
   environment:
     php:
       version: 5.6
