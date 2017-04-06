@@ -156,6 +156,8 @@ class SniffsTest extends TestCase
         $bin = './vendor/bin/phpcs';
         $arguments = '--sniffs=' . $this->getSniffByFolder($folder)
             . ' --report=' . $report
+            . ' --runtime-set mappingFile '
+                . __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR . 'LegacyClassnames.php'
             . ' '
             . $this->getInputFile($folder)
         ;
