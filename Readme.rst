@@ -110,7 +110,7 @@ available to generate a report of possible issues and during coding through ``ph
 
 - Check for usage of removed constants.
   The constants are configured in same way as removed functions.
-  For configuration options see ``removedConstantsConfigFiles``.
+  For configuration options see ``removedConstantConfigFiles``.
 
 What does it look like?
 =======================

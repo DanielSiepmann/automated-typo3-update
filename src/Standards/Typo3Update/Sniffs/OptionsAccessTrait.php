@@ -34,10 +34,11 @@ trait OptionsAccessTrait
      */
     public function getVendor()
     {
-        $vendor = PhpCs::getConfigData('vendor');
-        if (!$vendor) {
-            $vendor = 'YourCompany';
-        }
+        $vendor = $this->getOptionWithDefault(
+            'vendor',
+            'YourCompany'
+        );
+
         return trim($vendor, '\\/');
     }
 
@@ -48,11 +49,10 @@ trait OptionsAccessTrait
      */
     public function getMappingFile()
     {
-        $mappingFile = PhpCs::getConfigData('mappingFile');
-        if (!$mappingFile) {
-            $mappingFile = __DIR__ . '/../../../../LegacyClassnames.php';
-        }
-        return $mappingFile;
+        return (string) $this->getOptionWithDefault(
+            'mappingFile',
+            __DIR__ . '/../../../../LegacyClassnames.php'
+        );
     }
 
     /**
@@ -62,14 +62,10 @@ trait OptionsAccessTrait
      */
     public function getRemovedFunctionConfigFiles()
     {
-        $configFiles = PhpCs::getConfigData('removedFunctionConfigFiles');
-        if (!$configFiles) {
-            $configFiles = __DIR__ . '/../Configuration/Removed/Functions/*.yaml';
-        }
-
-        foreach ((new \GlobIterator($configFiles)) as $file) {
-            yield (string) $file;
-        }
+        $this->getOptionFileNames(
+            'removedFunctionConfigFiles',
+            __DIR__ . '/../Configuration/Removed/Functions/*.yaml'
+        );
     }
 
     /**
@@ -79,12 +75,43 @@ trait OptionsAccessTrait
      */
     public function getRemovedConstantConfigFiles()
     {
-        $configFiles = PhpCs::getConfigData('removedConstantConfigFiles');
-        if (!$configFiles) {
-            $configFiles = __DIR__ . '/../Configuration/Removed/Constants/*.yaml';
+        $this->getOptionFileNames(
+            'removedConstantConfigFiles',
+            __DIR__ . '/../Configuration/Removed/Constants/*.yaml'
+        );
+    }
+
+    /**
+     * Get the option by optionName, if not defined, use default.
+     *
+     * @param string $optionName
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    private function getOptionWithDefault($optionName, $default)
+    {
+        $option = PhpCs::getConfigData($optionName);
+        if (!$option) {
+            $option = $default;
         }
 
-        foreach ((new \GlobIterator($configFiles)) as $file) {
+        return $option;
+    }
+
+    /**
+     * Get file names defined by option using optionName, if not defined, use default.
+     *
+     * @param string $optionName
+     * @param mixed $default
+     *
+     * @return \Generator
+     */
+    private function getOptionFileNames($optionName, $default)
+    {
+        $files = $this->getOptionWithDefault($optionName, $default);
+
+        foreach ((new \GlobIterator($files)) as $file) {
             yield (string) $file;
         }
     }
