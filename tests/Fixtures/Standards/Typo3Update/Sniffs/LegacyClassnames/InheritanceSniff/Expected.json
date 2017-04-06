@@ -1,0 +1,69 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 6,
+            "messages": [
+                {
+                    "column": 34,
+                    "fixable": true,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Configuration_Configurationmanager\", use \"TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Inheritance.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 91,
+                    "fixable": true,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found \"t3lib_Singleton\", use \"TYPO3\\CMS\\Core\\SingletonInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Inheritance.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 108,
+                    "fixable": true,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Core_BootstrapInterface\", use \"TYPO3\\CMS\\Extbase\\Core\\BootstrapInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Inheritance.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 34,
+                    "fixable": true,
+                    "line": 27,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Configuration_Configurationmanager\", use \"TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Inheritance.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 5,
+                    "fixable": true,
+                    "line": 28,
+                    "message": "Legacy classes are not allowed; found \"t3lib_Singleton\", use \"TYPO3\\CMS\\Core\\SingletonInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Inheritance.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 5,
+                    "fixable": true,
+                    "line": 29,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Core_BootstrapInterface\", use \"TYPO3\\CMS\\Extbase\\Core\\BootstrapInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Inheritance.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 6,
+        "fixable": 6,
+        "warnings": 0
+    }
+}
