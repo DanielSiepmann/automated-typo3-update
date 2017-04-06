@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/InlineCommentSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -23,16 +23,14 @@
+@@ -23,16 +23,16 @@
  {
      public function something()
      {
@@ -21,4 +21,3 @@
          $variable;
      }
  }
-
