@@ -5,9 +5,19 @@
     "autoload": {
         "psr-4": {
             "Typo3Update\\": "src/Standards/Typo3Update/"
-        }
+        },
+        "files": [
+            "src/CodeSniffer/Tokenizers/TypoScript.php"
+        ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/DanielSiepmann/typo3-typoscript-parser"
+        }
+    ],
     "require": {
+        "helmich/typo3-typoscript-parser": "dev-feature/allow-eol-handling",
         "squizlabs/php_codesniffer": "2.8.*",
         "symfony/yaml": "3.2.*"
     },
