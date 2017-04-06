@@ -99,28 +99,30 @@ class SniffsTest extends TestCase
         ], $arguments);
 
         if (isset($internalArguments['inputFileName'])) {
-            $internalArguments['inputFile'] = $folder->getRealPath() . DIRECTORY_SEPARATOR . $internalArguments['inputFileName'];
+            $internalArguments['inputFile'] = $folder->getRealPath()
+                . DIRECTORY_SEPARATOR
+                . $internalArguments['inputFileName'];
             unset($internalArguments['inputFileName']);
         }
 
         $this->assertEquals(
             $this->getExpectedJsonOutput($folder),
-            $this->getOutput($folder, $internalArguments)['output'],
+            $this->getOutput($internalArguments)['output'],
             'Checking Sniff "' . $this->getSniffByFolder($folder) . '"'
                 . ' did not produce expected output for input file '
                 . $internalArguments['inputFile']
-                . ' called: ' . $this->getPhpcsCall($folder, $internalArguments)
+                . ' called: ' . $this->getPhpcsCall($internalArguments)
         );
 
         try {
             $internalArguments['report'] = 'diff';
             $this->assertEquals(
                 $this->getExpectedDiffOutput($folder),
-                $this->getOutput($folder, $internalArguments)['output'],
+                $this->getOutput($internalArguments)['output'],
                 'Fixing Sniff "' . $this->getSniffByFolder($folder) . '"'
                     . ' did not produce expected diff for input file '
                     . $internalArguments['inputFile']
-                    . ' called: ' . $this->getPhpcsCall($folder, $internalArguments)
+                    . ' called: ' . $this->getPhpcsCall($internalArguments)
             );
         } catch (FileNotFoundException $e) {
             // Ok, ignore, we don't have an diff.
@@ -202,11 +204,10 @@ class SniffsTest extends TestCase
     /**
      * Build cli call for phpcs.
      *
-     * @param SplFileInfo $folder
      * @param array $arguments
      * @return string
      */
-    protected function getPhpcsCall(SplFileInfo $folder, array $arguments)
+    protected function getPhpcsCall(array $arguments)
     {
         $bin = './vendor/bin/phpcs';
         $preparedArguments = [];
@@ -233,18 +234,25 @@ class SniffsTest extends TestCase
     /**
      * Executes phpcs for sniff based on $folder and returns the generated output.
      *
-     * @param SplFileInfo $folder
      * @param array $arguments
      * @return array
      */
-    protected function getOutput(SplFileInfo $folder, array $arguments)
+    protected function getOutput(array $arguments)
     {
         $output = '';
         $returnValue;
-        exec($this->getPhpcsCall($folder, $arguments), $output, $returnValue);
+        exec($this->getPhpcsCall($arguments), $output, $returnValue);
 
         if ($arguments['report'] === 'json') {
-            $output = $this->prepareJsonOutput($output);
+            try {
+                $output = $this->prepareJsonOutput($output);
+            } catch (\Exception $e) {
+                throw new \Exception(
+                    'Error during preparing json output by invoking '
+                        . $this->getPhpcsCall($arguments)  . ' ' . $output,
+                    1491487079
+                );
+            }
         } if ($arguments['report'] === 'diff') {
             $output = $this->prepareDiffOutput($output);
         }
