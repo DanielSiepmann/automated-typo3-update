@@ -1,0 +1,33 @@
+{
+    "files": {
+        "ext_tables.php": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 54,
+                    "fixable": false,
+                    "line": 22,
+                    "message": "Defining AJAX using $GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX'][$ajaxID] is no longer supported with a single String like 'something'. Since TYPO3 7.6, use PSR-7-based Routing for Backend AJAX Requests. See: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Feature-69916-PSR-7-basedRoutingForBackendAJAXRequests.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Deprecated.AjaxRegistration",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 54,
+                    "fixable": false,
+                    "line": 23,
+                    "message": "Defining AJAX using $GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX'][$ajaxID] is no longer supported with a single String like \"something\". Since TYPO3 7.6, use PSR-7-based Routing for Backend AJAX Requests. See: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Feature-69916-PSR-7-basedRoutingForBackendAJAXRequests.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Deprecated.AjaxRegistration",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 2
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 2
+    }
+}

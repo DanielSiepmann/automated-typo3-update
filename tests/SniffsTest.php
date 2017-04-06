@@ -51,7 +51,31 @@ class SniffsTest extends TestCase
         );
 
         foreach ($finder->directories()->name('*Sniff') as $folder) {
+            if (is_file($this->getArgumentsFile($folder))) {
+                $arguments = require $this->getArgumentsFile($folder);
+                $this->executeSniffSubfolders($folder, $arguments);
+                continue;
+            }
+
             $this->executeSniff($folder);
+        }
+    }
+
+    /**
+     * Execute sniff using subfolders.
+     *
+     * @param SplFileInfo $folder
+     * @param array $arguments
+     * @return void
+     */
+    protected function executeSniffSubfolders(SplFileInfo $folder, array $arguments = [])
+    {
+        $finder = new Finder();
+        $finder->in($folder->getRealPath());
+
+        foreach ($arguments as $subFolder => $values) {
+            $folderName = $folder->getRealPath() . DIRECTORY_SEPARATOR . $subFolder;
+            $this->executeSniff(new SplFileInfo($folderName, $folderName, $folderName), $values);
         }
     }
 
@@ -59,27 +83,44 @@ class SniffsTest extends TestCase
      * Execute phpunit assertion for sniff based on $folder.
      *
      * @param SplFileInfo $folder
+     * @param array $arguments
      * @return void
      */
-    protected function executeSniff(SplFileInfo $folder)
+    protected function executeSniff(SplFileInfo $folder, array $arguments = [])
     {
+        $internalArguments = array_merge([
+            'runtime-set' => 'mappingFile '
+                . __DIR__ . DIRECTORY_SEPARATOR
+                . 'Fixtures' . DIRECTORY_SEPARATOR
+                . 'LegacyClassnames.php',
+            'report' => 'json',
+            'sniffs' => $this->getSniffByFolder($folder),
+            'inputFile' => $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php',
+        ], $arguments);
+
+        if (isset($internalArguments['inputFileName'])) {
+            $internalArguments['inputFile'] = $folder->getRealPath() . DIRECTORY_SEPARATOR . $internalArguments['inputFileName'];
+            unset($internalArguments['inputFileName']);
+        }
+
         $this->assertEquals(
             $this->getExpectedJsonOutput($folder),
-            $this->getOutput($folder, 'json')['output'],
+            $this->getOutput($folder, $internalArguments)['output'],
             'Checking Sniff "' . $this->getSniffByFolder($folder) . '"'
                 . ' did not produce expected output for input file '
-                . $this->getInputFile($folder)
-                . ' called: ' . $this->getPhpcsCall($folder, 'json')
+                . $internalArguments['inputFile']
+                . ' called: ' . $this->getPhpcsCall($folder, $internalArguments)
         );
 
         try {
+            $internalArguments['report'] = 'diff';
             $this->assertEquals(
                 $this->getExpectedDiffOutput($folder),
-                $this->getOutput($folder, 'diff')['output'],
+                $this->getOutput($folder, $internalArguments)['output'],
                 'Fixing Sniff "' . $this->getSniffByFolder($folder) . '"'
                     . ' did not produce expected diff for input file '
-                    . $this->getInputFile($folder)
-                    . ' called: ' . $this->getPhpcsCall($folder, 'diff')
+                    . $internalArguments['inputFile']
+                    . ' called: ' . $this->getPhpcsCall($folder, $internalArguments)
             );
         } catch (FileNotFoundException $e) {
             // Ok, ignore, we don't have an diff.
@@ -126,61 +167,83 @@ class SniffsTest extends TestCase
      */
     protected function getSniffByFolder(SplFileInfo $folder)
     {
-        $folderParts = explode(DIRECTORY_SEPARATOR, $folder->getPath());
+        $folderParts = array_filter(explode(DIRECTORY_SEPARATOR, $folder->getPathName()));
+        $sniffNamePosition;
 
-        return array_slice($folderParts, -3)[0]
-            . '.' .  array_slice($folderParts, -1)[0]
-            . '.' . substr($folder->getFilename(), 0, -5);
+        foreach ($folderParts as $index => $folderPart) {
+            if (strpos($folderPart, 'Sniff', 1) !== false) {
+                $sniffNamePosition = $index;
+                break;
+            }
+        }
+
+        if ($sniffNamePosition === null) {
+            throw new \Exception('Could not detect sniff name by folder: ' . var_export($folder, true), 1491485369);
+        }
+
+        return $folderParts[$sniffNamePosition - 3]
+            . '.' . $folderParts[$sniffNamePosition - 1]
+            . '.' . substr($folderParts[$sniffNamePosition], 0, -5);
     }
 
     /**
-     * Returns file to use as input for phpcs.
+     * Get absolute file path to file containing further arguments.
      *
      * @param SplFileInfo $folder
      * @return string
      */
-    protected function getInputFile(SplFileInfo $folder)
+    protected function getArgumentsFile(SplFileInfo $folder)
     {
-        return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php';
+        return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'Arguments.php';
     }
 
     /**
      * Build cli call for phpcs.
      *
      * @param SplFileInfo $folder
-     * @param string $report Defined the report format to use for output.
+     * @param array $arguments
      * @return string
      */
-    protected function getPhpcsCall(SplFileInfo $folder, $report)
+    protected function getPhpcsCall(SplFileInfo $folder, array $arguments)
     {
         $bin = './vendor/bin/phpcs';
-        $arguments = '--sniffs=' . $this->getSniffByFolder($folder)
-            . ' --report=' . $report
-            . ' --runtime-set mappingFile '
-                . __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR . 'LegacyClassnames.php'
-            . ' '
-            . $this->getInputFile($folder)
-        ;
+        $preparedArguments = [];
 
-        return $bin . ' ' . $arguments;
+        foreach ($arguments as $argumentName => $argumentValue) {
+            if ($argumentName === 'inputFile') {
+                continue;
+            }
+
+            $prefix = "--$argumentName=";
+            if (in_array($argumentName, ['runtime-set'])) {
+                $prefix = "--$argumentName ";
+            }
+
+            $preparedArguments[] = "$prefix$argumentValue";
+        }
+
+        return $bin
+            . ' ' . implode(' ', $preparedArguments)
+            . ' ' . $arguments['inputFile']
+            ;
     }
 
     /**
      * Executes phpcs for sniff based on $folder and returns the generated output.
      *
      * @param SplFileInfo $folder
-     * @param string $report Defined the report format to use for output.
+     * @param array $arguments
      * @return array
      */
-    protected function getOutput(SplFileInfo $folder, $report)
+    protected function getOutput(SplFileInfo $folder, array $arguments)
     {
         $output = '';
         $returnValue;
-        exec($this->getPhpcsCall($folder, $report), $output, $returnValue);
+        exec($this->getPhpcsCall($folder, $arguments), $output, $returnValue);
 
-        if ($report === 'json') {
+        if ($arguments['report'] === 'json') {
             $output = $this->prepareJsonOutput($output);
-        } if ($report === 'diff') {
+        } if ($arguments['report'] === 'diff') {
             $output = $this->prepareDiffOutput($output);
         }
 
@@ -199,6 +262,10 @@ class SniffsTest extends TestCase
     protected function prepareJsonOutput(array $output)
     {
         $preparedOutput = json_decode($output[0], true);
+
+        if ($preparedOutput === null) {
+            throw new \Exception('Output for phpcs was not valid json: ' . var_export($output, true), 1491485173);
+        }
 
         foreach (array_keys($preparedOutput['files']) as $fileName) {
             $newKey = basename($fileName);
