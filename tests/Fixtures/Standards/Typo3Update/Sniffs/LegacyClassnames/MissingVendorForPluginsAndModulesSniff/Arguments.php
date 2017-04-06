@@ -22,6 +22,8 @@
 return [
     'defaultVendor' => [],
     'customVendor' => [
-        'runtime-set' => 'vendor MyCustomVendor',
+        'runtime-set' => [
+            'vendor' => 'MyCustomVendor',
+        ],
     ],
 ];

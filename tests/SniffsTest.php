@@ -88,11 +88,12 @@ class SniffsTest extends TestCase
      */
     protected function executeSniff(SplFileInfo $folder, array $arguments = [])
     {
-        $internalArguments = array_merge([
-            'runtime-set' => 'mappingFile '
-                . __DIR__ . DIRECTORY_SEPARATOR
-                . 'Fixtures' . DIRECTORY_SEPARATOR
-                . 'LegacyClassnames.php',
+        $internalArguments = array_merge_recursive([
+            'runtime-set' => [
+                'mappingFile' => __DIR__ . DIRECTORY_SEPARATOR
+                    . 'Fixtures' . DIRECTORY_SEPARATOR
+                    . 'LegacyClassnames.php',
+            ],
             'report' => 'json',
             'sniffs' => $this->getSniffByFolder($folder),
             'inputFile' => $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php',
@@ -217,12 +218,15 @@ class SniffsTest extends TestCase
                 continue;
             }
 
-            $prefix = "--$argumentName=";
-            if (in_array($argumentName, ['runtime-set'])) {
-                $prefix = "--$argumentName ";
+            if ($argumentName === 'runtime-set') {
+                foreach ($argumentValue as $runtimeName => $runtimeValue) {
+                    $preparedArguments[] = "--$argumentName $runtimeName $runtimeValue";
+                }
+
+                continue;
             }
 
-            $preparedArguments[] = "$prefix$argumentValue";
+            $preparedArguments[] = "--$argumentName=$argumentValue";
         }
 
         return $bin
@@ -249,7 +253,7 @@ class SniffsTest extends TestCase
             } catch (\Exception $e) {
                 throw new \Exception(
                     'Error during preparing json output by invoking '
-                        . $this->getPhpcsCall($arguments)  . ' ' . $output,
+                        . $this->getPhpcsCall($arguments)  . ' ' . $e->getMessage(),
                     1491487079
                 );
             }
