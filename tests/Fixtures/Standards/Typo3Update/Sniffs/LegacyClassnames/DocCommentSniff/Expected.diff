@@ -1,0 +1,14 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/DocCommentSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -22,9 +22,9 @@
+ class InputFileForIssues
+ {
+     /**
+-     * @param t3lib_div
++     * @param \TYPO3\CMS\Core\Utility\GeneralUtility
+      *
+-     * @return Tx_Extbase_Configuration_Configurationmanager
++     * @return \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
+      */
+     public function doSomething($something)
+     {

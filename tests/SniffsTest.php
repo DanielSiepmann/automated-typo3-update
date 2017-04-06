@@ -64,12 +64,45 @@ class SniffsTest extends TestCase
     protected function executeSniff(SplFileInfo $folder)
     {
         $this->assertEquals(
-            $this->getExpectedOutput($folder),
-            $this->getOutput($folder)['output'],
+            $this->getExpectedJsonOutput($folder),
+            $this->getOutput($folder, 'json')['output'],
             'Sniff ' . $this->getSniffByFolder($folder)
                 . ' did not produce expected output for input file '
-                . $this->getExpectedOutputFile($folder)
+                . $this->getInputFile($folder)
         );
+
+        $this->assertEquals(
+            $this->getExpectedDiffOutput($folder),
+            $this->getOutput($folder, 'diff')['output'],
+            'Sniff ' . $this->getSniffByFolder($folder)
+                . ' did not produce expected diff for input file '
+                . $this->getInputFile($folder)
+        );
+    }
+
+    /**
+     * Get expected json output for comparison.
+     *
+     * @param SplFileInfo $folder
+     * @return array
+     */
+    protected function getExpectedJsonOutput(SplFileInfo $folder)
+    {
+        return json_decode(
+            file_get_contents($folder->getRealPath() . DIRECTORY_SEPARATOR . 'Expected.json'),
+            true
+        );
+    }
+
+    /**
+     * Returns absolute file path to diff file containing expected output.
+     *
+     * @param SplFileInfo $folder
+     * @return string
+     */
+    protected function getExpectedDiffOutput(SplFileInfo $folder)
+    {
+        return file_get_contents($folder->getRealPath() . DIRECTORY_SEPARATOR . 'Expected.diff');
     }
 
     /**
@@ -81,57 +114,51 @@ class SniffsTest extends TestCase
     protected function getSniffByFolder(SplFileInfo $folder)
     {
         $folderParts = explode(DIRECTORY_SEPARATOR, $folder->getPath());
+
         return array_slice($folderParts, -3)[0]
             . '.' .  array_slice($folderParts, -1)[0]
             . '.' . substr($folder->getFilename(), 0, -5);
     }
 
     /**
-     * Returns absolute file path to json file containing expected output.
+     * Returns file to use as input for phpcs.
      *
      * @param SplFileInfo $folder
      * @return string
      */
-    protected function getExpectedOutputFile(SplFileInfo $folder)
+    protected function getInputFile(SplFileInfo $folder)
     {
-        return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'ExpectedOutputForIssues.json';
-    }
-
-    /**
-     * Get expected output for comparison.
-     *
-     * @param SplFileInfo $folder
-     * @return array
-     */
-    protected function getExpectedOutput(SplFileInfo $folder)
-    {
-        return json_decode(
-            file_get_contents($this->getExpectedOutputFile($folder)),
-            true
-        );
+        return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php';
     }
 
     /**
      * Executes phpcs for sniff based on $folder and returns the generated output.
      *
      * @param SplFileInfo $folder
+     * @param string $report Defined the report format to use for output.
      * @return array
      */
-    protected function getOutput(SplFileInfo $folder)
+    protected function getOutput(SplFileInfo $folder, $report)
     {
         $bin = './vendor/bin/phpcs';
         $arguments = '--sniffs=' . $this->getSniffByFolder($folder)
-            . ' --report=json'
+            . ' --report=' . $report
             . ' '
-            . $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php'
+            . $this->getInputFile($folder)
         ;
         $output = '';
         $returnValue;
 
         exec($bin . ' ' . $arguments, $output, $returnValue);
 
+        if ($report === 'json') {
+            $output = $this->prepareJsonOutput($output);
+        } if ($report === 'diff') {
+            $output = $this->prepareDiffOutput($output);
+        }
+
         return [
-            'output' => $this->prepareOutput($output),
+            'output' => $output,
             'returnValue' => $returnValue,
         ];
     }
@@ -142,7 +169,7 @@ class SniffsTest extends TestCase
      * @param array $output
      * @return array
      */
-    protected function prepareOutput(array $output)
+    protected function prepareJsonOutput(array $output)
     {
         $preparedOutput = json_decode($output[0], true);
 
@@ -153,5 +180,16 @@ class SniffsTest extends TestCase
         }
 
         return $preparedOutput;
+    }
+
+    /**
+     * Prepare phpcs output for comparison.
+     *
+     * @param array $output
+     * @return string
+     */
+    protected function prepareDiffOutput(array $output)
+    {
+        return implode("\n", $output);
     }
 }
