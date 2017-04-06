@@ -1,17 +1,8 @@
 {
     "files": {
         "InputFileForIssues.php": {
-            "errors": 6,
+            "errors": 4,
             "messages": [
-                {
-                    "column": 27,
-                    "fixable": true,
-                    "line": 24,
-                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
-                    "severity": 5,
-                    "source": "Typo3Update.LegacyClassnames.InstantiationWithObjectManager.legacyClassname",
-                    "type": "ERROR"
-                },
                 {
                     "column": 27,
                     "fixable": true,
@@ -42,15 +33,6 @@
                 {
                     "column": 11,
                     "fixable": true,
-                    "line": 31,
-                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
-                    "severity": 5,
-                    "source": "Typo3Update.LegacyClassnames.InstantiationWithObjectManager.legacyClassname",
-                    "type": "ERROR"
-                },
-                {
-                    "column": 11,
-                    "fixable": true,
                     "line": 33,
                     "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
                     "severity": 5,
@@ -62,8 +44,8 @@
         }
     },
     "totals": {
-        "errors": 6,
-        "fixable": 6,
+        "errors": 4,
+        "fixable": 4,
         "warnings": 0
     }
 }

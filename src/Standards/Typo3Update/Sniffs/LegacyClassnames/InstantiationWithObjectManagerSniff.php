@@ -61,7 +61,11 @@ class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithObjectManagerSniff ex
             return;
         }
 
-        $classnamePosition = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr);
+        $classnamePosition = $phpcsFile->findNext(
+            T_CONSTANT_ENCAPSED_STRING,
+            $stackPtr,
+            $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr)
+        );
         if ($classnamePosition === false) {
             return;
         }
