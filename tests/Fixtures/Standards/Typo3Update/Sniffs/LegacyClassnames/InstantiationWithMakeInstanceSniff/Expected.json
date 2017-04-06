@@ -1,0 +1,24 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 1,
+            "messages": [
+                {
+                    "column": 25,
+                    "fixable": true,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.InstantiationWithMakeInstance.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 1,
+        "fixable": 1,
+        "warnings": 0
+    }
+}
