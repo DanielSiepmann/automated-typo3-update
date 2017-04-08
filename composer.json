@@ -2,6 +2,13 @@
     "name": "siepmann/typo3_update",
     "description": "Auto migrate PHP Source of extensions to be compatible.",
     "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Typo3Update\\Tests\\": "tests/",
@@ -22,15 +29,10 @@
         "squizlabs/php_codesniffer": "2.8.*",
         "symfony/yaml": "3.2.*"
     },
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "Daniel Siepmann",
-            "email": "coding@daniel-siepmann.de"
-        }
-    ],
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "symfony/finder": "^3.2"
+        "phpunit/phpunit": "5.7.*",
+        "symfony/finder": "3.2.*",
+        "phpmd/phpmd": "2.6.*",
+        "pdepend/pdepend": "2.5.*"
     }
 }
