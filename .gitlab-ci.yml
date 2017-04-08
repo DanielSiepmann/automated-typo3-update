@@ -1,0 +1,18 @@
+image: 'composer:latest'
+
+before_script:
+  - >
+    composer install
+    --optimize-autoloader
+    --no-interaction
+    --no-ansi
+
+stages:
+  - test
+
+test:functional:
+  stage: test
+  script:
+    - ./vendor/bin/phpunit
+
+# Further stages, and jobs e.g. linting, cgl, etc.
