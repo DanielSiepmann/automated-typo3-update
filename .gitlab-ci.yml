@@ -1,18 +1,25 @@
-image: 'composer:latest'
-
 before_script:
-  - apk add --no-cache make
   - >
-    composer install
-    --optimize-autoloader
-    --no-interaction
-    --no-ansi
+    apt-get update
+    && apt-get install -y
+    make
+    wget
+    --no-install-recommends
+    && rm -r /var/lib/apt/lists/*
+  - make install-composer
   - make install
 
 stages:
   - test
 
-test:functional:
+test:5.6:
+  image: php:5.6
+  stage: test
+  script:
+    - ./vendor/bin/phpunit
+
+test:7.0:
+  image: php:7.0
   stage: test
   script:
     - ./vendor/bin/phpunit
