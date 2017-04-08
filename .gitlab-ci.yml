@@ -6,6 +6,7 @@ before_script:
     --optimize-autoloader
     --no-interaction
     --no-ansi
+  - make install
 
 stages:
   - test
