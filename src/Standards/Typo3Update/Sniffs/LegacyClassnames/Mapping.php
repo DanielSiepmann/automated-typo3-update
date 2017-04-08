@@ -20,7 +20,7 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
  * 02110-1301, USA.
  */
 
-use Typo3Update\Sniffs\OptionsAccessTrait;
+use Typo3Update\Sniffs\Options;
 
 /**
  * Singleton wrapper for mappings.
@@ -30,8 +30,6 @@ use Typo3Update\Sniffs\OptionsAccessTrait;
  */
 final class Mapping
 {
-    use OptionsAccessTrait;
-
     // Singleton implementation - Start
     static protected $instance = null;
     /**
@@ -55,7 +53,7 @@ final class Mapping
     }
     private function __construct()
     {
-        $this->mappings = require $this->getMappingFile();
+        $this->mappings = require Options::getMappingFile();
     }
     // Singleton implementation - End
 
@@ -116,7 +114,7 @@ final class Mapping
         }
 
         file_put_contents(
-            $this->getMappingFile(),
+            Options::getMappingFile(),
             '<?php' . PHP_EOL . 'return ' . var_export($this->mappings, true) . ';'
         );
     }

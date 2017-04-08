@@ -108,6 +108,10 @@ available to generate a report of possible issues and during coding through ``ph
   inside the standard itself, and we try to deliver all information.
   For configuration options see ``removedFunctionConfigFiles``.
 
+- Check for usage of removed constants.
+  The constants are configured in same way as removed functions.
+  For configuration options see ``removedConstantConfigFiles``.
+
 What does it look like?
 =======================
 
@@ -220,3 +224,21 @@ Example:
 .. code:: bash
 
     --runtime-set removedFunctionConfigFiles "/Some/Absolute/Path/*.yaml"
+
+``removedConstantConfigFiles``
+    Configure your vendor through ``ruleset.xml`` or using ``--runtime-set``. Default is
+    ``Configuration/Removed/Constants/*.yaml`` inside the standard itself.
+    Globing is used, so placeholders like ``*`` are possible, see
+    https://secure.php.net/manual/en/function.glob.php
+
+    Example:
+
+.. code:: xml
+
+    <config name="removedConstantConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set removedConstantConfigFiles "/Some/Absolute/Path/*.yaml"
