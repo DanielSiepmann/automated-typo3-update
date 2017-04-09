@@ -1,81 +1,81 @@
 # Breaking changes in 7.4: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Index.html#breaking-changes
 '7.4':
   \TYPO3\CMS\Core\Page\PageRenderer::setExtCorePath:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68001-RemovedExtJSCoreAndExtJSAdapters.html
   \TYPO3\CMS\Core\Page\PageRenderer::getExtCorePath:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68001-RemovedExtJSCoreAndExtJSAdapters.html
   \TYPO3\CMS\Core\Page\PageRenderer::loadExtCore:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68001-RemovedExtJSCoreAndExtJSAdapters.html
   \TYPO3\CMS\Core\Page\PageRenderer::enableExtCoreDebug:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68001-RemovedExtJSCoreAndExtJSAdapters.html
   \TYPO3\CMS\Core\Page\PageRenderer::setExtCorePath:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68001-RemovedExtJSCoreAndExtJSAdapters.html
   \TYPO3\CMS\Backend\Controller\EditDocumentController->functionMenus:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67753-DropSecondaryOptions.html
   \TYPO3\CMS\Backend\Utility\BackendUtility::getFileIcon:
-    newFunctionCall: 'Use \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForFile() insteadenableExtCoreDebug'
+    replacement: 'Use \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForFile() insteadenableExtCoreDebug'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67654-RemoveGLOBALSFILEICONSFunctionality.html
   \TYPO3\CMS\Frontend\Page\PageGenerator::getIncFiles:
-    newFunctionCall: 'Use hooks during the Frontend set up to execute custom PHP code'
+    replacement: 'Use hooks during the Frontend set up to execute custom PHP code'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67646-LibraryInclusionInFrontend.html
   \TYPO3\CMS\Backend\Template\DocumentTemplate\DocumentTemplate->formWidthText:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67565-DeprecatedBackendRelatedMethodsRemoved.html
   \TYPO3\CMS\Backend\View\PageLayoutView->getBackendLayoutConfiguration:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67565-DeprecatedBackendRelatedMethodsRemoved.html
   \TYPO3\CMS\Backend\View\PageLayoutView->wordWrapper:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67565-DeprecatedBackendRelatedMethodsRemoved.html
   \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController->checkJumpUrlReferer:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-66602-RemoveRefererCheckWhileHandlingJumpUrl.html
   \TYPO3\CMS\Core\Utility\OpcodeCacheUtility::initialize:
-    newFunctionCall: 'Use new service class instead \TYPO3\CMS\Core\Service\OpcodeCacheService'
+    replacement: 'Use new service class instead \TYPO3\CMS\Core\Service\OpcodeCacheService'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-63838-ChangedOpcodeCacheUtilityBeingAServiceClass.html
   \TYPO3\CMS\Core\Utility\OpcodeCacheUtility::clearAllActive:
-    newFunctionCall: 'Use new service class instead \TYPO3\CMS\Core\Service\OpcodeCacheService'
+    replacement: 'Use new service class instead \TYPO3\CMS\Core\Service\OpcodeCacheService'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-63838-ChangedOpcodeCacheUtilityBeingAServiceClass.html
   \TYPO3\CMS\Core\Utility\OpcodeCacheUtility::getAllActive:
-    newFunctionCall: 'Use new service class instead \TYPO3\CMS\Core\Service\OpcodeCacheService'
+    replacement: 'Use new service class instead \TYPO3\CMS\Core\Service\OpcodeCacheService'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-63838-ChangedOpcodeCacheUtilityBeingAServiceClass.html
   \TYPO3\CMS\Backend\Tree\View\PagePositionMap->JSimgFunc:
-    newFunctionCall: 'Use proper styling for a tree list'
+    replacement: 'Use proper styling for a tree list'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-56951-RemoveUnusedMethodsInPagePositionMap.html
   \TYPO3\CMS\Backend\Tree\View\PagePositionMap->insertQuadLines:
-    newFunctionCall: 'Use proper styling for a tree list'
+    replacement: 'Use proper styling for a tree list'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-56951-RemoveUnusedMethodsInPagePositionMap.html
   \TYPO3\CMS\Core\Page\PageRenderer->enableExtJSQuickTips:
-    newFunctionCall: 'Use bootstrap tooltips, which work out of the box as alternative. Simple add data-toggle="tooltip" and data-title="your tooltip" to any element you want'
+    replacement: 'Use bootstrap tooltips, which work out of the box as alternative. Simple add data-toggle="tooltip" and data-title="your tooltip" to any element you want'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68276-RemoveExtJSQuicktipsIfPossible.html
   \TYPO3\CMS\IndexedSearch\Indexer->removeLoginpagesWithContentHash:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68193-DropRemoveLoginpagesWithContentHashFromIndexerphp.html
   \TYPO3\CMS\Frontend\Controller\ExtDirectEidController->actionIsAllowed:
-    newFunctionCall: 'Migrate your eID scripts to the new PSR-7 compliant model'
+    replacement: 'Migrate your eID scripts to the new PSR-7 compliant model'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68186-AdjustedAndRemovedMethodsInEIDArea.html
   # NOTE: It does not make sense to warn about all render methods
   # \TYPO3\CMS\Frontend\Controller\ExtDirectEidController->render:
-  #   newFunctionCall: 'Migrate your eID scripts to the new PSR-7 compliant model'
+  #   replacement: 'Migrate your eID scripts to the new PSR-7 compliant model'
   #   docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68186-AdjustedAndRemovedMethodsInEIDArea.html
   \TYPO3\CMS\Frontend\Utility\EidUtility::isEidRequest:
-    newFunctionCall: 'Migrate your eID scripts to the new PSR-7 compliant model'
+    replacement: 'Migrate your eID scripts to the new PSR-7 compliant model'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68186-AdjustedAndRemovedMethodsInEIDArea.html
   \TYPO3\CMS\Frontend\Utility\EidUtility::getEidScriptPath:
-    newFunctionCall: 'Migrate your eID scripts to the new PSR-7 compliant model'
+    replacement: 'Migrate your eID scripts to the new PSR-7 compliant model'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68186-AdjustedAndRemovedMethodsInEIDArea.html
   \TYPO3\CMS\Backend\View\PageLayoutView->linkRTEbutton:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68020-DroppedDisableBigButtons.html
   \TYPO3\CMS\Backend\View\PageLayoutView->isRTEforField:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68020-DroppedDisableBigButtons.html
   \TYPO3\CMS\Backend\View\PageLayoutView->getSpecConfForField:
-    newFunctionCall: null
+    replacement: null
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-68020-DroppedDisableBigButtons.html

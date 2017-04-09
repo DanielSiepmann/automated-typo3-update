@@ -36,10 +36,31 @@ class SniffsTest extends TestCase
      *
      * Execute each sniff based on found fixtures and compare result.
      *
+     * @dataProvider getSniffs
      * @test
+     *
+     * @param \SplFileInfo $folder
+     * @param array $arguments
      */
-    public function sniffs()
+    public function sniffs(\SplFileInfo $folder, array $arguments = [])
     {
+        if ($arguments !== []) {
+            $this->executeSniffSubfolders($folder, $arguments);
+            return;
+        }
+
+        $this->executeSniff($folder);
+    }
+
+    /**
+     * Returns all sniffs to test.
+     * Use e.g. as data provider.
+     *
+     * @return array
+     */
+    public function getSniffs()
+    {
+        $sniffs = [];
         $finder = new Finder();
         $finder->in(
             __DIR__
@@ -50,14 +71,20 @@ class SniffsTest extends TestCase
         );
 
         foreach ($finder->directories()->name('*Sniff') as $folder) {
+            $sniff = [
+                $folder,
+                [],
+            ];
+
             if (is_file($this->getArgumentsFile($folder))) {
                 $arguments = require $this->getArgumentsFile($folder);
-                $this->executeSniffSubfolders($folder, $arguments);
-                continue;
+                $sniff[1] = $arguments;
             }
 
-            $this->executeSniff($folder);
+            $sniffs[] = $sniff;
         }
+
+        return $sniffs;
     }
 
     /**
