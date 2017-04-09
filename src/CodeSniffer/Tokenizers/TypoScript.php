@@ -41,10 +41,10 @@ class PHP_CodeSniffer_Tokenizers_TYPOSCRIPT
      *
      * @return array
      */
-    public function tokenizeString($string, $eolChar = '\n')
+    public function tokenizeString($string, $eolChar = "\n")
     {
         $finalTokens = [];
-        $tokenizer = new Tokenizer($eolChar, false);
+        $tokenizer = new Tokenizer($eolChar);
 
         foreach ($tokenizer->tokenizeString($string) as $stackPtr => $token) {
             $finalTokens[$stackPtr] = [

@@ -11,14 +11,8 @@
             "src/CodeSniffer/Tokenizers/TypoScript.php"
         ]
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/DanielSiepmann/typo3-typoscript-parser"
-        }
-    ],
     "require": {
-        "helmich/typo3-typoscript-parser": "dev-feature/allow-eol-handling",
+        "helmich/typo3-typoscript-parser": "1.1.*",
         "squizlabs/php_codesniffer": "2.8.*",
         "symfony/yaml": "3.2.*"
     },
