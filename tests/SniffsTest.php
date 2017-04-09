@@ -23,7 +23,6 @@ namespace Typo3Update\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Will test all sniffs where fixtures are available.
@@ -37,10 +36,31 @@ class SniffsTest extends TestCase
      *
      * Execute each sniff based on found fixtures and compare result.
      *
+     * @dataProvider getSniffs
      * @test
+     *
+     * @param \SplFileInfo $folder
+     * @param array $arguments
      */
-    public function sniffs()
+    public function sniffs(\SplFileInfo $folder, array $arguments = [])
     {
+        if ($arguments !== []) {
+            $this->executeSniffSubfolders($folder, $arguments);
+            return;
+        }
+
+        $this->executeSniff($folder);
+    }
+
+    /**
+     * Returns all sniffs to test.
+     * Use e.g. as data provider.
+     *
+     * @return array
+     */
+    public function getSniffs()
+    {
+        $sniffs = [];
         $finder = new Finder();
         $finder->in(
             __DIR__
@@ -51,42 +71,48 @@ class SniffsTest extends TestCase
         );
 
         foreach ($finder->directories()->name('*Sniff') as $folder) {
+            $sniff = [
+                $folder,
+                [],
+            ];
+
             if (is_file($this->getArgumentsFile($folder))) {
                 $arguments = require $this->getArgumentsFile($folder);
-                $this->executeSniffSubfolders($folder, $arguments);
-                continue;
+                $sniff[1] = $arguments;
             }
 
-            $this->executeSniff($folder);
+            $sniffs[] = $sniff;
         }
+
+        return $sniffs;
     }
 
     /**
      * Execute sniff using subfolders.
      *
-     * @param SplFileInfo $folder
+     * @param \SplFileInfo $folder
      * @param array $arguments
      * @return void
      */
-    protected function executeSniffSubfolders(SplFileInfo $folder, array $arguments = [])
+    protected function executeSniffSubfolders(\SplFileInfo $folder, array $arguments = [])
     {
         $finder = new Finder();
         $finder->in($folder->getRealPath());
 
         foreach ($arguments as $subFolder => $values) {
             $folderName = $folder->getRealPath() . DIRECTORY_SEPARATOR . $subFolder;
-            $this->executeSniff(new SplFileInfo($folderName, $folderName, $folderName), $values);
+            $this->executeSniff(new \SplFileInfo($folderName), $values);
         }
     }
 
     /**
      * Execute phpunit assertion for sniff based on $folder.
      *
-     * @param SplFileInfo $folder
+     * @param \SplFileInfo $folder
      * @param array $arguments
      * @return void
      */
-    protected function executeSniff(SplFileInfo $folder, array $arguments = [])
+    protected function executeSniff(\SplFileInfo $folder, array $arguments = [])
     {
         $internalArguments = array_merge_recursive([
             'runtime-set' => [
@@ -133,10 +159,10 @@ class SniffsTest extends TestCase
     /**
      * Get expected json output for comparison.
      *
-     * @param SplFileInfo $folder
+     * @param \SplFileInfo $folder
      * @return array
      */
-    protected function getExpectedJsonOutput(SplFileInfo $folder)
+    protected function getExpectedJsonOutput(\SplFileInfo $folder)
     {
         $file = $folder->getPathname() . DIRECTORY_SEPARATOR . 'Expected.json';
         if (!is_file($file)) {
@@ -149,12 +175,12 @@ class SniffsTest extends TestCase
     /**
      * Returns absolute file path to diff file containing expected output.
      *
-     * @param SplFileInfo $folder
+     * @param \SplFileInfo $folder
      * @return string
      *
      * @throws FileNotFoundException
      */
-    protected function getExpectedDiffOutput(SplFileInfo $folder)
+    protected function getExpectedDiffOutput(\SplFileInfo $folder)
     {
         $file = $folder->getRealPath() . DIRECTORY_SEPARATOR . 'Expected.diff';
         if (!is_file($file)) {
@@ -167,10 +193,10 @@ class SniffsTest extends TestCase
     /**
      * Returns PHPCS Sniff name for given folder.
      *
-     * @param SplFileInfo $folder
+     * @param \SplFileInfo $folder
      * @return string
      */
-    protected function getSniffByFolder(SplFileInfo $folder)
+    protected function getSniffByFolder(\SplFileInfo $folder)
     {
         $folderParts = array_filter(explode(DIRECTORY_SEPARATOR, $folder->getPathName()));
         $sniffNamePosition;
@@ -194,10 +220,10 @@ class SniffsTest extends TestCase
     /**
      * Get absolute file path to file containing further arguments.
      *
-     * @param SplFileInfo $folder
+     * @param \SplFileInfo $folder
      * @return string
      */
-    protected function getArgumentsFile(SplFileInfo $folder)
+    protected function getArgumentsFile(\SplFileInfo $folder)
     {
         return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'Arguments.php';
     }
