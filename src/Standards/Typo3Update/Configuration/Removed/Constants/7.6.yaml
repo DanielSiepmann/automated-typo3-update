@@ -1,0 +1,14 @@
+# Breaking changes in 7.6: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Index.html#breaking-changes
+'7.6':
+  \TYPO3\CMS\IndexedSearch\Controller\SearchFormController::WILDCARD_LEFT:
+    replacement: 'Use \TYPO3\CMS\IndexedSearch\Utility\LikeWildcard::LEFT instead'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html
+  \TYPO3\CMS\IndexedSearch\Controller\SearchFormController::WILDCARD_RIGHT:
+    replacement: 'Use \TYPO3\CMS\IndexedSearch\Utility\LikeWildcard::RIGHT instead'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html
+  \TYPO3\CMS\IndexedSearch\Domain\Repository\IndexSearchRepository::WILDCARD_LEFT:
+    replacement: 'Use \TYPO3\CMS\IndexedSearch\Utility\LikeWildcard::LEFT instead'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html
+  \TYPO3\CMS\IndexedSearch\Domain\Repository\IndexSearchRepository::WILDCARD_RIGHT:
+    replacement: 'Use \TYPO3\CMS\IndexedSearch\Utility\LikeWildcard::RIGHT instead'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html

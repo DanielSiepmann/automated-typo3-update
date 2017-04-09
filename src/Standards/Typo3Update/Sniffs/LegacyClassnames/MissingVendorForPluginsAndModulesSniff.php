@@ -22,6 +22,7 @@
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use PHP_CodeSniffer_Tokens as Tokens;
+use Typo3Update\Sniffs\Options;
 
 /**
  * Detect whether vendor is missing for plugins and modules registrations and configurations.
@@ -29,7 +30,6 @@ use PHP_CodeSniffer_Tokens as Tokens;
 class Typo3Update_Sniffs_LegacyClassnames_MissingVendorForPluginsAndModulesSniff implements PhpCsSniff
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
-    use \Typo3Update\Sniffs\OptionsAccessTrait;
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -72,13 +72,13 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingVendorForPluginsAndModulesSniff
                 . ' Add vendor before Extensionkey like: "%s." . $_EXTKEY',
             $firstArgument,
             'missingVendor',
-            [$this->getVendor()]
+            [Options::getVendor()]
         );
 
         if ($fix === true) {
             $phpcsFile->fixer->replaceToken(
                 $firstArgument,
-                "'{$this->getVendor()}.' . {$tokens[$firstArgument]['content']}"
+                "'{Options::getVendor()}.' . {$tokens[$firstArgument]['content']}"
             );
         }
     }

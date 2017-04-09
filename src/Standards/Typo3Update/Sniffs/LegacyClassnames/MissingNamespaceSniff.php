@@ -21,6 +21,7 @@
 
 use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\LegacyClassnames\AbstractClassnameChecker;
+use Typo3Update\Sniffs\Options;
 
 /**
  * Detect missing namespaces for class definitions.
@@ -153,7 +154,7 @@ class Typo3Update_Sniffs_LegacyClassnames_MissingNamespaceSniff extends Abstract
      */
     protected function getNamespace($classname)
     {
-        $vendor = trim($this->getVendor(), '\\/');
+        $vendor = trim(Options::getVendor(), '\\/');
         $classnameParts = explode('_', $classname);
 
         unset($classnameParts[0]); // Remove Tx_
