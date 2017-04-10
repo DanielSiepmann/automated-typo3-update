@@ -11,8 +11,8 @@ lint:coding-guideline:
   image: php:7.0-alpine
   stage: test
   script:
-    - ./vendor/bin/phpcs -s
-    - ./vendor/bin/phpcs -s > result/phpcs-summary.txt
+    - ./vendor/bin/phpcs -s -n
+    - ./vendor/bin/phpcs -s -n > result/phpcs-summary.txt
   artifacts:
     when: on_failure
     paths:
