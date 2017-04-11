@@ -5,7 +5,22 @@ before_script:
   - mkdir -p result
 
 stages:
+  - sync
   - test
+
+sync:github:
+  stage: sync
+  before_script:
+    - apt-get -y update && apt-get -y upgrade
+    - apt-get -y install openssh-client rsync
+    # SSH deploy key
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - git push github
+
 
 lint:coding-guideline:
   image: php:7.0-alpine
