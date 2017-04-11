@@ -46,6 +46,8 @@ class Typo3Update_Sniffs_LegacyClassnames_UseSniff extends AbstractClassnameChec
      * @param int $classnamePosition
      * @param string $classname
      * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     protected function replaceLegacyClassname(
         PhpCsFile $phpcsFile,
