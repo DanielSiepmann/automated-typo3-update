@@ -1,0 +1,24 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 63,
+                    "fixable": false,
+                    "line": 22,
+                    "message": "Legacy extension are not allowed; found \"perm\"",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.ExtensionKey.legacyKey",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 1
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 1
+    }
+}
