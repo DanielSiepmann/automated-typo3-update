@@ -1,3 +1,5 @@
+image: 'php:latest'
+
 before_script:
   - apk add --no-cache make wget git
   - make install-composer
