@@ -1,36 +1,36 @@
-# Breaking changes in 7.2: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Index.html
+# Breaking changes in 7.2: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Index.html
 '7.2':
   \TYPO3\CMS\Core\Page\PageRenderer->setSvgPath:
     replacement: 'Use 3rd party library instead, which is already loaded by TYPO3'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
   \TYPO3\CMS\Core\Page\PageRenderer->loadSvg:
     replacement: 'Use 3rd party library instead, which is already loaded by TYPO3'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
   \TYPO3\CMS\Core\Page\PageRenderer->enableSvgDebug:
     replacement: 'Use 3rd party library instead, which is already loaded by TYPO3'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
   \TYPO3\CMS\Core\Page\PageRenderer->svgForceFlash:
     replacement: 'Use 3rd party library instead, which is already loaded by TYPO3'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65962-WebSVGLibraryAndAPIRemoved.html
   \TYPO3\CMS\Backend\Controller\LoginController->makeLoginForm:
     replacement: 'Use the new Fluid View to adjust the login screen instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
   \TYPO3\CMS\Backend\Controller\LoginController->makeLogoutForm:
     replacement: 'Use the new Fluid View to adjust the login screen instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
   \TYPO3\CMS\Backend\Controller\LoginController->wrapLoginForm:
     replacement: 'Use the new Fluid View to adjust the login screen instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
   \TYPO3\CMS\Backend\Controller\LoginController->makeLoginBoxImage:
     replacement: 'Use the new Fluid View to adjust the login screen instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
   \TYPO3\CMS\Backend\Controller\LoginController->makeLoginNews:
     replacement: 'Use the new Fluid View to adjust the login screen instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
   \TYPO3\CMS\Backend\Controller\LoginController->emitRenderLoginFormSignal:
     replacement: 'Use the new Fluid View to adjust the login screen instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
 # NOTE: This is useless, adding a warning to all "getSignalSlotDispatcher" methods is crazy, many developers implement such a method.
 # \TYPO3\CMS\Backend\Controller\LoginController->getSignalSlotDispatcher:
 #   replacement: 'Use the new Fluid View to adjust the login screen instead'
-#   docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+#   docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
