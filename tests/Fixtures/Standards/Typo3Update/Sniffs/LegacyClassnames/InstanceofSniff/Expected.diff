@@ -1,0 +1,10 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/InstanceofSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -19,6 +19,6 @@
+  * 02110-1301, USA.
+  */
+
+-if ($a instanceof t3lib_Singleton) {
++if ($a instanceof \TYPO3\CMS\Core\SingletonInterface) {
+     // do something
+ }

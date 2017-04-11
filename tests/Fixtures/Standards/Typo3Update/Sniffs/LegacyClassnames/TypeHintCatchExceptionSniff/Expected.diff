@@ -1,0 +1,18 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/TypeHintCatchExceptionSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -21,13 +21,13 @@
+
+ try {
+     // something
+-} catch (\Tx_Extbase_Exception $e) {
++} catch (\TYPO3\CMS\Extbase\Exception $e) {
+     // else
+ }
+
+ try {
+     // something
+-} catch (Tx_Extbase_Exception $e) {
++} catch (\TYPO3\CMS\Extbase\Exception $e) {
+     // else
+ }
+

@@ -75,9 +75,10 @@ class Typo3Update_Sniffs_LegacyClassnames_InstantiationWithMakeInstanceSniff ext
      *
      * @param string $newClassname
      * @param string $originalClassname
+     * @param PhpCsFile $phpcsFile
      * @return string
      */
-    protected function getTokenForReplacement($newClassname, $originalClassname)
+    protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
     {
         return $this->getTokenReplacementForString($newClassname);
     }

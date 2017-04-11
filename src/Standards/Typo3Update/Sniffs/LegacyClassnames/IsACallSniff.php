@@ -59,7 +59,11 @@ class Typo3Update_Sniffs_LegacyClassnames_IsACallSniff extends AbstractClassname
             return;
         }
 
-        $classnamePosition = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $phpcsFile->findNext(T_COMMA, $stackPtr));
+        $classnamePosition = $phpcsFile->findNext(
+            T_CONSTANT_ENCAPSED_STRING,
+            $phpcsFile->findNext(T_COMMA, $stackPtr),
+            $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr)
+        );
         if ($classnamePosition === false) {
             return;
         }
@@ -74,9 +78,10 @@ class Typo3Update_Sniffs_LegacyClassnames_IsACallSniff extends AbstractClassname
      *
      * @param string $newClassname
      * @param string $originalClassname
+     * @param PhpCsFile $phpcsFile
      * @return string
      */
-    protected function getTokenForReplacement($newClassname, $originalClassname)
+    protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
     {
         return $this->getTokenReplacementForString($newClassname);
     }

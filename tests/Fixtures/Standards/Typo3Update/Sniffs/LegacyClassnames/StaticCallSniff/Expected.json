@@ -1,0 +1,69 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 6,
+            "messages": [
+                {
+                    "column": 1,
+                    "fixable": true,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Utility_Extension\", use \"TYPO3\\CMS\\Extbase\\Utility\\ExtensionUtility\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.StaticCall.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 1,
+                    "fixable": true,
+                    "line": 27,
+                    "message": "Legacy classes are not allowed; found \"t3lib_div\", use \"TYPO3\\CMS\\Core\\Utility\\GeneralUtility\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.StaticCall.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 25,
+                    "fixable": true,
+                    "line": 27,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.StaticCall.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 28,
+                    "fixable": true,
+                    "line": 28,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.StaticCall.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 12,
+                    "fixable": true,
+                    "line": 30,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.StaticCall.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 10,
+                    "fixable": true,
+                    "line": 31,
+                    "message": "Legacy classes are not allowed; found \"t3lib_Singleton\", use \"TYPO3\\CMS\\Core\\SingletonInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.StaticCall.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 6,
+        "fixable": 6,
+        "warnings": 0
+    }
+}

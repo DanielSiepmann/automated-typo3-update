@@ -1,0 +1,33 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 2,
+            "messages": [
+                {
+                    "column": 6,
+                    "fixable": true,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Domain_Model_Backenduser\", use \"TYPO3\\CMS\\Extbase\\Domain\\Model\\BackendUser\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Use.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 5,
+                    "fixable": true,
+                    "line": 23,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Domain_Model_Backenduser\", use \"TYPO3\\CMS\\Extbase\\Domain\\Model\\BackendUser\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.LegacyClassnames.Use.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 2,
+        "fixable": 2,
+        "warnings": 0
+    }
+}

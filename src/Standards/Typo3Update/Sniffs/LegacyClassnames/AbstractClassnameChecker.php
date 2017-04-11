@@ -231,7 +231,7 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
 
         $phpcsFile->fixer->replaceToken(
             $classnamePosition,
-            $this->getTokenForReplacement($prefix . $this->getNewClassname($classname), $classname)
+            $this->getTokenForReplacement($prefix . $this->getNewClassname($classname), $classname, $phpcsFile)
         );
     }
 
@@ -241,9 +241,10 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      *
      * @param string $newClassname
      * @param string $originalClassname
+     * @param PhpCsFile $phpcsFile
      * @return string
      */
-    protected function getTokenForReplacement($newClassname, $originalClassname)
+    protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
     {
         return $newClassname;
     }
