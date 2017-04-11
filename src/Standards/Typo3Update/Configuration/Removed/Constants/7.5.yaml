@@ -1,5 +1,5 @@
-# Breaking changes in 7.5: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.5/Index.html#breaking-changes
+# Breaking changes in 7.5: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Index.html#breaking-changes
 '7.5':
   TYPO3_URL_ORG:
     replacement: 'Use TYPO3_URL_GENERAL instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.5/Breaking-68814-RemoveOfBaseConstantTYPO3_URL_ORG.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-68814-RemoveOfBaseConstantTYPO3_URL_ORG.html

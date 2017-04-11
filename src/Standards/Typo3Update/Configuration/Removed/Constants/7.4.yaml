@@ -1,8 +1,8 @@
-# Breaking changes in 7.4: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Index.html#breaking-changes
+# Breaking changes in 7.4: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Index.html#breaking-changes
 '7.4':
   TYPO3_MOD_PATH:
     replacement: 'It is required to route modules through typo3/mod.php from now on in case the module relies on the definition of those constants'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67987-RemovedEntryScriptHandling.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67987-RemovedEntryScriptHandling.html
   PATH_typo3_mod:
     replacement: 'It is required to route modules through typo3/mod.php from now on in case the module relies on the definition of those constants'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67987-RemovedEntryScriptHandling.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67987-RemovedEntryScriptHandling.html
