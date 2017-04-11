@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <description>The coding standard for this Project</description>
+    <rule ref="PSR2"/>
+    <file>./src</file>
+    <file>./tests</file>
+    <exclude-pattern>*/Fixtures/*</exclude-pattern>
+
+    <!-- Excludes for PHPCS Code Style -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>*Sniff.php$</exclude-pattern>
+        <exclude-pattern>*/Tokenizers/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>*Sniff.php$</exclude-pattern>
+        <exclude-pattern>*/Tokenizers/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>*Sniff.php$</exclude-pattern>
+        <exclude-pattern>*/Tokenizers/*</exclude-pattern>
+    </rule>
+</ruleset>

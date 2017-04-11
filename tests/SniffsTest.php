@@ -115,6 +115,7 @@ class SniffsTest extends TestCase
     protected function executeSniff(\SplFileInfo $folder, array $arguments = [])
     {
         $internalArguments = array_merge_recursive([
+            'standard' => 'Typo3Update',
             'runtime-set' => [
                 'mappingFile' => __DIR__ . DIRECTORY_SEPARATOR
                     . 'Fixtures' . DIRECTORY_SEPARATOR
