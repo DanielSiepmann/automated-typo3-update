@@ -16,7 +16,9 @@ sync:github:
     - apk add --no-cache openssh-client git
     # SSH deploy key
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "${SSH_PRIVATE_KEY}")
+    - echo "$SSH_PRIVATE_KEY" > /tmp/private_key
+    - chmod go-rwx /tmp/private_key; chmod u-x /tmp/private_key
+    - ssh-add /tmp/private_key
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
