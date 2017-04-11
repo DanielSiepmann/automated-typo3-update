@@ -12,7 +12,7 @@ sync:github:
   stage: sync
   before_script:
     - apt-get -y update && apt-get -y upgrade
-    - apt-get -y install openssh-client rsync
+    - apt-get -y install openssh-client git
     # SSH deploy key
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
