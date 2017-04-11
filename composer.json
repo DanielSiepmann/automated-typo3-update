@@ -9,9 +9,13 @@
             "email": "coding@daniel-siepmann.de"
         }
     ],
+    "autoload-dev": {
+        "psr-4": {
+            "Typo3Update\\Tests\\": "tests/"
+        }
+    },
     "autoload": {
         "psr-4": {
-            "Typo3Update\\Tests\\": "tests/",
             "Typo3Update\\": "src/Standards/Typo3Update/"
         },
         "files": [
