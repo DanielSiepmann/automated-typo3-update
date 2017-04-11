@@ -29,8 +29,9 @@ use Typo3Update\Sniffs\Options;
 /**
  * Contains common functionality for removed code like constants or functions.
  *
- * Removed parts are configured using YAML-Files, for examples see src/Standards/Typo3Update/Configuration/Removed/Constants/7.0.yaml
- * Also check out the configuration options in Readme.rst.
+ * Removed parts are configured using YAML-Files, for examples see
+ * src/Standards/Typo3Update/Configuration/Removed/Constants/7.0.yaml Also
+ * check out the configuration options in Readme.rst.
  */
 abstract class AbstractGenericUsage implements PhpCsSniff
 {

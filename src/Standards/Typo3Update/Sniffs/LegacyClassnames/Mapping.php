@@ -48,6 +48,9 @@ final class Mapping
     private function __clone()
     {
     }
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod) We just want to implement singleton pattern.
+     */
     private function __wakeup()
     {
     }

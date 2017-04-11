@@ -1,0 +1,50 @@
+before_script:
+  - apk add --no-cache make wget git
+  - make install-composer
+  - make install
+  - mkdir -p result
+
+stages:
+  - test
+
+lint:coding-guideline:
+  image: php:7.0-alpine
+  stage: test
+  script:
+    - ./vendor/bin/phpcs -s -n
+    - ./vendor/bin/phpcs -s -n > result/phpcs-summary.txt
+  artifacts:
+    when: on_failure
+    paths:
+      - result
+
+lint:php-mass-detection:
+  image: php:7.0-alpine
+  stage: test
+  script:
+    - ./vendor/bin/phpmd src text phpmd.xml > result/phpmd.txt
+    - ./vendor/bin/phpmd src html phpmd.xml > result/phpmd.html
+  artifacts:
+    when: on_failure
+    paths:
+      - result
+
+test:5.6:
+  image: php:5.6-alpine
+  stage: test
+  script:
+    - ./vendor/bin/phpunit
+
+test:7.0:
+  image: php:7.0-alpine
+  stage: test
+  script:
+    - ./vendor/bin/phpunit
+
+test:latest:
+  image: php:7-alpine
+  stage: test
+  script:
+    - ./vendor/bin/phpunit
+
+# Further stages, and jobs e.g. linting, cgl, etc.

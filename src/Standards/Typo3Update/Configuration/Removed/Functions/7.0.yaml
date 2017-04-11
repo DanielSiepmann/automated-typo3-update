@@ -1,218 +1,218 @@
-# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Index.html#breaking-changes
+# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Index.html#breaking-changes
 '7.0':
   \TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html'
   \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController->getCompressedTCarray:
     replacement: 'Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \TYPO3\CMS\Frontend\Utility\EidUtility::initTCA() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html'
   \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController->includeTCA:
     replacement: 'Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \TYPO3\CMS\Frontend\Utility\EidUtility::initTCA() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html'
   \TYPO3\CMS\Core\Utility\MailUtility::mail:
     replacement: 'Use the \TYPO3\CMS\Core\Mail\Mailer API for sending email'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61783-RemoveDeprecatedMailFunctionality.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61783-RemoveDeprecatedMailFunctionality.html'
   \TYPO3\CMS\Core\Utility\GeneralUtility::plainMailEncoded:
     replacement: 'Use the \TYPO3\CMS\Core\Mail\Mailer API for sending email'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61783-RemoveDeprecatedMailFunctionality.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61783-RemoveDeprecatedMailFunctionality.html'
   \TYPO3\CMS\Frontend\Utility\EidUtility::connectDB:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61863-ConnectDbFunctionRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61863-ConnectDbFunctionRemoved.html'
   \TYPO3\CMS\Core\Utility\GeneralUtility::int_from_ver:
     replacement: 'Replace the usage of the removed function with \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger()'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61860-RemoveIntFromVerFunction.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61860-RemoveIntFromVerFunction.html'
   \TYPO3\CMS\Core\DataHandlin\DataHandler->getUniqueFields:
     replacement: 'Replace all calls to \TYPO3\CMS\Core\DataHandling\DataHandler::getUniqueFields() with calls to \TYPO3\CMS\Version\Hook\DataHandlerHook::getUniqueFields()'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61822-GetUniqueFieldsFunctionRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61822-GetUniqueFieldsFunctionRemoved.html'
   \TYPO3\CMS\Core\Utility\PhpOptionsUtility::isSafeModeEnabled:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
   \TYPO3\CMS\Core\Utility\PhpOptionsUtility::isMagicQuotesGpcEnabled:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61820-PhpOptionsUtilityDeprecatedFunctionsRemoved.html'
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLocalconfWritable:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61802-IsLocalconfWritableFunctionRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61802-IsLocalconfWritableFunctionRemoved.html'
   \TYPO3\CMS\Extbase\Object\ObjectManager->create:
     replacement: 'Use ObjectManager::get() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
   \TYPO3\CMS\Extbase\Persistence\Generic\Backend->replaceObject:
     replacement: 'Removed without replacement'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
   \TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface->setReturnRawQueryResult:
     replacement: 'Removed without replacement'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
   \TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface->getReturnRawQueryResult:
     replacement: 'Use the parameter on $query->execute() directly'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
   \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings->setSysLanguageUid:
     replacement: 'Use setLanguageUid() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
   \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings->getSysLanguageUid:
     replacement: 'Use getLanguageUid() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html'
   \TYPO3\CMS\Lang\LanguageService->JScharCode:
     replacement: 'Use GeneralUtility::quoteJSvalue instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Frontend\ContentObjec\ContentObjectRenderer->joinTSarrays:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController->tidyHTML:
     replacement: 'You may use the tidy extension from TER'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Recordlist\Browser\ElementBrowser->isWebFolder:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Recordlist\Browser\ElementBrowser->checkFolder:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList->getTreeObject:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Filelist\FileList->dirData:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Frontend\ContentObject\FilesContentObject->stdWrapValue:
     replacement: 'Use ContentObjectRenderer::stdWrapValue instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Impexp\Controller\ImportExportController->userTempFolder:
     replacement: 'Use getDefaultImportExportFolder instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Impexp\Controller\ImportExportController->userSaveFolder:
     replacement: 'Use getDefaultImportExportFolder instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Lowlevel\View\DatabaseIntegrityView->func_filesearch:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Lowlevel\View\DatabaseIntegrityView->findFile:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Rtehtmlarea\RteHtmlAreaBase->buildStyleSheet:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Rtehtmlarea\RteHtmlAreaBase->loremIpsumInsert:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Workspaces\Service\StagesService->checkCustomStagingForWS:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html'
   \TYPO3\CMS\Core\DataHandling\DataHandler->clear_cache:
     replacement: 'Use ->clear_cacheCmd() instead. Alternatively you can call ->registerPageCacheClearing() from a hook to not immediately clear the cache but register clearing after DataHandler operation finishes'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\DataHandling\DataHandler->internal_clearPageCache:
     replacement: 'Use the cache manager directly'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule:
     replacement: 'Use ArrayUtility::mergeRecursiveWithOverrule() instead. WARNING: The new method changed its signature and does not return the first parameter anymore'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\GeneralUtility::htmlspecialchars_decode:
     replacement: 'Use native PHP htmlspecialchars_decode() function'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   # NOTE: This is useless, adding a warning to all "get" methods is crazy.
   # Also this is already handeled by: Typo3Update_Sniffs_LegacyClassnames_InstantiationWithObjectManagerSniff
   # \TYPO3\CMS\Core\Category\CategoryRegistry->get:
   #   replacement: 'Use isRegistered() instead'
-  #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+  #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Category\CategoryRegistry->applyTca:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   # NOTE: This is useless, adding a warning to all "findByUid" methods is crazy.
   # Many calls to repositories will be marked as warning
   # \TYPO3\CMS\Core\Resource\FileRepository->findByUid:
   #   replacement: null
-  #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+  #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\FileRepository->addToIndex:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\FileRepository->getFileIndexRecordsForFolder:
     replacement: 'Use FileIndexRepository::findByFolder() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\FileRepository->getFileIndexRecord:
     replacement: 'Use FileIndexRepository::findOneByFileObject() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\FileRepository->findBySha1Hash:
     replacement: 'Use FileIndexRepository::findByContentHash() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   # NOTE: This is useless, adding a warning to all "update" methods is crazy.
   # All repository updates will be marked as warning
   # \TYPO3\CMS\Core\Resource\FileRepository->update:
   #   replacement: 'Use FileIndexRepository::update() instead'
-  #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+  #   docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\ResourceStorage->getFolderByIdentifier:
     replacement: 'Use getFolder() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\ResourceStorage->getFileByIdentifier:
     replacement: 'Use getFileInfoByIdentifier() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\ResourceStorage->getFileList:
     replacement: 'Use getFilesInFolder() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\ResourceStorage->getFolderList:
     replacement: 'Use getFoldersInFolder() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Resource\ResourceStorage->fetchFolderListFromDriver:
     replacement: 'Use getFoldersInFolder() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->getTotalFileInfo:
     replacement: "Use ResourceStorage instead via $GLOBALS['BE_USER']->getFileStorages()"
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->checkFileNameLen:
     replacement: "Use ResourceStorage instead via $GLOBALS['BE_USER']->getFileStorages()"
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->isPathValid:
     replacement: 'Use GeneralUtility::validPathStr() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->blindPath:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->findTempFolder:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->rmDoubleSlash:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\BasicFileUtility->cleanDirectoryName:
     replacement: 'Use PathUtility::getCanonicalPath() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\ExtendedFileUtility->init_actionPerms:
     replacement: 'Use setActionPermissions() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\ExtendedFileUtility->printLogErrorMessages:
     replacement: 'Use pushErrorMessagesToFlashMessageQueue() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\File\ExtendedFileUtility->findRecycler:
     replacement: 'Use \TYPO3\CMS\Core\Resource\ResourceStorage instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Html\RteHtmlParser->findRecycler:
     replacement: "Use $fileFactory->getFolderObjectFromCombinedIdentifier($GLOBALS['TYPO3_CONF_VARS']['BE']['RTE_imageStorageDir']); instead"
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Rtehtmlarea\SelectImage->getRTEImageStorageDir:
     replacement: "Use $fileFactory->getFolderObjectFromCombinedIdentifier($GLOBALS['TYPO3_CONF_VARS']['BE']['RTE_imageStorageDir']); instead"
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Localization\Locales->getTerLocales:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Localization\Locales->getTerLocaleDependencies:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Localization\Locales->convertToTerLocales:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getInsertionNeedles:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::insertModuleFunction:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getRequiredExtensionListArray:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::writeNewExtensionList:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Utility\PhpOptionsUtility::isSqlSafeModeEnabled:
     replacement: null
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
   \TYPO3\CMS\Core\Core\ClassLoader::getAliasForClassName:
     replacement: 'Use getAliasesForClassName() instead'
-    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html'

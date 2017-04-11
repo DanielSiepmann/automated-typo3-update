@@ -65,6 +65,8 @@ class PHP_CodeSniffer_Tokenizers_TYPOSCRIPT
      * @param string $eolChar The EOL character to use for splitting strings.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) We need to match the signature.
      */
     public function processAdditional(&$tokens, $eolChar)
     {

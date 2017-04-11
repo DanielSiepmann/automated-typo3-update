@@ -1,11 +1,11 @@
-# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Index.html#breaking-changes
+# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Index.html#breaking-changes
 '7.0':
   PATH_tslib:
     replacement: 'The folder and constant no longer exist'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61459-RemovalTslib.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61459-RemovalTslib.html
   \TYPO3\CMS\Core\Resource\AbstractFile::FILETYPE_SOFTWARE:
     replacement: 'Use \TYPO3\CMS\Core\Resource\AbstractFile::FILETYPE_APPLICATION instead'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-61859-FileTypeSoftwareRemoved.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61859-FileTypeSoftwareRemoved.html
   REQUIRED_EXTENSIONS:
     replacement: null
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#packagemanager
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#packagemanager

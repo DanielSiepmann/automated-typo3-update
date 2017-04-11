@@ -1,13 +1,13 @@
-# Breaking changes in 7.3: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Index.html#breaking-changes
+# Breaking changes in 7.3: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Index.html#breaking-changes
 '7.3':
   # NOTE: If this is making you crazy, just disable via ruleset.xml or phpcs.xml
   parent::initializeObject:
     replacement: 'Remove call, if this is inside a child of \TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject, there is no initializeObject in the parent anymore.'
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Breaking-67402-ExtbaseAbstractDomainObjectInitializeObject.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-67402-ExtbaseAbstractDomainObjectInitializeObject.html
   \TYPO3\CMS\Extbase\Persistence\Repository::replace:
     replacement: null
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Breaking-63835-RemoveDeprecatedExtbasePersistenceParts.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-63835-RemoveDeprecatedExtbasePersistenceParts.html
   \TYPO3\CMS\Extbase\Persistence\Generic\Backend::setDeletedObjects:
     replacement: null
-    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.3/Breaking-63835-RemoveDeprecatedExtbasePersistenceParts.html
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-63835-RemoveDeprecatedExtbasePersistenceParts.html
 

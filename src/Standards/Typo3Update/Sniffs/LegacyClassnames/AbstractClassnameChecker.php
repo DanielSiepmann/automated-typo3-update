@@ -82,6 +82,8 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      *                                        the token was found.
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression) This is for performance reason.
      */
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
@@ -217,6 +219,8 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      * @param int $classnamePosition
      * @param string $classname
      * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     protected function replaceLegacyClassname(
         PhpCsFile $phpcsFile,
@@ -243,6 +247,8 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      * @param string $originalClassname
      * @param PhpCsFile $phpcsFile
      * @return string
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) We need to match the signature.
      */
     protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
     {
