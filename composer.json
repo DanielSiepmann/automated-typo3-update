@@ -2,9 +2,13 @@
     "name": "siepmann/typo3_update",
     "description": "Auto migrate PHP Source of extensions to be compatible.",
     "type": "project",
+    "autoload-dev": {
+        "psr-4": {
+            "Typo3Update\\Tests\\": "tests/"
+        }
+    },
     "autoload": {
         "psr-4": {
-            "Typo3Update\\Tests\\": "tests/",
             "Typo3Update\\": "src/Standards/Typo3Update/"
         },
         "files": [
