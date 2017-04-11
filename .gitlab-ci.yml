@@ -19,8 +19,9 @@ sync:github:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - git push github
-
+    - git clone --mirror ${CI_REPOSITORY_URL} mirror
+    - cd mirror
+    - git push --mirror ${MIRROR_GIT_URL}
 
 lint:coding-guideline:
   image: php:7.0-alpine
