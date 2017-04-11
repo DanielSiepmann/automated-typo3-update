@@ -1,4 +1,4 @@
-image: 'bash:latest' 
+image: 'bash:latest'
 
 before_script:
   - apk add --no-cache make wget git
