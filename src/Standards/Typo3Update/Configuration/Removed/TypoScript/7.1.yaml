@@ -24,3 +24,12 @@
   new HRULER:
     replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
+  new FORM:
+    replacement: 'For TYPO3 CMS 7, installing EXT:compatibility6 brings back the existing functionality. For the long term the affected installations should migrate to a different, better suited solution for sending mails and building forms'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64668-MailformMovedToLegacyExtension.html'
+  new IMGTEXT:
+    replacement: 'Any installation should migrate to alternatives such as CSS Styled Content without a table-based rendering for text w/ image elements to customize the output of content'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64671-ContentObjectImgTextMovedToLegacyExtension.html'
+  new SEARCHRESULTS:
+    replacement: 'For TYPO3 CMS 7, installing EXT:compatibility6 brings back the existing functionality. For the long term the affected installations should be migrate to a better suited solution for searching'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64696-MoveSearchCTypeToLegacyExtension.html'
