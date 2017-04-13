@@ -101,7 +101,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
                     )[0];
                     $newStructure[$removed]['name'] = $split[1];
                 }
-            };
+            }
         }
 
         return $newStructure;
