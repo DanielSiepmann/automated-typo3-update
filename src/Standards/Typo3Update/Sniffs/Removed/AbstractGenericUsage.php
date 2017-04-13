@@ -45,7 +45,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     protected $configured = [];
 
     /**
-     * Constant for the current sniff instance.
+     * Entries removed in current sniff.
      * @var array
      */
     protected $removed = [];
@@ -203,16 +203,16 @@ abstract class AbstractGenericUsage implements PhpCsSniff
      */
     protected function addMessage(PhpCsFile $phpcsFile, $tokenPosition)
     {
-        foreach ($this->removed as $constant) {
+        foreach ($this->removed as $removed) {
             $phpcsFile->addWarning(
                 'Legacy calls are not allowed; found %s. Removed in %s. %s. See: %s',
                 $tokenPosition,
-                $this->getIdentifier($constant),
+                $this->getIdentifier($removed),
                 [
-                    $this->getOldUsage($constant),
-                    $this->getRemovedVersion($constant),
-                    $this->getReplacement($constant),
-                    $this->getDocsUrl($constant),
+                    $this->getOldUsage($removed),
+                    $this->getRemovedVersion($removed),
+                    $this->getReplacement($removed),
+                    $this->getDocsUrl($removed),
                 ]
             );
         }
@@ -283,7 +283,7 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     /**
      * Allow user to lookup the official docs related to this deprecation / breaking change.
      *
-     * @param array $config The converted structure for a single constant.
+     * @param array $config
      *
      * @return string
      */
