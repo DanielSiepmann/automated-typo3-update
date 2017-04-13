@@ -5,8 +5,15 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
+/**
+ * Check usage of removed or breaking changed TypoScript.
+ */
 class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 {
+    /**
+     * Register sniff only for TypoScript.
+     * @var array<string>
+     */
     public $supportedTokenizers = [
         'TYPOSCRIPT',
     ];
