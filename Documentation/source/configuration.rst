@@ -13,6 +13,10 @@ already documented by phpcs itself. Therefore this documentation will just menti
 
 Beside that, some options are also available through CLI. Examples are always provided.
 
+To disable warnings for specific deprecated parts, e.g. a specific function, you can use the full
+sniff name, as we try to add the concrete constant or function name to the sniff. Just run ``phpcs``
+with the ``-s`` option to see sniff names.
+
 The following configuration options are available:
 
 .. _configuration-legacyExtensions:
