@@ -5,7 +5,7 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
-class Typo3Update_Sniffs_Removed_TypoScriptObjectIdentifierSniff extends AbstractGenericUsage
+class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 {
     public $supportedTokenizers = [
         'TYPOSCRIPT',
@@ -112,6 +112,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptObjectIdentifierSniff extends Abstrac
      */
     protected function getRemovedConfigFiles()
     {
-        return Options::getRemovedTypoScriptObjectIdentifierConfigFiles();
+        return Options::getRemovedTypoScriptConfigFiles();
     }
 }

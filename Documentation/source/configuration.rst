@@ -157,13 +157,13 @@ Example:
 
     --runtime-set removedConstantConfigFiles "/Some/Absolute/Path/*.yaml"
 
-.. _configuration-removedTypoScriptObjectIdentifierConfigFiles:
+.. _configuration-removedTypoScriptConfigFiles:
 
-removedTypoScriptObjectIdentifierConfigFiles
---------------------------------------------
+removedTypoScriptConfigFiles
+----------------------------
 
 Configure where to look for configuration files defining the removed TypoScript object identifiers.
-Default is ``Configuration/Removed/TypoScript/ObjectIdentifier/*.yaml`` inside the standard itself.
+Default is ``Configuration/Removed/TypoScript/*.yaml`` inside the standard itself.
 We already try to deliver as much as possible.  Globing is used, so placeholders like ``*`` are
 possible, see https://secure.php.net/manual/en/function.glob.php
 
@@ -171,10 +171,10 @@ Using :file:`ruleset.xml`:
 
 .. code:: xml
 
-    <config name="removedTypoScriptObjectIdentifierConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+    <config name="removedTypoScriptConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
 
 Example:
 
 .. code:: bash
 
-    --runtime-set removedTypoScriptObjectIdentifierConfigFiles "/Some/Absolute/Path/*.yaml"
+    --runtime-set removedTypoScriptConfigFiles "/Some/Absolute/Path/*.yaml"

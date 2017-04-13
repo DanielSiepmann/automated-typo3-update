@@ -82,15 +82,15 @@ class Options
     }
 
     /**
-     * Returns an array of absolute file names containing removed typoscript object identifier configurations.
+     * Returns an array of absolute file names containing removed typoscript.
      *
      * @return array<string>
      */
-    public static function getRemovedTypoScriptObjectIdentifierConfigFiles()
+    public static function getRemovedTypoScriptConfigFiles()
     {
         return static::getOptionFileNames(
-            'removedTypoScriptObjectIdentifier',
-            __DIR__ . '/../Configuration/Removed/TypoScript/ObjectIdentifier/*.yaml'
+            'removedTypoScript',
+            __DIR__ . '/../Configuration/Removed/TypoScript/*.yaml'
         );
     }
 
