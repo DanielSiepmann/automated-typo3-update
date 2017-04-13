@@ -1,4 +1,4 @@
-image: 'bash:latest'
+image: 'bash:latest' 
 
 before_script:
   - apk add --no-cache make wget git
@@ -9,6 +9,7 @@ before_script:
 stages:
   - sync
   - test
+  - render
 
 sync:github:
   stage: sync
@@ -66,4 +67,13 @@ test:latest:
   script:
     - ./vendor/bin/phpunit
 
-# Further stages, and jobs e.g. linting, cgl, etc.
+render:documentation:
+  image: danielsiepmann/sphinx:latest
+  stage: render
+  before_script:
+    - cd Documentation
+  script:
+    - make html
+  artifacts:
+    paths:
+      - Documentation/build/html
