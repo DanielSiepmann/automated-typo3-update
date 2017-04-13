@@ -1,0 +1,26 @@
+# Breaking changes in 8.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Index.html#breaking-changes
+'7.1':
+  lib.parseFunc_RTE.externalBlocks.blockquote.callRecursive.tagStdWrap.HTMLparser:
+    replacement: 'It is recommended to fix the margins inside your website CSS. Alternatively, you can re-add the above TypoScript lines to your website TypoScript template (not recommended)'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-44879-CSSStyledContentTypoScriptBlockQuoteInlineStylesRemoved.html'
+  lib.parseFunc_RTE.externalBlocks.blockquote.callRecursive.tagStdWrap.HTMLparser.tags.blockquote.overrideAttribs:
+    replacement: 'It is recommended to fix the margins inside your website CSS. Alternatively, you can re-add the above TypoScript lines to your website TypoScript template (not recommended)'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-44879-CSSStyledContentTypoScriptBlockQuoteInlineStylesRemoved.html'
+  config.meaningfulTempFilePrefix:
+    replacement: 'All files will always have their original filename fully prepended when stored in the folder typo3temp/GB/. Just remove the setting'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-62886-RemoveMeaningfulTempFilePrefix.html'
+  new CLEARGIF:
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
+  new COLUMNS:
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
+  new CTABLE:
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
+  new OTABLE:
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
+  new HRULER:
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'

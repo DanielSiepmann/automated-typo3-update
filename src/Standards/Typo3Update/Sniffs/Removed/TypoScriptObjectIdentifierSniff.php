@@ -19,8 +19,39 @@ class Typo3Update_Sniffs_Removed_TypoScriptObjectIdentifierSniff extends Abstrac
     public function register()
     {
         return [
+            TokenInterface::TYPE_OBJECT_CONSTRUCTOR,
             TokenInterface::TYPE_OBJECT_IDENTIFIER,
         ];
+    }
+
+    /**
+     * Prepares structure from config for later usage.
+     *
+     * @param array $typo3Versions
+     * @return array
+     */
+    protected function prepareStructure(array $typo3Versions)
+    {
+        $newStructure = [];
+
+        foreach ($typo3Versions as $typo3Version => $removals) {
+            foreach ($removals as $removed => $config) {
+
+                $config['type'] = TokenInterface::TYPE_OBJECT_IDENTIFIER;
+                // If starting with new, it's a constructor, meaning content object or other Object.
+                if (strtolower(substr($removed, 0, 4)) === 'new ') {
+                    $config['type'] = TokenInterface::TYPE_OBJECT_CONSTRUCTOR;
+                    $removed = substr($removed, 4);
+                }
+
+                $config['name'] = $removed;
+                $config['version_removed'] = $typo3Version;
+
+                $newStructure[$removed] = $config;
+            }
+        }
+
+        return $newStructure;
     }
 
     /**
@@ -36,7 +67,7 @@ class Typo3Update_Sniffs_Removed_TypoScriptObjectIdentifierSniff extends Abstrac
         $token = $tokens[$stackPtr];
         $objectIdentifier = $token['content'];
 
-        if (isset($this->configured[$objectIdentifier])) {
+        if (isset($this->configured[$objectIdentifier]) && $token['type'] === $this->configured[$objectIdentifier]['type']) {
             $this->removed = [
                 $this->configured[$objectIdentifier]
             ];

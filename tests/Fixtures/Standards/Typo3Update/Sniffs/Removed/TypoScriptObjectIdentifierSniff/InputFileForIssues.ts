@@ -17,3 +17,15 @@ mod {
         alternateBgColors = 1
     }
 }
+
+page {
+    CLEARGIF {
+        value = test
+    }
+
+    10 = CLEARGIF
+    11 = COLUMNS
+    12 = CTABLE
+    13 = OTABLE
+    14 = HRULER
+}
