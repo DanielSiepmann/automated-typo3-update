@@ -41,7 +41,6 @@ lint:php-mass-detection:
   stage: test
   script:
     - ./vendor/bin/phpmd src text phpmd.xml > result/phpmd.txt
-    - ./vendor/bin/phpmd src html phpmd.xml > result/phpmd.html
   artifacts:
     when: on_failure
     paths:
