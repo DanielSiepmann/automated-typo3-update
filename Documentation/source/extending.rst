@@ -14,7 +14,7 @@ Sniffs
 ------
 
 Follow the official docs of `phpcs`_:
-https://github.com/squizlabs/PHP_CodeSniffer/wiki/Coding-Standard-Tutorial#creating-the-sniff
+https://github.com/squizlabs/PHP_CodeSniffer/wiki/Coding-Standard-Tutorial#user-content-creating-the-sniff
 
 The following resources might be helpful during working with ``phpcs``:
 
@@ -61,6 +61,7 @@ like options for the sniff. In that case you have to place a :file:`Arguments.ph
 This file returns an array:
 
 .. code-block:: php
+
     <?php
 
     return [
@@ -72,7 +73,7 @@ This file returns an array:
         ],
     ];
 
-In the example above ``defaultVendor`` and ``customVendor` are subfolders containing the same
+In the example above ``defaultVendor`` and ``customVendor`` are subfolders containing the same
 structure as documented for :ref:`extending-tests-single`.
 This way it's possible to run multiple tests per sniff.
 

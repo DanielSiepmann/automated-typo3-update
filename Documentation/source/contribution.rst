@@ -29,7 +29,7 @@ make sure to check your coding style with `phpcs`_.
 
 New sniffs have to be covered by tests, see :ref:`extending-tests`.
 
-.. _TYPO3 slack: https://typo3.slack.com/messages/@danielsiepmann
+.. _TYPO3 slack: https://typo3.slack.com/?redir=%2Fmessages%2F%40danielsiepmann
 .. _docker: https://www.docker.com/
 .. _phpcs: https://github.com/squizlabs/PHP_CodeSniffer
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
