@@ -82,6 +82,19 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed typoscript object identifier configurations.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedTypoScriptObjectIdentifierConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedTypoScriptObjectIdentifier',
+            __DIR__ . '/../Configuration/Removed/TypoScript/ObjectIdentifier/*.yaml'
+        );
+    }
+
+    /**
      * Get the option by optionName, if not defined, use default.
      *
      * @param string $optionName
