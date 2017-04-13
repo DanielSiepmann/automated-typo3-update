@@ -20,14 +20,41 @@
                     "severity": 5,
                     "source": "Typo3Update.Removed.GenericConstantUsage.TYPO3_MOD_PATH",
                     "type": "WARNING"
+                },
+                {
+                    "column": 75,
+                    "fixable": false,
+                    "line": 24,
+                    "message": "Legacy calls are not allowed; found constant \\TYPO3\\CMS\\IndexedSearch\\Controller\\SearchFormController::WILDCARD_LEFT. Removed in 7.6. Use \\TYPO3\\CMS\\IndexedSearch\\Utility\\LikeWildcard::LEFT instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController.WILDCARD_LEFT",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 39,
+                    "fixable": false,
+                    "line": 27,
+                    "message": "Legacy calls are not allowed; found constant \\TYPO3\\CMS\\IndexedSearch\\Controller\\SearchFormController::WILDCARD_LEFT. Removed in 7.6. Use \\TYPO3\\CMS\\IndexedSearch\\Utility\\LikeWildcard::LEFT instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController.WILDCARD_LEFT",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 66,
+                    "fixable": false,
+                    "line": 29,
+                    "message": "Legacy calls are not allowed; found constant \\TYPO3\\CMS\\IndexedSearch\\Controller\\SearchFormController::WILDCARD_LEFT. Removed in 7.6. Use \\TYPO3\\CMS\\IndexedSearch\\Utility\\LikeWildcard::LEFT instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController.WILDCARD_LEFT",
+                    "type": "WARNING"
                 }
             ],
-            "warnings": 2
+            "warnings": 5
         }
     },
     "totals": {
         "errors": 0,
         "fixable": 0,
-        "warnings": 2
+        "warnings": 5
     }
 }

@@ -21,3 +21,9 @@
 
 $file = PATH_tslib . 'something.php';
 $module = TYPO3_MOD_PATH . '/folder';
+$someVariable = \TYPO3\CMS\IndexedSearch\Controller\SearchFormController::WILDCARD_LEFT . '/folder';
+use \TYPO3\CMS\IndexedSearch\Controller\SearchFormController;
+// Will work, as we only check last part of class name.
+$someVariable = SearchFormController::WILDCARD_LEFT . '/folder';
+// Also matches, as we don't check whole name for now, to enable the above check with imported name.
+$someVariable = \Vendor\ExtName\Controller\SearchFormController::WILDCARD_LEFT . '/folder';
