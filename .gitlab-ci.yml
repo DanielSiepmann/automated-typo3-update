@@ -73,11 +73,6 @@ test:documentation:syntax:
     - cd Documentation
   script:
     - make dummy
-  artifacts:
-    when: on_failure
-  artifacts:
-    paths:
-      - Documentation/build/dummy
 
 test:documentation:external-links:
   image: 'danielsiepmann/sphinx:latest'
@@ -86,11 +81,6 @@ test:documentation:external-links:
     - cd Documentation
   script:
     - make linkcheck
-  artifacts:
-    when: on_failure
-  artifacts:
-    paths:
-      - Documentation/build/linkcheck/output.txt
 
 render:documentation:
   image: 'danielsiepmann/sphinx:latest'
