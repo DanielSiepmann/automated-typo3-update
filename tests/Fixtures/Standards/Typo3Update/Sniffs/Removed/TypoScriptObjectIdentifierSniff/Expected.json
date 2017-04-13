@@ -1,0 +1,33 @@
+{
+    "files": {
+        "InputFileForIssues.ts": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 10,
+                    "fixable": false,
+                    "line": 2,
+                    "message": "Legacy calls are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.TypoScriptObjectIdentifier.styles-insertContent",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 11,
+                    "fixable": false,
+                    "line": 3,
+                    "message": "Legacy calls are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.TypoScriptObjectIdentifier.styles-insertContent",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 2
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 2
+    }
+}
