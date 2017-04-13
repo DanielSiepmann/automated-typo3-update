@@ -1,0 +1,33 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 9,
+                    "fixable": false,
+                    "line": 22,
+                    "message": "Legacy calls are not allowed; found constant PATH_tslib. Removed in 7.0. The folder and constant no longer exist. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61459-RemovalTslib.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericConstantUsage.PATH_tslib",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 11,
+                    "fixable": false,
+                    "line": 23,
+                    "message": "Legacy calls are not allowed; found constant TYPO3_MOD_PATH. Removed in 7.4. It is required to route modules through typo3/mod.php from now on in case the module relies on the definition of those constants. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67987-RemovedEntryScriptHandling.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericConstantUsage.TYPO3_MOD_PATH",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 2
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 2
+    }
+}
