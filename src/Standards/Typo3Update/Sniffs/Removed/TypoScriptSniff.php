@@ -43,7 +43,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 
         foreach ($typo3Versions as $typo3Version => $removals) {
             foreach ($removals as $removed => $config) {
-
                 $config['type'] = TokenInterface::TYPE_OBJECT_IDENTIFIER;
                 // If starting with new, it's a constructor, meaning content object or other Object.
                 if (strtolower(substr($removed, 0, 4)) === 'new ') {
