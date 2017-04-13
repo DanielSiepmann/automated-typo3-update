@@ -114,6 +114,12 @@ class SniffsTest extends TestCase
      */
     protected function executeSniff(\SplFileInfo $folder, array $arguments = [])
     {
+        $fileName = '';
+        if (isset($arguments['inputFileName'])) {
+            $fileName = $arguments['inputFileName'];
+            unset($arguments['inputFileName']);
+        }
+
         $internalArguments = array_merge_recursive([
             'standard' => 'Typo3Update',
             'runtime-set' => [
@@ -123,14 +129,11 @@ class SniffsTest extends TestCase
             ],
             'report' => 'json',
             'sniffs' => $this->getSniffByFolder($folder),
-            'inputFile' => $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php',
+            'inputFile' => $this->getInputFile($folder, $fileName),
         ], $arguments);
 
-        if (isset($internalArguments['inputFileName'])) {
-            $internalArguments['inputFile'] = $folder->getRealPath()
-                . DIRECTORY_SEPARATOR
-                . $internalArguments['inputFileName'];
-            unset($internalArguments['inputFileName']);
+        if (strpos($internalArguments['inputFile'], '.ts') !== false) {
+            $internalArguments['extensions'] = 'ts/TypoScript';
         }
 
         $this->assertEquals(
@@ -227,6 +230,35 @@ class SniffsTest extends TestCase
     protected function getArgumentsFile(\SplFileInfo $folder)
     {
         return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'Arguments.php';
+    }
+
+    /**
+     * Get absolute file path to file to use for testing.
+     *
+     * @param \SplFileInfo $folder
+     * @param string $fileName
+     * @return string
+     */
+    protected function getInputFile(\SplFileInfo $folder, $fileName = '')
+    {
+        $folderPath = $folder->getRealPath() . DIRECTORY_SEPARATOR;
+        $file = $folderPath . $fileName;
+
+        if (!is_file($file)) {
+            $file = $folderPath . $fileName;
+        }
+        if (!is_file($file)) {
+            $file = $folderPath . 'InputFileForIssues.php';
+        }
+        if (!is_file($file)) {
+            $file = $folderPath . 'InputFileForIssues.ts';
+        }
+
+        if (!is_file($file)) {
+            throw new \Exception('message', 1492083289);
+        }
+
+        return $file;
     }
 
     /**
