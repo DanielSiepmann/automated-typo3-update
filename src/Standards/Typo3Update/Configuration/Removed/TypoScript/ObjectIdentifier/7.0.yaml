@@ -3,3 +3,6 @@
   styles.insertContent:
     replacement: 'Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html'
+  mod.web_list.alternateBgColors:
+    replacement: 'Removed without substitution'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-53658-RemoveAlternateBgColorsOption.html'
