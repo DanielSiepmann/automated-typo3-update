@@ -26,7 +26,7 @@ sync:github:
     - cd mirror
     - git push --mirror ${MIRROR_GIT_URL}
 
-lint:coding-guideline:
+lint:coding-guideline: &PHP-LINTING
   image: php:7.0-alpine
   stage: test
   script:
@@ -37,34 +37,25 @@ lint:coding-guideline:
       - result
 
 lint:php-mass-detection:
-  image: php:7.0-alpine
-  stage: test
+  <<: *PHP-LINTING
   script:
     - ./vendor/bin/phpmd src text phpmd.xml > result/phpmd.txt
-  artifacts:
-    when: on_failure
-    paths:
-      - result
 
-test:5.6:
+test:5.6: &PHP-UNITTESTING
   image: php:5.6-alpine
   stage: test
   script:
     - ./vendor/bin/phpunit
 
 test:7.0:
+  <<: *PHP-UNITTESTING
   image: php:7.0-alpine
-  stage: test
-  script:
-    - ./vendor/bin/phpunit
 
 test:latest:
+  <<: *PHP-UNITTESTING
   image: php:7-alpine
-  stage: test
-  script:
-    - ./vendor/bin/phpunit
 
-test:documentation:syntax:
+test:documentation:syntax: &SPHINX-DOCS
   image: 'danielsiepmann/sphinx:latest'
   stage: test
   before_script:
@@ -73,18 +64,13 @@ test:documentation:syntax:
     - make dummy
 
 test:documentation:external-links:
-  image: 'danielsiepmann/sphinx:latest'
-  stage: test
-  before_script:
-    - cd Documentation
+  <<: *SPHINX-DOCS
   script:
     - make linkcheck
 
 render:documentation:
-  image: 'danielsiepmann/sphinx:latest'
+  <<: *SPHINX-DOCS
   stage: render
-  before_script:
-    - cd Documentation
   script:
     - make html
   artifacts:
