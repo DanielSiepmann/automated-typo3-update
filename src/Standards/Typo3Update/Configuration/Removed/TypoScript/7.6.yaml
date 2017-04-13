@@ -1,0 +1,5 @@
+# Breaking changes in 7.6: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Index.html#breaking-changes
+'7.6':
+  plugin.tx_indexedsearch.settings.showRules:
+    replacement: 'Use to plugin.tx_indexedsearch.settings.displayRules = 0 instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-51099-StreamlineSettingsConditions.html'
