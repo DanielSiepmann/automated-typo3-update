@@ -10,17 +10,17 @@
     replacement: 'All files will always have their original filename fully prepended when stored in the folder typo3temp/GB/. Just remove the setting'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-62886-RemoveMeaningfulTempFilePrefix.html'
   new CLEARGIF:
-    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
   new COLUMNS:
-    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
   new CTABLE:
-    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
   new OTABLE:
-    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
   new HRULER:
-    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content.'
+    replacement: 'Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content'
     docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html'
