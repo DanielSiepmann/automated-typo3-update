@@ -66,6 +66,32 @@ test:latest:
   script:
     - ./vendor/bin/phpunit
 
+test:documentation:syntax:
+  image: 'danielsiepmann/sphinx:latest'
+  stage: test
+  before_script:
+    - cd Documentation
+  script:
+    - make dummy
+  artifacts:
+    when: on_failure
+  artifacts:
+    paths:
+      - Documentation/build/dummy
+
+test:documentation:external-links:
+  image: 'danielsiepmann/sphinx:latest'
+  stage: test
+  before_script:
+    - cd Documentation
+  script:
+    - make linkcheck
+  artifacts:
+    when: on_failure
+  artifacts:
+    paths:
+      - Documentation/build/linkcheck/output.txt
+
 render:documentation:
   image: 'danielsiepmann/sphinx:latest'
   stage: render
