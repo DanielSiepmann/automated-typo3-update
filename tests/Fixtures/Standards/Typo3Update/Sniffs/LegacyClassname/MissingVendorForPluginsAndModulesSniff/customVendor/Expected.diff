@@ -1,4 +1,4 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/MissingVendorForPluginsAndModulesSniff/customVendor/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassname/MissingVendorForPluginsAndModulesSniff/customVendor/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -20,7 +20,7 @@
   */
