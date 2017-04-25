@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/DocCommentSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -22,19 +22,19 @@
+@@ -22,20 +22,20 @@
  class InputFileForIssues
  {
      /**
@@ -13,6 +13,7 @@
      /**
 -     * @param t3lib_div
 +     * @param \TYPO3\CMS\Core\Utility\GeneralUtility
+      * @param \TYPO3\CMS\Backend\Template\MediumDocumentTemplate
       *
 -     * @return Tx_Extbase_Configuration_Configurationmanager
 +     * @return \TYPO3\CMS\Extbase\Configuration\ConfigurationManager

@@ -1,0 +1,11 @@
+# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Index.html#breaking-changes
+'7.0':
+  \TYPO3\CMS\Backend\Template\MediumDocumentTemplate:
+    replacement: 'Use \TYPO3\CMS\Backend\Template\DocumentTemplate instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html'
+  \TYPO3\CMS\Backend\Template\SmallDocumentTemplate:
+    replacement: 'Use \TYPO3\CMS\Backend\Template\DocumentTemplate instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html'
+  \TYPO3\CMS\Backend\Template\StandardDocumentTemplate:
+    replacement: 'Use \TYPO3\CMS\Backend\Template\DocumentTemplate instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html'

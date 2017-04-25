@@ -22,13 +22,16 @@ namespace Typo3Update\Sniffs\LegacyClassnames;
 
 use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use Typo3Update\Sniffs\LegacyClassnames\Mapping;
+use Typo3Update\Sniffs\Options;
+use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
+ *
+ * Beside legacy class names, we also check removed class names.
  */
-abstract class AbstractClassnameChecker implements PhpCsSniff
+abstract class AbstractClassnameChecker extends AbstractGenericUsage
 {
     /**
      * A list of extension names that might contain legacy class names.
@@ -56,7 +59,44 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
 
     public function __construct()
     {
+        parent::__construct();
         $this->legacyMapping = Mapping::getInstance();
+    }
+
+    /**
+     * Return file names containing removed configurations.
+     *
+     * @return array<string>
+     */
+    protected function getRemovedConfigFiles()
+    {
+        return Options::getRemovedClassConfigFiles();
+    }
+
+    /**
+     * Prepares structure from config for later usage.
+     *
+     * @param array $typo3Versions
+     * @return array
+     */
+    protected function prepareStructure(array $typo3Versions)
+    {
+        $newStructure = [];
+
+        foreach ($typo3Versions as $typo3Version => $removals) {
+            foreach ($removals as $removed => $config) {
+                if ($removed[0] !== '\\') {
+                    $removed = '\\' . $removed;
+                }
+
+                $newStructure[$removed] = $config;
+                $newStructure[$removed]['class'] = $removed;
+                $newStructure[$removed]['name'] = str_replace('\\', '_', substr($removed, 1));
+                $newStructure[$removed]['version_removed'] = $typo3Version;
+            }
+        }
+
+        return $newStructure;
     }
 
     /**
@@ -101,6 +141,49 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
 
         $classname = $tokens[$classnamePosition]['content'];
         $this->addFixableError($phpcsFile, $classnamePosition, $classname);
+
+        $this->handleRemoved($phpcsFile, $classnamePosition);
+    }
+
+    /**
+     * Handle removed classes.
+     *
+     * This will check whether the class at given $classnamePosition was removed in any version and add a warning.
+     *
+     * @param PhpCsFile $phpcsFile The file where the token was found.
+     * @param int $classnamePosition
+     * @return void
+     */
+    protected function handleRemoved(PhpCsFile $phpcsFile, $classnamePosition)
+    {
+        if ($this->isRemoved($phpcsFile, $classnamePosition)) {
+            $this->addMessage($phpcsFile, $classnamePosition);
+        }
+    }
+
+    /**
+     * Check whether the current token is removed.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $classnamePosition
+     * @return bool
+     */
+    protected function isRemoved(PhpCsFile $phpcsFile, $classnamePosition)
+    {
+        $this->removed = [];
+        $classname = $phpcsFile->getTokens()[$classnamePosition]['content'];
+
+        if ($classname[0] !== '\\') {
+            $classname = '\\' . $classname;
+        }
+
+        if (isset($this->configured[$classname])) {
+            $this->removed = [
+                $this->configured[$classname]
+            ];
+        }
+
+        return $this->removed !== [];
     }
 
     /**
@@ -275,5 +358,33 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
         }
 
         return implode($stringSign, $token);
+    }
+
+    /**
+     * The original call, to allow user to check matches.
+     *
+     * As we match the name, that can be provided by multiple classes, you
+     * should provide an example, so users can check that this is the legacy
+     * one.
+     *
+     * @param array $config
+     *
+     * @return string
+     */
+    protected function getOldUsage(array $config)
+    {
+        return $config['class'];
+    }
+
+    /**
+     * Identifier for configuring this specific error / warning through PHPCS.
+     *
+     * @param array $config
+     *
+     * @return string
+     */
+    protected function getIdentifier(array $config)
+    {
+        return $config['name'];
     }
 }

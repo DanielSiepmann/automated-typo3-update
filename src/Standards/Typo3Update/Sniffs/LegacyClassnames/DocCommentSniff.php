@@ -71,6 +71,7 @@ class Typo3Update_Sniffs_LegacyClassnames_DocCommentSniff extends AbstractClassn
         $this->originalTokenContent = $tokens[$classnamePosition]['content'];
         foreach ($classnames as $classname) {
             $this->addFixableError($phpcsFile, $classnamePosition, $classname);
+            $this->handleRemoved($phpcsFile, $classnamePosition);
         }
     }
 
