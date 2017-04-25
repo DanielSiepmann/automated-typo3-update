@@ -1,0 +1,22 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/IsACallSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -23,15 +23,15 @@
+ if (is_a($a, t3lib_Singleton::class)) {
+     // do something
+ }
+-if (is_a($a, 't3lib_Singleton')) {
++if (is_a($a, '\TYPO3\CMS\Core\SingletonInterface')) {
+     // do something
+ }
+-if (is_a($a, '\t3lib_Singleton')) {
++if (is_a($a, '\TYPO3\CMS\Core\SingletonInterface')) {
+     // do something
+ }
+-if (is_a($a, "t3lib_Singleton")) {
++if (is_a($a, "\\TYPO3\\CMS\\Core\\SingletonInterface")) {
+     // do something
+ }
+-if (is_a($a, "\\t3lib_Singleton")) {
++if (is_a($a, "\\TYPO3\\CMS\\Core\\SingletonInterface")) {
+     // do something
+ }

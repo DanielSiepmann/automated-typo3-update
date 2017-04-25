@@ -1,0 +1,22 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InstantiationWithNewSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -19,13 +19,13 @@
+  * 02110-1301, USA.
+  */
+
+-new \Tx_Extbase_Command_HelpCommandController();
+-new \Tx_Extbase_Command_HelpCommandController;
+-(new \Tx_Extbase_Command_HelpCommandController)
++new \TYPO3\CMS\Extbase\Command\HelpCommandController();
++new \TYPO3\CMS\Extbase\Command\HelpCommandController;
++(new \TYPO3\CMS\Extbase\Command\HelpCommandController)
+     ->doSomething()
+     ;
+-new Tx_Extbase_Command_HelpCommandController();
+-new Tx_Extbase_Command_HelpCommandController;
+-(new Tx_Extbase_Command_HelpCommandController)
++new \TYPO3\CMS\Extbase\Command\HelpCommandController();
++new \TYPO3\CMS\Extbase\Command\HelpCommandController;
++(new \TYPO3\CMS\Extbase\Command\HelpCommandController)
+     ->doSomething()
+     ;

@@ -26,47 +26,36 @@ sync:github:
     - cd mirror
     - git push --mirror ${MIRROR_GIT_URL}
 
-lint:coding-guideline:
+lint:coding-guideline: &PHP-LINTING
   image: php:7.0-alpine
   stage: test
   script:
-    - ./vendor/bin/phpcs -s -n
-    - ./vendor/bin/phpcs -s -n > result/phpcs-summary.txt
+    - ./vendor/bin/phpcs -s -n --report-full=result/phpcs-full.txt --report-diff=result/phpcs-diff.txt --report-summary=result/phpcs-summary.txt
   artifacts:
     when: on_failure
     paths:
       - result
 
 lint:php-mass-detection:
-  image: php:7.0-alpine
-  stage: test
+  <<: *PHP-LINTING
   script:
     - ./vendor/bin/phpmd src text phpmd.xml > result/phpmd.txt
-    - ./vendor/bin/phpmd src html phpmd.xml > result/phpmd.html
-  artifacts:
-    when: on_failure
-    paths:
-      - result
 
-test:5.6:
+test:5.6: &PHP-UNITTESTING
   image: php:5.6-alpine
   stage: test
   script:
     - ./vendor/bin/phpunit
 
 test:7.0:
+  <<: *PHP-UNITTESTING
   image: php:7.0-alpine
-  stage: test
-  script:
-    - ./vendor/bin/phpunit
 
 test:latest:
+  <<: *PHP-UNITTESTING
   image: php:7-alpine
-  stage: test
-  script:
-    - ./vendor/bin/phpunit
 
-test:documentation:syntax:
+test:documentation:syntax: &SPHINX-DOCS
   image: 'danielsiepmann/sphinx:latest'
   stage: test
   before_script:
@@ -75,18 +64,13 @@ test:documentation:syntax:
     - make dummy
 
 test:documentation:external-links:
-  image: 'danielsiepmann/sphinx:latest'
-  stage: test
-  before_script:
-    - cd Documentation
+  <<: *SPHINX-DOCS
   script:
     - make linkcheck
 
 render:documentation:
-  image: 'danielsiepmann/sphinx:latest'
+  <<: *SPHINX-DOCS
   stage: render
-  before_script:
-    - cd Documentation
   script:
     - make html
   artifacts:

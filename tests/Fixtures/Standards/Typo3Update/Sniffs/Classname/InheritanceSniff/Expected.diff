@@ -1,0 +1,21 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InheritanceSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -19,14 +19,14 @@
+  * 02110-1301, USA.
+  */
+
+-class InputFileForIssues extends Tx_Extbase_Configuration_Configurationmanager implements t3lib_Singleton, Tx_Extbase_Core_BootstrapInterface
++class InputFileForIssues extends \TYPO3\CMS\Extbase\Configuration\ConfigurationManager implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Extbase\Core\BootstrapInterface
+ {
+
+ }
+
+-class InputFileForIssues extends Tx_Extbase_Configuration_Configurationmanager implements
+-    t3lib_Singleton,
+-    Tx_Extbase_Core_BootstrapInterface
++class InputFileForIssues extends \TYPO3\CMS\Extbase\Configuration\ConfigurationManager implements
++    \TYPO3\CMS\Core\SingletonInterface,
++    \TYPO3\CMS\Extbase\Core\BootstrapInterface
+ {
+
+ }

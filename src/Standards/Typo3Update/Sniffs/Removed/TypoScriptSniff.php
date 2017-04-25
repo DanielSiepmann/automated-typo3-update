@@ -21,7 +21,7 @@
 
 use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\Options;
+use Typo3Update\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
 /**

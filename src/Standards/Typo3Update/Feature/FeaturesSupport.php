@@ -1,4 +1,5 @@
 <?php
+namespace Typo3Update\Feature;
 
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -20,48 +21,45 @@
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
-use Typo3Update\Options;
 
 /**
- * Sniff that handles all calls to removed constants.
+ * Provides "feature" support for sniffs.
  */
-class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGenericUsage
+trait FeaturesSupport
 {
     /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
+     * @var Features
      */
-    protected function getRemovedConfigFiles()
+    protected $features;
+
+    public function __construct()
     {
-        return Options::getRemovedConstantConfigFiles();
+        $this->features = new Features($this);
     }
 
     /**
-     * Returns the token types that this sniff is interested in.
+     * Processes all features for the sniff.
      *
-     * @return array<int>
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     * @param string $content
      */
-    public function register()
+    public function processFeatures(PhpCsFile $phpcsFile, $stackPtr, $content)
     {
-        return [T_STRING];
-    }
-
-    /**
-     * The original constant call, to allow user to check matches.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getOldUsage(array $config)
-    {
-        $old = $config['name'];
-        if ($config['static']) {
-            $old = $config['fqcn'] . '::' . $config['name'];
+        foreach ($this->features as $featureClassName) {
+            $feature = $this->createFeature($featureClassName);
+            $feature->process($phpcsFile, $stackPtr, $content);
         }
+    }
 
-        return 'constant ' . $old;
+    /**
+     * Create a new instance of the given feature.
+     *
+     * @param string $featureClassname
+     * @return FeatureInterface
+     */
+    protected function createFeature($featureClassname)
+    {
+        return new $featureClassname($this);
     }
 }

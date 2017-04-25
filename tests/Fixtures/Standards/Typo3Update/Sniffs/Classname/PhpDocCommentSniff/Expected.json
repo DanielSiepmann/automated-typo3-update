@@ -1,0 +1,51 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 4,
+            "messages": [
+                {
+                    "column": 13,
+                    "fixable": true,
+                    "line": 25,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Domain_Repository_CategoryRepository\", use \"TYPO3\\CMS\\Extbase\\Domain\\Repository\\CategoryRepository\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 15,
+                    "fixable": true,
+                    "line": 31,
+                    "message": "Legacy classes are not allowed; found \"t3lib_div\", use \"TYPO3\\CMS\\Core\\Utility\\GeneralUtility\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 16,
+                    "fixable": true,
+                    "line": 33,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Configuration_Configurationmanager\", use \"TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 18,
+                    "fixable": true,
+                    "line": 37,
+                    "message": "Legacy classes are not allowed; found \"t3lib_div\", use \"TYPO3\\CMS\\Core\\Utility\\GeneralUtility\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 4,
+        "fixable": 4,
+        "warnings": 0
+    }
+}

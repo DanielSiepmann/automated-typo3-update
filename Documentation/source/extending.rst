@@ -24,6 +24,24 @@ The following resources might be helpful during working with ``phpcs``:
 
 - :file:`CodeSniffer/File.php`
 
+.. _extending-features:
+
+Features
+--------
+
+Sniffs do not always add errors or warnings in our standard, instead for more flexibility, we use
+them to find specific "tokens", e.g. class names. We then attach so called *Features* to sniffs to
+work on that token.
+
+E.g. we deliver the Feature ``LegacyClassnameFeature`` which will check whether a given class name
+is legacy and should be replaced. As class names may occur in many places like type hints or php doc
+blocks, the sniffs will detect the class names and the feature will work on them.
+
+Features can be attached to the sniffs. A feature has to implement the ``FeatureInterface`` and will
+work on tokens found by sniffs.
+
+To attach a Feature to Sniffs, provide a yaml-configuration, see :ref:`configuration-features`.
+
 .. _extending-tests:
 
 Tests
@@ -40,7 +58,7 @@ has to exist: :file:`tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassname
 .. _extending-tests-single:
 
 Single test per sniff
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 Inside of the folder at least a file :file:`InputFileForIssues.php` has to exist, containing PHP
 code to use for the test. Also a file :file:`Expected.json` has to exist, with the json result of
@@ -54,7 +72,7 @@ If your sniff also implements fixable errors or warnings, you can further provid
 .. _extending-tests-multiple:
 
 Multiple tests per sniff
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Also it's possible to provide multiple tests for a single sniff, e.g. with different cli arguments
 like options for the sniff. In that case you have to place a :file:`Arguments.php` in the folder.
@@ -81,7 +99,7 @@ Also you can provide further cli arguments on a key -> value base. Where ``runti
 as it contains a sub array to provide multiple runtime sets.
 
 How sniff tests are implemented
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We just find all folders below :file:`tests/Fixtures/Standards/Typo3Update/Sniffs` ending with
 ``Sniff`` and check the structure. They are provided to the test itself through a dataprovider in
