@@ -1,4 +1,4 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/InheritanceSniff/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InheritanceSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -19,14 +19,14 @@
   * 02110-1301, USA.

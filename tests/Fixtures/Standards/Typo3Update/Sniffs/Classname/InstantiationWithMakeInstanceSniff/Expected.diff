@@ -1,4 +1,4 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/InstantiationWithMakeInstanceSniff/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InstantiationWithMakeInstanceSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -19,6 +19,6 @@
   * 02110-1301, USA.

@@ -1,4 +1,4 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/InlineCommentSniff/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InlineCommentSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -23,16 +23,16 @@
  {

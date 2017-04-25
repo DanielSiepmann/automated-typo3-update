@@ -1,4 +1,4 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/MissingNamespaceSniff/defaultVendor/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/MissingNamespaceSniff/defaultVendor/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -1,4 +1,5 @@
  <?php
