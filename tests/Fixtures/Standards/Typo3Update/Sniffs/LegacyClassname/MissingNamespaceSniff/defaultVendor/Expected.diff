@@ -1,8 +1,8 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/MissingNamespaceSniff/customVendor/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassname/MissingNamespaceSniff/defaultVendor/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -1,4 +1,5 @@
  <?php
-+namespace MyCustomVendor\ExtName\Controller;
++namespace YourCompany\ExtName\Controller;
 
  /*
   * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>

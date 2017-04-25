@@ -20,13 +20,14 @@
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
+use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update\Feature\LegacyClassnameMapping;
 use Typo3Update\Options;
 
 /**
  * Detect missing namespaces for class definitions.
  */
-class Typo3Update_Sniffs_Classname_MissingNamespaceSniff extends AbstractClassnameChecker
+class Typo3Update_Sniffs_LegacyClassname_MissingNamespaceSniff implements PhpCsSniff
 {
     /**
      * Returns the token types that this sniff is interested in.
@@ -66,28 +67,16 @@ class Typo3Update_Sniffs_Classname_MissingNamespaceSniff extends AbstractClassna
         }
 
         $classname = $tokens[$classnamePosition]['content'];
-        // TODO: Migrate class, use custom feature as some parts are different!
-        // $this->addFixableError($phpcsFile, $classnamePosition, $classname);
-    }
-
-    /**
-     * Overwrite as we don't look up the classname, but check whether the style is legacy.
-     *
-     * @param string $classname
-     * @return bool
-     */
-    protected function isLegacyClassname($classname)
-    {
-        return strpos($classname, 'Tx_') === 0;
-    }
-
-    /**
-     * @param string $classname
-     * @return string
-     */
-    protected function getNewClassname($classname)
-    {
-        return substr($classname, strrpos($classname, '_') + 1);
+        $fix = $phpcsFile->addFixableError(
+            'Legacy class definitions are not allowed; found "%s".'
+                . ' Wrap your class inside a namespace.',
+            $classnamePosition,
+            'legacyClassname',
+            [$classname]
+        );
+        if ($fix === true) {
+            $this->replaceLegacyClassname($phpcsFile, $classnamePosition, $classname);
+        }
     }
 
     /**
@@ -95,18 +84,12 @@ class Typo3Update_Sniffs_Classname_MissingNamespaceSniff extends AbstractClassna
      * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
-     * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
-     *
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     protected function replaceLegacyClassname(
         PhpCsFile $phpcsFile,
         $classnamePosition,
-        $classname,
-        $forceEmptyPrefix = true
+        $classname
     ) {
-        parent::replaceLegacyClassname($phpcsFile, $classnamePosition, $classname, $forceEmptyPrefix);
-
         $tokens = $phpcsFile->getTokens();
         $lineEndings = PhpCsFile::detectLineEndings($phpcsFile->getFilename());
         $suffix = $lineEndings;
@@ -116,13 +99,26 @@ class Typo3Update_Sniffs_Classname_MissingNamespaceSniff extends AbstractClassna
         }
 
         $phpcsFile->fixer->replaceToken(
+            $classnamePosition,
+            substr($classname, strrpos($classname, '_') + 1)
+        );
+        $phpcsFile->fixer->replaceToken(
             $this->getNamespacePosition($phpcsFile),
             '<?php' . $lineEndings . $this->getNamespaceDefinition($classname) . $suffix
         );
-        $this->addLegacyClassname(
+        LegacyClassnameMapping::getInstance()->addLegacyClassname(
             $classname,
             $this->getNamespace($classname) . '\\' . $this->getNewClassname($classname)
         );
+    }
+
+    /**
+     * @param string $classname
+     * @return string
+     */
+    protected function getNewClassname($classname)
+    {
+        return substr($classname, strrpos($classname, '_') + 1);
     }
 
     /**

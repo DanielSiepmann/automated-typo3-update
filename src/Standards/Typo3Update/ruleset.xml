@@ -12,8 +12,4 @@
             <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
         </properties>
     </rule>
-
-    <rule ref="Typo3Update.Classname.MissingNamespace.legacyClassname">
-        <message>Legacy class definitions are not allowed; found "%s". Wrap your class inside a namespace.</message>
-    </rule>
 </ruleset>

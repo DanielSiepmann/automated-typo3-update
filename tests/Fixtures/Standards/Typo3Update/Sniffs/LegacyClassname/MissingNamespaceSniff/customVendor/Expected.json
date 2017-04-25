@@ -9,7 +9,7 @@
                     "line": 24,
                     "message": "Legacy class definitions are not allowed; found \"Tx_ExtName_Controller_Frontendcontroller\". Wrap your class inside a namespace.",
                     "severity": 5,
-                    "source": "Typo3Update.Classname.MissingNamespace.legacyClassname",
+                    "source": "Typo3Update.LegacyClassname.MissingNamespace.legacyClassname",
                     "type": "ERROR"
                 }
             ],
