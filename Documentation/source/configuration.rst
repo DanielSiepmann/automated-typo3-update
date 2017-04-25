@@ -28,13 +28,13 @@ Configures which extension names are legacy. Used to provide further checks and 
 possible legacy code. All class usages starting with ``Tx_<ExtensionName>`` where ExtensionName is
 defined in this array, will produce a warning, until the class is already found to be deprecaed.
 
-Can and have to be configured for each sniff, e.g. ``Instanceof`` and ``DocComment``.
+Can and have to be configured for each sniff, e.g. ``Instanceof`` and ``PhpDocComment``.
 
 Example:
 
 .. code:: xml
 
-  <rule ref="Typo3Update.LegacyClassnames.Instanceof">
+  <rule ref="Typo3Update.Classname.Instanceof">
       <properties>
           <property name="legacyExtensions" type="array" value="Extbase,Fluid,Frontend,Core"/>
       </properties>
@@ -46,7 +46,7 @@ Example:
 allowedTags
 -----------
 
-Only used inside Sniff ``Typo3Update.LegacyClassnames.DocComment``.
+Only used inside Sniff ``Typo3Update.Classname.PhpDocComment``.
 
 Configures which tags are checked for legacy class names.
 
@@ -57,7 +57,7 @@ Example:
 
 .. code:: xml
 
-   <rule ref="Typo3Update.LegacyClassnames.DocComment">
+   <rule ref="Typo3Update.Classname.PhpDocComment">
        <properties>
            <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
        </properties>
