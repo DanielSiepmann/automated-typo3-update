@@ -29,3 +29,9 @@ if (is_a($a, 't3lib_Singleton')) {
 if (is_a($a, '\t3lib_Singleton')) {
     // do something
 }
+if (is_a($a, "t3lib_Singleton")) {
+    // do something
+}
+if (is_a($a, "\\t3lib_Singleton")) {
+    // do something
+}

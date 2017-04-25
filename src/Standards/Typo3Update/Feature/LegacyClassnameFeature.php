@@ -49,15 +49,6 @@ class LegacyClassnameFeature implements FeatureInterface
      */
     protected $sniff;
 
-    /**
-     * Used by some sniffs to keep original token for replacement.
-     *
-     * E.g. when Token itself is a whole inline comment, and we just want to replace the classname within.
-     *
-     * @var string
-     */
-    protected $originalTokenContent = '';
-
     public function __construct(PhpCsSniff $sniff)
     {
         $this->sniff = $sniff;
@@ -188,40 +179,22 @@ class LegacyClassnameFeature implements FeatureInterface
         $classname
     ) {
         $prefix = '\\';
-        if ($this->forceEmptyPrefix() || $phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
+        if ($this->useEmptyPrefix($phpcsFile, $classnamePosition)) {
             $prefix = '';
         }
 
-        $phpcsFile->fixer->replaceToken(
-            $classnamePosition,
-            str_replace(
-                $classname,
-                $prefix . $this->getNewClassname($classname),
-                $phpcsFile->getTokens()[$classnamePosition]['content']
-            )
+        $newClassname = str_replace(
+            $classname,
+            $prefix . $this->getNewClassname($classname),
+            $phpcsFile->getTokens()[$classnamePosition]['content']
         );
-    }
 
-    /**
-     * Use this inside your getTokenForReplacement if $classname is inside a string.
-     * Strings will be converted to single quotes.
-     *
-     * @param string $classname
-     * @return string
-     */
-    protected function getTokenReplacementForString($classname)
-    {
-        $stringSign = $this->originalTokenContent[0];
-        $token = explode($stringSign, $this->originalTokenContent);
-        $token[1] = $classname;
-
-        // Migrate double quote to single quote.
-        // This way no escaping of backslashes in class names is necessary.
-        if ($stringSign === '"') {
-            $stringSign = "'";
+        // Handle double quotes, with special escaping.
+        if ($newClassname[0] === '"') {
+            $newClassname = '"\\\\' . str_replace('\\', '\\\\', ltrim(substr($newClassname, 1), '\\'));
         }
 
-        return implode($stringSign, $token);
+        $phpcsFile->fixer->replaceToken($classnamePosition, $newClassname);
     }
 
     /**
@@ -229,9 +202,20 @@ class LegacyClassnameFeature implements FeatureInterface
      *
      * @return bool
      */
-    protected function forceEmptyPrefix()
+    protected function useEmptyPrefix(PhpCsFile $phpcsFile, $classnamePosition)
     {
+        // Use statements don't start with T_NS_SEPARATOR.
         if (get_class($this->sniff) === \Typo3Update_Sniffs_Classname_UseSniff::class) {
+            return true;
+        }
+        // If T_NS_SEPARATOR is already present before, don't add again.
+        if ($phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
+            return true;
+        }
+        // If inside string starting with T_NS_SEPARATOR don't add again.
+        if (isset($phpcsFile->getTokens()[$classnamePosition]['content'][1])
+            && $phpcsFile->getTokens()[$classnamePosition]['content'][1] === '\\'
+        ) {
             return true;
         }
 
