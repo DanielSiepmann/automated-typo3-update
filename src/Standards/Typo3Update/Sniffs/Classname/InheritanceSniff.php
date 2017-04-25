@@ -79,11 +79,6 @@ class Typo3Update_Sniffs_Classname_InheritanceSniff extends AbstractClassnameChe
         }
 
         foreach ($interfaces as $interface) {
-            // TODO: Migrate
-            if (! $this->isLegacyClassname($interface)) {
-                continue;
-            }
-
             $position = $phpcsFile->findNext(T_STRING, $stackPtr, null, false, $interface);
             if ($position === false) {
                 continue;
