@@ -47,15 +47,27 @@ class Features implements \Iterator
     {
         foreach (Options::getFeaturesConfiguration() as $featureName => $sniffs) {
             if (in_array(get_class($sniff), $sniffs)) {
-                if (!class_implements($featureName, FeatureInterface::class)) {
-                    throw new \Exception(
-                        'Configured Feature "' . $featureName . '" does not implement "' . FeatureInterface::class . '".',
-                        1493115488
-                    );
-                }
-                $this->features[] = $featureName;
+                $this->addFeature($featureName);
             }
         }
+    }
+
+    /**
+     * Add the given feature.
+     *
+     * @param string $featureName
+     * @return void
+     */
+    protected function addFeature($featureName)
+    {
+        if (!class_implements($featureName, FeatureInterface::class)) {
+            throw new \Exception(
+                'Configured Feature "' . $featureName . '" does not implement "' . FeatureInterface::class . '".',
+                1493115488
+            );
+        }
+
+        $this->features[] = $featureName;
     }
 
     // implement Iterator interface:
