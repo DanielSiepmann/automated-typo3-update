@@ -45,6 +45,11 @@ class LegacyClassnameFeature implements FeatureInterface
     protected $legacyMapping;
 
     /**
+     * @var PhpCsSniff
+     */
+    protected $sniff;
+
+    /**
      * Used by some sniffs to keep original token for replacement.
      *
      * E.g. when Token itself is a whole inline comment, and we just want to replace the classname within.
@@ -53,8 +58,9 @@ class LegacyClassnameFeature implements FeatureInterface
      */
     protected $originalTokenContent = '';
 
-    public function __construct()
+    public function __construct(PhpCsSniff $sniff)
     {
+        $this->sniff = $sniff;
         $this->legacyMapping = LegacyClassnameMapping::getInstance();
     }
 
@@ -175,18 +181,14 @@ class LegacyClassnameFeature implements FeatureInterface
      * @param PhpCsFile $phpcsFile
      * @param int $classnamePosition
      * @param string $classname
-     * @param bool $forceEmptyPrefix Defines whether '\\' prefix should be checked or always be left out.
-     *
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     protected function replaceLegacyClassname(
         PhpCsFile $phpcsFile,
         $classnamePosition,
-        $classname,
-        $forceEmptyPrefix = false
+        $classname
     ) {
         $prefix = '\\';
-        if ($forceEmptyPrefix || $phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
+        if ($this->forceEmptyPrefix() || $phpcsFile->getTokens()[$classnamePosition -1]['code'] === T_NS_SEPARATOR) {
             $prefix = '';
         }
 
@@ -232,5 +234,19 @@ class LegacyClassnameFeature implements FeatureInterface
         }
 
         return implode($stringSign, $token);
+    }
+
+    /**
+     * Check whether new class name for replacment should not contain the "\" as prefix.
+     *
+     * @return bool
+     */
+    protected function forceEmptyPrefix()
+    {
+        if (get_class($this->sniff) === \Typo3Update_Sniffs_Classname_UseSniff::class) {
+            return true;
+        }
+
+        return false;
     }
 }
