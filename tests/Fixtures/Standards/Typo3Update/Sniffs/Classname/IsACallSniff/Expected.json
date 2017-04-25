@@ -1,0 +1,33 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 2,
+            "messages": [
+                {
+                    "column": 14,
+                    "fixable": true,
+                    "line": 26,
+                    "message": "Legacy classes are not allowed; found \"t3lib_Singleton\", use \"TYPO3\\CMS\\Core\\SingletonInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.IsACall.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 14,
+                    "fixable": true,
+                    "line": 29,
+                    "message": "Legacy classes are not allowed; found \"t3lib_Singleton\", use \"TYPO3\\CMS\\Core\\SingletonInterface\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.IsACall.legacyClassname",
+                    "type": "ERROR"
+                }
+            ],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 2,
+        "fixable": 2,
+        "warnings": 0
+    }
+}

@@ -2,18 +2,18 @@
 <ruleset name="TYPO3 Update">
     <description>Provides sniffs and fixes for TYPO3 Updates.</description>
 
-    <rule ref="Typo3Update.LegacyClassnames.Instanceof">
+    <rule ref="Typo3Update.Classname.Instanceof">
         <properties>
             <property name="legacyExtensions" type="array" value="Extbase,Fluid,Frontend,Core"/>
         </properties>
     </rule>
-    <rule ref="Typo3Update.LegacyClassnames.DocComment">
+    <rule ref="Typo3Update.Classname.PhpDocComment">
         <properties>
             <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
         </properties>
     </rule>
 
-    <rule ref="Typo3Update.LegacyClassnames.MissingNamespace.legacyClassname">
+    <rule ref="Typo3Update.Classname.MissingNamespace.legacyClassname">
         <message>Legacy class definitions are not allowed; found "%s". Wrap your class inside a namespace.</message>
     </rule>
 </ruleset>

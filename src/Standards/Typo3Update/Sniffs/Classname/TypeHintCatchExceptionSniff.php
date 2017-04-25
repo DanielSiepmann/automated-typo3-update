@@ -19,25 +19,13 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
-use Typo3Update\Options;
+use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
 /**
- * Sniff that handles all calls to removed constants.
+ * Migrate Typehints in catch statements.
  */
-class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGenericUsage
+class Typo3Update_Sniffs_Classname_TypehintCatchExceptionSniff extends AbstractClassnameChecker
 {
-    /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
-     */
-    protected function getRemovedConfigFiles()
-    {
-        return Options::getRemovedConstantConfigFiles();
-    }
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -45,23 +33,6 @@ class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGener
      */
     public function register()
     {
-        return [T_STRING];
-    }
-
-    /**
-     * The original constant call, to allow user to check matches.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getOldUsage(array $config)
-    {
-        $old = $config['name'];
-        if ($config['static']) {
-            $old = $config['fqcn'] . '::' . $config['name'];
-        }
-
-        return 'constant ' . $old;
+        return [T_CATCH];
     }
 }

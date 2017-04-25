@@ -1,0 +1,26 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/PhpDocCommentSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -22,19 +22,19 @@
+ class InputFileForIssues
+ {
+     /**
+-     * @var Tx_Extbase_Domain_Repository_CategoryRepository
++     * @var \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
+      * @inject
+      */
+     protected $someVar;
+
+     /**
+-     * @param t3lib_div
++     * @param \TYPO3\CMS\Core\Utility\GeneralUtility
+      *
+-     * @return Tx_Extbase_Configuration_Configurationmanager
++     * @return \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
+      */
+     public function doSomething($something)
+     {
+-        /** @var t3lib_div $variable */ // This is supported as this is a phpdoc.
++        /** @var \TYPO3\CMS\Core\Utility\GeneralUtility $variable */ // This is supported as this is a phpdoc.
+         /** @var $variable t3lib_div */ // This is not supported! Use inline comments instead.
+     }
+ }

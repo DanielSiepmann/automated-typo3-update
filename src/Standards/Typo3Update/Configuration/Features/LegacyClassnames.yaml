@@ -1,0 +1,15 @@
+Typo3Update\Feature\LegacyClassnameFeature:
+  - Typo3Update_Sniffs_Classname_InheritanceSniff
+  - Typo3Update_Sniffs_Classname_InlineCommentSniff
+  - Typo3Update_Sniffs_Classname_InstanceofSniff
+  - Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff
+  - Typo3Update_Sniffs_Classname_InstantiationWithNewSniff
+  - Typo3Update_Sniffs_Classname_InstantiationWithObjectManagerSniff
+  - Typo3Update_Sniffs_Classname_IsACallSniff
+  - Typo3Update_Sniffs_Classname_MissingNamespaceSniff
+  - Typo3Update_Sniffs_Classname_MissingVendorForPluginsAndModulesSniff
+  - Typo3Update_Sniffs_Classname_PhpDocCommentSniff
+  - Typo3Update_Sniffs_Classname_StaticCallSniff
+  - Typo3Update_Sniffs_Classname_TypeHintCatchExceptionSniff
+  - Typo3Update_Sniffs_Classname_TypeHintSniff
+  - Typo3Update_Sniffs_Classname_UseSniff
