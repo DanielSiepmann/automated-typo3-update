@@ -194,24 +194,12 @@ class LegacyClassnameFeature implements FeatureInterface
 
         $phpcsFile->fixer->replaceToken(
             $classnamePosition,
-            $this->getTokenForReplacement($prefix . $this->getNewClassname($classname), $classname, $phpcsFile)
+            str_replace(
+                $classname,
+                $prefix . $this->getNewClassname($classname),
+                $phpcsFile->getTokens()[$classnamePosition]['content']
+            )
         );
-    }
-
-    /**
-     * String to use for replacing / fixing the token.
-     * Default is class name itself, can be overwritten in sniff for special behaviour.
-     *
-     * @param string $newClassname
-     * @param string $originalClassname
-     * @param PhpCsFile $phpcsFile
-     * @return string
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) We need to match the signature.
-     */
-    protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
-    {
-        return $newClassname;
     }
 
     /**
