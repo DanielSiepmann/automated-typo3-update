@@ -58,7 +58,7 @@ has to exist: :file:`tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassname
 .. _extending-tests-single:
 
 Single test per sniff
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 Inside of the folder at least a file :file:`InputFileForIssues.php` has to exist, containing PHP
 code to use for the test. Also a file :file:`Expected.json` has to exist, with the json result of
@@ -72,7 +72,7 @@ If your sniff also implements fixable errors or warnings, you can further provid
 .. _extending-tests-multiple:
 
 Multiple tests per sniff
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Also it's possible to provide multiple tests for a single sniff, e.g. with different cli arguments
 like options for the sniff. In that case you have to place a :file:`Arguments.php` in the folder.
@@ -99,7 +99,7 @@ Also you can provide further cli arguments on a key -> value base. Where ``runti
 as it contains a sub array to provide multiple runtime sets.
 
 How sniff tests are implemented
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We just find all folders below :file:`tests/Fixtures/Standards/Typo3Update/Sniffs` ending with
 ``Sniff`` and check the structure. They are provided to the test itself through a dataprovider in
