@@ -21,7 +21,7 @@
 
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use Typo3Update\FeaturesSupport;
+use Typo3Update\Feature\FeaturesSupport;
 
 /**
  * Handle PHP Doc comments.

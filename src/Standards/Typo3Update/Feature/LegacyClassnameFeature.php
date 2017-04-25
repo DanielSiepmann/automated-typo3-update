@@ -23,8 +23,6 @@ namespace Typo3Update\Feature;
 use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use Typo3Update\FeatureInterface;
-use Typo3Update\Feature\LegacyClassnameMapping;
 
 /**
  *

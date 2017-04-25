@@ -1,5 +1,5 @@
 <?php
-namespace Typo3Update;
+namespace Typo3Update\Feature;
 
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -21,33 +21,20 @@ namespace Typo3Update;
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Features;
 
 /**
- * Provides "feature" support for sniff.
+ *
  */
-trait FeaturesSupport
+interface FeatureInterface
 {
     /**
-     * @var Features
+     * Process like a PHPCS Sniff.
+     *
+     * @param PhpCsFile $phpcsFile The current PhpCsFile working with.
+     * @param int $stackPtr The current stack pointer.
+     * @param string $content The content detected to work with.
+     *
+     * @return void
      */
-    protected $features;
-
-    public function __construct()
-    {
-        $this->features = new Features($this);
-    }
-
-    public function processFeatures(PhpCsFile $phpcsFile, $stackPtr, $content)
-    {
-        foreach ($this->features as $featureClassName) {
-            $feature = $this->createFeature($featureClassName);
-            $feature->process($phpcsFile, $stackPtr, $content);
-        }
-    }
-
-    protected function createFeature($featureClassname)
-    {
-        return new $featureClassname($this);
-    }
+    public function process(PhpCsFile $phpcsFile, $stackPtr, $content);
 }

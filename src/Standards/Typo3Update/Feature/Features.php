@@ -1,5 +1,5 @@
 <?php
-namespace Typo3Update;
+namespace Typo3Update\Feature;
 
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -21,6 +21,7 @@ namespace Typo3Update;
  */
 
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update\Options;
 
 /**
  *
