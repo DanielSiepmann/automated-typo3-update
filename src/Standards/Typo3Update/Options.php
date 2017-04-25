@@ -100,6 +100,11 @@ class Options
         return $option;
     }
 
+    /**
+     * Get the configured features.
+     *
+     * @return array
+     */
     public static function getFeaturesConfiguration()
     {
         $option = [];

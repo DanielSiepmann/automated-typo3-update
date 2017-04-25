@@ -28,7 +28,16 @@ use Typo3Update\Options;
  */
 class Features implements \Iterator
 {
+    /**
+     * Internal array position for \Iterator implementation.
+     * @var int
+     */
     protected $index = 0;
+
+    /**
+     * Internal array
+     * @var array
+     */
     protected $features = [];
 
     /**
