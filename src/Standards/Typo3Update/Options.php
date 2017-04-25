@@ -96,6 +96,19 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed class configurations.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedClassConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedClassConfigFiles',
+            __DIR__ . '/../Configuration/Removed/Classes/*.yaml'
+        );
+    }
+
+    /**
      * Get the option by optionName, if not defined, use default.
      *
      * @param string $optionName
