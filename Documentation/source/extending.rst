@@ -24,6 +24,24 @@ The following resources might be helpful during working with ``phpcs``:
 
 - :file:`CodeSniffer/File.php`
 
+.. _extending-features:
+
+Features
+--------
+
+Sniffs do not always add errors or warnings in our standard, instead for more flexibility, we use
+them to find specific "tokens", e.g. class names. We then attach so called *Features* to sniffs to
+work on that token.
+
+E.g. we deliver the Feature ``LegacyClassnameFeature`` which will check whether a given class name
+is legacy and should be replaced. As class names may occur in many places like type hints or php doc
+blocks, the sniffs will detect the class names and the feature will work on them.
+
+Features can be attached to the sniffs. A feature has to implement the ``FeatureInterface`` and will
+work on tokens found by sniffs.
+
+To attach a Feature to Sniffs, provide a yaml-configuration, see :ref:`configuration-features`.
+
 .. _extending-tests:
 
 Tests

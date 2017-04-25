@@ -156,3 +156,24 @@ Example:
 .. code:: bash
 
     --runtime-set removedConstantConfigFiles "/Some/Absolute/Path/*.yaml"
+
+.. _configuration-features:
+
+features
+--------
+
+Configure where to look for configuration files defining the feature mappings. Default is
+``Configuration/Features/*.yaml`` inside the standard itself. Globing is used, so placeholders like
+``*`` are possible, see https://secure.php.net/manual/en/function.glob.php
+
+Using :file:`ruleset.xml`:
+
+.. code:: xml
+
+    <config name="features" value="/Some/Absolute/Path/*.yaml"/>
+
+Example:
+
+.. code:: bash
+
+    --runtime-set features "/Some/Absolute/Path/*.yaml"
