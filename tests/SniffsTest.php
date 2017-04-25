@@ -147,8 +147,7 @@ class SniffsTest extends TestCase
                 $this->getExpectedDiffOutput($folder),
                 $this->getOutput($internalArguments)['output'],
                 'Fixing Sniff "' . $this->getSniffByFolder($folder) . '"'
-                    . ' did not produce expected diff for input file '
-                    . $internalArguments['inputFile']
+                    . ' did not produce expected diff,'
                     . ' called: ' . $this->getPhpcsCall($internalArguments)
             );
         } catch (FileNotFoundException $e) {
