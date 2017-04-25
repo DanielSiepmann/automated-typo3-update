@@ -21,9 +21,6 @@
 
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate instanceof checks of old legacy classnames.
- */
 class Typo3Update_Sniffs_Classname_InstanceofSniff extends AbstractClassnameChecker
 {
     /**
@@ -33,8 +30,6 @@ class Typo3Update_Sniffs_Classname_InstanceofSniff extends AbstractClassnameChec
      */
     public function register()
     {
-        return [
-            T_INSTANCEOF,
-        ];
+        return [T_INSTANCEOF];
     }
 }

@@ -24,13 +24,16 @@ use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use Typo3Update\Options;
 
 /**
- *
+ * Contains all configured features for a single sniff.
  */
 class Features implements \Iterator
 {
     protected $index = 0;
     protected $features = [];
 
+    /**
+     * @param PhpCsSniff $sniff The sniff to collect features for.
+     */
     public function __construct(PhpCsSniff $sniff)
     {
         foreach (Options::getFeaturesConfiguration() as $featureName => $sniffs) {

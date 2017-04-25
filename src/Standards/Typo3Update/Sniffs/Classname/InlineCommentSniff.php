@@ -22,9 +22,6 @@
 use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Migrate PHP inline comments, e.g. for IDEs.
- */
 class Typo3Update_Sniffs_Classname_InlineCommentSniff extends AbstractClassnameChecker
 {
     /**
@@ -34,9 +31,7 @@ class Typo3Update_Sniffs_Classname_InlineCommentSniff extends AbstractClassnameC
      */
     public function register()
     {
-        return [
-            T_COMMENT,
-        ];
+        return [T_COMMENT];
     }
 
     /**
@@ -76,26 +71,5 @@ class Typo3Update_Sniffs_Classname_InlineCommentSniff extends AbstractClassnameC
         }
 
         return 3;
-    }
-
-    /**
-     * As token contains more then just class name, we have to build new content ourself.
-     *
-     * @param string $newClassname
-     * @param string $originalClassname
-     * @param PhpCsFile $phpcsFile
-     * @return string
-     */
-    protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
-    {
-        $token = preg_split('/\s+/', $this->originalTokenContent);
-        $token[$this->getClassnamePosition($token)] = $newClassname;
-
-        // Keep line ending, removed by preg_split
-        if ($token[0] === '//') {
-            $token[count($token)] = $phpcsFile->eolChar;
-        }
-
-        return implode(' ', $token);
     }
 }

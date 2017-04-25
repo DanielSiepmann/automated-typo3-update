@@ -22,9 +22,6 @@
 use PHP_CodeSniffer_File as PhpcsFile;
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate instantiations of old legacy classnames using "makeInstance".
- */
 class Typo3Update_Sniffs_Classname_IsACallSniff extends AbstractClassnameChecker
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;

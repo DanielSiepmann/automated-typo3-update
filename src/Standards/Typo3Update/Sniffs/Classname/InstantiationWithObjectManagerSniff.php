@@ -23,9 +23,6 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Tokens as Tokens;
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate old legacy classname instantiations using objectmanager create and get.
- */
 class Typo3Update_Sniffs_Classname_InstantiationWithObjectManagerSniff extends AbstractClassnameChecker
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;

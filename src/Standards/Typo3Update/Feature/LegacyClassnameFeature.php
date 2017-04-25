@@ -25,7 +25,9 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
 
 /**
+ * This feature will add fixable errors for old legacy classnames.
  *
+ * Can be attached to sniffs returning classnames.
  */
 class LegacyClassnameFeature implements FeatureInterface
 {
@@ -129,20 +131,6 @@ class LegacyClassnameFeature implements FeatureInterface
     protected function getNewClassname($classname)
     {
         return $this->legacyMapping->getNewClassname($classname);
-    }
-
-    /**
-     * Use to add new mappings found during parsing.
-     * E.g. in MissingNamespaceSniff old class definitions are fixed and a new mapping exists afterwards.
-     *
-     * @param string $legacyClassname
-     * @param string $newClassname
-     *
-     * @return void
-     */
-    protected function addLegacyClassname($legacyClassname, $newClassname)
-    {
-        $this->legacyMapping->addLegacyClassname($legacyClassname, $newClassname);
     }
 
     /**

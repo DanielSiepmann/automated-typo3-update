@@ -21,9 +21,6 @@
 
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Migrate Typehints in catch statements.
- */
 class Typo3Update_Sniffs_Classname_TypeHintCatchExceptionSniff extends AbstractClassnameChecker
 {
     /**

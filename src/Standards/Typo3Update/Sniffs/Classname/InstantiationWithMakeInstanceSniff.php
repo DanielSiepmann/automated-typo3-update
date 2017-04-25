@@ -23,9 +23,6 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Tokens as Tokens;
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate instantiations of old legacy classnames using "makeInstance".
- */
 class Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff extends AbstractClassnameChecker
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
@@ -68,18 +65,5 @@ class Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff extends Ab
         $classname = $tokens[$classnamePosition]['content'];
         $this->originalTokenContent = $tokens[$classnamePosition]['content'];
         $this->processFeatures($phpcsFile, $classnamePosition, $classname);
-    }
-
-    /**
-     * As token contains more then just class name, we have to build new content ourself.
-     *
-     * @param string $newClassname
-     * @param string $originalClassname
-     * @param PhpCsFile $phpcsFile
-     * @return string
-     */
-    protected function getTokenForReplacement($newClassname, $originalClassname, PhpCsFile $phpcsFile)
-    {
-        return $this->getTokenReplacementForString($newClassname);
     }
 }

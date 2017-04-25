@@ -23,7 +23,7 @@ namespace Typo3Update\Feature;
 use PHP_CodeSniffer_File as PhpCsFile;
 
 /**
- * Provides "feature" support for sniff.
+ * Provides "feature" support for sniffs.
  */
 trait FeaturesSupport
 {
@@ -37,6 +37,13 @@ trait FeaturesSupport
         $this->features = new Features($this);
     }
 
+    /**
+     * Processes all features for the sniff.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     * @param string $content
+     */
     public function processFeatures(PhpCsFile $phpcsFile, $stackPtr, $content)
     {
         foreach ($this->features as $featureClassName) {
@@ -45,6 +52,12 @@ trait FeaturesSupport
         }
     }
 
+    /**
+     * Create a new instance of the given feature.
+     *
+     * @param string $featureClassname
+     * @return FeatureInterface
+     */
     protected function createFeature($featureClassname)
     {
         return new $featureClassname($this);

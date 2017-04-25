@@ -22,9 +22,6 @@
 use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate extend and implement of old legacy classnames.
- */
 class Typo3Update_Sniffs_Classname_InheritanceSniff extends AbstractClassnameChecker
 {
     /**
@@ -34,10 +31,7 @@ class Typo3Update_Sniffs_Classname_InheritanceSniff extends AbstractClassnameChe
      */
     public function register()
     {
-        return [
-            T_EXTENDS,
-            T_IMPLEMENTS,
-        ];
+        return [T_EXTENDS, T_IMPLEMENTS];
     }
 
     /**

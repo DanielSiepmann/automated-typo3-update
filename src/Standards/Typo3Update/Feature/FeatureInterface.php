@@ -23,7 +23,7 @@ namespace Typo3Update\Feature;
 use PHP_CodeSniffer_File as PhpCsFile;
 
 /**
- *
+ * See "Features" in documentation.
  */
 interface FeatureInterface
 {

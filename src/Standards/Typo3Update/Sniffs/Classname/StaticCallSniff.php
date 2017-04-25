@@ -21,9 +21,6 @@
 
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate static calls to old legacy classnames.
- */
 class Typo3Update_Sniffs_Classname_StaticCallSniff extends AbstractClassnameChecker
 {
     /**

@@ -26,6 +26,9 @@ use Typo3Update\Feature\FeaturesSupport;
 
 /**
  * Provide common uses for all sniffs, regarding class name checks.
+ *
+ * Will do nothing but calling configured features, allowing new extending
+ * sniffs to find further class names.
  */
 abstract class AbstractClassnameChecker implements PhpCsSniff
 {

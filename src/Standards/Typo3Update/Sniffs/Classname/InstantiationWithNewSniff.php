@@ -21,9 +21,6 @@
 
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Detect and migrate old legacy classnames instantiations using phps "new".
- */
 class Typo3Update_Sniffs_Classname_InstantiationWithNewSniff extends AbstractClassnameChecker
 {
     /**

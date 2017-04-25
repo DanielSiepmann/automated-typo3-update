@@ -22,9 +22,6 @@
 use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Migrate Typehints in function / method definitions.
- */
 class Typo3Update_Sniffs_Classname_TypeHintSniff extends AbstractClassnameChecker
 {
     /**
