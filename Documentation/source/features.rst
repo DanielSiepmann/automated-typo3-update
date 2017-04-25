@@ -98,10 +98,10 @@ Also we check for the following deprecated calls:
 
 Check for usage of *removed functions* in general. The functions are configured via yaml files. The
 location of them is configurable, default is inside the standard itself, and we try to deliver all
-information. For configuration options see ``removedFunctionConfigFiles``.
+information. For configuration options see :ref:`configuration-removedFunctionConfigFiles`.
 
 Check for usage of *removed constants*. The constants are configured in same way as removed
-functions. For configuration options see ``removedConstantConfigFiles``.
+functions. For configuration options see :ref:`configuration-removedConstantConfigFiles`.
 
 
 Further checks
