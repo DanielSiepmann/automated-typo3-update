@@ -137,8 +137,7 @@ class SniffsTest extends TestCase
             $this->getExpectedJsonOutput($folder),
             $this->getOutput($internalArguments)['output'],
             'Checking Sniff "' . $this->getSniffByFolder($folder) . '"'
-                . ' did not produce expected output for input file '
-                . $internalArguments['inputFile']
+                . ' did not produce expected output,'
                 . ' called: ' . $this->getPhpcsCall($internalArguments)
         );
 
