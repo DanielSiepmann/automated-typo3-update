@@ -1,0 +1,14 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 0,
+            "messages": [],
+            "warnings": 0
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 0
+    }
+}

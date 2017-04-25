@@ -1,5 +1,7 @@
 <?php
 
+namespace Vendor\ExtName\Controller;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,12 +21,8 @@
  * 02110-1301, USA.
  */
 
-return [
-    'nothingTodo' => [],
-    'defaultVendor' => [],
-    'customVendor' => [
-        'runtime-set' => [
-            'vendor' => 'MyCustomVendor',
-        ],
-    ],
-];
+use Tx_Extbase_Mvc_Controller_ActionController;
+
+class Frontendcontroller extends Tx_Extbase_Mvc_Controller_ActionController
+{
+}
