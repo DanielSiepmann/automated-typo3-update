@@ -1,4 +1,4 @@
---- tests/Fixtures/Standards/Typo3Update/Sniffs/LegacyClassnames/TypeHintSniff/InputFileForIssues.php
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/TypeHintSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
 @@ -25,10 +25,10 @@
  function something(\TYPO3\CMS\Extbase\Domain\Model\BackendUser $user)
