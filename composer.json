@@ -23,6 +23,7 @@
         ]
     },
     "require": {
+        "php": "~7.1",
         "helmich/typo3-typoscript-parser": "1.1.*",
         "squizlabs/php_codesniffer": "2.8.*",
         "symfony/yaml": "3.2.*",

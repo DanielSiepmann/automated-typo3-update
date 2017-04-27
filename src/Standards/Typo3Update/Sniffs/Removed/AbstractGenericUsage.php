@@ -22,9 +22,7 @@ namespace Typo3Update\Sniffs\Removed;
 
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use PHP_CodeSniffer_Tokens as Tokens;
-use Symfony\Component\Yaml\Yaml;
-use Typo3Update\Options;
+use Typo3Update\RemovedByYamlConfiguration;
 
 /**
  * Contains common functionality for removed code like constants or functions.
@@ -35,32 +33,23 @@ use Typo3Update\Options;
  */
 abstract class AbstractGenericUsage implements PhpCsSniff
 {
-    use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
-
-    /**
-     * Configuration to define removed code.
-     *
-     * @var array
-     */
-    protected $configured = [];
-
-    /**
-     * Entries removed in current sniff.
-     * @var array
-     */
-    protected $removed = [];
+    protected $configured;
 
     public function __construct()
     {
-        if ($this->configured === []) {
-            foreach ($this->getRemovedConfigFiles() as $file) {
-                $this->configured = array_merge(
-                    $this->configured,
-                    $this->prepareStructure(Yaml::parse(file_get_contents((string) $file)))
-                );
-            }
-        }
+        $this->configured = new RemovedByYamlConfiguration(
+            $this->getRemovedConfigFiles(),
+            \Closure::fromCallable([$this, 'prepareStructure'])
+        );
     }
+
+    /**
+     * Prepares structure from config for later usage.
+     *
+     * @param array $typo3Versions
+     * @return array
+     */
+    abstract protected function prepareStructure(array $typo3Versions);
 
     /**
      * Return file names containing removed configurations.
@@ -69,197 +58,33 @@ abstract class AbstractGenericUsage implements PhpCsSniff
      */
     abstract protected function getRemovedConfigFiles();
 
-    /**
-     * Prepares structure from config for later usage.
-     *
-     * @param array $typo3Versions
-     * @return array
-     */
-    protected function prepareStructure(array $typo3Versions)
-    {
-        $newStructure = [];
+    abstract protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr);
 
-        foreach ($typo3Versions as $typo3Version => $removals) {
-            foreach ($removals as $removed => $config) {
-                // Split static methods and methods.
-                $split = preg_split('/::|->/', $removed);
-
-                $newStructure[$removed] = $config;
-
-                $newStructure[$removed]['static'] = strpos($removed, '::') !== false;
-                $newStructure[$removed]['fqcn'] = null;
-                $newStructure[$removed]['class'] = null;
-                $newStructure[$removed]['name'] = $split[0];
-                $newStructure[$removed]['version_removed'] = $typo3Version;
-
-                // If split contains two parts, it's a class
-                if (isset($split[1])) {
-                    $newStructure[$removed]['fqcn'] = $split[0];
-                    $newStructure[$removed]['class'] = array_slice(
-                        explode('\\', $newStructure[$removed]['fqcn']),
-                        -1
-                    )[0];
-                    $newStructure[$removed]['name'] = $split[1];
-                }
-            }
-        }
-
-        return $newStructure;
-    }
-
-    /**
-     * Processes the tokens that this sniff is interested in.
-     *
-     * This is the default implementation, as most of the time next T_STRING is
-     * the class name. This way only the register method has to be registered
-     * in default cases.
-     *
-     * @param PhpCsFile $phpcsFile The file where the token was found.
-     * @param int                  $stackPtr  The position in the stack where
-     *                                        the token was found.
-     *
-     * @return void
-     */
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
-        if (!$this->isRemoved($phpcsFile, $stackPtr)) {
+        $removed = $this->findRemoved($phpcsFile, $stackPtr);
+        if ($removed === []) {
             return;
         }
 
-        $this->addMessage($phpcsFile, $stackPtr);
+        $this->addMessage($removed);
     }
 
-    /**
-     * Check whether the current token is removed.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     * @return bool
-     */
-    protected function isRemoved(PhpCsFile $phpcsFile, $stackPtr)
+    protected function addMessage(array $removed)
     {
-        $tokens = $phpcsFile->getTokens();
-        $staticPosition = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true, null, true);
-
-        $name = $tokens[$stackPtr]['content'];
-        $isStatic = false;
-        $class = false;
-
-        if ($staticPosition !== false) {
-            $isStatic = $tokens[$staticPosition]['code'] === T_DOUBLE_COLON;
-        }
-
-        if ($isStatic) {
-            $class = $phpcsFile->findPrevious(T_STRING, $staticPosition, null, false, null, true);
-            if ($class !== false) {
-                $class = $tokens[$class]['content'];
-            }
-        }
-
-        $this->removed = $this->getMatchingRemoved($name, $class, $isStatic);
-        return $this->removed !== [];
-    }
-
-    /**
-     * Returns all matching removed functions for given arguments.
-     *
-     * @param string $name
-     * @param string $className The last part of the class name, splitted by namespaces.
-     * @param bool $isStatic
-     *
-     * @return array
-     */
-    protected function getMatchingRemoved($name, $className, $isStatic)
-    {
-        // We will not match any static calls, without the class name, at least for now.
-        if ($isStatic === true && $className === false) {
-            return [];
-        }
-
-        return array_filter(
-            $this->configured,
-            function ($config) use ($name, $isStatic, $className) {
-                return $name === $config['name']
-                    && $isStatic === $config['static']
-                    && (
-                        $className === $config['class']
-                        || $className === false
-                    )
-                ;
-            }
-        );
-    }
-
-    /**
-     * Add message for the given token position.
-     *
-     * Default is a warning, non fixable. Just overwrite in concrete sniff, if
-     * something different suites better.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $tokenPosition
-     *
-     * @return void
-     */
-    protected function addMessage(PhpCsFile $phpcsFile, $tokenPosition)
-    {
-        foreach ($this->removed as $removed) {
+        foreach ($removed as $removed) {
             $phpcsFile->addWarning(
-                'Legacy calls are not allowed; found %s. Removed in %s. %s. See: %s',
+                'Calls to removed code are not allowed; found %s. Removed in %s. %s. See: %s',
                 $tokenPosition,
-                $this->getIdentifier($removed),
+                $removed['identifier'],
                 [
-                    $this->getOldUsage($removed),
-                    $this->getRemovedVersion($removed),
+                    $removed['oldUsage'],
+                    $removed['versionRemoved'],
                     $this->getReplacement($removed),
-                    $this->getDocsUrl($removed),
+                    $removed['docsUrl'],
                 ]
             );
         }
-    }
-
-    /**
-     * Identifier for configuring this specific error / warning through PHPCS.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getIdentifier(array $config)
-    {
-        $name = $config['name'];
-        if ($config['class']) {
-            $name = $config['class'] . '.' . $name;
-        }
-
-        return $name;
-    }
-
-    /**
-     * The original call, to allow user to check matches.
-     *
-     * As we match the name, that can be provided by multiple classes, you
-     * should provide an example, so users can check that this is the legacy
-     * one.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    abstract protected function getOldUsage(array $config);
-
-    /**
-     * Returns TYPO3 version when the breaking change happened.
-     *
-     * To let user decide whether this is important for him.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getRemovedVersion(array $config)
-    {
-        return $config['version_removed'];
     }
 
     /**
@@ -278,17 +103,5 @@ abstract class AbstractGenericUsage implements PhpCsSniff
             return $newCall;
         }
         return 'There is no replacement, just remove call';
-    }
-
-    /**
-     * Allow user to lookup the official docs related to this deprecation / breaking change.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getDocsUrl(array $config)
-    {
-        return $config['docsUrl'];
     }
 }
