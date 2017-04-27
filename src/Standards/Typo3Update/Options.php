@@ -104,7 +104,7 @@ class Options
     {
         return static::getOptionFileNames(
             'removedClassConfigFiles',
-            __DIR__ . '/../Configuration/Removed/Classes/*.yaml'
+            __DIR__ . '/Configuration/Removed/Classes/*.yaml'
         );
     }
 

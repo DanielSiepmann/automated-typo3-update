@@ -25,9 +25,9 @@
                     "column": 15,
                     "fixable": false,
                     "line": 32,
-                    "message": "Legacy calls are not allowed; found \\TYPO3\\CMS\\Backend\\Template\\MediumDocumentTemplate. Removed in 7.0. Use \\TYPO3\\CMS\\Backend\\Template\\DocumentTemplate instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html",
+                    "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Backend\\Template\\MediumDocumentTemplate. Removed in 7.0. Use \\TYPO3\\CMS\\Backend\\Template\\DocumentTemplate instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html",
                     "severity": 5,
-                    "source": "Typo3Update.LegacyClassnames.DocComment.TYPO3_CMS_Backend_Template_MediumDocumentTemplate",
+                    "source": "Typo3Update.Classname.PhpDocComment.RemovedClass.TYPO3_CMS_Backend_Template_MediumDocumentTemplate",
                     "type": "WARNING"
                 },
                 {

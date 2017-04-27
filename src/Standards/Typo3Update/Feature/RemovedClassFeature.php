@@ -20,37 +20,42 @@ namespace Typo3Update\Feature;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update\Options;
 
-/**
- * This feature will add fixable errors for old legacy classnames.
- *
- * Can be attached to sniffs returning classnames.
- */
-class RemovedClassFeature implements FeatureInterface
+class RemovedClassFeature extends AbstractYamlRemovedUsage
 {
-    /**
-     * Process like a PHPCS Sniff.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $classnamePosition
-     * @param string $classname
-     *
-     * @return void
-     */
     public function process(PhpCsFile $phpcsFile, $classnamePosition, $classname)
     {
-        if ($this->isClassnameRemoved($classname) === false) {
+        if (! $this->configured->isRemoved($classname)) {
             return;
         }
-
-        $phpcsFile->addError(
-            'Removed classes are not allowed; found "%s", use "%s" instead',
+        $this->addWarning(
+            $phpcsFile,
             $classnamePosition,
-            'removedClassname',
-            [$classname]
+            $this->configured->getRemoved($classname)
         );
+    }
+
+    protected function prepareStructure(array $typo3Versions)
+    {
+        $newStructure = [];
+        foreach ($typo3Versions as $typo3Version => $removals) {
+            foreach ($removals as $removed => $config) {
+                $config['name'] = $removed;
+                $config['identifier'] = 'RemovedClass.' . str_replace('\\', '_', ltrim($removed, '\\'));
+                $config['versionRemoved'] = $typo3Version;
+                $config['oldUsage'] = $removed;
+
+                $newStructure[$removed] = $config;
+            }
+        }
+
+        return $newStructure;
+    }
+
+    protected function getRemovedConfigFiles()
+    {
+        return Options::getRemovedClassConfigFiles();
     }
 }

@@ -21,12 +21,18 @@ namespace Typo3Update\Feature;
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer_Sniff as PhpCsSniff;
 
 /**
  * See "Features" in documentation.
  */
 interface FeatureInterface
 {
+    /**
+     * @var PhpCsSniff $sniff
+     */
+    public function __construct(PhpCsSniff $sniff);
+
     /**
      * Process like a PHPCS Sniff.
      *
