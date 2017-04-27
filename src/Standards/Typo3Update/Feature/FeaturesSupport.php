@@ -28,13 +28,11 @@ use PHP_CodeSniffer_File as PhpCsFile;
 trait FeaturesSupport
 {
     /**
-     * @var Features
+     * @return Features
      */
-    protected $features;
-
-    public function __construct()
+    protected function getFeatures()
     {
-        $this->features = new Features($this);
+        return new Features($this);
     }
 
     /**
@@ -46,7 +44,7 @@ trait FeaturesSupport
      */
     public function processFeatures(PhpCsFile $phpcsFile, $stackPtr, $content)
     {
-        foreach ($this->features as $featureClassName) {
+        foreach ($this->getFeatures() as $featureClassName) {
             $feature = $this->createFeature($featureClassName);
             $feature->process($phpcsFile, $stackPtr, $content);
         }
