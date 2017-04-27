@@ -101,6 +101,8 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         if ($token['type'] === $removed['type']) {
             return [$removed];
         }
+
+        return [];
     }
 
     /**

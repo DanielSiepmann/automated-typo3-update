@@ -62,20 +62,10 @@ abstract class AbstractGenericUsage implements PhpCsSniff
 
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $removed = $this->findRemoved($phpcsFile, $stackPtr);
-        if ($removed === []) {
-            return;
-        }
-
-        $this->addMessage($removed);
-    }
-
-    protected function addMessage(array $removed)
-    {
-        foreach ($removed as $removed) {
+        foreach ($this->findRemoved($phpcsFile, $stackPtr) as $removed) {
             $phpcsFile->addWarning(
                 'Calls to removed code are not allowed; found %s. Removed in %s. %s. See: %s',
-                $tokenPosition,
+                $stackPtr,
                 $removed['identifier'],
                 [
                     $removed['oldUsage'],

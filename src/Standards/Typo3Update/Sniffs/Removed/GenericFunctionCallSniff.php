@@ -19,16 +19,25 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Tokens as Tokens;
-use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
+use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
 use Typo3Update\Options;
 
 /**
  * Sniff that handles all calls to removed functions.
  */
-class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGenericUsage
+class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGenericPhpUsage
 {
+    /**
+     * Returns the token types that this sniff is interested in.
+     *
+     * @return array<int>
+     */
+    public function register()
+    {
+        return [T_STRING];
+    }
+
     /**
      * Return file names containing removed configurations.
      *
@@ -37,49 +46,5 @@ class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGeneri
     protected function getRemovedConfigFiles()
     {
         return Options::getRemovedFunctionConfigFiles();
-    }
-
-    /**
-     * Returns the token types that this sniff is interested in.
-     *
-     * @return array<int>
-     */
-    public function register()
-    {
-        return Tokens::$functionNameTokens;
-    }
-
-    /**
-     * Check whether function at given point is removed.
-     *
-     * @return bool
-     */
-    protected function isRemoved(PhpCsFile $phpcsFile, $stackPtr)
-    {
-        if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
-            return false;
-        }
-
-        return parent::isRemoved($phpcsFile, $stackPtr);
-    }
-
-    /**
-     * The original function call, to allow user to check matches.
-     *
-     * As we match the function name, that can be provided by multiple classes,
-     * you should provide an example, so users can check that this is the
-     * legacy one.
-     *
-     * @param array $config The converted structure for a single function.
-     *
-     * @return string
-     */
-    protected function getOldUsage(array $config)
-    {
-        $concat = '->';
-        if ($config['static']) {
-            $concat = '::';
-        }
-        return $config['fqcn'] . $concat . $config['name'];
     }
 }

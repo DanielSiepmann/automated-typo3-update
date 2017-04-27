@@ -7,7 +7,7 @@
                     "column": 41,
                     "fixable": false,
                     "line": 24,
-                    "message": "Legacy calls are not allowed; found \\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::loadTCA. Removed in 7.0. There is no replacement, just remove call. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html",
+                    "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::loadTCA. Removed in 7.0. There is no replacement, just remove call. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.GenericFunctionCall.GeneralUtility.loadTCA",
                     "type": "WARNING"
@@ -16,7 +16,7 @@
                     "column": 17,
                     "fixable": false,
                     "line": 26,
-                    "message": "Legacy calls are not allowed; found \\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::loadTCA. Removed in 7.0. There is no replacement, just remove call. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html",
+                    "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::loadTCA. Removed in 7.0. There is no replacement, just remove call. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.GenericFunctionCall.GeneralUtility.loadTCA",
                     "type": "WARNING"
@@ -25,7 +25,7 @@
                     "column": 44,
                     "fixable": false,
                     "line": 28,
-                    "message": "Legacy calls are not allowed; found \\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::loadTCA. Removed in 7.0. There is no replacement, just remove call. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html",
+                    "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::loadTCA. Removed in 7.0. There is no replacement, just remove call. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-LoadTcaFunctionRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.GenericFunctionCall.GeneralUtility.loadTCA",
                     "type": "WARNING"
@@ -34,7 +34,7 @@
                     "column": 8,
                     "fixable": false,
                     "line": 31,
-                    "message": "Legacy calls are not allowed; found \\TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController->includeTCA. Removed in 7.0. Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \\TYPO3\\CMS\\Frontend\\Utility\\EidUtility::initTCA() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html",
+                    "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController->includeTCA. Removed in 7.0. Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \\TYPO3\\CMS\\Frontend\\Utility\\EidUtility::initTCA() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.GenericFunctionCall.TypoScriptFrontendController.includeTCA",
                     "type": "WARNING"
@@ -43,7 +43,7 @@
                     "column": 17,
                     "fixable": false,
                     "line": 35,
-                    "message": "Legacy calls are not allowed; found \\TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController->includeTCA. Removed in 7.0. Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \\TYPO3\\CMS\\Frontend\\Utility\\EidUtility::initTCA() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html",
+                    "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController->includeTCA. Removed in 7.0. Full TCA is always loaded during bootstrap in FE, the method is obsolete. If an eid script calls this method to load TCA, use \\TYPO3\\CMS\\Frontend\\Utility\\EidUtility::initTCA() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61785-FrontendTcaFunctionsRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.GenericFunctionCall.TypoScriptFrontendController.includeTCA",
                     "type": "WARNING"

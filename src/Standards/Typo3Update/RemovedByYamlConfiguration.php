@@ -46,6 +46,11 @@ class RemovedByYamlConfiguration
         return isset($this->configured[$identifier]);
     }
 
+    public function getAllRemoved()
+    {
+        return $this->configured;
+    }
+
     public function getRemoved($identifier)
     {
         if (!$this->isRemoved($identifier)) {
