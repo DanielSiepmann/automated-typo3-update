@@ -20,24 +20,10 @@
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
-use Typo3Update\Options;
+use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-/**
- * Sniff that handles all calls to removed constants.
- */
-class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGenericUsage
+class Typo3Update_Sniffs_Classname_TypeHintSniff extends AbstractClassnameChecker
 {
-    /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
-     */
-    protected function getRemovedConfigFiles()
-    {
-        return Options::getRemovedConstantConfigFiles();
-    }
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -45,23 +31,31 @@ class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGener
      */
     public function register()
     {
-        return [T_STRING];
+        return [T_FUNCTION];
     }
 
     /**
-     * The original constant call, to allow user to check matches.
+     * Processes the tokens that this sniff is interested in.
      *
-     * @param array $config
+     * @param PhpCsFile $phpcsFile The file where the token was found.
+     * @param int                  $stackPtr  The position in the stack where
+     *                                        the token was found.
      *
-     * @return string
+     * @return void
      */
-    protected function getOldUsage(array $config)
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $old = $config['name'];
-        if ($config['static']) {
-            $old = $config['fqcn'] . '::' . $config['name'];
-        }
+        $params = $phpcsFile->getMethodParameters($stackPtr);
+        foreach ($params as $parameter) {
+            if ($parameter['type_hint'] === '') {
+                continue;
+            }
 
-        return 'constant ' . $old;
+            $position = $phpcsFile->findPrevious(T_STRING, $parameter['token'], $stackPtr, false, null, true);
+            if ($position === false) {
+                continue;
+            }
+            $this->processFeatures($phpcsFile, $position, $parameter['type_hint']);
+        }
     }
 }
