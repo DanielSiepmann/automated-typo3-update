@@ -288,3 +288,29 @@ Two examples::
         new HRULER:
             replacement: 'Any installation should migrate to alternatives such as F...'
             docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog...'
+
+Features
+^^^^^^^^
+
+Configures which Features should be attached to x Sniffs, where Key is the FQCN of the feature and
+the values are FQCN of the sniffs.
+
+Works only if the sniff respects execution of features.
+
+One example::
+
+    Typo3Update\Feature\LegacyClassnameFeature:
+      - Typo3Update_Sniffs_Classname_InheritanceSniff
+      - Typo3Update_Sniffs_Classname_InlineCommentSniff
+      - Typo3Update_Sniffs_Classname_InstanceofSniff
+      - Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff
+      - Typo3Update_Sniffs_Classname_InstantiationWithNewSniff
+      - Typo3Update_Sniffs_Classname_InstantiationWithObjectManagerSniff
+      - Typo3Update_Sniffs_Classname_IsACallSniff
+      - Typo3Update_Sniffs_Classname_MissingVendorForPluginsAndModulesSniff
+      - Typo3Update_Sniffs_Classname_PhpDocCommentSniff
+      - Typo3Update_Sniffs_Classname_StaticCallSniff
+      - Typo3Update_Sniffs_Classname_TypeHintCatchExceptionSniff
+      - Typo3Update_Sniffs_Classname_TypeHintSniff
+      - Typo3Update_Sniffs_Classname_UseSniff
+      - Typo3Update_Sniffs_LegacyClassname_MissingNamespaceSniff
