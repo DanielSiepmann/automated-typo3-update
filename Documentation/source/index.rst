@@ -19,6 +19,8 @@ Requirements
 To install the project you need ``composer`` to be installed and inside your ``$PATH``.
 Otherwise run ``make install-composer`` to install composer.
 
+At least PHP 7.1 is required.
+
 Installation
 ============
 
