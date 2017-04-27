@@ -1,0 +1,14 @@
+# Breaking changes in 7.4: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Index.html#breaking-changes
+'7.4':
+  page.javascriptLibs.Prototype:
+    replacement: ~
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-39721-PrototypejsAndScriptaculousRemoved.html'
+  page.javascriptLibs.Scriptaculous:
+    replacement: ~
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-39721-PrototypejsAndScriptaculousRemoved.html'
+  page.javascriptLibs.Scriptaculous.modules:
+    replacement: ~
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-39721-PrototypejsAndScriptaculousRemoved.html'
+  RTE.userLinks:
+    replacement: 'Use the newly added Tabbing API to add your custom link selection tab'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-68116-DropRTEuserLinksFunctionality.html'

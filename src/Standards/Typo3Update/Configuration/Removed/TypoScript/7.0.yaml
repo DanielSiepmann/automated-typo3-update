@@ -1,0 +1,26 @@
+# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Index.html#breaking-changes
+'7.0':
+  styles.insertContent:
+    replacement: 'Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html'
+  mod.web_list.alternateBgColors:
+    replacement: 'Removed without substitution'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-53658-RemoveAlternateBgColorsOption.html'
+  acronym:
+    replacement: 'User TSconfig must be modified to refer to "abbreviation" instead of "acronym"'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-54409-RteAcronymButtonRenamedAbbreviation.html'
+  features.rewrittenPropertyMapper:
+    replacement: 'it is no longer possible to deactivate the feature. If configured with 1, just remove, otherwise adjust your code.'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  config.notification_email_charset:
+    replacement: ~
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62793-RemoveConfigNotification.html'
+  config.notification_email_encoding:
+    replacement: ~
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62793-RemoveConfigNotification.html'
+  config.notification_email_urlmode:
+    replacement: ~
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62793-RemoveConfigNotification.html'
+  config.uniqueLinkVars:
+    replacement: 'The setting config.uniqueLinkVars has been removed as the behaviour is now always used'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62888-RemoveUniqueLinkVars.html'

@@ -1,0 +1,23 @@
+# Breaking changes in 7.2: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Index.html#breaking-changes
+'7.2':
+  mod.web_info.menu.function.tx_cms_webinfo_page:
+    replacement: 'Renamed to mod.web_info.menu.function.TYPO3\CMS\Frontend\Controller\PageInformationController'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'
+  mod.web_info.menu.function.tx_cms_webinfo_lang:
+    replacement: 'Renamed to mod.web_info.menu.function.TYPO3\CMS\Frontend\Controller\TranslationStatusController'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'
+  mod.web_info.menu.function.tx_belog_webinfo:
+    replacement: 'Renamed to mod.web_info.menu.function.TYPO3\CMS\Belog\Module\BackendLogModuleBootstrap'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'
+  mod.web_info.menu.function.tx_infopagetsconfig_webinfo:
+    replacement: 'Renamed to mod.web_info.menu.function.TYPO3\CMS\InfoPagetsconfig\Controller\InfoPageTyposcriptConfigController'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'
+  mod.web_info.menu.function.tx_linkvalidator_ModFuncReport:
+    replacement: 'Renamed to mod.web_info.menu.function.TYPO3\CMS\Linkvalidator\Report\LinkValidatorReport'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'
+  mod.web_info.menu.function.tx_indexedsearch_modfunc1:
+    replacement: 'removed, indexed_search has its own module'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'
+  mod.web_info.menu.function.tx_indexedsearch_modfunc2:
+    replacement: 'removed, indexed_search has its own module'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-66286-PageTSconfigOptionsToHideWebInfoModulesRenamed.html'

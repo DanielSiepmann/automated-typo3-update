@@ -31,6 +31,17 @@ You might want to add ``-p --colors`` to see that something is happening.
 Also make sure to ignore certain files like libraries or js and css files while running the update.
 Check out the official docs for how to do so.
 
+Lint TypoScript
+---------------
+
+To lint TypoScript, include the files in your linting and add the following arguments per file
+extension::
+
+    --extensions=txt/TypoScript,ts/TypoScript
+
+Make sure to ignore files with same file extension but different meaning, like documentatons, readme
+or changelogs.
+
 FAQ
 ---
 

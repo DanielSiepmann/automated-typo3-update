@@ -83,6 +83,19 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed typoscript.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedTypoScriptConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedTypoScript',
+            __DIR__ . '/Configuration/Removed/TypoScript/*.yaml'
+        );
+    }
+
+    /**
      * Get the option by optionName, if not defined, use default.
      *
      * @param string $optionName
