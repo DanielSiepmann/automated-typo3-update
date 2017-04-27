@@ -22,83 +22,16 @@ namespace Typo3Update\Sniffs\Removed;
 
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use Typo3Update\RemovedByYamlConfiguration;
+use Typo3Update\AbstractYamlRemovedUsage as BaseAbstractYamlRemovedUsage;
 
-/**
- * Contains common functionality for removed code like constants or functions.
- *
- * Removed parts are configured using YAML-Files, for examples see
- * src/Standards/Typo3Update/Configuration/Removed/Constants/7.0.yaml Also
- * check out the configuration options in Readme.rst.
- */
-abstract class AbstractGenericUsage implements PhpCsSniff
+abstract class AbstractGenericUsage extends BaseAbstractYamlRemovedUsage implements PhpCsSniff
 {
-    protected $configured;
-
-    public function __construct()
-    {
-        $this->configured = new RemovedByYamlConfiguration(
-            $this->getRemovedConfigFiles(),
-            $this->getPrepateStructure()
-        );
-    }
-
-    protected function getPrepateStructure()
-    {
-        return function (array $typo3Versions) {
-            return call_user_func_array([$this, 'prepareStructure'], [$typo3Versions]);
-        };
-    }
-
-    /**
-     * Prepares structure from config for later usage.
-     *
-     * @param array $typo3Versions
-     * @return array
-     */
-    abstract protected function prepareStructure(array $typo3Versions);
-
-    /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
-     */
-    abstract protected function getRemovedConfigFiles();
-
     abstract protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr);
 
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         foreach ($this->findRemoved($phpcsFile, $stackPtr) as $removed) {
-            $phpcsFile->addWarning(
-                'Calls to removed code are not allowed; found %s. Removed in %s. %s. See: %s',
-                $stackPtr,
-                $removed['identifier'],
-                [
-                    $removed['oldUsage'],
-                    $removed['versionRemoved'],
-                    $this->getReplacement($removed),
-                    $removed['docsUrl'],
-                ]
-            );
+            $this->addWarning($phpcsFile, $stackPtr, $removed);
         }
-    }
-
-    /**
-     * The new call, or information how to migrate.
-     *
-     * To provide feedback for user to ease migration.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getReplacement(array $config)
-    {
-        $newCall = $config['replacement'];
-        if ($newCall !== null) {
-            return $newCall;
-        }
-        return 'There is no replacement, just remove call';
     }
 }
