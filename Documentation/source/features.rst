@@ -15,7 +15,7 @@ Possible configurations for all sniffs:
 
 Implemented sniffs:
 
-- PHPDocuments, like Includes and annotations for IDEs.
+- PHPDocComments, like Includes and annotations for IDEs.
 
   Possible extra configurations:
 
