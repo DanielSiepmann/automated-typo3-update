@@ -140,10 +140,11 @@ class Options
         );
 
         foreach ($fileNames as $file) {
-            $option = array_merge(
-                $option,
-                Yaml::parse(file_get_contents((string) $file))
-            );
+            $content = Yaml::parse(file_get_contents((string) $file));
+            if ($content === null) {
+                $content = [];
+            }
+            $option = array_merge($option, $content);
         }
 
         return $option;
