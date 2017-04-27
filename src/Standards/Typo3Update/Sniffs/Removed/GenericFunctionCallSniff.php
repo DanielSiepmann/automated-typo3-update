@@ -19,32 +19,38 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_Tokens as Tokens;
-use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
+use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Options;
+use Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
+use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
 
 /**
  * Sniff that handles all calls to removed functions.
  */
 class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGenericPhpUsage
 {
-    /**
-     * Returns the token types that this sniff is interested in.
-     *
-     * @return array<int>
-     */
-    public function register()
-    {
-        return [T_STRING];
-    }
+    use ExtendedPhpCsSupportTrait;
 
-    /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
-     */
     protected function getRemovedConfigFiles()
     {
         return Options::getRemovedFunctionConfigFiles();
+    }
+
+    protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
+            return [];
+        }
+
+        return parent::findRemoved($phpcsFile, $stackPtr);
+    }
+
+    protected function getOldUsage(array $config)
+    {
+        $concat = '->';
+        if ($config['static']) {
+            $concat = '::';
+        }
+        return $config['fqcn'] . $concat . $config['name'];
     }
 }

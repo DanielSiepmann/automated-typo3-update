@@ -21,11 +21,13 @@ namespace Typo3Update\Sniffs\Removed;
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 
 abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
 {
-    use ExtendedPhpCsSupportTrait;
+    public function register()
+    {
+        return [T_STRING];
+    }
 
     protected function prepareStructure(array $typo3Versions)
     {
@@ -51,10 +53,6 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
 
     protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
-        if (!$this->isFunctionCall($phpcsFile, $stackPtr)) {
-            return [];
-        }
-
         $tokens = $phpcsFile->getTokens();
         $staticPosition = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true, null, true);
 
@@ -120,15 +118,6 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
         }
     }
 
-    protected function getOldUsage(array $config)
-    {
-        $concat = '->';
-        if ($config['static']) {
-            $concat = '::';
-        }
-        return $config['fqcn'] . $concat . $config['name'];
-    }
-
     protected function getIdentifier(array $config)
     {
         $name = $config['name'];
@@ -138,4 +127,6 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
 
         return $name;
     }
+
+    abstract protected function getOldUsage(array $config);
 }
