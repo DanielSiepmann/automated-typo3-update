@@ -24,9 +24,6 @@ use Typo3Update\Options;
 use Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
 
-/**
- * Sniff that handles all calls to removed functions.
- */
 class Typo3Update_Sniffs_Removed_GenericFunctionCallSniff extends AbstractGenericPhpUsage
 {
     use ExtendedPhpCsSupportTrait;

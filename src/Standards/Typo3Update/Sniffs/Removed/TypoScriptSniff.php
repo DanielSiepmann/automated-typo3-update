@@ -24,9 +24,6 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
-/**
- * Check usage of removed or breaking changed TypoScript.
- */
 class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 {
     /**
@@ -37,11 +34,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         'TYPOSCRIPT',
     ];
 
-    /**
-     * Returns the token types that this sniff is interested in.
-     *
-     * @return array<int>
-     */
     public function register()
     {
         return [
@@ -50,12 +42,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         ];
     }
 
-    /**
-     * Prepares structure from config for later usage.
-     *
-     * @param array $typo3Versions
-     * @return array
-     */
     protected function prepareStructure(array $typo3Versions)
     {
         $newStructure = [];
@@ -80,13 +66,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         return $newStructure;
     }
 
-    /**
-     * Check whether the current token is removed.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     * @return bool
-     */
     protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
@@ -105,11 +84,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         return [];
     }
 
-    /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
-     */
     protected function getRemovedConfigFiles()
     {
         return Options::getRemovedTypoScriptConfigFiles();

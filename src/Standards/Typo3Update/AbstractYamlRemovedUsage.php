@@ -23,8 +23,14 @@ namespace Typo3Update;
 use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\RemovedByYamlConfiguration;
 
+/**
+ * Base class for all classes working with removed configuration through yaml files.
+ */
 abstract class AbstractYamlRemovedUsage
 {
+    /**
+     * @var array
+     */
     protected $configured;
 
     public function __construct()
@@ -35,6 +41,9 @@ abstract class AbstractYamlRemovedUsage
         );
     }
 
+    /**
+     * @return \Callable
+     */
     protected function getPrepareStructureCallback()
     {
         return function (array $typo3Versions) {
@@ -42,10 +51,22 @@ abstract class AbstractYamlRemovedUsage
         };
     }
 
+    /**
+     * @param array $typo3Versions
+     * @return array
+     */
     abstract protected function prepareStructure(array $typo3Versions);
 
+    /**
+     * @return array
+     */
     abstract protected function getRemovedConfigFiles();
 
+    /**
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     * @param array $removed
+     */
     protected function addWarning(PhpCsFile $phpcsFile, $stackPtr, array $removed)
     {
         $phpcsFile->addWarning(
@@ -61,6 +82,10 @@ abstract class AbstractYamlRemovedUsage
         );
     }
 
+    /**
+     * @param array $config
+     * @return string
+     */
     protected function getReplacement(array $config)
     {
         $newCall = $config['replacement'];

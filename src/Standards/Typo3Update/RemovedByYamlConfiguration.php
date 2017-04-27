@@ -31,6 +31,10 @@ class RemovedByYamlConfiguration
      */
     protected $configured = [];
 
+    /**
+     * @param array $configFiles
+     * @param Callable $prepareStructure
+     */
     public function __construct(array $configFiles, $prepareStructure)
     {
         foreach ($configFiles as $file) {
@@ -41,16 +45,26 @@ class RemovedByYamlConfiguration
         }
     }
 
+    /**
+     * @param string $identifier
+     * @return bool
+     */
     public function isRemoved($identifier)
     {
         return isset($this->configured[$identifier]);
     }
 
+    /**
+     * @return array
+     */
     public function getAllRemoved()
     {
         return $this->configured;
     }
 
+    /**
+     * @return array
+     */
     public function getRemoved($identifier)
     {
         if (!$this->isRemoved($identifier)) {

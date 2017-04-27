@@ -24,11 +24,18 @@ use PHP_CodeSniffer_File as PhpCsFile;
 
 abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
 {
+    /**
+     * @return int[]
+     */
     public function register()
     {
         return [T_STRING];
     }
 
+    /**
+     * @param array $typo3Versions
+     * @return array
+     */
     protected function prepareStructure(array $typo3Versions)
     {
         $newStructure = [];
@@ -51,6 +58,11 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
         return $newStructure;
     }
 
+    /**
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     * @return array
+     */
     protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
@@ -104,6 +116,10 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
         );
     }
 
+    /**
+     * @param string $identifier
+     * @param array &$config
+     */
     protected function handleStatic($identifier, array &$config)
     {
         $split = preg_split('/::|->/', $identifier);
@@ -118,6 +134,10 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
         }
     }
 
+    /**
+     * @param array $config
+     * @return string
+     */
     protected function getIdentifier(array $config)
     {
         $name = $config['name'];
@@ -128,5 +148,9 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
         return $name;
     }
 
+    /**
+     * @param array $config
+     * @return string
+     */
     abstract protected function getOldUsage(array $config);
 }

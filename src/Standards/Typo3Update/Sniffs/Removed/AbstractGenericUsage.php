@@ -26,8 +26,17 @@ use Typo3Update\AbstractYamlRemovedUsage as BaseAbstractYamlRemovedUsage;
 
 abstract class AbstractGenericUsage extends BaseAbstractYamlRemovedUsage implements PhpCsSniff
 {
+    /**
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     * @return array
+     */
     abstract protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr);
 
+    /**
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     */
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
         foreach ($this->findRemoved($phpcsFile, $stackPtr) as $removed) {
