@@ -29,12 +29,6 @@ use Typo3Update\Options;
 class Features implements \Iterator
 {
     /**
-     * Internal array position for \Iterator implementation.
-     * @var int
-     */
-    protected $index = 0;
-
-    /**
      * Internal array
      * @var array
      */
@@ -73,22 +67,22 @@ class Features implements \Iterator
     // implement Iterator interface:
     public function current()
     {
-        return $this->features[$this->index];
+        return current($this->features);
     }
     public function key()
     {
-        return $this->index;
+        return key($this->features);
     }
     public function next()
     {
-        ++$this->index;
+        next($this->features);
     }
     public function rewind()
     {
-        $this->index = 0;
+        reset($this->features);
     }
     public function valid()
     {
-        return isset($this->features[$this->index]);
+        return current($this->features) !== false;
     }
 }
