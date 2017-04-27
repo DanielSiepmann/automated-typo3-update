@@ -39,8 +39,15 @@ abstract class AbstractGenericUsage implements PhpCsSniff
     {
         $this->configured = new RemovedByYamlConfiguration(
             $this->getRemovedConfigFiles(),
-            \Closure::fromCallable([$this, 'prepareStructure'])
+            $this->getPrepateStructure()
         );
+    }
+
+    protected function getPrepateStructure()
+    {
+        return function (array $typo3Versions) {
+            return call_user_func_array([$this, 'prepareStructure'], [$typo3Versions]);
+        };
     }
 
     /**
