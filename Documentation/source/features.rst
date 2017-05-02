@@ -111,6 +111,10 @@ This will check whether you are using already removed TypoScript parts, supporte
 
 - Paths like ``styles.insertContent``
 
+Check for usage of *removed TypoScript constants*. The TypoScript constants are configured in same
+way as removed functions. For configuration options see
+:ref:`configuration-removedTypoScriptConstantConfigFiles`.
+
 For a complete list, take a look at the corresponding YAML-Files.
 
 Further checks

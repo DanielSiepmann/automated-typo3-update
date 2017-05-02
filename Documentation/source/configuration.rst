@@ -187,6 +187,28 @@ Using ``runtime-set``:
 
     --runtime-set removedTypoScriptConfigFiles "/Some/Absolute/Path/*.yaml"
 
+.. _configuration-removedTypoScriptConstantConfigFiles:
+
+removedTypoScriptConstantsConfigFiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configure where to look for configuration files defining the removed TypoScript constants.
+Default is ``Configuration/Removed/TypoScriptConstants/*.yaml`` inside the standard itself.
+We already try to deliver as much as possible.  Globing is used, so placeholders like ``*`` are
+possible, see https://secure.php.net/manual/en/function.glob.php
+
+Using :file:`ruleset.xml`:
+
+.. code:: xml
+
+    <config name="removedTypoScriptConstantConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Using ``runtime-set``:
+
+.. code:: bash
+
+    --runtime-set removedTypoScriptConstantConfigFiles "/Some/Absolute/Path/*.yaml"
+
 .. _configuration-features:
 
 features

@@ -96,6 +96,19 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed typoscript constants.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedTypoScriptConstantConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedTypoScriptConstant',
+            __DIR__ . '/Configuration/Removed/TypoScriptConstant/*.yaml'
+        );
+    }
+
+    /**
      * Returns an array of absolute file names containing removed class configurations.
      *
      * @return array<string>
