@@ -148,7 +148,7 @@ Using ``runtime-set``:
 removedSignalConfigFiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure where to look for configuration files defining the removed signals and methods. Default
+Configure where to look for configuration files defining the removed signals. Default
 is ``Configuration/Removed/Signals/*.yaml`` inside the standard itself. We already try to deliver
 as much as possible.
 Globing is used, so placeholders like ``*`` are possible, see
