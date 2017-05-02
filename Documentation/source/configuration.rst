@@ -165,6 +165,28 @@ Using ``runtime-set``:
 
     --runtime-set removedConstantConfigFiles "/Some/Absolute/Path/*.yaml"
 
+.. _configuration-removedClassConfigFiles:
+
+removedClassConfigFiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configure where to look for configuration files defining the removed classes. Default is
+``Configuration/Removed/Classes/*.yaml`` inside the standard itself. We already try to deliver as
+much as possible. Globing is used, so placeholders like ``*`` are possible, see
+https://secure.php.net/manual/en/function.glob.php
+
+Using :file:`ruleset.xml`:
+
+.. code:: xml
+
+    <config name="removedClassConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Using ``runtime-set``:
+
+.. code:: bash
+
+    --runtime-set removedClassConfigFiles "/Some/Absolute/Path/*.yaml"
+
 .. _configuration-removedTypoScriptConfigFiles:
 
 removedTypoScriptConfigFiles
