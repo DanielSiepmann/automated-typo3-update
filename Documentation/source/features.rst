@@ -96,12 +96,15 @@ Check for removed calls
 
 Also we check for the following deprecated calls:
 
-Check for usage of *removed functions* in general. The functions are configured via yaml files. The
-location of them is configurable, default is inside the standard itself, and we try to deliver all
-information. For configuration options see :ref:`configuration-removedFunctionConfigFiles`.
+Check for usage of *removed PHP functions* in general. The functions are configured via yaml files.
+The location of them is configurable, default is inside the standard itself, and we try to deliver
+all information. For configuration options see :ref:`configuration-removedFunctionConfigFiles`.
 
-Check for usage of *removed constants*. The constants are configured in same way as removed
+Check for usage of *removed PHP constants*. The constants are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedConstantConfigFiles`.
+
+Check for usage of *removed PHP classes*. The classes are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedClassConfigFiles`.
 
 Check for usage of *removed signals*. The signals are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedSignalConfigFiles`.
@@ -116,6 +119,10 @@ This will check whether you are using already removed TypoScript parts, supporte
 - Objects, e.g. ``CLEARGIF``, ``FORM``
 
 - Paths like ``styles.insertContent``
+
+Check for usage of *removed TypoScript constants*. The TypoScript constants are configured in same
+way as removed functions. For configuration options see
+:ref:`configuration-removedTypoScriptConstantConfigFiles`.
 
 For a complete list, take a look at the corresponding YAML-Files.
 

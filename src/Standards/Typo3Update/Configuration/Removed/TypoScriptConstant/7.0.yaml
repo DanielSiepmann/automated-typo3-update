@@ -1,0 +1,20 @@
+# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Index.html#breaking-changes
+'7.0':
+  _clear:
+    replacement: 'Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html'
+  _blackBorderWrap:
+    replacement: 'Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html'
+  _tableWrap:
+    replacement: 'Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html'
+  _tableWrap_DEBUG:
+    replacement: 'Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html'
+  _stdFrameParams:
+    replacement: 'Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html'
+  _stdFramesetParams:
+    replacement: 'Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html'

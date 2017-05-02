@@ -1,0 +1,42 @@
+{
+    "files": {
+        "InputFileForIssues.ts": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 13,
+                    "fixable": false,
+                    "line": 3,
+                    "message": "Calls to removed code are not allowed; found _clear. Removed in 7.0. Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.TypoScriptConstant._clear",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 11,
+                    "fixable": false,
+                    "line": 4,
+                    "message": "Calls to removed code are not allowed; found _tableWrap_DEBUG. Removed in 7.0. Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.TypoScriptConstant._tableWrap_DEBUG",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 11,
+                    "fixable": false,
+                    "line": 4,
+                    "message": "Calls to removed code are not allowed; found _tableWrap. Removed in 7.0. Either remove usage of constant or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-60561-DefaultTypoScriptConstantsRemoved.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.TypoScriptConstant._tableWrap",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 3
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 3
+    }
+}
