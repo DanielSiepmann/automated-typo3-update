@@ -84,8 +84,17 @@ trait ExtendedPhpCsSupportTrait
             $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr) - $start
         ));
 
-        return array_map(function ($parameter) {
-            return trim($parameter, " \t\n\r\0\x0B'\"");
-        }, $parameters);
+        return array_map([$this, 'getStringContent'], $parameters);
+    }
+
+    /**
+     * Remove special chars like quotes from string.
+     *
+     * @param string
+     * @return string
+     */
+    public function getStringContent($string)
+    {
+        return trim($string, " \t\n\r\0\x0B'\"");
     }
 }

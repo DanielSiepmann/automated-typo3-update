@@ -1,0 +1,42 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 43,
+                    "fixable": false,
+                    "line": 22,
+                    "message": "Calls to removed code are not allowed; found [\"typo3/index.php\"][\"loginScriptHook\"] = .... Removed in 7.3. Use the new backend login form API. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66669-BackendLoginControllerRefactored.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericHook.typo3-indexphploginScriptHook",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 43,
+                    "fixable": false,
+                    "line": 23,
+                    "message": "Calls to removed code are not allowed; found [\"typo3/index.php\"][\"loginFormHook\"] = .... Removed in 7.3. Use the new backend login form API. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66669-BackendLoginControllerRefactored.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericHook.typo3-indexphploginFormHook",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 9,
+                    "fixable": false,
+                    "line": 28,
+                    "message": "Calls to removed code are not allowed; found [\"typo3/index.php\"][\"loginFormHook\"] = .... Removed in 7.3. Use the new backend login form API. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66669-BackendLoginControllerRefactored.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericHook.typo3-indexphploginFormHook",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 3
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 3
+    }
+}

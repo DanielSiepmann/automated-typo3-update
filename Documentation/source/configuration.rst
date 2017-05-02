@@ -166,6 +166,29 @@ Using ``runtime-set``:
 
     --runtime-set removedSignalConfigFiles "/Some/Absolute/Path/*.yaml"
 
+.. _configuration-removedHookConfigFiles:
+
+removedHookConfigFiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configure where to look for configuration files defining the removed hooks. Default
+is ``Configuration/Removed/Hooks/*.yaml`` inside the standard itself. We already try to deliver
+as much as possible.
+Globing is used, so placeholders like ``*`` are possible, see
+https://secure.php.net/manual/en/function.glob.php
+
+Using :file:`ruleset.xml`:
+
+.. code:: xml
+
+    <config name="removedHookConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Using ``runtime-set``:
+
+.. code:: bash
+
+    --runtime-set removedHookConfigFiles "/Some/Absolute/Path/*.yaml"
+
 .. _configuration-removedConstantConfigFiles:
 
 removedConstantConfigFiles
