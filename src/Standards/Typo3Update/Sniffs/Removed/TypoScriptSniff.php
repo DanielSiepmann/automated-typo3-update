@@ -24,9 +24,6 @@ use PHP_CodeSniffer_File as PhpCsFile;
 use Typo3Update\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
-/**
- * Check usage of removed or breaking changed TypoScript.
- */
 class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 {
     /**
@@ -37,11 +34,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         'TYPOSCRIPT',
     ];
 
-    /**
-     * Returns the token types that this sniff is interested in.
-     *
-     * @return array<int>
-     */
     public function register()
     {
         return [
@@ -50,16 +42,9 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         ];
     }
 
-    /**
-     * Prepares structure from config for later usage.
-     *
-     * @param array $typo3Versions
-     * @return array
-     */
     protected function prepareStructure(array $typo3Versions)
     {
         $newStructure = [];
-
         foreach ($typo3Versions as $typo3Version => $removals) {
             foreach ($removals as $removed => $config) {
                 $config['type'] = TokenInterface::TYPE_OBJECT_IDENTIFIER;
@@ -70,7 +55,9 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
                 }
 
                 $config['name'] = $removed;
-                $config['version_removed'] = $typo3Version;
+                $config['identifier'] = str_replace('.', '-', $removed);
+                $config['versionRemoved'] = $typo3Version;
+                $config['oldUsage'] = $removed;
 
                 $newStructure[$removed] = $config;
             }
@@ -79,62 +66,24 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         return $newStructure;
     }
 
-    /**
-     * Check whether the current token is removed.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     * @return bool
-     */
-    protected function isRemoved(PhpCsFile $phpcsFile, $stackPtr)
+    protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
         $objectIdentifier = $token['content'];
 
-        if (isset($this->configured[$objectIdentifier]) && $token['type'] === $this->configured[$objectIdentifier]['type']) {
-            $this->removed = [
-                $this->configured[$objectIdentifier]
-            ];
-            return true;
+        if (!$this->configured->isRemoved($objectIdentifier)) {
+            return [];
         }
 
-        return false;
+        $removed = $this->configured->getRemoved($objectIdentifier);
+        if ($token['type'] === $removed['type']) {
+            return [$removed];
+        }
+
+        return [];
     }
 
-    /**
-     * Identifier for configuring this specific error / warning through PHPCS.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getIdentifier(array $config)
-    {
-        return str_replace('.', '-', $config['name']);
-    }
-
-    /**
-     * The original call, to allow user to check matches.
-     *
-     * As we match the name, that can be provided by multiple classes, you
-     * should provide an example, so users can check that this is the legacy
-     * one.
-     *
-     * @param array $config
-     *
-     * @return string
-     */
-    protected function getOldUsage(array $config)
-    {
-        return $config['name'];
-    }
-
-    /**
-     * Return file names containing removed configurations.
-     *
-     * @return array<string>
-     */
     protected function getRemovedConfigFiles()
     {
         return Options::getRemovedTypoScriptConfigFiles();

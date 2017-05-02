@@ -1,5 +1,5 @@
 <?php
-namespace Typo3Update\Sniffs\Removed;
+namespace Typo3Update\Feature;
 
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -20,27 +20,13 @@ namespace Typo3Update\Sniffs\Removed;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
 use Typo3Update\AbstractYamlRemovedUsage as BaseAbstractYamlRemovedUsage;
 
-abstract class AbstractGenericUsage extends BaseAbstractYamlRemovedUsage implements PhpCsSniff
+abstract class AbstractYamlRemovedUsage extends BaseAbstractYamlRemovedUsage implements FeatureInterface
 {
-    /**
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     * @return array
-     */
-    abstract protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr);
-
-    /**
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     */
-    public function process(PhpCsFile $phpcsFile, $stackPtr)
+    public function __construct(PhpCsSniff $sniff)
     {
-        foreach ($this->findRemoved($phpcsFile, $stackPtr) as $removed) {
-            $this->addWarning($phpcsFile, $stackPtr, $removed);
-        }
+        parent::__construct();
     }
 }
