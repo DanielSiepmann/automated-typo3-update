@@ -29,7 +29,7 @@ use Symfony\Component\Finder\Finder;
  *
  * To add a test, just create the necessary fixture folder structure with files.
  */
-class SniffsTest extends TestCase
+abstract class SniffsTest extends TestCase
 {
     /**
      * Get all fixtures for sniffs.
@@ -61,16 +61,20 @@ class SniffsTest extends TestCase
     public function getSniffs()
     {
         $sniffs = [];
-        $finder = new Finder();
-        $finder->in(
-            __DIR__
-            . DIRECTORY_SEPARATOR . 'Fixtures'
-            . DIRECTORY_SEPARATOR . 'Standards'
-            . DIRECTORY_SEPARATOR . 'Typo3Update'
-            . DIRECTORY_SEPARATOR . 'Sniffs'
-        );
 
-        foreach ($finder->directories()->name('*Sniff') as $folder) {
+        $classnameParts = array_slice(explode('\\', get_class($this)), 3);
+        $lastIndex = count($classnameParts) - 1;
+        $classnameParts[$lastIndex] = substr($classnameParts[$lastIndex], 0, -4);
+        $folderName = array_pop($classnameParts);
+        $folder = array_merge([
+            __DIR__,
+            'Fixtures', 'Standards', 'Typo3Update', 'Sniffs',
+        ], $classnameParts);
+
+        $finder = new Finder();
+        $finder->in(implode(DIRECTORY_SEPARATOR, $folder));
+
+        foreach ($finder->directories()->name($folderName) as $folder) {
             $sniff = [
                 $folder,
                 [],
