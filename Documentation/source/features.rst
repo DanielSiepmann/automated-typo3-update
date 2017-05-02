@@ -103,6 +103,8 @@ information. For configuration options see :ref:`configuration-removedFunctionCo
 Check for usage of *removed constants*. The constants are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedConstantConfigFiles`.
 
+Check for usage of *removed signals*. The signals are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedSignalConfigFiles`.
 
 Further checks
 --------------

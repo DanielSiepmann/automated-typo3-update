@@ -70,6 +70,19 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed function configurations.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedSignalConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedSignalConfigFiles',
+            __DIR__ . '/Configuration/Removed/Signals/*.yaml'
+        );
+    }
+
+    /**
      * Returns an array of absolute file names containing removed constant configurations.
      *
      * @return array<string>

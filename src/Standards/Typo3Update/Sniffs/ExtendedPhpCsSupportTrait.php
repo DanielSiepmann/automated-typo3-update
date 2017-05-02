@@ -66,4 +66,26 @@ trait ExtendedPhpCsSupportTrait
 
         return true;
     }
+
+    /**
+     * Returns all parameters for function call as values.
+     * Quotes are removed from strings.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     *
+     * @return array<string>
+     */
+    protected function getFunctionCallParameters(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $start = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr) + 1;
+        $parameters = explode(',', $phpcsFile->getTokensAsString(
+            $start,
+            $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr) - $start
+        ));
+
+        return array_map(function ($parameter) {
+            return trim($parameter, " \t\n\r\0\x0B'\"");
+        }, $parameters);
+    }
 }
