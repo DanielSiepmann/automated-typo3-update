@@ -1,5 +1,5 @@
 # Breaking changes in 7.4: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Index.html#breaking-changes
 '7.4':
-  \TYPO3\CMS\Core\Resource\ResourceStorage::preFileAdd
+  \TYPO3\CMS\Core\Resource\ResourceStorage::preFileAdd:
     replacement: 'The signal will now receive an empty string in $sourceFilePath'
     docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67545-PreFileAddSignalBehaviourChanged.html
