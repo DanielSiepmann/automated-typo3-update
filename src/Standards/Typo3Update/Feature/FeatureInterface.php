@@ -29,11 +29,6 @@ use PHP_CodeSniffer_Sniff as PhpCsSniff;
 interface FeatureInterface
 {
     /**
-     * @var PhpCsSniff $sniff
-     */
-    public function __construct(PhpCsSniff $sniff);
-
-    /**
      * Process like a PHPCS Sniff.
      *
      * @param PhpCsFile $phpcsFile The current PhpCsFile working with.

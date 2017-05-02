@@ -33,7 +33,7 @@ class RemovedByYamlConfiguration
 
     /**
      * @param array $configFiles
-     * @param Callable $prepareStructure
+     * @param \Callable $prepareStructure
      */
     public function __construct(array $configFiles, $prepareStructure)
     {
