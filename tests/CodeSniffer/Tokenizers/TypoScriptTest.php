@@ -22,6 +22,8 @@ namespace Typo3Update\Tests\CodeSniffer\Tokenizers;
  */
 
 use PHPUnit\Framework\TestCase;
+use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer as PhpCs;
 
 /**
  * Test TypoScript tokenizer.
@@ -55,9 +57,12 @@ class TypoScriptTest extends TestCase
             'example.ts',
         ]);
 
+        // Initialize constants, etc.
+        new PhpCs();
+
         $this->assertEquals(
             require $resultFile,
-            $subject->tokenizeString(file_get_contents($testFile), "\n"),
+            PhpCsFile::tokenizeString(file_get_contents($testFile), $subject, "\n"),
             'Did not get expected tokens.'
         );
     }

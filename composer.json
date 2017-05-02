@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Typo3Update\\": "src/Standards/Typo3Update/"
+            "Typo3Update\\": "src/Standards/Typo3Update/",
+            "Typo3Update\\CodeSniffer\\": "src/CodeSniffer/"
         },
         "files": [
             "src/CodeSniffer/Tokenizers/TypoScript.php"

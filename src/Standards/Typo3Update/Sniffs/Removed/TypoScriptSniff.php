@@ -21,6 +21,7 @@
 
 use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\CodeSniffer\Tokenizers\FQObjectIdentifier;
 use Typo3Update\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
@@ -90,13 +91,19 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
-        $objectIdentifier = $token['content'];
+        $objectIdentifiersToLoopUp = [$token['content']];
 
-        if (isset($this->configured[$objectIdentifier]) && $token['type'] === $this->configured[$objectIdentifier]['type']) {
-            $this->removed = [
-                $this->configured[$objectIdentifier]
-            ];
-            return true;
+        if (isset($token[FQObjectIdentifier::IDENTIFIER]) && $token[FQObjectIdentifier::IDENTIFIER] !== $token['content']) {
+            $objectIdentifiersToLoopUp[] = $token[FQObjectIdentifier::IDENTIFIER];
+        }
+
+        foreach ($objectIdentifiersToLoopUp as $objectIdentifier) {
+            if (isset($this->configured[$objectIdentifier]) && $token['type'] === $this->configured[$objectIdentifier]['type']) {
+                $this->removed = [
+                    $this->configured[$objectIdentifier]
+                ];
+                return true;
+            }
         }
 
         return false;
