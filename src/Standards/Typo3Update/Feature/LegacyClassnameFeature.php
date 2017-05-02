@@ -96,6 +96,10 @@ class LegacyClassnameFeature implements FeatureInterface
      */
     protected function isLegacyClassname($classname)
     {
+        if (get_class($this->sniff) === \Typo3Update_Sniffs_Classname_StringSniff::class) {
+            return false;
+        }
+
         return $this->legacyMapping->isLegacyClassname($classname);
     }
 
@@ -117,7 +121,9 @@ class LegacyClassnameFeature implements FeatureInterface
             return $nameParts[1];
         }, $classname);
 
-        if (!in_array($extensionName, $this->legacyExtensions)) {
+        if (!in_array($extensionName, $this->legacyExtensions)
+            && get_class($this->sniff) !== \Typo3Update_Sniffs_Classname_StringSniff::class
+        ) {
             return false;
         }
 

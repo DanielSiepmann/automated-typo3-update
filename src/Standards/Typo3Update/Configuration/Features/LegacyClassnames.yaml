@@ -9,6 +9,7 @@ Typo3Update\Feature\LegacyClassnameFeature:
   - Typo3Update_Sniffs_Classname_MissingVendorForPluginsAndModulesSniff
   - Typo3Update_Sniffs_Classname_PhpDocCommentSniff
   - Typo3Update_Sniffs_Classname_StaticCallSniff
+  - Typo3Update_Sniffs_Classname_StringSniff
   - Typo3Update_Sniffs_Classname_TypeHintCatchExceptionSniff
   - Typo3Update_Sniffs_Classname_TypeHintSniff
   - Typo3Update_Sniffs_Classname_UseSniff

@@ -1,0 +1,42 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 80,
+                    "fixable": false,
+                    "line": 22,
+                    "message": "Legacy classes are not allowed; found Tx_Extbase_Command_HelpCommandController that might be a legacy class that does not exist anymore",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.String.mightBeLegacyClassname",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 80,
+                    "fixable": false,
+                    "line": 23,
+                    "message": "Legacy classes are not allowed; found Tx_Extbase_Command_HelpCommandController that might be a legacy class that does not exist anymore",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.String.mightBeLegacyClassname",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 93,
+                    "fixable": false,
+                    "line": 25,
+                    "message": "Legacy classes are not allowed; found Tx_ExtKey_Hooks_Cache that might be a legacy class that does not exist anymore",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.String.mightBeLegacyClassname",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 3
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 3
+    }
+}
