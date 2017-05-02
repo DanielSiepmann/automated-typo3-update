@@ -91,13 +91,13 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
-        $objectIdentifiersToLoopUp = [$token['content']];
+        $identifiersToCheck = [$token['content']];
 
         if (isset($token[FQObjectIdentifier::IDENTIFIER]) && $token[FQObjectIdentifier::IDENTIFIER] !== $token['content']) {
-            $objectIdentifiersToLoopUp[] = $token[FQObjectIdentifier::IDENTIFIER];
+            $identifiersToCheck[] = $token[FQObjectIdentifier::IDENTIFIER];
         }
 
-        foreach ($objectIdentifiersToLoopUp as $objectIdentifier) {
+        foreach ($identifiersToCheck as $objectIdentifier) {
             if (isset($this->configured[$objectIdentifier]) && $token['type'] === $this->configured[$objectIdentifier]['type']) {
                 $this->removed = [
                     $this->configured[$objectIdentifier]

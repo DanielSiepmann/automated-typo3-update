@@ -132,7 +132,7 @@ class FqObjectIdentifierTest extends TestCase
     /**
      * @test
      */
-    public function AddingPathSegmentAfterAnotherResetsPath()
+    public function addingPathSegmentAfterAnotherResetsPath()
     {
         $initialToken = [
             'type' => TokenInterface::TYPE_OBJECT_IDENTIFIER,
