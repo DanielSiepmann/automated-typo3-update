@@ -1,0 +1,5 @@
+# Breaking changes in 7.5: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Index.html#breaking-changes
+'7.5':
+  t3lib/class.t3lib_tceforms.php->getMainFieldsClass:
+    replacement: 'Use FormDataProvider to change data given to the render engine of FormEngine from now on'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-69568-FormEngine.html
