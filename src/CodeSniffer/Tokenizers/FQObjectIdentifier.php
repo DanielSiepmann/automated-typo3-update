@@ -91,7 +91,6 @@ class FQObjectIdentifier
     public function handleClosingBrace()
     {
         --$this->depth;
-        $this->syncPath();
     }
 
     /**
