@@ -29,7 +29,7 @@ use Typo3Update\RemovedByYamlConfiguration;
 abstract class AbstractYamlRemovedUsage
 {
     /**
-     * @var array
+     * @var RemovedByYamlConfiguration
      */
     protected $configured;
 
@@ -65,19 +65,19 @@ abstract class AbstractYamlRemovedUsage
     /**
      * @param PhpCsFile $phpcsFile
      * @param int $stackPtr
-     * @param array $removed
+     * @param array $config
      */
-    protected function addWarning(PhpCsFile $phpcsFile, $stackPtr, array $removed)
+    protected function addWarning(PhpCsFile $phpcsFile, $stackPtr, array $config)
     {
         $phpcsFile->addWarning(
             'Calls to removed code are not allowed; found %s. Removed in %s. %s. See: %s',
             $stackPtr,
-            $removed['identifier'],
+            $config['identifier'],
             [
-                $removed['oldUsage'],
-                $removed['versionRemoved'],
-                $this->getReplacement($removed),
-                $removed['docsUrl'],
+                $config['oldUsage'],
+                $config['versionRemoved'],
+                $this->getReplacement($config),
+                $config['docsUrl'],
             ]
         );
     }

@@ -15,7 +15,7 @@ Possible configurations for all sniffs:
 
 Implemented sniffs:
 
-- PHPDocuments, like Includes and annotations for IDEs.
+- PHPDocComments, like Includes and annotations for IDEs.
 
   Possible extra configurations:
 
@@ -106,6 +106,15 @@ functions. For configuration options see :ref:`configuration-removedConstantConf
 Check for usage of *removed PHP classes*. The classes are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedClassConfigFiles`.
 
+Check for usage of *removed TypoScript*. The TypoScript objects are configured in same way as
+removed functions. For configuration options see :ref:`configuration-removedTypoScriptConfigFiles`.
+This will check whether you are using already removed TypoScript parts, supported are:
+
+- Objects, e.g. ``CLEARGIF``, ``FORM``
+
+- Paths like ``styles.insertContent``
+
+For a complete list, take a look at the corresponding YAML-Files.
 
 Further checks
 --------------

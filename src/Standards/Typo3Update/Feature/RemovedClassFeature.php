@@ -27,7 +27,7 @@ class RemovedClassFeature extends AbstractYamlRemovedUsage
 {
     public function process(PhpCsFile $phpcsFile, $classnamePosition, $classname)
     {
-        if (! $this->configured->isRemoved($classname)) {
+        if ($this->configured->isRemoved($classname) === false) {
             return;
         }
         $this->addWarning(
