@@ -100,7 +100,7 @@ class LegacyClassnameFeature implements FeatureInterface
             return false;
         }
 
-        return $this->legacyMapping->isLegacyClassname($classname);
+        return $this->legacyMapping->isCaseInsensitiveLegacyClassname($classname);
     }
 
     /**

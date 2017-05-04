@@ -64,20 +64,55 @@ class LegacyClassnameMappingTest extends TestCase
     /**
      * @test
      */
-    public function insensitivityLookupWorks()
+    public function inCaseSensitivityLookupWorks()
     {
         $this->assertFalse(
-            $this->subject->isLegacyClassname('Tx_About_Controller_Aboutcontroller', false),
+            $this->subject->isLegacyClassname('Tx_Extbase_Domain_Model_Backenduser'),
             'Classname was returned to be legacy but should not due to lowercase version and case sensitivity.'
         );
         $this->assertTrue(
-            $this->subject->isLegacyClassname('Tx_About_Controller_Aboutcontroller'),
+            $this->subject->isCaseInsensitiveLegacyClassname('Tx_Extbase_Domain_Model_Backenduser'),
             'Classname was not returned to be legacy but should due to case insensitivity.'
         );
     }
 
     /**
      * @test
+     */
+    public function weCanRetrieveNewClassname()
+    {
+        $this->assertSame(
+            'TYPO3\CMS\Extbase\Command\HelpCommandController',
+            $this->subject->getNewClassname('Tx_Extbase_Command_HelpCommandController'),
+            'New class name could not be fetched.'
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function nothingWillBePersistedUntilWeAddSomething()
+    {
+        $this->subject->persistMappings();
+        $this->assertSame(
+            file_get_contents($this->getFixturePath('MappingContent.php')),
+            file_get_contents(vfsStream::url('root/LegacyClassnames.php')),
+            'File content should not be changed.'
+        );
+
+        $this->subject->addLegacyClassname('Tx_ExtName_Controller_ExampleController', '\\Vendor\\ExtName\\Controller\\ExampleController');
+        $this->subject->persistMappings();
+
+        $this->assertSame(
+            file_get_contents($this->getFixturePath('ExpectedMappingContent.php')),
+            file_get_contents(vfsStream::url('root/LegacyClassnames.php')),
+            'File content is not changed as expected.'
+        );
+    }
+
+    /**
+     * @test
+     * @runInSeparateProcess Because of file operations.
      */
     public function addingLegacyClassnamesWillAdjustLookupAndBePersisted()
     {
@@ -92,13 +127,19 @@ class LegacyClassnameMappingTest extends TestCase
             $this->subject->isLegacyClassname('Tx_ExtName_Controller_ExampleController'),
             'Classname is configured but not returned to be legacy.'
         );
+    }
 
-        $this->subject->persistMappings();
-
+    /**
+     * @test
+     * @runInSeparateProcess Because of file operations.
+     */
+    public function weCanRetrieveNewClassnameAddedBefore()
+    {
+        $this->subject->addLegacyClassname('Tx_ExtName_Controller_ExampleController', '\\Vendor\\ExtName\\Controller\\ExampleController');
         $this->assertSame(
-            file_get_contents($this->getFixturePath('ExpectedMappingContent.php')),
-            file_get_contents(vfsStream::url('root/LegacyClassnames.php')),
-            'Persisted mappings are not as expected.'
+            '\\Vendor\\ExtName\\Controller\\ExampleController',
+            $this->subject->getNewClassname('Tx_ExtName_Controller_ExampleController'),
+            'New class name could not be fetched.'
         );
     }
 

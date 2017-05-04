@@ -45,6 +45,7 @@ final class LegacyClassnameMapping
 
         return static::$instance;
     }
+    // @codeCoverageIgnoreStart
     private function __clone()
     {
     }
@@ -54,6 +55,7 @@ final class LegacyClassnameMapping
     private function __wakeup()
     {
     }
+    // @codeCoverageIgnoreEnd
     private function __construct()
     {
         if (is_file(Options::getMappingFile())) {
@@ -109,12 +111,21 @@ final class LegacyClassnameMapping
      * @param string $classname
      * @return bool
      */
-    public function isLegacyClassname($classname, $insensitive = true)
+    public function isLegacyClassname($classname)
     {
-        $lowerVersion = $classname;
-        if ($insensitive) {
-            $classname = strtolower($classname);
-        }
+        return $this->isLegacyTypo3Classname($classname) || $this->isLegacyMappingClassname($classname);
+    }
+
+    /**
+     * Checks whether a mapping exists for the given $classname,
+     * indicating it's legacy.
+     *
+     * @param string $classname
+     * @return bool
+     */
+    public function isCaseInsensitiveLegacyClassname($classname)
+    {
+        $lowerVersion = strtolower($classname);
 
         return $this->isLegacyTypo3Classname($classname) || $this->isLegacyMappingClassname($classname)
             || $this->isLegacyTypo3Classname($lowerVersion) || $this->isLegacyMappingClassname($lowerVersion);
@@ -130,7 +141,7 @@ final class LegacyClassnameMapping
             return $this->typo3Mappings[$this->getTypo3MappingKey($classname)];
         }
 
-        return $this>mappings[$this->getLegacyMappingKey($classname)];
+        return $this->mappings[$this->getLegacyMappingKey($classname)];
     }
 
     /**
@@ -139,12 +150,7 @@ final class LegacyClassnameMapping
      */
     protected function getTypo3MappingKey($classname)
     {
-        $lowerVersion = strtolower($classname);
-        if (isset($this->typo3MappingsKeys[$lowerVersion])) {
-            return $this->typo3MappingsKeys[$lowerVersion];
-        }
-
-        return $classname;
+        return $this->typo3MappingsKeys[strtolower($classname)];
     }
 
     /**
@@ -153,12 +159,7 @@ final class LegacyClassnameMapping
      */
     protected function getLegacyMappingKey($classname)
     {
-        $lowerVersion = strtolower($classname);
-        if (isset($this->mappingsKeys[$lowerVersion])) {
-            return $this->mappingsKeys[$lowerVersion];
-        }
-
-        return $classname;
+        return $this->mappingsKeys[strtolower($classname)];
     }
 
     /**
@@ -167,7 +168,7 @@ final class LegacyClassnameMapping
      */
     protected function isLegacyTypo3Classname($classname)
     {
-        return isset($this->typo3MappingsKeys[$classname]);
+        return isset($this->typo3Mappings[$classname]) || isset($this->typo3MappingsKeys[$classname]);
     }
 
     /**
@@ -176,7 +177,7 @@ final class LegacyClassnameMapping
      */
     protected function isLegacyMappingClassname($classname)
     {
-        return isset($this->mappingsKeys[$classname]);
+        return isset($this->mappings[$classname]) || isset($this->mappingsKeys[$classname]);
     }
 
     /**
@@ -210,6 +211,7 @@ final class LegacyClassnameMapping
 
     /**
      * Used to persist new mappings.
+     * @codeCoverageIgnore
      */
     public function __destruct()
     {
