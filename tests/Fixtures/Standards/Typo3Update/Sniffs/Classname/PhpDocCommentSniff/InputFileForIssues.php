@@ -29,6 +29,7 @@ class InputFileForIssues
 
     /**
      * @param t3lib_div
+     * @param \TYPO3\CMS\Backend\Template\MediumDocumentTemplate
      *
      * @return Tx_Extbase_Configuration_Configurationmanager
      */

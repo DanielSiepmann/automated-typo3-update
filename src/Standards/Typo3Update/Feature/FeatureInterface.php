@@ -21,6 +21,7 @@ namespace Typo3Update\Feature;
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer_Sniff as PhpCsSniff;
 
 /**
  * See "Features" in documentation.

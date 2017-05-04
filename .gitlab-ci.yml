@@ -27,7 +27,7 @@ sync:github:
     - git push --mirror ${MIRROR_GIT_URL}
 
 lint:coding-guideline: &PHP-LINTING
-  image: php:7.0-alpine
+  image: php:7.1-alpine
   stage: test
   script:
     - ./vendor/bin/phpcs -s -n --report-full=result/phpcs-full.txt --report-diff=result/phpcs-diff.txt --report-summary=result/phpcs-summary.txt
@@ -50,6 +50,10 @@ test:5.6: &PHP-UNITTESTING
 test:7.0:
   <<: *PHP-UNITTESTING
   image: php:7.0-alpine
+
+test:7.1:
+  <<: *PHP-UNITTESTING
+  image: php:7.1-alpine
 
 test:latest:
   <<: *PHP-UNITTESTING
