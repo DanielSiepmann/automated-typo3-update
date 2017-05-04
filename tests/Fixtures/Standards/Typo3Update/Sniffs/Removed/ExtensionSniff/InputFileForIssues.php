@@ -19,4 +19,7 @@
  * 02110-1301, USA.
  */
 
+use TYPO3\CMS\Perm\Controller\PermissionModuleController;
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('perm');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('perm');

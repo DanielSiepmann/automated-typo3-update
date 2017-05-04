@@ -42,23 +42,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptConstantSniff extends AbstractGeneric
         ];
     }
 
-    protected function prepareStructure(array $typo3Versions)
-    {
-        $newStructure = [];
-
-        foreach ($typo3Versions as $typo3Version => $removals) {
-            foreach ($removals as $removed => $config) {
-                $config['name'] = $removed;
-                $config['identifier'] = $removed;
-                $config['oldUsage'] = $removed;
-                $config['versionRemoved'] = $typo3Version;
-                $newStructure[$removed] = $config;
-            }
-        }
-
-        return $newStructure;
-    }
-
     protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
         $removed = [];
