@@ -59,7 +59,7 @@ test:latest:
   <<: *PHP-UNITTESTING
   image: php:7-alpine
 
-test:documentation:syntax: &SPHINX-DOCS
+test:doc:syntax: &SPHINX-DOCS
   image: 'danielsiepmann/sphinx:latest'
   stage: test
   before_script:
@@ -67,12 +67,12 @@ test:documentation:syntax: &SPHINX-DOCS
   script:
     - make dummy
 
-test:documentation:external-links:
+test:doc:external-links:
   <<: *SPHINX-DOCS
   script:
     - make linkcheck
 
-render:documentation:
+render:doc:
   <<: *SPHINX-DOCS
   stage: render
   script:
