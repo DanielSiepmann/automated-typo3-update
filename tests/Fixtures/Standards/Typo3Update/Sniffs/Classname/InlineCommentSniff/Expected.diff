@@ -1,0 +1,23 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InlineCommentSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -23,16 +23,16 @@
+ {
+     public function something()
+     {
+-        /* @var $variable Tx_Extbase_Command_HelpCommandController */
++        /* @var $variable \TYPO3\CMS\Extbase\Command\HelpCommandController */
+         $variable;
+
+-        // @var $variable Tx_Extbase_Command_HelpCommandController
++        // @var $variable \TYPO3\CMS\Extbase\Command\HelpCommandController
+         $variable;
+
+-        /* @var Tx_Extbase_Command_HelpCommandController $variable */
++        /* @var \TYPO3\CMS\Extbase\Command\HelpCommandController $variable */
+         $variable;
+
+-        // @var Tx_Extbase_Command_HelpCommandController $variable
++        // @var \TYPO3\CMS\Extbase\Command\HelpCommandController $variable
+         $variable;
+     }
+ }

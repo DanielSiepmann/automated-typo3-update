@@ -5,46 +5,78 @@ before_script:
   - mkdir -p result
 
 stages:
+  - sync
   - test
+  - render
 
-lint:coding-guideline:
-  image: php:7.0-alpine
+sync:github:
+  image: 'bash:latest' 
+  stage: sync
+  before_script:
+    - apk add --no-cache openssh-client git
+    # SSH deploy key
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" > /tmp/private_key
+    - chmod go-rwx /tmp/private_key; chmod u-x /tmp/private_key
+    - ssh-add /tmp/private_key
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - git clone --mirror ${CI_REPOSITORY_URL} mirror
+    - cd mirror
+    - git push --mirror ${MIRROR_GIT_URL}
+
+lint:coding-guideline: &PHP-LINTING
+  image: php:7.1-alpine
   stage: test
   script:
-    - ./vendor/bin/phpcs -s -n
-    - ./vendor/bin/phpcs -s -n > result/phpcs-summary.txt
+    - ./vendor/bin/phpcs -s -n --report-full=result/phpcs-full.txt --report-diff=result/phpcs-diff.txt --report-summary=result/phpcs-summary.txt
   artifacts:
     when: on_failure
     paths:
       - result
 
 lint:php-mass-detection:
-  image: php:7.0-alpine
-  stage: test
+  <<: *PHP-LINTING
   script:
     - ./vendor/bin/phpmd src text phpmd.xml > result/phpmd.txt
-    - ./vendor/bin/phpmd src html phpmd.xml > result/phpmd.html
-  artifacts:
-    when: on_failure
-    paths:
-      - result
 
-test:5.6:
+test:5.6: &PHP-UNITTESTING
   image: php:5.6-alpine
   stage: test
   script:
     - ./vendor/bin/phpunit
 
 test:7.0:
+  <<: *PHP-UNITTESTING
   image: php:7.0-alpine
-  stage: test
-  script:
-    - ./vendor/bin/phpunit
+
+test:7.1:
+  <<: *PHP-UNITTESTING
+  image: php:7.1-alpine
 
 test:latest:
+  <<: *PHP-UNITTESTING
   image: php:7-alpine
-  stage: test
-  script:
-    - ./vendor/bin/phpunit
 
-# Further stages, and jobs e.g. linting, cgl, etc.
+test:doc:syntax: &SPHINX-DOCS
+  image: 'danielsiepmann/sphinx:latest'
+  stage: test
+  before_script:
+    - cd Documentation
+  script:
+    - make dummy
+
+test:doc:external-links:
+  <<: *SPHINX-DOCS
+  script:
+    - make linkcheck
+
+render:doc:
+  <<: *SPHINX-DOCS
+  stage: render
+  script:
+    - make html
+  artifacts:
+    paths:
+      - Documentation/build/html

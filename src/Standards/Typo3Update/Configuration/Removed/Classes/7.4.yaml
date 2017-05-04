@@ -1,0 +1,14 @@
+# Breaking changes in 7.4: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Index.html#breaking-changes
+'7.4':
+  \TYPO3\CMS\Backend\Rte\AbstractRte:
+    replacement: 'Take a look at the docs'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67811-RteApi.html'
+  \TYPO3\CMS\Rtehtmlarea\RteHtmlAreaBase:
+    replacement: 'Take a look at the docs'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67811-RteApi.html'
+  \TYPO3\CMS\Rtehtmlarea\RteHtmlAreaApi:
+    replacement: 'Not removed but refactored, see docs'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-67811-RteApi.html'
+  \TYPO3\CMS\Backend\Template\FrontendDocumentTemplate:
+    replacement: null
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.4/Breaking-68243-MoveNotUsedFrontendDocumentTemplate.html'

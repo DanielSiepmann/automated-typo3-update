@@ -1,0 +1,21 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/StaticCallSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -19,13 +19,13 @@
+  * 02110-1301, USA.
+  */
+
+-Tx_Extbase_Utility_Extension::configurePlugin(
++\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+     $_EXTKEY,
+     'name',
+     ['Controller' => 'action']
+ );
+-t3lib_div::makeInstance(Tx_Extbase_Command_HelpCommandController::class);
+-$this->objectManager->get(\Tx_Extbase_Command_HelpCommandController::class);
++\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Command\HelpCommandController::class);
++$this->objectManager->get(\TYPO3\CMS\Extbase\Command\HelpCommandController::class);
+ \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager)
+-    ->get(\Tx_Extbase_Command_HelpCommandController::class);
+-is_a($a, t3lib_Singleton::class);
++    ->get(\TYPO3\CMS\Extbase\Command\HelpCommandController::class);
++is_a($a, \TYPO3\CMS\Core\SingletonInterface::class);

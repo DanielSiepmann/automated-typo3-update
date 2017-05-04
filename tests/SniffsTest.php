@@ -29,7 +29,7 @@ use Symfony\Component\Finder\Finder;
  *
  * To add a test, just create the necessary fixture folder structure with files.
  */
-class SniffsTest extends TestCase
+abstract class SniffsTest extends TestCase
 {
     /**
      * Get all fixtures for sniffs.
@@ -61,16 +61,20 @@ class SniffsTest extends TestCase
     public function getSniffs()
     {
         $sniffs = [];
-        $finder = new Finder();
-        $finder->in(
-            __DIR__
-            . DIRECTORY_SEPARATOR . 'Fixtures'
-            . DIRECTORY_SEPARATOR . 'Standards'
-            . DIRECTORY_SEPARATOR . 'Typo3Update'
-            . DIRECTORY_SEPARATOR . 'Sniffs'
-        );
 
-        foreach ($finder->directories()->name('*Sniff') as $folder) {
+        $classnameParts = array_slice(explode('\\', get_class($this)), 3);
+        $lastIndex = count($classnameParts) - 1;
+        $classnameParts[$lastIndex] = substr($classnameParts[$lastIndex], 0, -4);
+        $folderName = array_pop($classnameParts);
+        $folder = array_merge([
+            __DIR__,
+            'Fixtures', 'Standards', 'Typo3Update', 'Sniffs',
+        ], $classnameParts);
+
+        $finder = new Finder();
+        $finder->in(implode(DIRECTORY_SEPARATOR, $folder));
+
+        foreach ($finder->directories()->name($folderName) as $folder) {
             $sniff = [
                 $folder,
                 [],
@@ -114,6 +118,12 @@ class SniffsTest extends TestCase
      */
     protected function executeSniff(\SplFileInfo $folder, array $arguments = [])
     {
+        $fileName = '';
+        if (isset($arguments['inputFileName'])) {
+            $fileName = $arguments['inputFileName'];
+            unset($arguments['inputFileName']);
+        }
+
         $internalArguments = array_merge_recursive([
             'standard' => 'Typo3Update',
             'runtime-set' => [
@@ -123,22 +133,18 @@ class SniffsTest extends TestCase
             ],
             'report' => 'json',
             'sniffs' => $this->getSniffByFolder($folder),
-            'inputFile' => $folder->getRealPath() . DIRECTORY_SEPARATOR . 'InputFileForIssues.php',
+            'inputFile' => $this->getInputFile($folder, $fileName),
         ], $arguments);
 
-        if (isset($internalArguments['inputFileName'])) {
-            $internalArguments['inputFile'] = $folder->getRealPath()
-                . DIRECTORY_SEPARATOR
-                . $internalArguments['inputFileName'];
-            unset($internalArguments['inputFileName']);
+        if (strpos($internalArguments['inputFile'], '.ts') !== false) {
+            $internalArguments['extensions'] = 'ts/TypoScript';
         }
 
         $this->assertEquals(
             $this->getExpectedJsonOutput($folder),
             $this->getOutput($internalArguments)['output'],
             'Checking Sniff "' . $this->getSniffByFolder($folder) . '"'
-                . ' did not produce expected output for input file '
-                . $internalArguments['inputFile']
+                . ' did not produce expected output,'
                 . ' called: ' . $this->getPhpcsCall($internalArguments)
         );
 
@@ -148,8 +154,7 @@ class SniffsTest extends TestCase
                 $this->getExpectedDiffOutput($folder),
                 $this->getOutput($internalArguments)['output'],
                 'Fixing Sniff "' . $this->getSniffByFolder($folder) . '"'
-                    . ' did not produce expected diff for input file '
-                    . $internalArguments['inputFile']
+                    . ' did not produce expected diff,'
                     . ' called: ' . $this->getPhpcsCall($internalArguments)
             );
         } catch (FileNotFoundException $e) {
@@ -227,6 +232,35 @@ class SniffsTest extends TestCase
     protected function getArgumentsFile(\SplFileInfo $folder)
     {
         return $folder->getRealPath() . DIRECTORY_SEPARATOR . 'Arguments.php';
+    }
+
+    /**
+     * Get absolute file path to file to use for testing.
+     *
+     * @param \SplFileInfo $folder
+     * @param string $fileName
+     * @return string
+     */
+    protected function getInputFile(\SplFileInfo $folder, $fileName = '')
+    {
+        $folderPath = $folder->getRealPath() . DIRECTORY_SEPARATOR;
+        $file = $folderPath . $fileName;
+
+        if (!is_file($file)) {
+            $file = $folderPath . $fileName;
+        }
+        if (!is_file($file)) {
+            $file = $folderPath . 'InputFileForIssues.php';
+        }
+        if (!is_file($file)) {
+            $file = $folderPath . 'InputFileForIssues.ts';
+        }
+
+        if (!is_file($file)) {
+            throw new \Exception('message', 1492083289);
+        }
+
+        return $file;
     }
 
     /**
