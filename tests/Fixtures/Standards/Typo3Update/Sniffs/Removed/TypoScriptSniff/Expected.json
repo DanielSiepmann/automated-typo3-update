@@ -7,7 +7,7 @@
                     "column": 10,
                     "fixable": false,
                     "line": 2,
-                    "message": "Legacy calls are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
+                    "message": "Calls to removed code are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.styles-insertContent",
                     "type": "WARNING"
@@ -16,7 +16,7 @@
                     "column": 11,
                     "fixable": false,
                     "line": 3,
-                    "message": "Legacy calls are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
+                    "message": "Calls to removed code are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.styles-insertContent",
                     "type": "WARNING"
@@ -25,7 +25,7 @@
                     "column": 1,
                     "fixable": false,
                     "line": 6,
-                    "message": "Legacy calls are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
+                    "message": "Calls to removed code are not allowed; found styles.insertContent. Removed in 7.0. Either remove usage of styles.insertContent or add a snippet at an early point in TypoScript for backwards compatibility. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-42543-DefaultTypoScriptRemoved.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.styles-insertContent",
                     "type": "WARNING"
@@ -34,7 +34,7 @@
                     "column": 1,
                     "fixable": false,
                     "line": 13,
-                    "message": "Legacy calls are not allowed; found mod.web_list.alternateBgColors. Removed in 7.0. Removed without substitution. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-53658-RemoveAlternateBgColorsOption.html",
+                    "message": "Calls to removed code are not allowed; found mod.web_list.alternateBgColors. Removed in 7.0. Removed without substitution. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-53658-RemoveAlternateBgColorsOption.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.mod-web_list-alternateBgColors",
                     "type": "WARNING"
@@ -43,7 +43,7 @@
                     "column": 10,
                     "fixable": false,
                     "line": 26,
-                    "message": "Legacy calls are not allowed; found CLEARGIF. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
+                    "message": "Calls to removed code are not allowed; found CLEARGIF. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.CLEARGIF",
                     "type": "WARNING"
@@ -52,7 +52,7 @@
                     "column": 10,
                     "fixable": false,
                     "line": 27,
-                    "message": "Legacy calls are not allowed; found COLUMNS. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
+                    "message": "Calls to removed code are not allowed; found COLUMNS. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.COLUMNS",
                     "type": "WARNING"
@@ -61,7 +61,7 @@
                     "column": 10,
                     "fixable": false,
                     "line": 28,
-                    "message": "Legacy calls are not allowed; found CTABLE. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
+                    "message": "Calls to removed code are not allowed; found CTABLE. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.CTABLE",
                     "type": "WARNING"
@@ -70,7 +70,7 @@
                     "column": 10,
                     "fixable": false,
                     "line": 29,
-                    "message": "Legacy calls are not allowed; found OTABLE. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
+                    "message": "Calls to removed code are not allowed; found OTABLE. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.OTABLE",
                     "type": "WARNING"
@@ -79,7 +79,7 @@
                     "column": 10,
                     "fixable": false,
                     "line": 30,
-                    "message": "Legacy calls are not allowed; found HRULER. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
+                    "message": "Calls to removed code are not allowed; found HRULER. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.HRULER",
                     "type": "WARNING"

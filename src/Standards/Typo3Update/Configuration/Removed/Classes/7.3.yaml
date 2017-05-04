@@ -1,0 +1,14 @@
+# Breaking changes in 7.3: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Index.html#breaking-changes
+'7.3':
+  \TYPO3\CMS\T3editor\FormWizard:
+    replacement: 'Use the newly introduced API'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-67229-FormEngineRelatedClasses.html'
+  \TYPO3\CMS\Rtehtmlarea\Controller\FrontendRteController:
+    replacement: 'Use the newly introduced API'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-67229-FormEngineRelatedClasses.html'
+  \TYPO3\CMS\Rsaauth\Hook\LoginFormHook:
+    replacement: 'Use the new backend login form API'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66669-BackendLoginControllerRefactored.html'
+  \TYPO3\CMS\Extbase\Persistence\Generic\IdentityMap:
+    replacement: 'Existing code can be migrated to the persistence Session class which provides a drop-in replacement for the IdentityMap'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66429-RemoveIdentityMapFromPersistence.html'

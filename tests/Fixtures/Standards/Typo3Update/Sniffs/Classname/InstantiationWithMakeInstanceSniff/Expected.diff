@@ -1,10 +1,11 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InstantiationWithMakeInstanceSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -19,6 +19,6 @@
+@@ -19,7 +19,7 @@
   * 02110-1301, USA.
   */
 
 -t3lib_div::makeInstance('Tx_Extbase_Command_HelpCommandController');
 +t3lib_div::makeInstance('\TYPO3\CMS\Extbase\Command\HelpCommandController');
+ t3lib_div::makeInstance(\TYPO3\CMS\Core\Resource\Service\IndexerService::class);
  // Not handled by this sniff, but StaticCallSniff, as this uses double colon.
  t3lib_div::makeInstance(Tx_Extbase_Command_HelpCommandController::class);

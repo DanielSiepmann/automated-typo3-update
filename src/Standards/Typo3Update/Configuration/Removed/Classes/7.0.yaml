@@ -1,0 +1,56 @@
+# Breaking changes in 7.0: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Index.html#breaking-changes
+'7.0':
+  \TYPO3\CMS\Backend\Template\MediumDocumentTemplate:
+    replacement: 'Use \TYPO3\CMS\Backend\Template\DocumentTemplate instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html'
+  \TYPO3\CMS\Backend\Template\SmallDocumentTemplate:
+    replacement: 'Use \TYPO3\CMS\Backend\Template\DocumentTemplate instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html'
+  \TYPO3\CMS\Backend\Template\StandardDocumentTemplate:
+    replacement: 'Use \TYPO3\CMS\Backend\Template\DocumentTemplate instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61782-DeprecatedDocumentTemplateClassesRemoved.html'
+  \TYPO3\CMS\Extbase\Mvc\Controller\ArgumentError:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Mvc\Controller\ArgumentsValidator:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Property\Mapper:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Property\MappingResults:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Security\Channel\RequestHashService:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Validation\PropertyError:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Validation\Validator\AbstractObjectValidator:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Fluid\ViewHelpers\Form\ErrorsViewHelper:
+    replacement: 'Migrate to rewritten property mapper'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57396-ExtbaseDeprecatedPropertyMapperRemoved.html'
+  \TYPO3\CMS\Extbase\Mvc\Controller\FlashMessageContainer:
+    replacement: 'Change the API calls to not be of static kind anymore. Extbase extensions have to use getFlashMessageQueue() of the controllerContext'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-57382-FlashMessageApi.html'
+  \TYPO3\CMS\Extbase\Service\TypeHandlingService:
+    replacement: 'Replace all calls to \TYPO3\CMS\Extbase\Service\TypeHandlingService functions to their new static functions in \TYPO3\CMS\Extbase\Utility\TypeHandlingUtility'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-61786-ExtbaseDeprecatedTypeHandlingServiceRemoved.html'
+  \TYPO3\CMS\Extbase\Persistence\Generic\Qom\QueryObjectModelConstantsInterface:
+    replacement: 'Use \TYPO3\CMS\Extbase\Persistence\QueryInterface::*'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html#removed-php-classes'
+  \TYPO3\CMS\Extbase\Persistence\Generic\Qom\QueryObjectModelFactoryInterface:
+    replacement: null
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62673-ExtbaseDeprecatedCodeRemoved.html#removed-php-classes'
+  \TYPO3\CMS\Scheduler\Task\FileIndexingTask:
+    replacement: null
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html#removed-php-classes'
+  \TYPO3\CMS\Core\Compatibility\GlobalObjectDeprecationDecorator:
+    replacement: null
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#removed-php-classes'
+  \TYPO3\CMS\Core\Resource\Service\IndexerService:
+    replacement: null
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#removed-php-classes'
