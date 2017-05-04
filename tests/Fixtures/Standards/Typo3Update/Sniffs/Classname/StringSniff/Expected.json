@@ -1,42 +1,60 @@
 {
     "files": {
         "InputFileForIssues.php": {
-            "errors": 0,
+            "errors": 4,
             "messages": [
                 {
                     "column": 80,
-                    "fixable": false,
+                    "fixable": true,
                     "line": 22,
-                    "message": "Legacy classes are not allowed; found Tx_Extbase_Command_HelpCommandController that might be a legacy class that does not exist anymore",
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
                     "severity": 5,
-                    "source": "Typo3Update.Classname.String.mightBeLegacyClassname",
-                    "type": "WARNING"
+                    "source": "Typo3Update.Classname.String.legacyClassname",
+                    "type": "ERROR"
                 },
                 {
                     "column": 80,
-                    "fixable": false,
+                    "fixable": true,
                     "line": 23,
-                    "message": "Legacy classes are not allowed; found Tx_Extbase_Command_HelpCommandController that might be a legacy class that does not exist anymore",
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
                     "severity": 5,
-                    "source": "Typo3Update.Classname.String.mightBeLegacyClassname",
-                    "type": "WARNING"
+                    "source": "Typo3Update.Classname.String.legacyClassname",
+                    "type": "ERROR"
                 },
                 {
                     "column": 93,
-                    "fixable": false,
+                    "fixable": true,
                     "line": 25,
-                    "message": "Legacy classes are not allowed; found Tx_ExtKey_Hooks_Cache that might be a legacy class that does not exist anymore",
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Command_HelpCommandController\", use \"TYPO3\\CMS\\Extbase\\Command\\HelpCommandController\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.String.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 80,
+                    "fixable": true,
+                    "line": 27,
+                    "message": "Legacy classes are not allowed; found \"Tx_About_Domain_Model_Extension\", use \"TYPO3\\CMS\\About\\Domain\\Model\\Extension\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.String.legacyClassname",
+                    "type": "ERROR"
+                },
+                {
+                    "column": 17,
+                    "fixable": false,
+                    "line": 28,
+                    "message": "Legacy classes are not allowed; found tx_about_domain_model_extension that might be a legacy class that does not exist anymore",
                     "severity": 5,
                     "source": "Typo3Update.Classname.String.mightBeLegacyClassname",
                     "type": "WARNING"
                 }
             ],
-            "warnings": 3
+            "warnings": 1
         }
     },
     "totals": {
-        "errors": 0,
-        "fixable": 0,
-        "warnings": 3
+        "errors": 4,
+        "fixable": 4,
+        "warnings": 1
     }
 }

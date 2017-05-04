@@ -22,4 +22,7 @@
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Tx_Extbase_Command_HelpCommandController';
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "Tx_Extbase_Command_HelpCommandController";
 
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase'][] = 'EXT:ext_key/Classes/Hooks/Cache.php:&Tx_ExtKey_Hooks_Cache->getHash';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase'][] = 'EXT:ext_key/Classes/Hooks/Cache.php:&Tx_Extbase_Command_HelpCommandController->getHash';
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "Tx_About_Domain_Model_Extension";
+$GLOBALS['TCA']['tx_about_domain_model_extension'] = [];

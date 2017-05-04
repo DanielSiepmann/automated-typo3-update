@@ -128,7 +128,7 @@ final class LegacyClassnameMapping
         $lowerVersion = strtolower($classname);
 
         return $this->isLegacyTypo3Classname($classname) || $this->isLegacyMappingClassname($classname)
-            || $this->isLegacyTypo3Classname($lowerVersion) || $this->isLegacyMappingClassname($lowerVersion);
+            || isset($this->typo3MappingsKeys[$lowerVersion]) || isset($this->mappingsKeys[$lowerVersion]);
     }
 
     /**
@@ -137,7 +137,7 @@ final class LegacyClassnameMapping
      */
     public function getNewClassname($classname)
     {
-        if ($this->isLegacyTypo3Classname($classname) || $this->isLegacyTypo3Classname(strtolower($classname))) {
+        if ($this->isLegacyTypo3Classname($classname) || isset($this->typo3MappingsKeys[strtolower($classname)])) {
             return $this->typo3Mappings[$this->getTypo3MappingKey($classname)];
         }
 
@@ -168,7 +168,7 @@ final class LegacyClassnameMapping
      */
     protected function isLegacyTypo3Classname($classname)
     {
-        return isset($this->typo3Mappings[$classname]) || isset($this->typo3MappingsKeys[$classname]);
+        return isset($this->typo3Mappings[$classname]);
     }
 
     /**
@@ -177,7 +177,7 @@ final class LegacyClassnameMapping
      */
     protected function isLegacyMappingClassname($classname)
     {
-        return isset($this->mappings[$classname]) || isset($this->mappingsKeys[$classname]);
+        return isset($this->mappings[$classname]);
     }
 
     /**

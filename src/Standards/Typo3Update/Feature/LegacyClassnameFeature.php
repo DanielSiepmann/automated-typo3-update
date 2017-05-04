@@ -23,6 +23,7 @@ namespace Typo3Update\Feature;
 use PHP_CodeSniffer as PhpCs;
 use PHP_CodeSniffer_File as PhpCsFile;
 use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use Typo3Update_Sniffs_Classname_StringSniff as StringSniff;
 
 /**
  * This feature will add fixable errors for old legacy classnames.
@@ -96,8 +97,8 @@ class LegacyClassnameFeature implements FeatureInterface
      */
     protected function isLegacyClassname($classname)
     {
-        if (get_class($this->sniff) === \Typo3Update_Sniffs_Classname_StringSniff::class) {
-            return false;
+        if (get_class($this->sniff) === StringSniff::class) {
+            return $this->legacyMapping->isLegacyClassname($classname);
         }
 
         return $this->legacyMapping->isCaseInsensitiveLegacyClassname($classname);
@@ -112,6 +113,12 @@ class LegacyClassnameFeature implements FeatureInterface
      */
     protected function isMaybeLegacyClassname($classname)
     {
+        if (get_class($this->sniff) === StringSniff::class
+            && $this->legacyMapping->isCaseInsensitiveLegacyClassname($classname)
+        ) {
+            return true;
+        }
+
         if (strpos($classname, 'Tx_') === false) {
             return false;
         }
@@ -121,9 +128,7 @@ class LegacyClassnameFeature implements FeatureInterface
             return $nameParts[1];
         }, $classname);
 
-        if (!in_array($extensionName, $this->legacyExtensions)
-            && get_class($this->sniff) !== \Typo3Update_Sniffs_Classname_StringSniff::class
-        ) {
+        if (!in_array($extensionName, $this->legacyExtensions)) {
             return false;
         }
 

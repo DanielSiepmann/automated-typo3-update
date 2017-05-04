@@ -67,6 +67,10 @@ class LegacyClassnameMappingTest extends TestCase
     public function inCaseSensitivityLookupWorks()
     {
         $this->assertFalse(
+            $this->subject->isLegacyClassname('tx_extbase_domain_model_backenduser'),
+            'Classname was returned to be legacy but should not due to lowercase version and case sensitivity.'
+        );
+        $this->assertFalse(
             $this->subject->isLegacyClassname('Tx_Extbase_Domain_Model_Backenduser'),
             'Classname was returned to be legacy but should not due to lowercase version and case sensitivity.'
         );
@@ -81,6 +85,11 @@ class LegacyClassnameMappingTest extends TestCase
      */
     public function weCanRetrieveNewClassname()
     {
+        $this->assertSame(
+            'TYPO3\CMS\Extbase\Command\HelpCommandController',
+            $this->subject->getNewClassname('tx_extbase_command_helpcommandcontroller'),
+            'New class name could not be fetched for lower cased version.'
+        );
         $this->assertSame(
             'TYPO3\CMS\Extbase\Command\HelpCommandController',
             $this->subject->getNewClassname('Tx_Extbase_Command_HelpCommandController'),

@@ -1,0 +1,17 @@
+--- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/StringSniff/InputFileForIssues.php
++++ PHP_CodeSniffer
+@@ -19,10 +19,10 @@
+  * 02110-1301, USA.
+  */
+
+-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Tx_Extbase_Command_HelpCommandController';
+-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "Tx_Extbase_Command_HelpCommandController";
++$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = '\TYPO3\CMS\Extbase\Command\HelpCommandController';
++$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "\\TYPO3\\CMS\\Extbase\\Command\\HelpCommandController";
+
+-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase'][] = 'EXT:ext_key/Classes/Hooks/Cache.php:&Tx_Extbase_Command_HelpCommandController->getHash';
++$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase'][] = 'EXT:ext_key/Classes/Hooks/Cache.php:&\TYPO3\CMS\Extbase\Command\HelpCommandController->getHash';
+
+-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "Tx_About_Domain_Model_Extension";
++$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "\\TYPO3\\CMS\\About\\Domain\\Model\\Extension";
+ $GLOBALS['TCA']['tx_about_domain_model_extension'] = [];
