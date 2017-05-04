@@ -258,7 +258,7 @@ Using ``runtime-set``:
 .. _configuration-removedTypoScriptConstantConfigFiles:
 
 removedTypoScriptConstantsConfigFiles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configure where to look for configuration files defining the removed TypoScript constants.
 Default is ``Configuration/Removed/TypoScriptConstants/*.yaml`` inside the standard itself.
