@@ -21,11 +21,10 @@
 
 use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\CodeSniffer\Tokenizers\FQObjectIdentifier;
 use Typo3Update\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
-class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
+class Typo3Update_Sniffs_Removed_TypoScriptConstantSniff extends AbstractGenericUsage
 {
     /**
      * Register sniff only for TypoScript.
@@ -38,28 +37,21 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
     public function register()
     {
         return [
-            TokenInterface::TYPE_OBJECT_CONSTRUCTOR,
-            TokenInterface::TYPE_OBJECT_IDENTIFIER,
+            TokenInterface::TYPE_RIGHTVALUE_MULTILINE,
+            TokenInterface::TYPE_RIGHTVALUE,
         ];
     }
 
     protected function prepareStructure(array $typo3Versions)
     {
         $newStructure = [];
+
         foreach ($typo3Versions as $typo3Version => $removals) {
             foreach ($removals as $removed => $config) {
-                $config['type'] = TokenInterface::TYPE_OBJECT_IDENTIFIER;
-                // If starting with new, it's a constructor, meaning content object or other Object.
-                if (strtolower(substr($removed, 0, 4)) === 'new ') {
-                    $config['type'] = TokenInterface::TYPE_OBJECT_CONSTRUCTOR;
-                    $removed = substr($removed, 4);
-                }
-
                 $config['name'] = $removed;
-                $config['identifier'] = str_replace('.', '-', $removed);
-                $config['versionRemoved'] = $typo3Version;
+                $config['identifier'] = $removed;
                 $config['oldUsage'] = $removed;
-
+                $config['versionRemoved'] = $typo3Version;
                 $newStructure[$removed] = $config;
             }
         }
@@ -72,20 +64,15 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
         $removed = [];
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
-        $identifiersToCheck = [$token['content']];
+        $matches = [];
+        preg_match_all('/\{\$.*\}/', $token['content'], $matches);
 
-        if (isset($token[FQObjectIdentifier::IDENTIFIER]) && $token[FQObjectIdentifier::IDENTIFIER] !== $token['content']) {
-            $identifiersToCheck[] = $token[FQObjectIdentifier::IDENTIFIER];
-        }
-
-        foreach ($identifiersToCheck as $objectIdentifier) {
-            if ($this->configured->isRemoved($objectIdentifier) === false) {
-                continue;
-            }
-
-            $configured = $this->configured->getRemoved($objectIdentifier);
-            if ($token['type'] === $configured['type']) {
-                $removed[] = $configured;
+        foreach ($matches as $constants) {
+            foreach ($constants as $constant) {
+                $constant = substr($constant, 2, -1);
+                if ($this->configured->isRemoved($constant)) {
+                    $removed[] = $this->configured->getRemoved($constant);
+                }
             }
         }
 
@@ -94,6 +81,6 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 
     protected function getRemovedConfigFiles()
     {
-        return Options::getRemovedTypoScriptConfigFiles();
+        return Options::getRemovedTypoScriptConstantConfigFiles();
     }
 }

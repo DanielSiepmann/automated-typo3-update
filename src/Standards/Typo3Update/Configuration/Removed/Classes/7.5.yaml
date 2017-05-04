@@ -1,0 +1,17 @@
+# Breaking changes in 7.5: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Index.html#breaking-changes
+'7.5':
+  \TYPO3\CMS\Backend\Form\DataPreprocessor:
+    replacement: 'Take a look at the docs'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-69568-FormEngine.html'
+  \TYPO3\CMS\Backend\Form\FormEngine:
+    replacement: 'Take a look at the docs'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-69568-FormEngine.html'
+  \TYPO3\CMS\Backend\Form\FlexFormsHelper:
+    replacement: 'Take a look at the docs'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-69568-FormEngine.html'
+  \TYPO3\CMS\Core\Database\SqlParser:
+    replacement: 'Use \TYPO3\CMS\Dbal\Database\SqlParser instead'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-68401-SqlParserMovedIntoEXTdbal.html'
+  \TYPO3\CMS\Cshmanual\Controller\HelpModuleController:
+    replacement: 'Use the Extbase controller or Repository class'
+    docsUrl: 'https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.5/Breaking-63000-MigrateCshmanualToExtbase.html'

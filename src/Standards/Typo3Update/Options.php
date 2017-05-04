@@ -96,6 +96,32 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed typoscript constants.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedTypoScriptConstantConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedTypoScriptConstant',
+            __DIR__ . '/Configuration/Removed/TypoScriptConstant/*.yaml'
+        );
+    }
+
+    /**
+     * Returns an array of absolute file names containing removed class configurations.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedClassConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedClassConfigFiles',
+            __DIR__ . '/Configuration/Removed/Classes/*.yaml'
+        );
+    }
+
+    /**
      * Get the option by optionName, if not defined, use default.
      *
      * @param string $optionName
@@ -127,10 +153,11 @@ class Options
         );
 
         foreach ($fileNames as $file) {
-            $option = array_merge(
-                $option,
-                Yaml::parse(file_get_contents((string) $file))
-            );
+            $content = Yaml::parse(file_get_contents((string) $file));
+            if ($content === null) {
+                $content = [];
+            }
+            $option = array_merge($option, $content);
         }
 
         return $option;

@@ -19,6 +19,9 @@ Requirements
 To install the project you need ``composer`` to be installed and inside your ``$PATH``.
 Otherwise run ``make install-composer`` to install composer.
 
+We recommend to use at least PHP 5.6, we do not test with lower versions as 5.6 is latest maintained
+version.
+
 Installation
 ============
 
