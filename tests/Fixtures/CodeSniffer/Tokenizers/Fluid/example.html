@@ -1,0 +1,28 @@
+<!-- <hr> -->
+<!-- <f:format.htmlspecialchars> -->
+<!--     <h1>Escaped html</h1> -->
+<!-- </f:format.htmlspecialchars> -->
+<!-- {some.objectOrArray} -->
+
+{namespace vendor = Tx_ExtName_ViewHelpers}
+<f:layout name="Default" />
+<f:section name="SomeSection">
+<f:cObject typoscriptObjectPath="lib.contentGetHead"> </f:cObject>
+    <f:cObject typoscriptObjectPath="lib.breadcrumb"> </f:cObject>
+
+    <div class="container">
+        <div class="row">
+            <aside class="span6">
+                <f:cObject typoscriptObjectPath="lib.sidebar_navigation"> </f:cObject>
+                <f:cObject typoscriptObjectPath="lib.contentGetSidebar"> </f:cObject>
+                <vendor:newsletterBox groupId="96" nlCampaign="3" nlHerkunft="8" additional="" />
+            </aside>
+            <div class="span18">
+                <!--TYPO3SEARCH_begin-->
+                <f:render partial="Content" />
+                <!--TYPO3SEARCH_end-->
+            </div>
+        </div>
+    </div>
+    <f:cObject typoscriptObjectPath="lib.contentGetFoot"> </f:cObject>
+</f:section>

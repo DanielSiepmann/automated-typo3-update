@@ -16,15 +16,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Typo3Update\\": "src/Standards/Typo3Update/"
+            "Typo3Update\\": "src/Standards/Typo3Update/",
+            "Typo3Update\\CodeSniffer\\": "src/CodeSniffer/"
         },
         "files": [
-            "src/CodeSniffer/Tokenizers/TypoScript.php"
+            "src/CodeSniffer/Tokenizers/TypoScript.php",
+            "src/CodeSniffer/Tokenizers/Fluid.php"
         ]
     },
     "require": {
         "php": ">=5.6",
         "helmich/typo3-typoscript-parser": "1.1.*",
+        "typo3fluid/fluid": "2.3.*",
         "squizlabs/php_codesniffer": "2.8.*",
         "symfony/yaml": "3.2.*",
         "higidi/composer-phpcodesniffer-standards-plugin": "*"
