@@ -56,7 +56,15 @@ final class LegacyClassnameMapping
     }
     private function __construct()
     {
-        $this->mappings = require Options::getMappingFile();
+        if (is_file(Options::getMappingFile())) {
+            $this->mappings = require Options::getMappingFile();
+            $this->buildKeyArray($this->mappings, $this->mappingsKeys);
+        }
+
+        $this->typo3Mappings = require implode(DIRECTORY_SEPARATOR, [
+            __DIR__, '..', 'Configuration', '',
+        ]) . 'LegacyClassnames.php';
+        $this->buildKeyArray($this->typo3Mappings, $this->typo3MappingsKeys);
     }
     // Singleton implementation - End
 
@@ -64,7 +72,18 @@ final class LegacyClassnameMapping
      * Contains mappings as defined by composer for alias mapping.
      * @var array
      */
+    protected $typo3Mappings = [];
+    protected $typo3MappingsKeys = [];
+
     protected $mappings = [];
+    protected $mappingsKeys = [];
+
+    protected function buildKeyArray($originalArray, &$targetVariable)
+    {
+        foreach (array_keys($originalArray) as $key) {
+            $targetVariable[strtolower($key)] = $key;
+        }
+    }
 
     /**
      * Checks whether a mapping exists for the given $classname,
@@ -73,9 +92,15 @@ final class LegacyClassnameMapping
      * @param string $classname
      * @return bool
      */
-    public function isLegacyClassname($classname)
+    public function isLegacyClassname($classname, $insensitive = true)
     {
-        return isset($this->mappings['aliasToClassNameMapping'][strtolower($classname)]);
+        $lowerVersion = $classname;
+        if ($insensitive) {
+            $classname = strtolower($classname);
+        }
+
+        return $this->isLegacyTypo3Classname($classname) || $this->isLegacyMappingClassname($classname)
+            || $this->isLegacyTypo3Classname($lowerVersion) || $this->isLegacyMappingClassname($lowerVersion);
     }
 
     /**
@@ -84,7 +109,42 @@ final class LegacyClassnameMapping
      */
     public function getNewClassname($classname)
     {
-        return $this->mappings['aliasToClassNameMapping'][strtolower($classname)];
+        $lowerVersion = strtolower($classname);
+        if ($this->isLegacyTypo3Classname($classname) || $this->isLegacyTypo3Classname(strtolower($classname))) {
+            return $this->typo3Mappings[$this->getTypo3MappingKey($classname)];
+        }
+
+        return $this>mappings[$this->getLegacyMappingKey($classname)];
+    }
+
+    protected function getTypo3MappingKey($classname)
+    {
+        $lowerVersion = strtolower($classname);
+        if (isset($this->typo3MappingsKeys[$lowerVersion])) {
+            return $this->typo3MappingsKeys[$lowerVersion];
+        }
+
+        return $classname;
+    }
+
+    protected function getLegacyMappingKey($classname)
+    {
+        $lowerVersion = strtolower($classname);
+        if (isset($this->mappingsKeys[$lowerVersion])) {
+            return $this->mappingsKeys[$lowerVersion];
+        }
+
+        return $classname;
+    }
+
+    protected function isLegacyTypo3Classname($classname)
+    {
+        return isset($this->typo3MappingsKeys[$classname]);
+    }
+
+    protected function isLegacyMappingClassname($classname)
+    {
+        return isset($this->mappingsKeys[$classname]);
     }
 
     /**
@@ -98,10 +158,7 @@ final class LegacyClassnameMapping
      */
     public function addLegacyClassname($legacyClassname, $newClassname)
     {
-        $key = strtolower($legacyClassname);
-
-        $this->mappings['aliasToClassNameMapping'][$key] = $newClassname;
-        $this->mappings['classNameToAliasMapping'][$newClassname] = [$key => $key];
+        $this->mappings[$legacyClassname] = $newClassname;
     }
 
     /**
