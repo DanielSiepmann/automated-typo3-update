@@ -29,3 +29,8 @@ new Tx_Extbase_Command_HelpCommandController;
 (new Tx_Extbase_Command_HelpCommandController)
     ->doSomething()
     ;
+
+new TYPO3\CMS\Perm\Controller\PermissionAjaxController;
+(new \TYPO3\CMS\Perm\Controller\PermissionAjaxController)
+    ->doSomething()
+    ;
