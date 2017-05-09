@@ -19,14 +19,10 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use Typo3Update\Feature\FeaturesSupport;
+use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
 
-class Typo3Update_Sniffs_Classname_UseSniff implements PhpCsSniff
+class Typo3Update_Sniffs_Classname_UseSniff extends AbstractClassnameChecker
 {
-    use FeaturesSupport;
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -35,21 +31,5 @@ class Typo3Update_Sniffs_Classname_UseSniff implements PhpCsSniff
     public function register()
     {
         return [T_USE];
-    }
-
-    public function process(PhpCsFile $phpcsFile, $stackPtr)
-    {
-        $start = $phpcsFile->findNext(T_STRING, $stackPtr);
-        if ($start === false) {
-            return;
-        }
-
-        $end = $phpcsFile->findNext([T_STRING, T_NS_SEPARATOR], $start, null, true, null, true);
-        if ($end === false) {
-            return;
-        }
-
-        $classname = $phpcsFile->getTokensAsString($start, $end - $start);
-        $this->processFeatures($phpcsFile, $start, $classname);
     }
 }
