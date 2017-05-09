@@ -34,7 +34,7 @@ class Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff extends Ab
      */
     public function register()
     {
-        return Tokens::$functionNameTokens;
+        return [T_STRING];
     }
 
     /**
@@ -57,13 +57,12 @@ class Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff extends Ab
             return;
         }
 
-        $classnamePosition = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr);
+        $classnamePosition = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null, false, null, true);
         if ($classnamePosition === false) {
             return;
         }
 
         $classname = $tokens[$classnamePosition]['content'];
-        $this->originalTokenContent = $tokens[$classnamePosition]['content'];
         $this->processFeatures($phpcsFile, $classnamePosition, $classname);
     }
 }
