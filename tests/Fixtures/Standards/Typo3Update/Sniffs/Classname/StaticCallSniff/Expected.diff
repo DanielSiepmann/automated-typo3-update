@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/StaticCallSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -19,13 +19,13 @@
+@@ -19,16 +19,16 @@
   * 02110-1301, USA.
   */
 
@@ -19,3 +19,6 @@
 -is_a($a, t3lib_Singleton::class);
 +    ->get(\TYPO3\CMS\Extbase\Command\HelpCommandController::class);
 +is_a($a, \TYPO3\CMS\Core\SingletonInterface::class);
+
+ \TYPO3\CMS\Perm\Controller\PermissionAjaxController::configurePlugin(
+     $_EXTKEY,

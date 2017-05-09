@@ -85,19 +85,28 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     protected function getBefore(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $possibleStart = $phpcsFile->findPrevious([
+            T_STRING, T_NS_SEPARATOR,
+        ], $stackPtr - 1, null, true, null, true);
+        if ($possibleStart === false) {
+            throw new \UnexpectedValueException('Could not find start of classname.', 1494319966);
+        }
 
-        $classnamePosition = $phpcsFile->findPrevious(T_STRING, $stackPtr);
+        $classnamePosition = $phpcsFile->findNext(T_STRING, $possibleStart);
         if ($classnamePosition === false) {
             throw new \UnexpectedValueException('Could not find start of classname.', 1494319966);
         }
 
-        $classname = $tokens[$classnamePosition]['content'];
+        $end = $phpcsFile->findNext([
+            T_STRING, T_NS_SEPARATOR
+        ], $classnamePosition + 1, $stackPtr + 1, true, null, true);
+        if ($end === false) {
+            throw new \UnexpectedValueException('Could not find end of classname.', 1494319651);
+        }
 
-        return [
-            $classnamePosition,
-            $classname
-        ];
+        $classname = $phpcsFile->getTokensAsString($classnamePosition, $end - $classnamePosition);
+
+        return [$classnamePosition, $classname];
     }
 
     /**
@@ -122,9 +131,6 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
 
         $classname = $phpcsFile->getTokensAsString($classnamePosition, $end - $classnamePosition);
 
-        return [
-            $classnamePosition,
-            $classname
-        ];
+        return [$classnamePosition, $classname];
     }
 }

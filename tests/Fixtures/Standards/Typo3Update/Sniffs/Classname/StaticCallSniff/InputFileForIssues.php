@@ -29,3 +29,10 @@ $this->objectManager->get(\Tx_Extbase_Command_HelpCommandController::class);
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager)
     ->get(\Tx_Extbase_Command_HelpCommandController::class);
 is_a($a, t3lib_Singleton::class);
+
+\TYPO3\CMS\Perm\Controller\PermissionAjaxController::configurePlugin(
+    $_EXTKEY,
+    'name',
+    ['Controller' => 'action']
+);
+$this->objectManager->get(\TYPO3\CMS\Perm\Controller\PermissionAjaxController::class);
