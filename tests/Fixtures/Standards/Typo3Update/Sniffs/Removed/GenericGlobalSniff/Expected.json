@@ -13,7 +13,7 @@
                     "type": "WARNING"
                 },
                 {
-                    "column": 13,
+                    "column": 26,
                     "fixable": false,
                     "line": 25,
                     "message": "Calls to removed code are not allowed; found typo3CacheManager. Removed in 7.0. Use GeneralUtility::makeInstance() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#removed-php-classes",
