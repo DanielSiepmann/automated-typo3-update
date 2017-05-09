@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/PhpDocCommentSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -22,20 +22,20 @@
+@@ -22,21 +22,21 @@
  class InputFileForIssues
  {
      /**
@@ -14,6 +14,7 @@
 -     * @param t3lib_div
 +     * @param \TYPO3\CMS\Core\Utility\GeneralUtility
       * @param \TYPO3\CMS\Backend\Template\MediumDocumentTemplate
+      * @param \TYPO3\CMS\Perm\Controller\PermissionAjaxController
       *
 -     * @return Tx_Extbase_Configuration_Configurationmanager
 +     * @return \TYPO3\CMS\Extbase\Configuration\ConfigurationManager

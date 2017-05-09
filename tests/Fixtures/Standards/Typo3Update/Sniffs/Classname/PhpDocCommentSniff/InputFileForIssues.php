@@ -30,6 +30,7 @@ class InputFileForIssues
     /**
      * @param t3lib_div
      * @param \TYPO3\CMS\Backend\Template\MediumDocumentTemplate
+     * @param \TYPO3\CMS\Perm\Controller\PermissionAjaxController
      *
      * @return Tx_Extbase_Configuration_Configurationmanager
      */

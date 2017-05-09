@@ -31,9 +31,18 @@
                     "type": "WARNING"
                 },
                 {
+                    "column": 15,
+                    "fixable": false,
+                    "line": 33,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.PhpDocComment.RemovedClass.perm",
+                    "type": "WARNING"
+                },
+                {
                     "column": 16,
                     "fixable": true,
-                    "line": 34,
+                    "line": 35,
                     "message": "Legacy classes are not allowed; found \"Tx_Extbase_Configuration_Configurationmanager\", use \"TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager\" instead",
                     "severity": 5,
                     "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
@@ -42,19 +51,19 @@
                 {
                     "column": 18,
                     "fixable": true,
-                    "line": 38,
+                    "line": 39,
                     "message": "Legacy classes are not allowed; found \"t3lib_div\", use \"TYPO3\\CMS\\Core\\Utility\\GeneralUtility\" instead",
                     "severity": 5,
                     "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
                     "type": "ERROR"
                 }
             ],
-            "warnings": 1
+            "warnings": 2
         }
     },
     "totals": {
         "errors": 4,
         "fixable": 4,
-        "warnings": 1
+        "warnings": 2
     }
 }
