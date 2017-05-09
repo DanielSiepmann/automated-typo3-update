@@ -4,21 +4,30 @@
             "errors": 0,
             "messages": [
                 {
-                    "column": 63,
+                    "column": 53,
                     "fixable": false,
                     "line": 22,
-                    "message": "Legacy extension are not allowed; found \"perm\"",
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.ExtensionKey.legacyKey",
+                    "source": "Typo3Update.Removed.Extension.perm",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 53,
+                    "fixable": false,
+                    "line": 23,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.Extension.perm",
                     "type": "WARNING"
                 }
             ],
-            "warnings": 1
+            "warnings": 2
         }
     },
     "totals": {
         "errors": 0,
         "fixable": 0,
-        "warnings": 1
+        "warnings": 2
     }
 }
