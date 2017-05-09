@@ -42,3 +42,9 @@ try {
 } catch (TYPO3\CMS\Extbase\Exception $e) {
     // else
 }
+
+try {
+    // something
+} catch (\TYPO3\CMS\Perm\Controller\PermissionAjaxController $e) {
+    // else
+}
