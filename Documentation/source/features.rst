@@ -106,6 +106,9 @@ functions. For configuration options see :ref:`configuration-removedConstantConf
 Check for usage of *removed PHP classes*. The classes are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedClassConfigFiles`.
 
+Check for usage of *removed TYPO3 extension*. For configuration options see
+:ref:`configuration-removedExtensionConfigFiles`.
+
 Check for usage of *removed TypoScript*. The TypoScript objects are configured in same way as
 removed functions. For configuration options see :ref:`configuration-removedTypoScriptConfigFiles`.
 This will check whether you are using already removed TypoScript parts, supported are:
