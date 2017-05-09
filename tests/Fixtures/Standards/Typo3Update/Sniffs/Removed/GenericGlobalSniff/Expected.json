@@ -1,0 +1,33 @@
+{
+    "files": {
+        "InputFileForIssues.php": {
+            "errors": 0,
+            "messages": [
+                {
+                    "column": 12,
+                    "fixable": false,
+                    "line": 24,
+                    "message": "Calls to removed code are not allowed; found typo3CacheFactory. Removed in 7.0. Use GeneralUtility::makeInstance() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#removed-php-classes",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericGlobal.typo3CacheFactory",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 13,
+                    "fixable": false,
+                    "line": 25,
+                    "message": "Calls to removed code are not allowed; found typo3CacheManager. Removed in 7.0. Use GeneralUtility::makeInstance() instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62416-DeprecatedCodeRemovalInCoreSysext.html#removed-php-classes",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.GenericGlobal.typo3CacheManager",
+                    "type": "WARNING"
+                }
+            ],
+            "warnings": 2
+        }
+    },
+    "totals": {
+        "errors": 0,
+        "fixable": 0,
+        "warnings": 2
+    }
+}

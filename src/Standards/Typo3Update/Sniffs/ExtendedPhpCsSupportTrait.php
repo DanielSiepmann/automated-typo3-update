@@ -66,4 +66,26 @@ trait ExtendedPhpCsSupportTrait
 
         return true;
     }
+
+    /**
+     * Check whether variable at $stackPtr is global.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     *
+     * @return bool
+     */
+    protected function isGlobalVariable(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $position = $phpcsFile->findPrevious(T_GLOBAL, $stackPtr, null, false, null, true);
+        if ($position !== false) {
+            return true;
+        }
+
+        if ($phpcsFile->getTokens()[$stackPtr]['content'] === '$GLOBALS') {
+            return true;
+        }
+
+        return false;
+    }
 }
