@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InstantiationWithObjectManagerSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -21,13 +21,13 @@
+@@ -21,16 +21,16 @@
 
  // Not handled by this sniff, but StaticCallSniff, as this uses double colon.
  $this->objectManager->get(\Tx_Extbase_Command_HelpCommandController::class);
@@ -18,3 +18,6 @@
  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager)
 -    ->get('Tx_Extbase_Command_HelpCommandController');
 +    ->get('\TYPO3\CMS\Extbase\Command\HelpCommandController');
+
+ \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager)
+     ->get('\TYPO3\CMS\Perm\Controller\PermissionAjaxController');
