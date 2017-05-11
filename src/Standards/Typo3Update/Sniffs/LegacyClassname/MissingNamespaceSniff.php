@@ -67,6 +67,11 @@ class Typo3Update_Sniffs_LegacyClassname_MissingNamespaceSniff implements PhpCsS
         }
 
         $classname = $tokens[$classnamePosition]['content'];
+
+        LegacyClassnameMapping::getInstance()->addLegacyClassname(
+            $classname,
+            $this->getNamespace($classname) . '\\' . $this->getNewClassname($classname)
+        );
         $fix = $phpcsFile->addFixableError(
             'Legacy class definitions are not allowed; found "%s".'
                 . ' Wrap your class inside a namespace.',
@@ -105,10 +110,6 @@ class Typo3Update_Sniffs_LegacyClassname_MissingNamespaceSniff implements PhpCsS
         $phpcsFile->fixer->replaceToken(
             $this->getNamespacePosition($phpcsFile),
             '<?php' . $lineEndings . $this->getNamespaceDefinition($classname) . $suffix
-        );
-        LegacyClassnameMapping::getInstance()->addLegacyClassname(
-            $classname,
-            $this->getNamespace($classname) . '\\' . $this->getNewClassname($classname)
         );
     }
 
