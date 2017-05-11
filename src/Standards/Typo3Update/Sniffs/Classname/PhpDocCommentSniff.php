@@ -69,7 +69,7 @@ class Typo3Update_Sniffs_Classname_PhpDocCommentSniff implements PhpCsSniff
         if ($classnamePosition === false) {
             return;
         }
-        $classnames = explode('|', explode(' ', $tokens[$classnamePosition]['content'])[0]);
+        $classnames = array_filter(preg_split('/\||\s|\<|\>/', $tokens[$classnamePosition]['content']));
 
         foreach ($classnames as $classname) {
             $this->processFeatures($phpcsFile, $classnamePosition, $classname);

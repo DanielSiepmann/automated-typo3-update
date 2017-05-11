@@ -28,6 +28,11 @@ class InputFileForIssues
     protected $someVar;
 
     /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Extbase_Domain_Model_Category>
+     */
+    protected $someRelation;
+
+    /**
      * @param t3lib_div
      * @param \TYPO3\CMS\Backend\Template\MediumDocumentTemplate
      *
@@ -35,7 +40,7 @@ class InputFileForIssues
      */
     public function doSomething($something)
     {
-        /** @var t3lib_div $variable */ // This is supported as this is a phpdoc.
-        /** @var $variable t3lib_div */ // This is not supported! Use inline comments instead.
+        /** @var t3lib_div $variable */
+        /** @var $variable t3lib_div */
     }
 }
