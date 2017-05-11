@@ -1,5 +1,7 @@
 <?php
 
+namespace Vendor\ExtName\Controller;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -21,6 +23,6 @@
 
 use Tx_Extbase_Mvc_Controller_ActionController;
 
-class ux_t3lib_DB extends t3lib_DB
+class Frontendcontroller extends Tx_Extbase_Mvc_Controller_ActionController
 {
 }

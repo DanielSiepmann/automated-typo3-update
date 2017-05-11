@@ -67,6 +67,9 @@ class Typo3Update_Sniffs_LegacyClassname_MissingNamespaceSniff implements PhpCsS
         }
 
         $classname = $tokens[$classnamePosition]['content'];
+        if (substr($classname, 0, 3) !== 'Tx_') {
+            return;
+        }
 
         LegacyClassnameMapping::getInstance()->addLegacyClassname(
             $classname,
