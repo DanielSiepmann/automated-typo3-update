@@ -70,7 +70,7 @@ class ReplaceNameSpaceImport extends Command
             $this->output->writeln("LC_ALL=C sed -i '' 's#Tx_{$extName}_ViewHelpers#{$vendor}\\\\{$extName}\\\\ViewHelpers#' `ag 'Tx_{$extName}_ViewHelpers' --html -l`;");
         }
         if ($this->input->getOption('hide-sql') == false) {
-            $this->output->writeln("UPDATE tt_content SET bodytext = replace(bodytext, 'Tx_{$extName}_ViewHelpers', '{$vendor}\\{$extName}\\ViewHelpers') WHERE bodytext LIKE '%Tx_{$extName}_ViewHelpers%';");
+            $this->output->writeln("UPDATE tt_content SET bodytext = replace(bodytext, 'Tx_{$extName}_ViewHelpers', '{$vendor}\\\\{$extName}\\\\ViewHelpers') WHERE bodytext LIKE '%Tx_{$extName}_ViewHelpers%';");
         }
     }
 
