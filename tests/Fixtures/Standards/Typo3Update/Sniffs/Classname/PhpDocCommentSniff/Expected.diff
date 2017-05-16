@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/PhpDocCommentSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -22,21 +22,21 @@
+@@ -22,27 +22,27 @@
  class InputFileForIssues
  {
      /**
@@ -9,6 +9,14 @@
       * @inject
       */
      protected $someVar;
+
+     /**
+-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Extbase_Domain_Model_Category>
+-     * @validate Tx_Extbase_Validation_Validator_NumberValidator(property="value")
++     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
++     * @validate \TYPO3\CMS\Extbase\Validation\Validator\NumberValidator(property="value")
+      */
+     protected $someRelation;
 
      /**
 -     * @param t3lib_div
@@ -21,8 +29,9 @@
       */
      public function doSomething($something)
      {
--        /** @var t3lib_div $variable */ // This is supported as this is a phpdoc.
-+        /** @var \TYPO3\CMS\Core\Utility\GeneralUtility $variable */ // This is supported as this is a phpdoc.
-         /** @var $variable t3lib_div */ // This is not supported! Use inline comments instead.
+-        /** @var t3lib_div $variable */
+-        /** @var $variable t3lib_div */
++        /** @var \TYPO3\CMS\Core\Utility\GeneralUtility $variable */
++        /** @var $variable \TYPO3\CMS\Core\Utility\GeneralUtility */
      }
  }

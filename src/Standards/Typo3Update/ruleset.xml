@@ -9,7 +9,7 @@
     </rule>
     <rule ref="Typo3Update.Classname.PhpDocComment">
         <properties>
-            <property name="allowedTags" type="array" value="@param,@return,@var,@see,@throws"/>
+            <property name="allowedTags" type="array" value="@param,@return,@var,@validate,@see,@throws"/>
         </properties>
     </rule>
 </ruleset>

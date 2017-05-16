@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Tests\Sniffs\Removed;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,8 +21,8 @@
  * 02110-1301, USA.
  */
 
-use Tx_Extbase_Mvc_Controller_ActionController;
+use Typo3Update\Tests\SniffsTest;
 
-class ux_t3lib_DB extends t3lib_DB
+class GenericHookSniffTest extends SniffsTest
 {
 }

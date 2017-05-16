@@ -1,0 +1,11 @@
+# Breaking changes in 7.3: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Index.html#breaking-changes
+'7.3':
+  typo3/index.php->loginScriptHook:
+    replacement: 'Use the new backend login form API'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66669-BackendLoginControllerRefactored.html
+  typo3/index.php->loginFormHook:
+    replacement: 'Use the new backend login form API'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-66669-BackendLoginControllerRefactored.html
+  t3lib/class.t3lib_tceforms.php->getSingleFieldClass:
+    replacement: null
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.3/Breaking-63846-FormEngineRefactoring.html

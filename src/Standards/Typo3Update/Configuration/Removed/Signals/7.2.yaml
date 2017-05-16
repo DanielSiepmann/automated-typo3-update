@@ -1,0 +1,17 @@
+# Breaking changes in 7.2: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Index.html#breaking-changes
+'7.2':
+  \TYPO3\CMS\Backend\Controller\LoginController::makeLoginBoxImage:
+    replacement: 'Use the introduced Fluid view to adapt the login screen to your demands'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+  \TYPO3\CMS\Backend\Controller\LoginController::wrapLoginForm:
+    replacement: 'Use the introduced Fluid view to adapt the login screen to your demands'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+  \TYPO3\CMS\Backend\Controller\LoginController::makeLoginNews:
+    replacement: 'Use the introduced Fluid view to adapt the login screen to your demands'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+  \TYPO3\CMS\Backend\Controller\LoginController::makeLoginForm:
+    replacement: 'Use the introduced Fluid view to adapt the login screen to your demands'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html
+  \TYPO3\CMS\Backend\Controller\LoginController::makeLogoutForm:
+    replacement: 'Use the introduced Fluid view to adapt the login screen to your demands'
+    docsUrl: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html

@@ -109,6 +109,12 @@ functions. For configuration options see :ref:`configuration-removedClassConfigF
 Check for usage of *removed TYPO3 extension*. For configuration options see
 :ref:`configuration-removedExtensionConfigFiles`.
 
+Check for usage of *removed signals*. The signals are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedSignalConfigFiles`.
+
+Check for usage of *removed hooks*. The hooks are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedHookConfigFiles`.
+
 Check for usage of *removed TypoScript*. The TypoScript objects are configured in same way as
 removed functions. For configuration options see :ref:`configuration-removedTypoScriptConfigFiles`.
 This will check whether you are using already removed TypoScript parts, supported are:
@@ -127,3 +133,7 @@ Further checks
 --------------
 
 - Legacy ajax registrations for TYPO3 Backend.
+
+- We check usage of legacy classes in strings, covering properties and configuration directives.
+  They are only added as warning, not fixable error, as they might be table names and expected to
+  stay.

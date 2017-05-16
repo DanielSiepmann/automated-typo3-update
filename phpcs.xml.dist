@@ -5,6 +5,7 @@
     <file>./src</file>
     <file>./tests</file>
     <exclude-pattern>*/Fixtures/*</exclude-pattern>
+    <exclude-pattern>*/LegacyClassnames.php</exclude-pattern>
 
     <!-- Excludes for PHPCS Code Style -->
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
