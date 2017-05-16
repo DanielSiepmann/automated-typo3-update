@@ -90,7 +90,7 @@ trait ExtendedPhpCsSupportTrait
     /**
      * Remove special chars like quotes from string.
      *
-     * @param string
+     * @param string $string
      * @return string
      */
     public function getStringContent($string)
