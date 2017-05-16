@@ -29,6 +29,7 @@ class InputFileForIssues
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Extbase_Domain_Model_Category>
+     * @validate Tx_Extbase_Validation_Validator_NumberValidator(property="value")
      */
     protected $someRelation;
 

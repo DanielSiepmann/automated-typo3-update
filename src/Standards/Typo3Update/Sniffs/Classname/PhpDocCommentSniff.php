@@ -38,7 +38,7 @@ class Typo3Update_Sniffs_Classname_PhpDocCommentSniff implements PhpCsSniff
      * The configured tags will be processed.
      * @var array<string>
      */
-    public $allowedTags = ['@param', '@return', '@var'];
+    public $allowedTags = ['@param', '@return', '@var', '@validate'];
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -69,7 +69,7 @@ class Typo3Update_Sniffs_Classname_PhpDocCommentSniff implements PhpCsSniff
         if ($classnamePosition === false) {
             return;
         }
-        $classnames = array_filter(preg_split('/\||\s|\<|\>/', $tokens[$classnamePosition]['content']));
+        $classnames = array_filter(preg_split('/\||\s|\<|\>|\(/', $tokens[$classnamePosition]['content']));
 
         foreach ($classnames as $classname) {
             $this->processFeatures($phpcsFile, $classnamePosition, $classname);
