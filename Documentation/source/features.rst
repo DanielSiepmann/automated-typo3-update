@@ -130,3 +130,7 @@ Further checks
 --------------
 
 - Legacy ajax registrations for TYPO3 Backend.
+
+- We check usage of legacy classes in strings, covering properties and configuration directives.
+  They are only added as warning, not fixable error, as they might be table names and expected to
+  stay.

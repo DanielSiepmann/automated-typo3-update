@@ -1,4 +1,5 @@
 /LegacyClassnames.php
+/tests/Fixtures/LegacyClassnames.php
 
 /composer.lock
 /vendor/
