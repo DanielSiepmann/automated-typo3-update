@@ -31,9 +31,18 @@
                     "type": "WARNING"
                 },
                 {
+                    "column": 9,
+                    "fixable": false,
+                    "line": 14,
+                    "message": "Calls to removed code are not allowed; found mod.web_list.alternateBgColors. Removed in 7.0. Removed without substitution. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-53658-RemoveAlternateBgColorsOption.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Removed.TypoScript.mod-web_list-alternateBgColors",
+                    "type": "WARNING"
+                },
+                {
                     "column": 1,
                     "fixable": false,
-                    "line": 13,
+                    "line": 17,
                     "message": "Calls to removed code are not allowed; found mod.web_list.alternateBgColors. Removed in 7.0. Removed without substitution. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-53658-RemoveAlternateBgColorsOption.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.mod-web_list-alternateBgColors",
@@ -42,7 +51,7 @@
                 {
                     "column": 10,
                     "fixable": false,
-                    "line": 26,
+                    "line": 24,
                     "message": "Calls to removed code are not allowed; found CLEARGIF. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.CLEARGIF",
@@ -51,7 +60,7 @@
                 {
                     "column": 10,
                     "fixable": false,
-                    "line": 27,
+                    "line": 25,
                     "message": "Calls to removed code are not allowed; found COLUMNS. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.COLUMNS",
@@ -60,7 +69,7 @@
                 {
                     "column": 10,
                     "fixable": false,
-                    "line": 28,
+                    "line": 26,
                     "message": "Calls to removed code are not allowed; found CTABLE. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.CTABLE",
@@ -69,7 +78,7 @@
                 {
                     "column": 10,
                     "fixable": false,
-                    "line": 29,
+                    "line": 27,
                     "message": "Calls to removed code are not allowed; found OTABLE. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.OTABLE",
@@ -78,19 +87,19 @@
                 {
                     "column": 10,
                     "fixable": false,
-                    "line": 30,
+                    "line": 28,
                     "message": "Calls to removed code are not allowed; found HRULER. Removed in 7.1. Any installation should migrate to alternatives such as FLUIDTEMPLATE to customize the output of the content. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.1/Breaking-64639-RemovedContentObjects.html",
                     "severity": 5,
                     "source": "Typo3Update.Removed.TypoScript.HRULER",
                     "type": "WARNING"
                 }
             ],
-            "warnings": 9
+            "warnings": 10
         }
     },
     "totals": {
         "errors": 0,
         "fixable": 0,
-        "warnings": 9
+        "warnings": 10
     }
 }

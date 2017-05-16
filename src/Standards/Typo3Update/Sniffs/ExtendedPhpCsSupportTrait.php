@@ -29,6 +29,28 @@ use PHP_CodeSniffer_Tokens as Tokens;
 trait ExtendedPhpCsSupportTrait
 {
     /**
+     * Check whether variable at $stackPtr is global.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     *
+     * @return bool
+     */
+    protected function isGlobalVariable(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $position = $phpcsFile->findPrevious(T_GLOBAL, $stackPtr, null, false, null, true);
+        if ($position !== false) {
+            return true;
+        }
+
+        if ($phpcsFile->getTokens()[$stackPtr]['content'] === '$GLOBALS') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Check whether current stackPtr is a function call.
      *
      * Code taken from PEAR_Sniffs_Functions_FunctionCallSignatureSniff for reuse.
@@ -68,24 +90,29 @@ trait ExtendedPhpCsSupportTrait
     }
 
     /**
-     * Check whether variable at $stackPtr is global.
-     *
-     * @param PhpCsFile $phpcsFile
      * @param int $stackPtr
      *
-     * @return bool
+     * @return array<string>
      */
-    protected function isGlobalVariable(PhpCsFile $phpcsFile, $stackPtr)
+    protected function getFunctionCallParameters(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $position = $phpcsFile->findPrevious(T_GLOBAL, $stackPtr, null, false, null, true);
-        if ($position !== false) {
-            return true;
-        }
+        $start = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr) + 1;
+        $parameters = explode(',', $phpcsFile->getTokensAsString(
+            $start,
+            $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr) - $start
+        ));
 
-        if ($phpcsFile->getTokens()[$stackPtr]['content'] === '$GLOBALS') {
-            return true;
-        }
+        return array_map([$this, 'getStringContent'], $parameters);
+    }
 
-        return false;
+    /**
+     * Remove special chars like quotes from string.
+     *
+     * @param string $string
+     * @return string
+     */
+    public function getStringContent($string)
+    {
+        return trim($string, " \t\n\r\0\x0B'\"");
     }
 }

@@ -21,7 +21,11 @@
 
     <filter>
         <whitelist>
-            <directory>./src/</directory>
+            <directory>./src</directory>
+            <exclude>
+                <directory>./src/Standards/Typo3Update/Sniffs/</directory>
+                <file>./src/Standards/Typo3Update/Configuration/LegacyClassnames.php</file>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

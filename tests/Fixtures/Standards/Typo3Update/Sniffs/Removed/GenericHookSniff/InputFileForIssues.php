@@ -19,8 +19,15 @@
  * 02110-1301, USA.
  */
 
-use Tx_Extbase_Mvc_Controller_ActionController;
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/index.php']['loginScriptHook'] = 'Configuration';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']["typo3/index.php"]["loginFormHook"] = 'Configuration';
 
-class ux_t3lib_DB extends t3lib_DB
-{
-}
+array_merge(
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'],
+    [
+        'typo3/index.php' => [
+            'loginFormHook' => 'Configuration',
+        ],
+    ]
+);
+

@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Typo3Update\\": "src/Standards/Typo3Update/"
+            "Typo3Update\\": "src/Standards/Typo3Update/",
+            "Typo3Update\\CodeSniffer\\": "src/CodeSniffer/"
         },
         "files": [
             "src/CodeSniffer/Tokenizers/TypoScript.php"
@@ -31,6 +32,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "5.7.*",
+        "mikey179/vfsStream": "1.6.*",
         "symfony/finder": "3.2.*",
         "phpmd/phpmd": "2.6.*",
         "pdepend/pdepend": "2.5.*"

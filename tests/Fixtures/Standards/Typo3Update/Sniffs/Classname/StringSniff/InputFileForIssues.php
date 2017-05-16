@@ -19,8 +19,10 @@
  * 02110-1301, USA.
  */
 
-use Tx_Extbase_Mvc_Controller_ActionController;
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Tx_Extbase_Command_HelpCommandController';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "Tx_Extbase_Command_HelpCommandController";
 
-class ux_t3lib_DB extends t3lib_DB
-{
-}
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase'][] = 'EXT:ext_key/Classes/Hooks/Cache.php:&Tx_Extbase_Command_HelpCommandController->getHash';
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = "Tx_About_Domain_Model_Extension";
+$GLOBALS['TCA']['tx_about_domain_model_extension'] = [];

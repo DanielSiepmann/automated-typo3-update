@@ -21,6 +21,7 @@
 
 use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\CodeSniffer\Tokenizers\FQObjectIdentifier;
 use Typo3Update\Options;
 use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
@@ -68,20 +69,27 @@ class Typo3Update_Sniffs_Removed_TypoScriptSniff extends AbstractGenericUsage
 
     protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
+        $removed = [];
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
-        $objectIdentifier = $token['content'];
+        $identifiersToCheck = [$token['content']];
 
-        if (!$this->configured->isRemoved($objectIdentifier)) {
-            return [];
+        if (isset($token[FQObjectIdentifier::IDENTIFIER]) && $token[FQObjectIdentifier::IDENTIFIER] !== $token['content']) {
+            $identifiersToCheck[] = $token[FQObjectIdentifier::IDENTIFIER];
         }
 
-        $removed = $this->configured->getRemoved($objectIdentifier);
-        if ($token['type'] === $removed['type']) {
-            return [$removed];
+        foreach ($identifiersToCheck as $objectIdentifier) {
+            if ($this->configured->isRemoved($objectIdentifier) === false) {
+                continue;
+            }
+
+            $configured = $this->configured->getRemoved($objectIdentifier);
+            if ($token['type'] === $configured['type']) {
+                $removed[] = $configured;
+            }
         }
 
-        return [];
+        return $removed;
     }
 
     protected function getRemovedConfigFiles()

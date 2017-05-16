@@ -19,29 +19,35 @@
  * 02110-1301, USA.
  */
 
-class InputFileForIssues
+use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use PHP_CodeSniffer_Tokens as PhpCsTokens;
+use Typo3Update\Feature\FeaturesSupport;
+
+class Typo3Update_Sniffs_Classname_StringSniff implements PhpCsSniff
 {
-    /**
-     * @var Tx_Extbase_Domain_Repository_CategoryRepository
-     * @inject
-     */
-    protected $someVar;
+    use FeaturesSupport;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Extbase_Domain_Model_Category>
-     * @validate Tx_Extbase_Validation_Validator_NumberValidator(property="value")
+     * @return array<int>
      */
-    protected $someRelation;
-
-    /**
-     * @param t3lib_div
-     * @param \TYPO3\CMS\Backend\Template\MediumDocumentTemplate
-     *
-     * @return Tx_Extbase_Configuration_Configurationmanager
-     */
-    public function doSomething($something)
+    public function register()
     {
-        /** @var t3lib_div $variable */
-        /** @var $variable t3lib_div */
+        return PhpCsTokens::$stringTokens;
+    }
+
+    /**
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     */
+    public function process(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $token = $phpcsFile->getTokens()[$stackPtr]['content'];
+        // Special chars like ":" and "&" are used in configuration directives.
+        $classnames = array_filter(preg_split('/\s+|:|->|&/', substr($token, 1, -1)));
+
+        foreach ($classnames as $classname) {
+            $this->processFeatures($phpcsFile, $stackPtr, $classname);
+        }
     }
 }
