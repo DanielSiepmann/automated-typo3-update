@@ -9,14 +9,12 @@ styles.insertContent {
     }
 }
 
-# already covered
-mod.web_list.alternateBgColors = 1
-# Not covered yet
 mod {
     web_list {
         alternateBgColors = 1
     }
 }
+mod.web_list.alternateBgColors = 1
 
 page {
     CLEARGIF {

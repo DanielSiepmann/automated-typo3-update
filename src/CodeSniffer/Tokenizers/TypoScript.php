@@ -19,7 +19,9 @@
  * 02110-1301, USA.
  */
 
+use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use Helmich\TypoScriptParser\Tokenizer\Tokenizer;
+use Typo3Update\CodeSniffer\Tokenizers\FQObjectIdentifier;
 
 /**
  * Tokenizes a string of TypoScript.
@@ -68,8 +70,33 @@ class PHP_CodeSniffer_Tokenizers_TYPOSCRIPT
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) We need to match the signature.
      */
-    public function processAdditional(&$tokens, $eolChar)
+    public function processAdditional(array &$tokens, $eolChar)
     {
-        return;
+        $this->addFQObjectIdentifiers($tokens);
+    }
+
+    /**
+     * Add fully qualified object identifier to all object identifiers.
+     *
+     * @param array $tokens
+     */
+    protected function addFQObjectIdentifiers(array &$tokens)
+    {
+        $fqObjectIdentifier = new FQObjectIdentifier();
+
+        foreach ($tokens as &$token) {
+            if ($token['type'] === TokenInterface::TYPE_OBJECT_IDENTIFIER) {
+                $fqObjectIdentifier->addPathSegment($token);
+                continue;
+            }
+            if ($token['type'] === TokenInterface::TYPE_BRACE_OPEN) {
+                $fqObjectIdentifier->handleOpeningBrace();
+                continue;
+            }
+            if ($token['type'] === TokenInterface::TYPE_BRACE_CLOSE) {
+                $fqObjectIdentifier->handleClosingBrace();
+                continue;
+            }
+        }
     }
 }
