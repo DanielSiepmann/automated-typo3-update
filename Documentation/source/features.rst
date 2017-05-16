@@ -106,6 +106,12 @@ functions. For configuration options see :ref:`configuration-removedConstantConf
 Check for usage of *removed PHP classes*. The classes are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedClassConfigFiles`.
 
+Check for usage of *removed signals*. The signals are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedSignalConfigFiles`.
+
+Check for usage of *removed hooks*. The hooks are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedHookConfigFiles`.
+
 Check for usage of *removed TypoScript*. The TypoScript objects are configured in same way as
 removed functions. For configuration options see :ref:`configuration-removedTypoScriptConfigFiles`.
 This will check whether you are using already removed TypoScript parts, supported are:
