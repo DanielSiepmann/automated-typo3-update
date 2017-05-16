@@ -28,6 +28,7 @@ use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
 class Typo3Update_Sniffs_Removed_GenericHookSniff extends AbstractGenericPhpUsage
 {
     use ExtendedPhpCsSupportTrait;
+
     public function register()
     {
         return PhpCsTokens::$stringTokens;
