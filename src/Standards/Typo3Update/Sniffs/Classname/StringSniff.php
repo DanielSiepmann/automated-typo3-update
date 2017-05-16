@@ -44,7 +44,7 @@ class Typo3Update_Sniffs_Classname_StringSniff implements PhpCsSniff
     {
         $token = $phpcsFile->getTokens()[$stackPtr]['content'];
         // Special chars like ":" and "&" are used in configuration directives.
-        $classnames = array_filter(preg_split('/\s+|:|>|-|&/', substr($token, 1, -1)));
+        $classnames = array_filter(preg_split('/\s+|:|->|&/', substr($token, 1, -1)));
 
         foreach ($classnames as $classname) {
             $this->processFeatures($phpcsFile, $stackPtr, $classname);
