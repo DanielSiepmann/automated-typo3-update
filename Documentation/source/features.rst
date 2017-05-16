@@ -106,6 +106,9 @@ functions. For configuration options see :ref:`configuration-removedConstantConf
 Check for usage of *removed PHP classes*. The classes are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedClassConfigFiles`.
 
+Check for usage of *removed PHP globals*. The globals are configured in same way as removed
+functions. For configuration options see :ref:`configuration-removedGlobalConfigFiles`.
+
 Check for usage of *removed signals*. The signals are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedSignalConfigFiles`.
 
