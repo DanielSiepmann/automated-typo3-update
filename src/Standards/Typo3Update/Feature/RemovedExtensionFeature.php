@@ -27,18 +27,8 @@ class RemovedExtensionFeature extends AbstractYamlRemovedUsage
 {
     public function process(PhpCsFile $phpcsFile, $classnamePosition, $classname)
     {
-        $classnameParts = array_filter(preg_split('/\\\\|_/', $classname));
-        $extname = '';
-
-        foreach ($classnameParts as $classnamePart) {
-            $classnamePart = strtolower($classnamePart);
-            if ($this->configured->isRemoved($classnamePart) === true) {
-                $extname = $classnamePart;
-                break;
-            }
-        }
-
-        if ($extname === '') {
+        $extname = $this->getExtnameFromClassname($classname);
+        if ($extname === '' || $this->configured->isRemoved($extname) === false) {
             return;
         }
 
@@ -47,6 +37,25 @@ class RemovedExtensionFeature extends AbstractYamlRemovedUsage
             $classnamePosition,
             $this->configured->getRemoved($extname)
         );
+    }
+
+    protected function getExtnameFromClassname($classname)
+    {
+        $classname = ltrim($classname, '\\');
+        $classnameParts = array_filter(preg_split('/\\\\|_/', $classname));
+        $classnameParts = array_values($classnameParts); // To reset key numbers of array.
+        $extname = '';
+
+        if (count($classnameParts) <= 2) {
+            return '';
+        }
+
+        $extname = $classnameParts[1];
+        if (stripos($classname, 'TYPO3\CMS') === 0) {
+            $extname = $classnameParts[2];
+        }
+
+        return strtolower($extname);
     }
 
     protected function prepareStructure(array $typo3Versions)
