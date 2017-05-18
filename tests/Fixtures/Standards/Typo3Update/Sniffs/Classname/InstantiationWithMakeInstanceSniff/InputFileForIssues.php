@@ -23,3 +23,5 @@ t3lib_div::makeInstance('Tx_Extbase_Command_HelpCommandController');
 t3lib_div::makeInstance(\TYPO3\CMS\Core\Resource\Service\IndexerService::class);
 // Not handled by this sniff, but StaticCallSniff, as this uses double colon.
 t3lib_div::makeInstance(Tx_Extbase_Command_HelpCommandController::class);
+
+t3lib_div::makeInstance('TYPO3\CMS\Perm\Controller\PermissionAjaxController');

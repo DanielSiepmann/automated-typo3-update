@@ -56,14 +56,41 @@
                     "severity": 5,
                     "source": "Typo3Update.Classname.TypeHint.legacyClassname",
                     "type": "ERROR"
+                },
+                {
+                    "column": 31,
+                    "fixable": false,
+                    "line": 63,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.TypeHint.RemovedExtension.perm",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 96,
+                    "fixable": false,
+                    "line": 63,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.TypeHint.RemovedExtension.perm",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 31,
+                    "fixable": false,
+                    "line": 66,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.TypeHint.RemovedExtension.perm",
+                    "type": "WARNING"
                 }
             ],
-            "warnings": 0
+            "warnings": 3
         }
     },
     "totals": {
         "errors": 6,
         "fixable": 6,
-        "warnings": 0
+        "warnings": 3
     }
 }

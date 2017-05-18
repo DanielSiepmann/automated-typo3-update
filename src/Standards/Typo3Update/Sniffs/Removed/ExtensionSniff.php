@@ -1,5 +1,4 @@
 <?php
-namespace Typo3Update\Feature;
 
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -21,48 +20,43 @@ namespace Typo3Update\Feature;
  */
 
 use PHP_CodeSniffer_File as PhpCsFile;
+use Typo3Update\Options;
 use Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
+use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
-/**
- * Provides "feature" support for sniffs.
- */
-trait FeaturesSupport
+class Typo3Update_Sniffs_Removed_ExtensionSniff extends AbstractGenericUsage
 {
     use ExtendedPhpCsSupportTrait;
 
     /**
-     * @return Features
+     * @var array
      */
-    protected function getFeatures()
+    public $methodsToCheck = ['isLoaded', 'extPath', 'extRelPath', 'getCN', 'getExtensionVersion'];
+
+    public function register()
     {
-        return new Features($this);
+        return [T_STRING];
     }
 
-    /**
-     * Processes all features for the sniff.
-     *
-     * @param PhpCsFile $phpcsFile
-     * @param int $stackPtr
-     * @param string $content
-     */
-    public function processFeatures(PhpCsFile $phpcsFile, $stackPtr, $content)
+    protected function getRemovedConfigFiles()
     {
-        $content = $this->getStringContent($content);
+        return Options::getRemovedExtensionConfigFiles();
+    }
 
-        foreach ($this->getFeatures() as $featureClassName) {
-            $feature = $this->createFeature($featureClassName);
-            $feature->process($phpcsFile, $stackPtr, $content);
+    protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $token = $phpcsFile->getTokens()[$stackPtr];
+        if (!$this->isFunctionCall($phpcsFile, $stackPtr)
+            || !in_array($token['content'], $this->methodsToCheck)
+        ) {
+            return [];
         }
-    }
 
-    /**
-     * Create a new instance of the given feature.
-     *
-     * @param string $featureClassname
-     * @return FeatureInterface
-     */
-    protected function createFeature($featureClassname)
-    {
-        return new $featureClassname($this);
+        $arguments = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+        if ($this->configured->isRemoved($arguments[0])) {
+            return [$this->configured->getRemoved($arguments[0])];
+        }
+
+        return [];
     }
 }

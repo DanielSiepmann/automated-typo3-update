@@ -233,6 +233,28 @@ Using ``runtime-set``:
 
     --runtime-set removedClassConfigFiles "/Some/Absolute/Path/*.yaml"
 
+.. _configuration-removedExtensionConfigFiles:
+
+removedExtensionConfigFiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configure where to look for configuration files defining the removed extensions. Default is
+``Configuration/Removed/Extension/*.yaml`` inside the standard itself. We already try to deliver as
+much as possible. Globing is used, so placeholders like ``*`` are possible, see
+https://secure.php.net/manual/en/function.glob.php
+
+Using :file:`ruleset.xml`:
+
+.. code:: xml
+
+    <config name="removedExtensionConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Using ``runtime-set``:
+
+.. code:: bash
+
+    --runtime-set removedExtensionConfigFiles "/Some/Absolute/Path/*.yaml"
+
 .. _configuration-removedGlobalConfigFiles:
 
 removedGlobalConfigFiles

@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InstantiationWithNewSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -19,13 +19,13 @@
+@@ -19,14 +19,14 @@
   * 02110-1301, USA.
   */
 
@@ -20,3 +20,4 @@
 +(new \TYPO3\CMS\Extbase\Command\HelpCommandController)
      ->doSomething()
      ;
+

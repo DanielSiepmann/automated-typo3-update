@@ -49,19 +49,19 @@
                     "type": "WARNING"
                 },
                 {
-                    "column": 16,
-                    "fixable": true,
-                    "line": 40,
-                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Configuration_Configurationmanager\", use \"TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager\" instead",
+                    "column": 15,
+                    "fixable": false,
+                    "line": 39,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
                     "severity": 5,
-                    "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
-                    "type": "ERROR"
+                    "source": "Typo3Update.Classname.PhpDocComment.RemovedExtension.perm",
+                    "type": "WARNING"
                 },
                 {
-                    "column": 18,
+                    "column": 16,
                     "fixable": true,
-                    "line": 44,
-                    "message": "Legacy classes are not allowed; found \"t3lib_div\", use \"TYPO3\\CMS\\Core\\Utility\\GeneralUtility\" instead",
+                    "line": 41,
+                    "message": "Legacy classes are not allowed; found \"Tx_Extbase_Configuration_Configurationmanager\", use \"TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager\" instead",
                     "severity": 5,
                     "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
                     "type": "ERROR"
@@ -74,14 +74,23 @@
                     "severity": 5,
                     "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
                     "type": "ERROR"
+                },
+                {
+                    "column": 18,
+                    "fixable": true,
+                    "line": 46,
+                    "message": "Legacy classes are not allowed; found \"t3lib_div\", use \"TYPO3\\CMS\\Core\\Utility\\GeneralUtility\" instead",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.PhpDocComment.legacyClassname",
+                    "type": "ERROR"
                 }
             ],
-            "warnings": 1
+            "warnings": 2
         }
     },
     "totals": {
         "errors": 7,
         "fixable": 7,
-        "warnings": 1
+        "warnings": 2
     }
 }

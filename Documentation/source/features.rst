@@ -109,6 +109,9 @@ functions. For configuration options see :ref:`configuration-removedClassConfigF
 Check for usage of *removed PHP globals*. The globals are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedGlobalConfigFiles`.
 
+Check for usage of *removed TYPO3 extension*. For configuration options see
+:ref:`configuration-removedExtensionConfigFiles`.
+
 Check for usage of *removed signals*. The signals are configured in same way as removed
 functions. For configuration options see :ref:`configuration-removedSignalConfigFiles`.
 

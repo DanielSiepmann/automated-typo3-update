@@ -38,14 +38,23 @@
                     "severity": 5,
                     "source": "Typo3Update.Classname.IsACall.legacyClassname",
                     "type": "ERROR"
+                },
+                {
+                    "column": 14,
+                    "fixable": false,
+                    "line": 38,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.IsACall.RemovedExtension.perm",
+                    "type": "WARNING"
                 }
             ],
-            "warnings": 0
+            "warnings": 1
         }
     },
     "totals": {
         "errors": 4,
         "fixable": 4,
-        "warnings": 0
+        "warnings": 1
     }
 }

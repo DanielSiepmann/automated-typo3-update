@@ -23,4 +23,6 @@ use \Tx_Extbase_Domain_Model_Backenduser;
 use Tx_Extbase_Domain_Model_Backenduser;
 use TYPO3\CMS\Extbase\Mvc\Cli\Command;
 use \TYPO3\CMS\Extbase\Mvc\Cli\Command;
-
+use TYPO3\CMS\Perm\Controller\PermissionAjaxController;
+use \Tx_Perm_Controller_PermissionAjaxController;
+use Tx_Perm_Controller_PermissionAjaxController;

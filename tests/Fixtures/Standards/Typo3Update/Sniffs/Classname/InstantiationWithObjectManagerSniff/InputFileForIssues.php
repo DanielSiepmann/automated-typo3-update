@@ -31,3 +31,7 @@ $this->objectManager->get('Tx_Extbase_Command_HelpCommandController');
     ->get('\Tx_Extbase_Command_HelpCommandController');
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager)
     ->get('Tx_Extbase_Command_HelpCommandController');
+
+\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager)
+    ->get('\TYPO3\CMS\Perm\Controller\PermissionAjaxController');
+$this->objectManager->get('TYPO3\CMS\Perm\Controller\PermissionAjaxController');

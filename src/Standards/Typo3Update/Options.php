@@ -57,6 +57,17 @@ class Options
     }
 
     /**
+     * @return array<string>
+     */
+    public static function getRemovedExtensionConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedExtensionConfigFiles',
+            __DIR__ . '/Configuration/Removed/Extension/*.yaml'
+        );
+    }
+
+    /**
      * Returns an array of absolute file names containing removed function configurations.
      *
      * @return array<string>

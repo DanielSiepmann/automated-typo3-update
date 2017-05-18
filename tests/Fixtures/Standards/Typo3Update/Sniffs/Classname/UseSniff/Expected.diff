@@ -10,4 +10,4 @@
 +use TYPO3\CMS\Extbase\Domain\Model\BackendUser;
  use TYPO3\CMS\Extbase\Mvc\Cli\Command;
  use \TYPO3\CMS\Extbase\Mvc\Cli\Command;
-
+ use TYPO3\CMS\Perm\Controller\PermissionAjaxController;

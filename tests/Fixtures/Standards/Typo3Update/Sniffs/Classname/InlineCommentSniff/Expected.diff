@@ -19,5 +19,5 @@
 -        // @var Tx_Extbase_Command_HelpCommandController $variable
 +        // @var \TYPO3\CMS\Extbase\Command\HelpCommandController $variable
          $variable;
-     }
- }
+
+         /* @var $variable TYPO3\CMS\Perm\Controller\PermissionAjaxController */
