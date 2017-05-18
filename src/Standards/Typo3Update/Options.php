@@ -159,6 +159,19 @@ class Options
     }
 
     /**
+     * Returns an array of absolute file names containing removed globals configurations.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedGlobalConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedGlobalConfigFiles',
+            __DIR__ . '/Configuration/Removed/Globals/*.yaml'
+        );
+    }
+
+    /**
      * Get the option by optionName, if not defined, use default.
      *
      * @param string $optionName

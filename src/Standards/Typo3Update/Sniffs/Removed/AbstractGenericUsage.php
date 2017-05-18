@@ -33,6 +33,10 @@ abstract class AbstractGenericUsage extends BaseAbstractYamlRemovedUsage impleme
      */
     abstract protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr);
 
+    /**
+     * @param array $typo3Versions
+     * @return array
+     */
     protected function prepareStructure(array $typo3Versions)
     {
         $newStructure = [];

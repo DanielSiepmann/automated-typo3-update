@@ -255,6 +255,28 @@ Using ``runtime-set``:
 
     --runtime-set removedExtensionConfigFiles "/Some/Absolute/Path/*.yaml"
 
+.. _configuration-removedGlobalConfigFiles:
+
+removedGlobalConfigFiles
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configure where to look for configuration files defining the removed globals. Default is
+``Configuration/Removed/Globals/*.yaml`` inside the standard itself. We already try to deliver as
+much as possible. Globing is used, so placeholders like ``*`` are possible, see
+https://secure.php.net/manual/en/function.glob.php
+
+Using :file:`ruleset.xml`:
+
+.. code:: xml
+
+    <config name="removedGlobalConfigFiles" value="/Some/Absolute/Path/*.yaml"/>
+
+Using ``runtime-set``:
+
+.. code:: bash
+
+    --runtime-set removedGlobalConfigFiles "/Some/Absolute/Path/*.yaml"
+
 .. _configuration-removedTypoScriptConfigFiles:
 
 removedTypoScriptConfigFiles
