@@ -20,7 +20,7 @@ namespace Typo3Update;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer as PhpCs;
+use PHP_CodeSniffer\Config as Config;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -157,7 +157,7 @@ class Options
      */
     private static function getOptionWithDefault($optionName, $default)
     {
-        $option = PhpCs::getConfigData($optionName);
+        $option = Config::getConfigData($optionName);
         if (!$option) {
             $option = $default;
         }

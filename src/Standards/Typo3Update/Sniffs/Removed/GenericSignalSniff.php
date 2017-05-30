@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Removed;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,12 +21,11 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
 use Typo3Update\Options;
 use Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
-use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
 
-class Typo3Update_Sniffs_Removed_GenericSignalSniff extends AbstractGenericPhpUsage
+class GenericSignalSniff extends AbstractGenericPhpUsage
 {
     use ExtendedPhpCsSupportTrait;
 

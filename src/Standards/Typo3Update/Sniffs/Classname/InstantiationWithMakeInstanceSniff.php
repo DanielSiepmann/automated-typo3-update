@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Classname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,11 +21,10 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Tokens as Tokens;
-use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Util\Tokens as Tokens;
 
-class Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff extends AbstractClassnameChecker
+class InstantiationWithMakeInstanceSniff extends AbstractClassnameChecker
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 

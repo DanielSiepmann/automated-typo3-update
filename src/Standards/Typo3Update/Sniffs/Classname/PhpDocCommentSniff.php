@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Classname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,8 +21,8 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
 use Typo3Update\Feature\FeaturesSupport;
 
 /**
@@ -30,7 +32,7 @@ use Typo3Update\Feature\FeaturesSupport;
  *
  * Will do nothing itself, but call features.
  */
-class Typo3Update_Sniffs_Classname_PhpDocCommentSniff implements PhpCsSniff
+class PhpDocCommentSniff implements PhpCsSniff
 {
     use FeaturesSupport;
 

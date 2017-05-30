@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Classname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,10 +21,9 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
 
-class Typo3Update_Sniffs_Classname_TypeHintSniff extends AbstractClassnameChecker
+class TypeHintSniff extends AbstractClassnameChecker
 {
     /**
      * Returns the token types that this sniff is interested in.

@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Classname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,9 +21,7 @@
  * 02110-1301, USA.
  */
 
-use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
-
-class Typo3Update_Sniffs_Classname_InstanceofSniff extends AbstractClassnameChecker
+class InstanceofSniff extends AbstractClassnameChecker
 {
     /**
      * Returns the token types that this sniff is interested in.

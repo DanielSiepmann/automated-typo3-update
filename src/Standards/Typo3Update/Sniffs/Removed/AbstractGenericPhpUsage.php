@@ -20,7 +20,7 @@ namespace Typo3Update\Sniffs\Removed;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
 
 abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
 {
@@ -142,7 +142,7 @@ abstract class AbstractGenericPhpUsage extends AbstractGenericUsage
     {
         $name = $config['name'];
         if ($config['class']) {
-            $name = $config['class'] . '.' . $name;
+            $name = $config['class'] . ':' . $name;
         }
 
         return $name;

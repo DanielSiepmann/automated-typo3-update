@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Deprecated;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,16 +21,16 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use PHP_CodeSniffer_Tokens as PhpCsTokens;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
+use PHP_CodeSniffer\Util\Tokens as PhpCsTokens;
 
 /**
  * Analyses feature 6991.
  *
  * @see https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Feature-69916-PSR-7-basedRoutingForBackendAJAXRequests.html
  */
-class Typo3Update_Sniffs_Deprecated_AjaxRegistrationSniff implements PhpCsSniff
+class AjaxRegistrationSniff implements PhpCsSniff
 {
     /**
      * Defines files to check.
@@ -88,7 +90,7 @@ class Typo3Update_Sniffs_Deprecated_AjaxRegistrationSniff implements PhpCsSniff
             . ' Since TYPO3 7.6, use PSR-7-based Routing for Backend AJAX Requests.'
             . ' See: %s',
             $tokenToCheck,
-            '',
+            '6991',
             [
                 "\$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX'][\$ajaxID]",
                 $token['content'],

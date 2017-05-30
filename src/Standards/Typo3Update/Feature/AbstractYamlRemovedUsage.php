@@ -20,7 +20,7 @@ namespace Typo3Update\Feature;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
 use Typo3Update\AbstractYamlRemovedUsage as BaseAbstractYamlRemovedUsage;
 
 abstract class AbstractYamlRemovedUsage extends BaseAbstractYamlRemovedUsage implements FeatureInterface

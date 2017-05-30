@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\LegacyClassname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,15 +21,15 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
+use PHP_CodeSniffer\Util\Tokens as Tokens;
 use Typo3Update\Options;
 
 /**
  * Detect whether vendor is missing for plugins and modules registrations and configurations.
  */
-class Typo3Update_Sniffs_LegacyClassname_MissingVendorForPluginsAndModulesSniff implements PhpCsSniff
+class MissingVendorForPluginsAndModulesSniff implements PhpCsSniff
 {
     use \Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 

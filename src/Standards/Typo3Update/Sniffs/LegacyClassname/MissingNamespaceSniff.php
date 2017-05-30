@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\LegacyClassname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,15 +21,15 @@
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
 use Typo3Update\Feature\LegacyClassnameMapping;
 use Typo3Update\Options;
 
 /**
  * Detect missing namespaces for class definitions.
  */
-class Typo3Update_Sniffs_LegacyClassname_MissingNamespaceSniff implements PhpCsSniff
+class MissingNamespaceSniff implements PhpCsSniff
 {
     /**
      * Returns the token types that this sniff is interested in.

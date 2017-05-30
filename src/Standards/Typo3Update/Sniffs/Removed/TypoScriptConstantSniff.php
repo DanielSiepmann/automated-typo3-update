@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Removed;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -20,11 +22,10 @@
  */
 
 use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
-use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
 use Typo3Update\Options;
-use Typo3Update\Sniffs\Removed\AbstractGenericUsage;
 
-class Typo3Update_Sniffs_Removed_TypoScriptConstantSniff extends AbstractGenericUsage
+class TypoScriptConstantSniff extends AbstractGenericUsage
 {
     /**
      * Register sniff only for TypoScript.

@@ -20,7 +20,7 @@ namespace Typo3Update;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
 use Typo3Update\RemovedByYamlConfiguration;
 
 /**

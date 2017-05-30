@@ -1,5 +1,6 @@
 <?php
 
+namespace Typo3Update\Sniffs\Classname;
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,9 +20,7 @@
  * 02110-1301, USA.
  */
 
-use Typo3Update\Sniffs\Classname\AbstractClassnameChecker;
-
-class Typo3Update_Sniffs_Classname_StaticCallSniff extends AbstractClassnameChecker
+class StaticCallSniff extends AbstractClassnameChecker
 {
     /**
      * Define whether the T_STRING default behaviour should be checked before

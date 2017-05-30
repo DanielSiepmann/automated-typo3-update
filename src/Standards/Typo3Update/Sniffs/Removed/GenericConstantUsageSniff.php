@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Removed;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -22,7 +24,7 @@
 use Typo3Update\Sniffs\Removed\AbstractGenericPhpUsage;
 use Typo3Update\Options;
 
-class Typo3Update_Sniffs_Removed_GenericConstantUsageSniff extends AbstractGenericPhpUsage
+class GenericConstantUsageSniff extends AbstractGenericPhpUsage
 {
     protected function getOldUsage(array $config)
     {

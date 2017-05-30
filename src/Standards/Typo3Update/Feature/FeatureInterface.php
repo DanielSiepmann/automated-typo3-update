@@ -20,8 +20,8 @@ namespace Typo3Update\Feature;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpCsFile;
-use PHP_CodeSniffer_Sniff as PhpCsSniff;
+use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
 
 /**
  * See "Features" in documentation.

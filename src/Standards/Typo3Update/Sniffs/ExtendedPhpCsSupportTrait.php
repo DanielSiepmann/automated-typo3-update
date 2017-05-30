@@ -20,8 +20,8 @@ namespace Typo3Update\Sniffs;
  * 02110-1301, USA.
  */
 
-use PHP_CodeSniffer_File as PhpcsFile;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File as PhpcsFile;
+use PHP_CodeSniffer\Util\Tokens as Tokens;
 
 /**
  * Provide common uses for all sniffs.
