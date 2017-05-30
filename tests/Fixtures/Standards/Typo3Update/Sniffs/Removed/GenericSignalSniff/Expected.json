@@ -9,7 +9,7 @@
                     "line": 25,
                     "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Backend\\Controller\\LoginController::makeLoginNews. Removed in 7.2. Use the introduced Fluid view to adapt the login screen to your demands. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericSignal.LoginController.makeLoginNews",
+                    "source": "Typo3Update.Removed.GenericSignal.LoginController:makeLoginNews",
                     "type": "WARNING"
                 },
                 {
@@ -18,7 +18,7 @@
                     "line": 32,
                     "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Backend\\Controller\\LoginController::makeLoginNews. Removed in 7.2. Use the introduced Fluid view to adapt the login screen to your demands. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericSignal.LoginController.makeLoginNews",
+                    "source": "Typo3Update.Removed.GenericSignal.LoginController:makeLoginNews",
                     "type": "WARNING"
                 },
                 {
@@ -27,7 +27,7 @@
                     "line": 39,
                     "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Backend\\Controller\\LoginController::makeLoginNews. Removed in 7.2. Use the introduced Fluid view to adapt the login screen to your demands. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericSignal.LoginController.makeLoginNews",
+                    "source": "Typo3Update.Removed.GenericSignal.LoginController:makeLoginNews",
                     "type": "WARNING"
                 },
                 {
@@ -36,7 +36,7 @@
                     "line": 46,
                     "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Backend\\Controller\\LoginController::makeLoginNews. Removed in 7.2. Use the introduced Fluid view to adapt the login screen to your demands. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericSignal.LoginController.makeLoginNews",
+                    "source": "Typo3Update.Removed.GenericSignal.LoginController:makeLoginNews",
                     "type": "WARNING"
                 },
                 {
@@ -45,7 +45,7 @@
                     "line": 53,
                     "message": "Calls to removed code are not allowed; found \\TYPO3\\CMS\\Backend\\Controller\\LoginController::makeLoginNews. Removed in 7.2. Use the introduced Fluid view to adapt the login screen to your demands. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.2/Breaking-65939-BackendLoginRefactoring.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericSignal.LoginController.makeLoginNews",
+                    "source": "Typo3Update.Removed.GenericSignal.LoginController:makeLoginNews",
                     "type": "WARNING"
                 }
             ],

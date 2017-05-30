@@ -23,7 +23,7 @@ namespace Typo3Update\Feature;
 use PHP_CodeSniffer\Util\Common as PhpCs;
 use PHP_CodeSniffer\Files\File as PhpCsFile;
 use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
-use Typo3Update_Sniffs_Classname_StringSniff as StringSniff;
+use Typo3Update\Sniffs\Classname\StringSniff as StringSniff;
 
 /**
  * This feature will add fixable errors for old legacy classnames.
@@ -204,7 +204,7 @@ class LegacyClassnameFeature implements FeatureInterface
     protected function useEmptyPrefix(PhpCsFile $phpcsFile, $classnamePosition)
     {
         // Use statements don't start with T_NS_SEPARATOR.
-        if (get_class($this->sniff) === \Typo3Update_Sniffs_Classname_UseSniff::class) {
+        if (get_class($this->sniff) === \Typo3Update\Sniffs\Classname\UseSniff::class) {
             return true;
         }
         // If T_NS_SEPARATOR is already present before, don't add again.

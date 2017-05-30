@@ -22,6 +22,7 @@ namespace Typo3Update\Sniffs\LegacyClassname;
  */
 
 use PHP_CodeSniffer\Files\File as PhpCsFile;
+use PHP_CodeSniffer\Util\Common;
 use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
 use Typo3Update\Feature\LegacyClassnameMapping;
 use Typo3Update\Options;
@@ -101,7 +102,7 @@ class MissingNamespaceSniff implements PhpCsSniff
         $classname
     ) {
         $tokens = $phpcsFile->getTokens();
-        $lineEndings = PhpCsFile::detectLineEndings($phpcsFile->getFilename());
+        $lineEndings = Common::detectLineEndings($phpcsFile->getFilename());
         $suffix = $lineEndings;
 
         if ($tokens[1]['code'] !== T_WHITESPACE) {

@@ -43,7 +43,7 @@ class RemovedClassFeature extends AbstractYamlRemovedUsage
         foreach ($typo3Versions as $typo3Version => $removals) {
             foreach ($removals as $removed => $config) {
                 $config['name'] = $removed;
-                $config['identifier'] = 'RemovedClass.' . str_replace('\\', '_', ltrim($removed, '\\'));
+                $config['identifier'] = 'RemovedClass:' . str_replace('\\', '_', ltrim($removed, '\\'));
                 $config['versionRemoved'] = $typo3Version;
                 $config['oldUsage'] = $removed;
 

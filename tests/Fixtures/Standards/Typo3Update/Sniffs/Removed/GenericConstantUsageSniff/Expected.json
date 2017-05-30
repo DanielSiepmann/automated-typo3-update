@@ -27,7 +27,7 @@
                     "line": 24,
                     "message": "Calls to removed code are not allowed; found constant \\TYPO3\\CMS\\IndexedSearch\\Controller\\SearchFormController::WILDCARD_LEFT. Removed in 7.6. Use \\TYPO3\\CMS\\IndexedSearch\\Utility\\LikeWildcard::LEFT instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController.WILDCARD_LEFT",
+                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController:WILDCARD_LEFT",
                     "type": "WARNING"
                 },
                 {
@@ -36,7 +36,7 @@
                     "line": 27,
                     "message": "Calls to removed code are not allowed; found constant \\TYPO3\\CMS\\IndexedSearch\\Controller\\SearchFormController::WILDCARD_LEFT. Removed in 7.6. Use \\TYPO3\\CMS\\IndexedSearch\\Utility\\LikeWildcard::LEFT instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController.WILDCARD_LEFT",
+                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController:WILDCARD_LEFT",
                     "type": "WARNING"
                 },
                 {
@@ -45,7 +45,7 @@
                     "line": 29,
                     "message": "Calls to removed code are not allowed; found constant \\TYPO3\\CMS\\IndexedSearch\\Controller\\SearchFormController::WILDCARD_LEFT. Removed in 7.6. Use \\TYPO3\\CMS\\IndexedSearch\\Utility\\LikeWildcard::LEFT instead. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.6/Breaking-69227-StringsForLikeAreNotProperlyEscaped.html",
                     "severity": 5,
-                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController.WILDCARD_LEFT",
+                    "source": "Typo3Update.Removed.GenericConstantUsage.SearchFormController:WILDCARD_LEFT",
                     "type": "WARNING"
                 }
             ],

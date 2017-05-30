@@ -1,14 +1,14 @@
 Typo3Update\Feature\RemovedClassFeature:
-  - Typo3Update_Sniffs_Classname_InheritanceSniff
-  - Typo3Update_Sniffs_Classname_InlineCommentSniff
-  - Typo3Update_Sniffs_Classname_InstanceofSniff
-  - Typo3Update_Sniffs_Classname_InstantiationWithMakeInstanceSniff
-  - Typo3Update_Sniffs_Classname_InstantiationWithNewSniff
-  - Typo3Update_Sniffs_Classname_InstantiationWithObjectManagerSniff
-  - Typo3Update_Sniffs_Classname_IsACallSniff
-  - Typo3Update_Sniffs_Classname_MissingVendorForPluginsAndModulesSniff
-  - Typo3Update_Sniffs_Classname_PhpDocCommentSniff
-  - Typo3Update_Sniffs_Classname_StaticCallSniff
-  - Typo3Update_Sniffs_Classname_TypeHintCatchExceptionSniff
-  - Typo3Update_Sniffs_Classname_TypeHintSniff
-  - Typo3Update_Sniffs_Classname_UseSniff
+  - Typo3Update\Sniffs\Classname\InheritanceSniff
+  - Typo3Update\Sniffs\Classname\InlineCommentSniff
+  - Typo3Update\Sniffs\Classname\InstanceofSniff
+  - Typo3Update\Sniffs\Classname\InstantiationWithMakeInstanceSniff
+  - Typo3Update\Sniffs\Classname\InstantiationWithNewSniff
+  - Typo3Update\Sniffs\Classname\InstantiationWithObjectManagerSniff
+  - Typo3Update\Sniffs\Classname\IsACallSniff
+  - Typo3Update\Sniffs\Classname\MissingVendorForPluginsAndModulesSniff
+  - Typo3Update\Sniffs\Classname\PhpDocCommentSniff
+  - Typo3Update\Sniffs\Classname\StaticCallSniff
+  - Typo3Update\Sniffs\Classname\TypeHintCatchExceptionSniff
+  - Typo3Update\Sniffs\Classname\TypeHintSniff
+  - Typo3Update\Sniffs\Classname\UseSniff

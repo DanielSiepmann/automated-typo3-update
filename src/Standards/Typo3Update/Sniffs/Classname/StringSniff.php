@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Sniffs\Classname;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -24,7 +26,7 @@ use PHP_CodeSniffer\Sniffs\Sniff as PhpCsSniff;
 use PHP_CodeSniffer\Util\Tokens as PhpCsTokens;
 use Typo3Update\Feature\FeaturesSupport;
 
-class Typo3Update_Sniffs_Classname_StringSniff implements PhpCsSniff
+class StringSniff implements PhpCsSniff
 {
     use FeaturesSupport;
 
