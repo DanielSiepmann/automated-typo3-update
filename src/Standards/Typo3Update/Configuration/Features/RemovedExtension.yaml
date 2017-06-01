@@ -1,0 +1,14 @@
+Typo3Update\Feature\RemovedExtensionFeature:
+  - Typo3Update\Sniffs\Classname\InheritanceSniff
+  - Typo3Update\Sniffs\Classname\InlineCommentSniff
+  - Typo3Update\Sniffs\Classname\InstanceofSniff
+  - Typo3Update\Sniffs\Classname\InstantiationWithMakeInstanceSniff
+  - Typo3Update\Sniffs\Classname\InstantiationWithNewSniff
+  - Typo3Update\Sniffs\Classname\InstantiationWithObjectManagerSniff
+  - Typo3Update\Sniffs\Classname\IsACallSniff
+  - Typo3Update\Sniffs\Classname\MissingVendorForPluginsAndModulesSniff
+  - Typo3Update\Sniffs\Classname\PhpDocCommentSniff
+  - Typo3Update\Sniffs\Classname\StaticCallSniff
+  - Typo3Update\Sniffs\Classname\TypeHintCatchExceptionSniff
+  - Typo3Update\Sniffs\Classname\TypeHintSniff
+  - Typo3Update\Sniffs\Classname\UseSniff

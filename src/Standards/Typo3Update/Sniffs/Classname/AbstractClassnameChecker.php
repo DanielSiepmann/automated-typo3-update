@@ -62,19 +62,75 @@ abstract class AbstractClassnameChecker implements PhpCsSniff
      */
     public function process(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        if ($this->shouldLookBefore()) {
-            $classnamePosition = $phpcsFile->findPrevious(T_STRING, $stackPtr);
-        } else {
-            $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
-        }
-
-        if ($classnamePosition === false) {
+        try {
+            if ($this->shouldLookBefore()) {
+                list($classnamePosition, $classname) = $this->getBefore($phpcsFile, $stackPtr);
+            } else {
+                list($classnamePosition, $classname) = $this->getAfter($phpcsFile, $stackPtr);
+            }
+        } catch (\UnexpectedValueException $e) {
             return;
         }
 
-        $classname = $tokens[$classnamePosition]['content'];
         $this->processFeatures($phpcsFile, $classnamePosition, $classname);
+    }
+
+    /**
+     * Get position and classname before current stack pointer.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr  The position in the stack where
+     *
+     * @return array
+     */
+    protected function getBefore(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $possibleStart = $phpcsFile->findPrevious([
+            T_STRING, T_NS_SEPARATOR,
+        ], $stackPtr - 1, null, true, null, true);
+        if ($possibleStart === false) {
+            throw new \UnexpectedValueException('Could not find start of classname.', 1494319966);
+        }
+
+        $classnamePosition = $phpcsFile->findNext(T_STRING, $possibleStart);
+        if ($classnamePosition === false) {
+            throw new \UnexpectedValueException('Could not find start of classname.', 1494319966);
+        }
+
+        $end = $phpcsFile->findNext([
+            T_STRING, T_NS_SEPARATOR
+        ], $classnamePosition + 1, $stackPtr + 1, true, null, true);
+        if ($end === false) {
+            throw new \UnexpectedValueException('Could not find end of classname.', 1494319651);
+        }
+
+        $classname = $phpcsFile->getTokensAsString($classnamePosition, $end - $classnamePosition);
+
+        return [$classnamePosition, $classname];
+    }
+
+    /**
+     * Get position and classname after current stack pointer.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr  The position in the stack where
+     *
+     * @return array
+     */
+    protected function getAfter(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $classnamePosition = $phpcsFile->findNext(T_STRING, $stackPtr);
+        if ($classnamePosition === false) {
+            throw new \UnexpectedValueException('Could not find start of classname.', 1494319665);
+        }
+
+        $end = $phpcsFile->findNext([T_STRING, T_NS_SEPARATOR], $classnamePosition, null, true, null, true);
+        if ($end === false) {
+            throw new \UnexpectedValueException('Could not find end of classname.', 1494319651);
+        }
+
+        $classname = $phpcsFile->getTokensAsString($classnamePosition, $end - $classnamePosition);
+
+        return [$classnamePosition, $classname];
     }
 }

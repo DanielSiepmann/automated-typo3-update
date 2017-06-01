@@ -34,5 +34,17 @@ class InputFileForIssues
 
         // @var Tx_Extbase_Command_HelpCommandController $variable
         $variable;
+
+        /* @var $variable TYPO3\CMS\Perm\Controller\PermissionAjaxController */
+        $variable;
+
+        // @var $variable \TYPO3\CMS\Perm\Controller\PermissionAjaxController
+        $variable;
+
+        /* @var \TYPO3\CMS\Perm\Controller\PermissionAjaxController $variable */
+        $variable;
+
+        // @var TYPO3\CMS\Perm\Controller\PermissionAjaxController $variable
+        $variable;
     }
 }

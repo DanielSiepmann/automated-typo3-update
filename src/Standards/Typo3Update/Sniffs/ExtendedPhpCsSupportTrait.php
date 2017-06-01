@@ -29,6 +29,28 @@ use PHP_CodeSniffer\Util\Tokens as Tokens;
 trait ExtendedPhpCsSupportTrait
 {
     /**
+     * Check whether variable at $stackPtr is global.
+     *
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     *
+     * @return bool
+     */
+    protected function isGlobalVariable(PhpCsFile $phpcsFile, $stackPtr)
+    {
+        $position = $phpcsFile->findPrevious(T_GLOBAL, $stackPtr, null, false, null, true);
+        if ($position !== false) {
+            return true;
+        }
+
+        if ($phpcsFile->getTokens()[$stackPtr]['content'] === '$GLOBALS') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Check whether current stackPtr is a function call.
      *
      * Code taken from PEAR_Sniffs_Functions_FunctionCallSignatureSniff for reuse.
@@ -68,10 +90,6 @@ trait ExtendedPhpCsSupportTrait
     }
 
     /**
-     * Returns all parameters for function call as values.
-     * Quotes are removed from strings.
-     *
-     * @param PhpCsFile $phpcsFile
      * @param int $stackPtr
      *
      * @return array<string>

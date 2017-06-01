@@ -19,32 +19,9 @@
  * 02110-1301, USA.
  */
 
-try {
-    // something
-} catch (\Tx_Extbase_Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (Tx_Extbase_Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (\TYPO3\CMS\Extbase\Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (TYPO3\CMS\Extbase\Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (\TYPO3\CMS\Perm\Controller\PermissionAjaxController $e) {
-    // else
+function name()
+{
+    global $typo3CacheFactory;
+    $typo3CacheManager = $GLOBALS['typo3CacheManager'];
+    $typo3CacheManager->something();
 }

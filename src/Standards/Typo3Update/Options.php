@@ -57,6 +57,17 @@ class Options
     }
 
     /**
+     * @return array<string>
+     */
+    public static function getRemovedExtensionConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedExtensionConfigFiles',
+            __DIR__ . '/Configuration/Removed/Extension/*.yaml'
+        );
+    }
+
+    /**
      * Returns an array of absolute file names containing removed function configurations.
      *
      * @return array<string>
@@ -144,6 +155,19 @@ class Options
         return static::getOptionFileNames(
             'removedClassConfigFiles',
             __DIR__ . '/Configuration/Removed/Classes/*.yaml'
+        );
+    }
+
+    /**
+     * Returns an array of absolute file names containing removed globals configurations.
+     *
+     * @return array<string>
+     */
+    public static function getRemovedGlobalConfigFiles()
+    {
+        return static::getOptionFileNames(
+            'removedGlobalConfigFiles',
+            __DIR__ . '/Configuration/Removed/Globals/*.yaml'
         );
     }
 

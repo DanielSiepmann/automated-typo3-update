@@ -1,5 +1,7 @@
 <?php
 
+namespace Typo3Update\Tests\Sniffs\Removed;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -19,32 +21,8 @@
  * 02110-1301, USA.
  */
 
-try {
-    // something
-} catch (\Tx_Extbase_Exception $e) {
-    // else
-}
+use Typo3Update\Tests\SniffsTest;
 
-try {
-    // something
-} catch (Tx_Extbase_Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (\TYPO3\CMS\Extbase\Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (TYPO3\CMS\Extbase\Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (\TYPO3\CMS\Perm\Controller\PermissionAjaxController $e) {
-    // else
+class GenericGlobalSniffTest extends SniffsTest
+{
 }

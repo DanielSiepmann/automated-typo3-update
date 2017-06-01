@@ -19,32 +19,5 @@
  * 02110-1301, USA.
  */
 
-try {
-    // something
-} catch (\Tx_Extbase_Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (Tx_Extbase_Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (\TYPO3\CMS\Extbase\Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (TYPO3\CMS\Extbase\Exception $e) {
-    // else
-}
-
-try {
-    // something
-} catch (\TYPO3\CMS\Perm\Controller\PermissionAjaxController $e) {
-    // else
-}
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('perm');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('perm');

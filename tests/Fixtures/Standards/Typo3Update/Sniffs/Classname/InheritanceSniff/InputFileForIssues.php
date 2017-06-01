@@ -30,3 +30,10 @@ class InputFileForIssues extends Tx_Extbase_Configuration_Configurationmanager i
 {
 
 }
+
+class InputFileForIssues extends \TYPO3\CMS\Perm\Controller\PermissionAjaxController implements
+    \TYPO3\CMS\Perm\Controller\PermissionAjaxController,
+    TYPO3\CMS\Perm\Controller\PermissionModuleController
+{
+
+}

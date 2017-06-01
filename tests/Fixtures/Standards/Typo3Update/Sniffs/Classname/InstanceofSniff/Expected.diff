@@ -1,6 +1,6 @@
 --- tests/Fixtures/Standards/Typo3Update/Sniffs/Classname/InstanceofSniff/InputFileForIssues.php
 +++ PHP_CodeSniffer
-@@ -19,6 +19,6 @@
+@@ -19,7 +19,7 @@
   * 02110-1301, USA.
   */
 
@@ -8,3 +8,4 @@
 +if ($a instanceof \TYPO3\CMS\Core\SingletonInterface) {
      // do something
  }
+ if ($a instanceof \TYPO3\CMS\Perm\Controller\PermissionAjaxController) {

@@ -73,11 +73,19 @@ class InheritanceSniff extends AbstractClassnameChecker
             return;
         }
 
+        $lastPosition = $phpcsFile->findNext(T_OPEN_CURLY_BRACKET, $stackPtr);
+
         foreach ($interfaces as $interface) {
-            $position = $phpcsFile->findNext(T_STRING, $stackPtr, null, false, $interface);
-            if ($position === false) {
-                continue;
-            }
+            $interface = trim($interface, '\\');
+            $position = $stackPtr;
+
+            do {
+                try {
+                    list($position, $classname) = $this->getAfter($phpcsFile, $position + 1);
+                } catch (\UnexpectedValueException $e) {
+                    continue 2;
+                }
+            } while ($classname !== $interface && $position <= $lastPosition);
 
             $this->processFeatures($phpcsFile, $position, $interface);
         }

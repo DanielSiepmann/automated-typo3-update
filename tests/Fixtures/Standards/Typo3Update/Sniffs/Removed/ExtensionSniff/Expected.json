@@ -1,33 +1,24 @@
 {
     "files": {
         "InputFileForIssues.php": {
-            "errors": 1,
+            "errors": 0,
             "messages": [
                 {
-                    "column": 19,
-                    "fixable": true,
-                    "line": 22,
-                    "message": "Legacy classes are not allowed; found \"t3lib_Singleton\", use \"TYPO3\\CMS\\Core\\SingletonInterface\" instead",
-                    "severity": 5,
-                    "source": "Typo3Update.Classname.Instanceof.legacyClassname",
-                    "type": "ERROR"
-                },
-                {
-                    "column": 20,
+                    "column": 53,
                     "fixable": false,
-                    "line": 25,
+                    "line": 22,
                     "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
                     "severity": 5,
-                    "source": "Typo3Update.Classname.Instanceof.RemovedExtension:perm",
+                    "source": "Typo3Update.Removed.Extension.perm",
                     "type": "WARNING"
                 },
                 {
-                    "column": 19,
+                    "column": 53,
                     "fixable": false,
-                    "line": 28,
+                    "line": 23,
                     "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
                     "severity": 5,
-                    "source": "Typo3Update.Classname.Instanceof.RemovedExtension:perm",
+                    "source": "Typo3Update.Removed.Extension.perm",
                     "type": "WARNING"
                 }
             ],
@@ -35,8 +26,8 @@
         }
     },
     "totals": {
-        "errors": 1,
-        "fixable": 1,
+        "errors": 0,
+        "fixable": 0,
         "warnings": 2
     }
 }

@@ -52,10 +52,18 @@ class TypeHintSniff extends AbstractClassnameChecker
                 continue;
             }
 
-            $position = $phpcsFile->findPrevious(T_STRING, $parameter['token'], $stackPtr, false, null, true);
+            $position = $phpcsFile->findPrevious([
+                T_OPEN_PARENTHESIS, T_COMMA
+            ], $parameter['token'] - 2, $stackPtr, false, null, true);
             if ($position === false) {
                 continue;
             }
+
+            $position = $phpcsFile->findNext(T_STRING, $position);
+            if ($position === false) {
+                continue;
+            }
+
             $this->processFeatures($phpcsFile, $position, $parameter['type_hint']);
         }
     }

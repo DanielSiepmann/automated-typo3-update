@@ -59,4 +59,11 @@ class SomeClass
     public function something(Tx_Extbase_Domain_Model_Backenduser $user)
     {
     }
+
+    public function something(TYPO3\CMS\Perm\Controller\PermissionAjaxController $controller, \Tx_Perm_Controller_PermissionAjaxController $controller)
+    {
+    }
+    public function something(Tx_Perm_Controller_PermissionAjaxController $controller)
+    {
+    }
 }

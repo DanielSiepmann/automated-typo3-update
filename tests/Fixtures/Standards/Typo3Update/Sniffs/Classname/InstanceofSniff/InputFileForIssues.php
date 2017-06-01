@@ -22,3 +22,9 @@
 if ($a instanceof t3lib_Singleton) {
     // do something
 }
+if ($a instanceof \TYPO3\CMS\Perm\Controller\PermissionAjaxController) {
+    // do something
+}
+if ($a instanceof TYPO3\CMS\Perm\Controller\PermissionAjaxController) {
+    // do something
+}

@@ -35,7 +35,7 @@ class InstantiationWithMakeInstanceSniff extends AbstractClassnameChecker
      */
     public function register()
     {
-        return Tokens::$functionNameTokens;
+        return [T_STRING];
     }
 
     /**
@@ -58,13 +58,12 @@ class InstantiationWithMakeInstanceSniff extends AbstractClassnameChecker
             return;
         }
 
-        $classnamePosition = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr);
+        $classnamePosition = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null, false, null, true);
         if ($classnamePosition === false) {
             return;
         }
 
         $classname = $tokens[$classnamePosition]['content'];
-        $this->originalTokenContent = $tokens[$classnamePosition]['content'];
         $this->processFeatures($phpcsFile, $classnamePosition, $classname);
     }
 }

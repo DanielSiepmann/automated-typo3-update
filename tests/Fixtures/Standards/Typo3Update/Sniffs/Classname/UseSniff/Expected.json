@@ -20,14 +20,41 @@
                     "severity": 5,
                     "source": "Typo3Update.Classname.Use.legacyClassname",
                     "type": "ERROR"
+                },
+                {
+                    "column": 5,
+                    "fixable": false,
+                    "line": 26,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.Use.RemovedExtension:perm",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 6,
+                    "fixable": false,
+                    "line": 27,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.Use.RemovedExtension:perm",
+                    "type": "WARNING"
+                },
+                {
+                    "column": 5,
+                    "fixable": false,
+                    "line": 28,
+                    "message": "Calls to removed code are not allowed; found perm. Removed in 7.0. The logic is moved into EXT:beuser. See: https://docs.typo3.org/typo3cms/extensions/core/7.6/Changelog/7.0/Breaking-62339-MoveExtPermIntoExtBeuser.html",
+                    "severity": 5,
+                    "source": "Typo3Update.Classname.Use.RemovedExtension:perm",
+                    "type": "WARNING"
                 }
             ],
-            "warnings": 0
+            "warnings": 3
         }
     },
     "totals": {
         "errors": 2,
         "fixable": 2,
-        "warnings": 0
+        "warnings": 3
     }
 }

@@ -21,50 +21,47 @@ namespace Typo3Update\Sniffs\Removed;
  * 02110-1301, USA.
  */
 
-use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use PHP_CodeSniffer\Files\File as PhpCsFile;
 use Typo3Update\Options;
+use Typo3Update\Sniffs\ExtendedPhpCsSupportTrait;
 
-class TypoScriptConstantSniff extends AbstractGenericUsage
+class GenericGlobalSniff extends AbstractGenericUsage
 {
-    /**
-     * Register sniff only for TypoScript.
-     * @var array<string>
-     */
-    public $supportedTokenizers = [
-        'TYPOSCRIPT',
-    ];
+    use ExtendedPhpCsSupportTrait;
 
     public function register()
     {
-        return [
-            TokenInterface::TYPE_RIGHTVALUE_MULTILINE,
-            TokenInterface::TYPE_RIGHTVALUE,
-        ];
+        return [T_VARIABLE];
     }
 
+    /**
+     * @param PhpCsFile $phpcsFile
+     * @param int $stackPtr
+     * @return array
+     */
     protected function findRemoved(PhpCsFile $phpcsFile, $stackPtr)
     {
-        $removed = [];
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
-        $matches = [];
-        preg_match_all('/\{\$.*\}/', $token['content'], $matches);
-
-        foreach ($matches as $constants) {
-            foreach ($constants as $constant) {
-                $constant = substr($constant, 2, -1);
-                if ($this->configured->isRemoved($constant)) {
-                    $removed[] = $this->configured->getRemoved($constant);
-                }
-            }
+        if ($this->isGlobalVariable($phpcsFile, $stackPtr) === false) {
+            return [];
         }
 
-        return $removed;
+        $variableName = substr($phpcsFile->getTokens()[$stackPtr]['content'], 1);
+        if ($variableName === 'GLOBALS') {
+            $variableName = trim(
+                $phpcsFile->getTokens()[$phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr)]['content'],
+                '\'"'
+            );
+        }
+
+        if ($this->configured->isRemoved($variableName)) {
+            return [$this->configured->getRemoved($variableName)];
+        }
+
+        return [];
     }
 
     protected function getRemovedConfigFiles()
     {
-        return Options::getRemovedTypoScriptConstantConfigFiles();
+        return Options::getRemovedGlobalConfigFiles();
     }
 }
