@@ -35,8 +35,6 @@ class TypoScriptTest extends TestCase
      */
     public function callingTokenizerWorksAsExpected()
     {
-        $this->markTestSkipped('Not migrated yet.');
-        $subject = new \PHP_CodeSniffer_Tokenizers_TYPOSCRIPT();
         $resultFile = implode(DIRECTORY_SEPARATOR, [
             __DIR__,
             '..',
@@ -58,13 +56,13 @@ class TypoScriptTest extends TestCase
             'example.ts',
         ]);
 
-        // Initialize constants, etc.
-        new PhpCs();
+        // Prepare environment:
+        define('PHP_CODESNIFFER_VERBOSITY', 0);
+        define('PHP_CODESNIFFER_CBF', false);
+        $config = new \PHP_CodeSniffer\Config([], false);
+        class_exists(\PHP_CodeSniffer\Util\Tokens::class);
 
-        $this->assertEquals(
-            require $resultFile,
-            PhpCsFile::tokenizeString(file_get_contents($testFile), $subject, "\n"),
-            'Did not get expected tokens.'
-        );
+        $subject = new \PHP_CodeSniffer\Tokenizers\TYPOSCRIPT(file_get_contents($testFile), $config, "\n");
+        $this->assertEquals(require $resultFile, $subject->getTokens(), 'Did not get expected tokens.');
     }
 }

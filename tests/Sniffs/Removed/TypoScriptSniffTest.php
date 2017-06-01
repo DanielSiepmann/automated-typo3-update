@@ -25,8 +25,4 @@ use Typo3Update\Tests\SniffsTest;
 
 class TypoScriptSniffTest extends SniffsTest
 {
-    public function getSniffs()
-    {
-        $this->markTestSkipped('Not migrated yet.');
-    }
 }

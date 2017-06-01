@@ -1,5 +1,7 @@
 <?php
 
+namespace PHP_CodeSniffer\Tokenizers;
+
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
  *
@@ -21,32 +23,25 @@
 
 use Helmich\TypoScriptParser\Tokenizer\TokenInterface;
 use Helmich\TypoScriptParser\Tokenizer\Tokenizer;
+use PHP_CodeSniffer\Tokenizers\Tokenizer as AbstractTokenizer;
 use Typo3Update\CodeSniffer\Tokenizers\FQObjectIdentifier;
 
 /**
  * Tokenizes a string of TypoScript.
  */
-class PHP_CodeSniffer_Tokenizers_TYPOSCRIPT
+class TYPOSCRIPT extends AbstractTokenizer
 {
-    /**
-     * If TRUE, files that appear to be minified will not be processed.
-     *
-     * @var boolean
-     */
-    public $skipMinified = false;
-
     /**
      * Creates an array of tokens when given some TypoScript code.
      *
      * @param string $string  The string to tokenize.
-     * @param string $eolChar The EOL character to use for splitting strings.
      *
      * @return array
      */
-    public function tokenizeString($string, $eolChar = "\n")
+    public function tokenize($string)
     {
         $finalTokens = [];
-        $tokenizer = new Tokenizer($eolChar);
+        $tokenizer = new Tokenizer($this->eolChar);
 
         foreach ($tokenizer->tokenizeString($string) as $stackPtr => $token) {
             $finalTokens[$stackPtr] = [
@@ -63,28 +58,21 @@ class PHP_CodeSniffer_Tokenizers_TYPOSCRIPT
     /**
      * Allow the tokenizer to do additional processing if required.
      *
-     * @param array  $tokens  The array of tokens to process.
-     * @param string $eolChar The EOL character to use for splitting strings.
-     *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) We need to match the signature.
      */
-    public function processAdditional(array &$tokens, $eolChar)
+    public function processAdditional()
     {
-        $this->addFQObjectIdentifiers($tokens);
+        $this->addFQObjectIdentifiers();
     }
 
     /**
      * Add fully qualified object identifier to all object identifiers.
-     *
-     * @param array $tokens
      */
-    protected function addFQObjectIdentifiers(array &$tokens)
+    protected function addFQObjectIdentifiers()
     {
         $fqObjectIdentifier = new FQObjectIdentifier();
 
-        foreach ($tokens as &$token) {
+        foreach ($this->tokens as &$token) {
             if ($token['type'] === TokenInterface::TYPE_OBJECT_IDENTIFIER) {
                 $fqObjectIdentifier->addPathSegment($token);
                 continue;
