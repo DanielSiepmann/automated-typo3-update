@@ -54,7 +54,7 @@ class LegacyClassnameMappingTest extends TestCase
         $this->fileSystem = vfsStream::setup('root', null, [
             'LegacyClassnames.php' => file_get_contents($this->getFixturePath('MappingContent.php')),
         ]);
-        Config::setConfigData('mappingFile', vfsStream::url('root/LegacyClassnames.php'));
+        // Config::setConfigData('mappingFile', vfsStream::url('root/LegacyClassnames.php'));
 
         $this->subject = LegacyClassnameMapping::getInstance();
     }

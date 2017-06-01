@@ -12,7 +12,8 @@
     "autoload-dev": {
         "psr-4": {
             "Typo3Update\\Tests\\": "tests/",
-            "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src/"
+            "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src/",
+            "PHP_CodeSniffer\\Tests\\": "vendor/squizlabs/php_codesniffer/tests/"
         }
     },
     "autoload": {

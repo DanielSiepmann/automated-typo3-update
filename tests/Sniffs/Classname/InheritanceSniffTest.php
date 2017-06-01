@@ -1,6 +1,6 @@
 <?php
 
-namespace Typo3Update\Tests\Sniffs\Classname;
+namespace Typo3Update\Tests\Classname;
 
 /*
  * Copyright (C) 2017  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -21,8 +21,8 @@ namespace Typo3Update\Tests\Sniffs\Classname;
  * 02110-1301, USA.
  */
 
-use Typo3Update\Tests\SniffsTest;
+use Typo3Update\Tests\AbstractSniffUnitTest;
 
-class InheritanceSniffTest extends SniffsTest
+class InheritanceSniff extends AbstractSniffUnitTest
 {
 }
