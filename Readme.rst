@@ -1,3 +1,12 @@
+Deprecation
+===========
+
+TYPO3 nowadays provides the Extension Scanner, which was encapsulated into a
+standalone project at https://github.com/tuurlijk/typo3scan.
+
+This project will not be developed any further, instead use the new typo3scan
+project.
+
 About
 =====
 
